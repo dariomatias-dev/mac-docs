@@ -1,0 +1,61 @@
+---
+title: Limites
+description: A noção de limite de uma função e suas propriedades.
+order: 1
+prerequisites:
+  - /docs/calculo
+---
+
+# Limites
+
+O limite descreve o comportamento de uma função $f(x)$ quando $x$ se aproxima de
+um valor $a$, mesmo que $f$ não esteja definida em $a$.
+
+$$
+\lim_{x \to a} f(x) = L
+$$
+
+## Definição formal ($\varepsilon$–$\delta$)
+
+Dizemos que $\lim_{x \to a} f(x) = L$ quando, para todo $\varepsilon > 0$,
+existe $\delta > 0$ tal que:
+
+$$
+0 < |x - a| < \delta \implies |f(x) - L| < \varepsilon
+$$
+
+## Propriedades
+
+Sejam $\lim_{x \to a} f(x) = L$ e $\lim_{x \to a} g(x) = M$. Então:
+
+| Regra     | Enunciado                             |
+| --------- | ------------------------------------- |
+| Soma      | $\lim (f + g) = L + M$                |
+| Produto   | $\lim (f \cdot g) = L \cdot M$        |
+| Quociente | $\lim (f / g) = L / M$, se $M \neq 0$ |
+| Constante | $\lim (c \cdot f) = c \cdot L$        |
+
+## Exemplo resolvido
+
+Calcular $\lim_{x \to 2} \dfrac{x^2 - 4}{x - 2}$. O numerador fatora, o que
+elimina a indeterminação $\tfrac{0}{0}$:
+
+$$
+\lim_{x \to 2} \frac{(x - 2)(x + 2)}{x - 2} = \lim_{x \to 2} (x + 2) = 4
+$$
+
+## Limite numérico
+
+Uma aproximação numérica avalia $f$ em pontos próximos de $a$:
+
+```ts
+function approxLimit(f: (x: number) => number, a: number): number {
+  const h = 1e-6;
+  return (f(a - h) + f(a + h)) / 2;
+}
+
+approxLimit((x) => (x * x - 4) / (x - 2), 2); // ~4
+```
+
+> **Cuidado:** existência do limite exige que os limites laterais coincidam:
+> $\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)$.

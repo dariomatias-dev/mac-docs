@@ -1,0 +1,45 @@
+---
+title: Derivadas
+description: Taxa de variação instantânea e regras de derivação.
+order: 2
+prerequisites:
+  - /docs/calculo/limites
+---
+
+# Derivadas
+
+A derivada de $f$ em $x$ é a taxa de variação instantânea, definida como um
+limite:
+
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+$$
+
+Geometricamente, $f'(x)$ é a inclinação da reta tangente ao gráfico em $x$.
+
+## Regras de derivação
+
+| Função   | Derivada       |
+| -------- | -------------- |
+| $x^n$    | $n\,x^{n-1}$   |
+| $\sin x$ | $\cos x$       |
+| $\cos x$ | $-\sin x$      |
+| $e^x$    | $e^x$          |
+| $\ln x$  | $\dfrac{1}{x}$ |
+
+## Regra da cadeia
+
+Para uma composição $f(g(x))$:
+
+$$
+\frac{d}{dx} f\bigl(g(x)\bigr) = f'\bigl(g(x)\bigr) \cdot g'(x)
+$$
+
+## Gradiente
+
+Em várias variáveis, as derivadas parciais formam o vetor **gradiente** — base de
+métodos de otimização como o gradiente descendente:
+
+$$
+\nabla f = \begin{bmatrix} \dfrac{\partial f}{\partial x_1} \\[6pt] \vdots \\[4pt] \dfrac{\partial f}{\partial x_n} \end{bmatrix}
+$$
