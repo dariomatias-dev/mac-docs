@@ -143,3 +143,57 @@
     scroll-behavior: auto !important;
   }
 }
+
+@layer components {
+  .mdx-content {
+    @apply text-foreground leading-7;
+  }
+  .mdx-content h1 {
+    @apply mt-2 mb-6 scroll-mt-24 text-3xl font-semibold tracking-tight;
+  }
+  .mdx-content h2 {
+    @apply border-border mt-10 mb-4 scroll-mt-24 border-b pb-2 text-2xl font-semibold tracking-tight;
+  }
+  .mdx-content h3 {
+    @apply mt-8 mb-3 scroll-mt-24 text-xl font-semibold tracking-tight;
+  }
+  .mdx-content p {
+    @apply my-4;
+  }
+  .mdx-content a {
+    @apply text-primary font-medium underline underline-offset-4;
+  }
+  .mdx-content ul {
+    @apply my-4 list-disc space-y-1 pl-6;
+  }
+  .mdx-content ol {
+    @apply my-4 list-decimal space-y-1 pl-6;
+  }
+  .mdx-content ul.contains-task-list {
+    @apply list-none pl-1;
+  }
+  .mdx-content blockquote {
+    @apply border-border text-muted-foreground my-6 border-l-2 pl-4 italic;
+  }
+  .mdx-content code:not(pre code) {
+    @apply bg-muted rounded px-1.5 py-0.5 font-mono text-sm;
+  }
+  .mdx-content pre {
+    @apply bg-muted my-6 overflow-x-auto rounded-lg p-4 text-sm;
+  }
+  .mdx-content pre code {
+    @apply bg-transparent p-0;
+  }
+  .mdx-content table {
+    @apply my-6 block w-full overflow-x-auto text-sm;
+  }
+  .mdx-content th {
+    @apply border-border border px-3 py-2 text-left font-semibold;
+  }
+  .mdx-content td {
+    @apply border-border border px-3 py-2;
+  }
+  .mdx-content .katex-display {
+    @apply my-6 overflow-x-auto overflow-y-hidden py-1;
+  }
+}
