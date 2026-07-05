@@ -31,6 +31,11 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
   if (!doc) return {};
 
   const url = doc.url;
+  const ogImage = `/og?${new URLSearchParams({
+    title: doc.frontmatter.title,
+    description: doc.frontmatter.description ?? "",
+  }).toString()}`;
+
   return {
     title: doc.frontmatter.title,
     description: doc.frontmatter.description,
@@ -40,11 +45,13 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
       url,
       title: doc.frontmatter.title,
       description: doc.frontmatter.description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: doc.frontmatter.title }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: doc.frontmatter.title,
       description: doc.frontmatter.description,
+      images: [ogImage],
     },
   };
 }
