@@ -5,6 +5,8 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
+import { HeadingAnchor } from "./heading-anchor";
+
 // Dual-theme Shiki output: each token carries both a --shiki-light and
 // --shiki-dark CSS variable; globals.css swaps between them on `.dark`.
 // keepBackground:false keeps the existing .prose pre surface/border styling.
@@ -24,6 +26,9 @@ const options: MDXRemoteProps["options"] = {
 // scrollable-region-focusable). tabIndex 0 lets keyboard users scroll them.
 // GFM task-list checkboxes render without a label, so give them one.
 const baseComponents: MDXRemoteProps["components"] = {
+  h2: (props) => <HeadingAnchor level={2} {...props} />,
+  h3: (props) => <HeadingAnchor level={3} {...props} />,
+  h4: (props) => <HeadingAnchor level={4} {...props} />,
   pre: (props) => <pre tabIndex={0} {...props} />,
   input: (props) =>
     props.type === "checkbox" ? (
