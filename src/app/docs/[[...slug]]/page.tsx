@@ -15,7 +15,7 @@ import { Breadcrumbs, PrevNextNav, getBreadcrumb, getFlatPageList } from "@/feat
 import { mdxComponents } from "@/features/study";
 import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
