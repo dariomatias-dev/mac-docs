@@ -211,3 +211,22 @@ html {
 .prose :where(tbody tr):last-child :where(td):not(:where([class~="not-prose"] *)) {
   border-bottom: none;
 }
+
+.exercise-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.3s ease,
+    opacity 0.25s ease;
+}
+
+[data-exercise-open] .exercise-answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.exercise-answer > * {
+  overflow: hidden;
+  min-height: 0;
+}
