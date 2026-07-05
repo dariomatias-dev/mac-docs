@@ -3,9 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { cn } from "@/lib/utils";
-
-export function ThemeToggle({ className }: { className?: string }) {
+export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
@@ -13,15 +11,10 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       aria-label="Alternar tema"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className={cn(
-        "border-border inline-flex size-9 items-center justify-center rounded-md border",
-        "text-foreground hover:bg-accent hover:text-accent-foreground transition-colors",
-        "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
-        className,
-      )}
+      className="text-muted-2 hover:text-accent flex h-6 w-6 cursor-pointer items-center justify-center transition-colors"
     >
-      <Moon className="size-4 dark:hidden" />
-      <Sun className="hidden size-4 dark:block" />
+      <Sun className="h-4.5 w-4.5 dark:hidden" />
+      <Moon className="hidden h-4.5 w-4.5 dark:block" />
     </button>
   );
 }
