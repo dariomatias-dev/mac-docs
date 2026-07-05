@@ -146,6 +146,19 @@ html {
   color: var(--accent);
 }
 
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.prose :where(pre code):not(:where([class~="not-prose"] *)) {
+  color: inherit;
+  font-weight: 400;
+  background: transparent;
+}
+
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
   border-left: 3px solid var(--accent);
   background: var(--surface);
