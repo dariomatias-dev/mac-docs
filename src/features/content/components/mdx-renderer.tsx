@@ -12,9 +12,5 @@ const options: MDXRemoteProps["options"] = {
 };
 
 export function MdxRenderer({ source }: { source: string }) {
-  return (
-    <div className="mdx-content">
-      <MDXRemote source={source} options={options} />
-    </div>
-  );
+  return <MDXRemote source={source} options={options} />;
 }

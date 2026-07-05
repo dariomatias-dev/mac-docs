@@ -1,0 +1,27 @@
+---
+title: Conceito intuitivo
+description: Uma primeira ideia de limite, sem formalismo.
+order: 1
+prerequisites:
+  - /docs/calculo-1/limites
+---
+
+Intuitivamente, dizer que $\lim_{x \to a} f(x) = L$ significa que podemos deixar
+$f(x)$ tão próximo de $L$ quanto quisermos, bastando tomar $x$ suficientemente
+próximo de $a$.
+
+## Aproximação numérica
+
+Observe $f(x) = \dfrac{x^2 - 1}{x - 1}$ perto de $x = 1$:
+
+| $x$  | $f(x)$ |
+| ---- | ------ |
+| 0,9  | 1,9    |
+| 0,99 | 1,99   |
+| 1,01 | 2,01   |
+| 1,1  | 2,1    |
+
+Os valores se acumulam em torno de $2$, logo $\lim_{x \to 1} f(x) = 2$.
+
+> A função nem precisa existir em $x = 1$ — o limite fala do **entorno**, não do
+> ponto.

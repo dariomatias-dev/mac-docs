@@ -1,0 +1,27 @@
+---
+title: Definição formal
+description: A definição de limite com épsilon e delta.
+order: 2
+prerequisites:
+  - /docs/calculo-1/limites/conceito-intuitivo
+---
+
+Dizemos que $\lim_{x \to a} f(x) = L$ quando, para todo $\varepsilon > 0$, existe
+$\delta > 0$ tal que:
+
+$$
+0 < |x - a| < \delta \implies |f(x) - L| < \varepsilon
+$$
+
+## Leitura
+
+- $\varepsilon$ é a tolerância desejada em torno de $L$ no eixo vertical.
+- $\delta$ é a proximidade necessária de $a$ no eixo horizontal.
+
+## Propriedades
+
+| Regra     | Enunciado                             |
+| --------- | ------------------------------------- |
+| Soma      | $\lim (f + g) = L + M$                |
+| Produto   | $\lim (f \cdot g) = L \cdot M$        |
+| Quociente | $\lim (f / g) = L / M$, se $M \neq 0$ |

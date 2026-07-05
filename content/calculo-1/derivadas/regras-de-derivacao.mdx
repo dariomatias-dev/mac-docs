@@ -1,0 +1,32 @@
+---
+title: Regras de derivação
+description: As regras fundamentais para derivar funções.
+order: 1
+prerequisites:
+  - /docs/calculo-1/derivadas
+  - /docs/calculo-1/limites/definicao-formal
+---
+
+| Função   | Derivada       |
+| -------- | -------------- |
+| $x^n$    | $n\,x^{n-1}$   |
+| $\sin x$ | $\cos x$       |
+| $\cos x$ | $-\sin x$      |
+| $e^x$    | $e^x$          |
+| $\ln x$  | $\dfrac{1}{x}$ |
+
+## Regra da cadeia
+
+Para uma composição $f(g(x))$:
+
+$$
+\frac{d}{dx} f\bigl(g(x)\bigr) = f'\bigl(g(x)\bigr) \cdot g'(x)
+$$
+
+## Exemplo
+
+Derive $h(x) = (3x^2 + 1)^5$. Com $f(u) = u^5$ e $g(x) = 3x^2 + 1$:
+
+$$
+h'(x) = 5(3x^2 + 1)^4 \cdot 6x = 30x\,(3x^2 + 1)^4
+$$

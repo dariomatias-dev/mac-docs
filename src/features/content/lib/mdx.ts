@@ -3,10 +3,11 @@ import path from "node:path";
 
 import matter from "gray-matter";
 
+import { CONTENT_DIR } from "@/shared/lib/content-config";
+
 import type { Doc } from "../content.types";
 import { frontmatterSchema } from "./frontmatter-schema";
 
-const CONTENT_DIR = path.join(process.cwd(), "content");
 const MDX_EXTENSION = ".mdx";
 const SECTION_FILE = "index";
 
