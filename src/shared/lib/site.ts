@@ -1,4 +1,6 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mac-docs.vercel.app";
+import { env } from "./env";
+
+export const SITE_URL = env.NEXT_PUBLIC_SITE_URL;
 
 export const SITE_NAME = "mac-docs";
 export const SITE_DESCRIPTION = "Documentação interativa de Matemática Aplicada à Computação.";
