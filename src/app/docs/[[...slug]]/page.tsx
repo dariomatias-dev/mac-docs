@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { MdxRenderer, getAllSlugs, getDocBySlug } from "@/features/content";
 import { Breadcrumbs, PrevNextNav, getBreadcrumb, getFlatPageList } from "@/features/navigation";
+import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
 
 export const dynamicParams = false;
 
@@ -44,6 +45,7 @@ export default async function DocPage({ params }: DocPageProps) {
   if (!doc) notFound();
 
   const breadcrumb = getBreadcrumb(doc.slug);
+  const toc = extractToc(doc.content);
   const flat = getFlatPageList();
   const currentIndex = flat.findIndex((page) => page.href === doc.url);
   const prev = currentIndex > 0 ? flat[currentIndex - 1] : null;
@@ -56,11 +58,18 @@ export default async function DocPage({ params }: DocPageProps) {
         <h1 className="text-foreground mt-4 mb-6 text-4xl font-bold tracking-tight">
           {doc.frontmatter.title}
         </h1>
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
+        <MobileToc items={toc} />
+        <div className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
           <MdxRenderer source={doc.content} />
         </div>
         <PrevNextNav prev={prev} next={next} />
       </article>
+
+      <aside className="hidden w-72 shrink-0 xl:block">
+        <div className="sticky top-28">
+          <TableOfContents items={toc} />
+        </div>
+      </aside>
     </div>
   );
 }
