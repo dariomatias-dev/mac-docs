@@ -159,6 +159,20 @@ html {
   background: transparent;
 }
 
+/* Shiki dual-theme token colors (rehype-pretty-code). Light by default,
+   dark under .dark. Backgrounds come from the .prose pre rule above. */
+.prose :where(pre code) span {
+  color: var(--shiki-light);
+}
+
+.dark .prose :where(pre code) span {
+  color: var(--shiki-dark);
+}
+
+.prose :where(pre code [data-line]) {
+  display: block;
+}
+
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
   border-left: 3px solid var(--accent);
   background: var(--surface);

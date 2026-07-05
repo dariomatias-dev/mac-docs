@@ -1,13 +1,22 @@
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeKatex from "rehype-katex";
+import rehypePrettyCode, { type Options as PrettyCodeOptions } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
+// Dual-theme Shiki output: each token carries both a --shiki-light and
+// --shiki-dark CSS variable; globals.css swaps between them on `.dark`.
+// keepBackground:false keeps the existing .prose pre surface/border styling.
+const prettyCodeOptions: PrettyCodeOptions = {
+  theme: { light: "light-plus", dark: "dark-plus" },
+  keepBackground: false,
+};
+
 const options: MDXRemoteProps["options"] = {
   mdxOptions: {
     remarkPlugins: [remarkGfm, remarkMath],
-    rehypePlugins: [rehypeSlug, rehypeKatex],
+    rehypePlugins: [rehypeSlug, rehypeKatex, [rehypePrettyCode, prettyCodeOptions]],
   },
 };
 
