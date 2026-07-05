@@ -25,3 +25,23 @@ $$
 | Soma      | $\lim (f + g) = L + M$                |
 | Produto   | $\lim (f \cdot g) = L \cdot M$        |
 | Quociente | $\lim (f / g) = L / M$, se $M \neq 0$ |
+
+## Pratique
+
+<Callout type="tip" title="Dica">
+  Pense em $\delta$ como resposta ao desafio $\varepsilon$: quanto perto de $a$ preciso ficar?
+</Callout>
+
+<StepByStep title="Provar um limite">
+  <Step title="Fixar ε">Tome $\varepsilon > 0$ arbitrário.</Step>
+  <Step title="Escolher δ">Encontre $\delta$ em função de $\varepsilon$.</Step>
+  <Step title="Verificar">Mostre que $|x - a| < \delta$ implica $|f(x) - L| < \varepsilon$.</Step>
+</StepByStep>
+
+<Exercise>
+Prove que $\lim_{x \to 2} (3x - 1) = 5$ escolhendo $\delta = \varepsilon / 3$.
+
+<Answer>
+$|3x - 1 - 5| = 3|x - 2| < 3\delta = \varepsilon$.
+</Answer>
+</Exercise>
