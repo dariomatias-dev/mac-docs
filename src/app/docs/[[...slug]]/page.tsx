@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { MdxRenderer, getAllSlugs, getDocBySlug } from "@/features/content";
+import { Breadcrumbs, PrevNextNav, getBreadcrumb, getFlatPageList } from "@/features/navigation";
 
 export const dynamicParams = false;
 
@@ -42,15 +43,23 @@ export default async function DocPage({ params }: DocPageProps) {
   const doc = getDocBySlug(slug ?? []);
   if (!doc) notFound();
 
+  const breadcrumb = getBreadcrumb(doc.slug);
+  const flat = getFlatPageList();
+  const currentIndex = flat.findIndex((page) => page.href === doc.url);
+  const prev = currentIndex > 0 ? flat[currentIndex - 1] : null;
+  const next = currentIndex >= 0 && currentIndex < flat.length - 1 ? flat[currentIndex + 1] : null;
+
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-12 pt-12 pb-28">
       <article className="max-w-300 min-w-0 flex-1">
-        <h1 className="text-foreground mb-6 text-4xl font-bold tracking-tight">
+        <Breadcrumbs items={breadcrumb} />
+        <h1 className="text-foreground mt-4 mb-6 text-4xl font-bold tracking-tight">
           {doc.frontmatter.title}
         </h1>
         <div className="prose prose-neutral dark:prose-invert max-w-none">
           <MdxRenderer source={doc.content} />
         </div>
+        <PrevNextNav prev={prev} next={next} />
       </article>
     </div>
   );

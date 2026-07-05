@@ -2,6 +2,8 @@ export { Sidebar } from "./components/sidebar";
 export { Header } from "./components/header";
 export { Footer } from "./components/footer";
 export { MobileMenuButton } from "./components/mobile-menu-button";
+export { Breadcrumbs } from "./components/breadcrumbs";
+export { PrevNextNav } from "./components/prev-next-nav";
 export { SidebarGroupsProvider } from "./providers/sidebar-groups-provider";
 export { SidebarCollapseProvider } from "./providers/sidebar-collapse-provider";
 export { SidebarMobileProvider } from "./providers/sidebar-mobile-provider";
