@@ -8,7 +8,9 @@ for (const path of PAGES) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
 
-    const critical = results.violations.filter((v) => v.impact === "critical");
-    expect(critical).toEqual([]);
+    const serious = results.violations.filter(
+      (v) => v.impact === "critical" || v.impact === "serious",
+    );
+    expect(serious).toEqual([]);
   });
 }

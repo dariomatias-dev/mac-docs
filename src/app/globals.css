@@ -8,13 +8,13 @@
   --background: #ffffff;
   --foreground: #23272f;
   --border: #dce0e8;
-  --muted: #6e7681;
+  --muted: #565c66;
   --muted-2: #404756;
   --surface: #f6f7f9;
   --surface-2: #eef0f4;
-  --accent: #149eca;
+  --accent: #0a7194;
   --accent-dark: #087ea4;
-  --accent-soft: rgba(20, 158, 202, 0.12);
+  --accent-soft: rgba(10, 113, 148, 0.12);
   --accent-foreground: #ffffff;
 }
 
