@@ -28,6 +28,9 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Check internal links
+        run: npm run check:links
+
       - name: Unit tests
         run: npm run test:run
 
