@@ -8,7 +8,7 @@ prerequisites:
 
 Intuitivamente, dizer que $\lim_{x \to a} f(x) = L$ significa que podemos deixar
 $f(x)$ tão próximo de $L$ quanto quisermos, bastando tomar $x$ suficientemente
-próximo de $a$.
+próximo de $a$ — sem precisar que $f$ esteja definida em $a$.
 
 ## Aproximação numérica
 
@@ -23,5 +23,37 @@ Observe $f(x) = \dfrac{x^2 - 1}{x - 1}$ perto de $x = 1$:
 
 Os valores se acumulam em torno de $2$, logo $\lim_{x \to 1} f(x) = 2$.
 
-> A função nem precisa existir em $x = 1$ — o limite fala do **entorno**, não do
-> ponto.
+## Limites laterais
+
+O limite existe apenas quando os dois lados coincidem:
+
+$$
+\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L
+$$
+
+### Quando o limite não existe
+
+Se os limites laterais diferem, o limite não existe. É o caso de $\lfloor x
+\rfloor$ (piso) nos inteiros.
+
+## Verificação numérica
+
+Uma estimativa simples avalia $f$ dos dois lados de $a$ e tira a média:
+
+```ts
+function limiteAprox(f: (x: number) => number, a: number): number {
+  const h = 1e-6;
+  return (f(a - h) + f(a + h)) / 2;
+}
+
+limiteAprox((x) => (x * x - 1) / (x - 1), 1); // ~2
+```
+
+## Checklist de estudo
+
+- [x] Entender a ideia de aproximação
+- [x] Calcular limites por tabela
+- [ ] Formalizar com $\varepsilon$ e $\delta$
+- [ ] Praticar limites laterais
+
+> **Atenção:** o limite descreve o **entorno** de $a$, nunca o valor $f(a)$ em si.
