@@ -31,8 +31,8 @@ jobs:
       - name: Check internal links
         run: npm run check:links
 
-      - name: Unit tests
-        run: npm run test:run
+      - name: Unit tests with coverage
+        run: npm run test:coverage
 
       - name: Build
         run: npm run build
