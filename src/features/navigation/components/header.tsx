@@ -1,10 +1,11 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/features/theme";
 
 import { MobileMenuButton } from "./mobile-menu-button";
 
-export function Header() {
+export function Header({ search, searchMobile }: { search?: ReactNode; searchMobile?: ReactNode }) {
   return (
     <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur">
       <div className="relative flex h-16 w-full items-center gap-4 px-20 md:px-44 lg:px-56 xl:px-64">
@@ -13,6 +14,12 @@ export function Header() {
         <Link href="/" className="text-foreground shrink-0 text-base font-bold tracking-tight">
           mac-docs
         </Link>
+
+        {search && (
+          <div className="absolute top-1/2 left-1/2 hidden w-full max-w-md -translate-x-1/2 -translate-y-1/2 px-4 md:block">
+            {search}
+          </div>
+        )}
 
         <div className="ml-auto flex items-center gap-3">
           <ThemeToggle />
@@ -30,6 +37,10 @@ export function Header() {
           </a>
         </div>
       </div>
+
+      {searchMobile && (
+        <div className="border-border border-t px-4 py-2 md:hidden">{searchMobile}</div>
+      )}
     </header>
   );
 }

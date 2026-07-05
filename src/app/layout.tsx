@@ -7,6 +7,7 @@ import {
   SidebarGroupsProvider,
   SidebarMobileProvider,
 } from "@/features/navigation";
+import { SearchButton, SearchDialog, getSearchIndex } from "@/features/search";
 import { ThemeProvider } from "@/features/theme";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/shared/lib/site";
 
@@ -67,7 +68,10 @@ export default function RootLayout({
           <SidebarGroupsProvider>
             <SidebarCollapseProvider>
               <SidebarMobileProvider>
-                <Header />
+                <Header
+                  search={<SearchDialog items={getSearchIndex()} />}
+                  searchMobile={<SearchButton />}
+                />
                 <div id="main-content" className="flex flex-1 flex-col">
                   {children}
                 </div>
