@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { MdxRenderer, getAllSlugs, getDocBySlug } from "@/features/content";
+import {
+  CopyButtons,
+  MdxRenderer,
+  PageMeta,
+  getAllSlugs,
+  getDocBySlug,
+  getPagePlainText,
+  getReadingMinutes,
+  getSectionPlainText,
+} from "@/features/content";
 import { Breadcrumbs, PrevNextNav, getBreadcrumb, getFlatPageList } from "@/features/navigation";
 import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
 
@@ -51,13 +60,25 @@ export default async function DocPage({ params }: DocPageProps) {
   const prev = currentIndex > 0 ? flat[currentIndex - 1] : null;
   const next = currentIndex >= 0 && currentIndex < flat.length - 1 ? flat[currentIndex + 1] : null;
 
+  const minutes = getReadingMinutes(doc.content);
+  const pageText = getPagePlainText(doc);
+  const sectionText = doc.isSection ? getSectionPlainText(doc.slug) : undefined;
+  const prerequisites = (doc.frontmatter.prerequisites ?? []).map((href) => ({
+    href,
+    title: flat.find((page) => page.href === href)?.title ?? href,
+  }));
+
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-12 pt-12 pb-28">
       <article className="max-w-300 min-w-0 flex-1">
-        <Breadcrumbs items={breadcrumb} />
-        <h1 className="text-foreground mt-4 mb-6 text-4xl font-bold tracking-tight">
+        <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+          <Breadcrumbs items={breadcrumb} />
+          <CopyButtons pageText={pageText} sectionText={sectionText} />
+        </div>
+        <h1 className="text-foreground mb-2 text-4xl font-bold tracking-tight">
           {doc.frontmatter.title}
         </h1>
+        <PageMeta minutes={minutes} prerequisites={prerequisites} />
         <MobileToc items={toc} />
         <div className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
           <MdxRenderer source={doc.content} />
