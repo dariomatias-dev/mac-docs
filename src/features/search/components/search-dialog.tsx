@@ -77,6 +77,7 @@ export function SearchDialog() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [recents, setRecents] = useState<RecentItem[]>([]);
   const [items, setItems] = useState<SearchItem[]>([]);
+  const [loading, setLoading] = useState(false);
   const loadedRef = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -84,11 +85,14 @@ export function SearchDialog() {
   const loadIndex = useCallback(async () => {
     if (loadedRef.current) return;
     loadedRef.current = true;
+    setLoading(true);
     try {
       const res = await fetch(SEARCH_INDEX_URL);
       setItems((await res.json()) as SearchItem[]);
     } catch {
       loadedRef.current = false; // allow a retry on next open
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -257,9 +261,12 @@ export function SearchDialog() {
               </div>
 
               <div className="flex-1 overflow-y-auto p-2">
-                {displayed.length === 0 && (
-                  <p className="text-muted px-3 py-6 text-center text-sm">Nenhum resultado.</p>
-                )}
+                {displayed.length === 0 &&
+                  (loading ? (
+                    <p className="text-muted px-3 py-6 text-center text-sm">Carregando…</p>
+                  ) : (
+                    <p className="text-muted px-3 py-6 text-center text-sm">Nenhum resultado.</p>
+                  ))}
                 {groups.map(([section, sectionItems]) => (
                   <div key={section} className="mb-2 last:mb-0">
                     <div className="flex items-center justify-between px-2.5 py-1.5">
