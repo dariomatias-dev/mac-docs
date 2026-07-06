@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { cache } from "react";
 
 import matter from "gray-matter";
 
@@ -74,7 +75,7 @@ function buildGroup(dirPath: string, slug: string[]): SidebarGroup {
   };
 }
 
-export function getSidebarTree(): SidebarCourse[] {
+export const getSidebarTree = cache((): SidebarCourse[] => {
   if (!fs.existsSync(CONTENT_DIR)) return [];
 
   return fs
@@ -96,7 +97,7 @@ export function getSidebarTree(): SidebarCourse[] {
         groups,
       };
     });
-}
+});
 
 function findTrail(
   groups: SidebarGroup[],

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { cache } from "react";
 
 import matter from "gray-matter";
 
@@ -55,9 +56,9 @@ function fileToDoc(filePath: string): Doc {
   };
 }
 
-export function getAllDocs(): Doc[] {
+export const getAllDocs = cache((): Doc[] => {
   return walk(CONTENT_DIR).map(fileToDoc);
-}
+});
 
 export function getAllSlugs(): string[][] {
   return getAllDocs().map((doc) => doc.slug);
