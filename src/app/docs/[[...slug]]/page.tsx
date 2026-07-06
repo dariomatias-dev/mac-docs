@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import {
   CopyButtons,
+  MathCopy,
   MdxRenderer,
   PageMeta,
   getAllSlugs,
@@ -96,6 +97,7 @@ export default async function DocPage({ params }: DocPageProps) {
         <MobileToc items={toc} />
         <div className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
           <MdxRenderer source={doc.content} components={mdxComponents} />
+          <MathCopy />
         </div>
         <EditPageLink filePath={doc.filePath} />
         <PrevNextNav prev={prev} next={next} />
