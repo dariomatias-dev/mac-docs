@@ -11,7 +11,13 @@ import {
   getReadingMinutes,
   getSectionPlainText,
 } from "@/features/content";
-import { Breadcrumbs, PrevNextNav, getBreadcrumb, getFlatPageList } from "@/features/navigation";
+import {
+  Breadcrumbs,
+  EditPageLink,
+  PrevNextNav,
+  getBreadcrumb,
+  getFlatPageList,
+} from "@/features/navigation";
 import { mdxComponents } from "@/features/study";
 import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
 
@@ -91,6 +97,7 @@ export default async function DocPage({ params }: DocPageProps) {
         <div className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
           <MdxRenderer source={doc.content} components={mdxComponents} />
         </div>
+        <EditPageLink filePath={doc.filePath} />
         <PrevNextNav prev={prev} next={next} />
       </article>
 

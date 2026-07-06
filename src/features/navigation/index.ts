@@ -4,6 +4,7 @@ export { Footer } from "./components/footer";
 export { MobileMenuButton } from "./components/mobile-menu-button";
 export { Breadcrumbs } from "./components/breadcrumbs";
 export { PrevNextNav } from "./components/prev-next-nav";
+export { EditPageLink } from "./components/edit-page-link";
 export { SidebarGroupsProvider } from "./providers/sidebar-groups-provider";
 export { SidebarCollapseProvider } from "./providers/sidebar-collapse-provider";
 export { SidebarMobileProvider } from "./providers/sidebar-mobile-provider";
