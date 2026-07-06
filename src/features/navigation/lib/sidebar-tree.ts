@@ -1,19 +1,8 @@
-import fs from "node:fs";
-import path from "node:path";
 import { cache } from "react";
 
-import matter from "gray-matter";
-
-import { CONTENT_DIR } from "@/shared/lib/content-config";
+import { getAllDocs, type Doc } from "@/features/content";
 
 import type { Crumb, SidebarCourse, SidebarGroup, SidebarPage } from "../navigation.types";
-
-type Frontmatter = { title?: string; description?: string; order?: number };
-
-function readFrontmatter(filePath: string): Frontmatter {
-  const raw = fs.readFileSync(filePath, "utf-8");
-  return matter(raw).data as Frontmatter;
-}
 
 function titleCaseFallback(name: string): string {
   return name
@@ -37,66 +26,77 @@ function byOrderThenTitle<T extends { order: number; title: string }>(a: T, b: T
   return a.order - b.order || a.title.localeCompare(b.title);
 }
 
-function buildGroup(dirPath: string, slug: string[]): SidebarGroup {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  const dirName = slug[slug.length - 1];
+/** Directory a doc lives in: its own slug for a section (index.mdx), else its parent. */
+function dirOf(doc: Doc): string[] {
+  return doc.isSection ? doc.slug : doc.slug.slice(0, -1);
+}
 
-  const hasIndex = entries.some((e) => e.isFile() && e.name === "index.mdx");
-  const indexData = hasIndex ? readFrontmatter(path.join(dirPath, "index.mdx")) : undefined;
+/** Distinct child-directory slugs one level below `parent`, derived from the doc set. */
+function childDirs(docs: Doc[], parent: string[]): string[][] {
+  const depth = parent.length;
+  const key = parent.join("/");
+  const keys = new Set<string>();
 
-  const pages: SidebarPage[] = entries
-    .filter((e) => e.isFile() && e.name.endsWith(".mdx") && e.name !== "index.mdx")
-    .map((file) => {
-      const name = file.name.replace(/\.mdx$/, "");
-      const pageSlug = [...slug, name];
-      const data = readFrontmatter(path.join(dirPath, file.name));
-      return {
-        title: data.title ?? titleCaseFallback(name),
-        slug: pageSlug,
-        href: "/docs/" + pageSlug.join("/"),
-        order: data.order ?? 0,
-      };
-    })
+  for (const doc of docs) {
+    const dir = dirOf(doc);
+    if (dir.length > depth && dir.slice(0, depth).join("/") === key) {
+      keys.add(dir.slice(0, depth + 1).join("/"));
+    }
+  }
+
+  return [...keys].map((k) => k.split("/"));
+}
+
+function buildGroup(docs: Doc[], slug: string[]): SidebarGroup {
+  const depth = slug.length;
+  const key = slug.join("/");
+
+  const section = docs.find((doc) => doc.isSection && doc.slug.join("/") === key);
+
+  const pages: SidebarPage[] = docs
+    .filter(
+      (doc) =>
+        !doc.isSection &&
+        doc.slug.length === depth + 1 &&
+        doc.slug.slice(0, depth).join("/") === key,
+    )
+    .map((doc) => ({
+      title: doc.frontmatter.title,
+      slug: doc.slug,
+      href: doc.url,
+      order: doc.frontmatter.order ?? 0,
+    }))
     .sort(byOrderThenTitle);
 
-  const groups: SidebarGroup[] = entries
-    .filter((e) => e.isDirectory())
-    .map((dir) => buildGroup(path.join(dirPath, dir.name), [...slug, dir.name]))
+  const groups: SidebarGroup[] = childDirs(docs, slug)
+    .map((childSlug) => buildGroup(docs, childSlug))
     .sort(byOrderThenTitle);
 
   return {
-    title: indexData?.title ?? titleCaseFallback(dirName),
-    description: indexData?.description,
+    title: section?.frontmatter.title ?? titleCaseFallback(slug[depth - 1]),
+    description: section?.frontmatter.description,
     slug,
-    href: "/docs/" + slug.join("/"),
-    order: indexData?.order ?? 0,
+    href: "/docs/" + key,
+    order: section?.frontmatter.order ?? 0,
     pages,
     groups,
   };
 }
 
 export const getSidebarTree = cache((): SidebarCourse[] => {
-  if (!fs.existsSync(CONTENT_DIR)) return [];
+  const docs = getAllDocs();
 
-  return fs
-    .readdirSync(CONTENT_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((courseDir) => {
-      const courseSlug = [courseDir.name];
-      const coursePath = path.join(CONTENT_DIR, courseDir.name);
-      const groups = fs
-        .readdirSync(coursePath, { withFileTypes: true })
-        .filter((entry) => entry.isDirectory())
-        .map((group) => buildGroup(path.join(coursePath, group.name), [...courseSlug, group.name]))
-        .sort(byOrderThenTitle);
+  const courseNames = new Set<string>();
+  for (const doc of docs) courseNames.add(doc.slug[0]);
 
-      return {
-        title: courseTitle(courseDir.name),
-        slug: courseSlug,
-        order: 0,
-        groups,
-      };
-    });
+  return [...courseNames].map((name) => ({
+    title: courseTitle(name),
+    slug: [name],
+    order: 0,
+    groups: childDirs(docs, [name])
+      .map((groupSlug) => buildGroup(docs, groupSlug))
+      .sort(byOrderThenTitle),
+  }));
 });
 
 function findTrail(
