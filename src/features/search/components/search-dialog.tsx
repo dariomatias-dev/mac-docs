@@ -4,25 +4,68 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { CornerDownLeft, FileText, Search, X } from "lucide-react";
+import Fuse, { type FuseResultMatch } from "fuse.js";
+import { Clock, CornerDownLeft, FileText, Search, X } from "lucide-react";
 
-import { SEARCH_OPEN_EVENT, type SearchItem } from "../lib/search-shared";
+import {
+  SEARCH_OPEN_EVENT,
+  type RecentItem,
+  type SearchItem,
+  clearRecents,
+  loadRecents,
+  pushRecent,
+} from "../lib/search-shared";
 
-type Result = SearchItem & { bodyIdx: number };
+type Range = readonly [number, number];
 
-function Snippet({ text, query, idx }: { text: string; query: string; idx: number }) {
-  if (idx < 0 || !query) return null;
-  const start = Math.max(0, idx - 40);
-  const end = Math.min(text.length, idx + query.length + 90);
+type Display = SearchItem & {
+  titleRanges: readonly Range[];
+  textRanges: readonly Range[];
+};
+
+const RECENTS_SECTION = "Buscas recentes";
+
+// Split text into plain/marked nodes from Fuse match indices (inclusive ranges).
+function highlight(text: string, ranges: readonly Range[], markClass: string) {
+  if (!ranges.length) return text;
+  const sorted = [...ranges].sort((a, b) => a[0] - b[0]);
+  const nodes: React.ReactNode[] = [];
+  let cursor = 0;
+  sorted.forEach(([start, end], i) => {
+    if (start < cursor) return;
+    if (start > cursor) nodes.push(text.slice(cursor, start));
+    nodes.push(
+      <mark key={i} className={markClass}>
+        {text.slice(start, end + 1)}
+      </mark>,
+    );
+    cursor = end + 1;
+  });
+  if (cursor < text.length) nodes.push(text.slice(cursor));
+  return nodes;
+}
+
+function findMatch(matches: readonly FuseResultMatch[] | undefined, key: string): readonly Range[] {
+  return (matches?.find((m) => m.key === key)?.indices as readonly Range[] | undefined) ?? [];
+}
+
+function Snippet({ text, ranges }: { text: string; ranges: readonly Range[] }) {
+  if (!ranges.length) return null;
+  const [start, end] = ranges[0];
+  const from = Math.max(0, start - 40);
+  const to = Math.min(text.length, end + 90);
+  const windowRanges = ranges
+    .filter(([s]) => s >= from && s <= to)
+    .map(([s, e]) => [s - from, e - from] as Range);
   return (
     <span className="text-muted mt-0.5 line-clamp-1 text-xs">
-      {start > 0 && "…"}
-      {text.slice(start, idx)}
-      <mark className="bg-accent-soft text-accent rounded px-0.5 font-medium">
-        {text.slice(idx, idx + query.length)}
-      </mark>
-      {text.slice(idx + query.length, end)}
-      {end < text.length && "…"}
+      {from > 0 && "…"}
+      {highlight(
+        text.slice(from, to),
+        windowRanges,
+        "bg-accent-soft text-accent rounded px-0.5 font-medium",
+      )}
+      {to < text.length && "…"}
     </span>
   );
 }
@@ -31,41 +74,65 @@ export function SearchDialog({ items }: { items: SearchItem[] }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [recents, setRecents] = useState<RecentItem[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const results = useMemo<Result[]>(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return items.slice(0, 8).map((item) => ({ ...item, bodyIdx: -1 }));
+  const fuse = useMemo(
+    () =>
+      new Fuse(items, {
+        keys: [
+          { name: "title", weight: 3 },
+          { name: "section", weight: 1 },
+          { name: "text", weight: 1 },
+        ],
+        includeMatches: true,
+        ignoreLocation: true,
+        threshold: 0.4,
+        minMatchCharLength: 2,
+      }),
+    [items],
+  );
 
-    const scored = items
-      .map((item) => {
-        const inTitle = item.title.toLowerCase().includes(q);
-        const inSection = item.section.toLowerCase().includes(q);
-        const bodyIdx = item.text.toLowerCase().indexOf(q);
-        if (!inTitle && !inSection && bodyIdx === -1) return null;
-        const score = inTitle ? 0 : inSection ? 1 : 2;
-        return { item, score, bodyIdx };
-      })
-      .filter((r): r is { item: SearchItem; score: number; bodyIdx: number } => r !== null)
-      .sort((a, b) => a.score - b.score);
+  const displayed = useMemo<Display[]>(() => {
+    const q = query.trim();
 
-    return scored.slice(0, 12).map((r) => ({ ...r.item, bodyIdx: r.bodyIdx }));
-  }, [items, query]);
+    if (!q) {
+      if (recents.length) {
+        return recents.map((r) => ({
+          ...r,
+          text: "",
+          section: RECENTS_SECTION,
+          titleRanges: [],
+          textRanges: [],
+        }));
+      }
+      return items.slice(0, 8).map((item) => ({ ...item, titleRanges: [], textRanges: [] }));
+    }
+
+    return fuse.search(q, { limit: 12 }).map(({ item, matches }) => ({
+      ...item,
+      titleRanges: findMatch(matches, "title"),
+      textRanges: findMatch(matches, "text"),
+    }));
+  }, [fuse, items, query, recents]);
+
+  const showingRecents = !query.trim() && recents.length > 0;
 
   const groups = useMemo(() => {
-    const map = new Map<string, Result[]>();
-    for (const item of results) {
+    const map = new Map<string, Display[]>();
+    for (const item of displayed) {
       if (!map.has(item.section)) map.set(item.section, []);
       map.get(item.section)!.push(item);
     }
     return [...map.entries()];
-  }, [results]);
+  }, [displayed]);
 
   const openDialog = useCallback(() => {
     setOpen(true);
     setQuery("");
     setActiveIndex(0);
+    setRecents(loadRecents());
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
@@ -96,9 +163,10 @@ export function SearchDialog({ items }: { items: SearchItem[] }) {
     };
   }, [open]);
 
-  function go(href: string) {
+  function go(item: Display) {
+    setRecents(pushRecent({ title: item.title, href: item.href, section: item.section }));
     setOpen(false);
-    router.push(href);
+    router.push(item.href);
   }
 
   function onQueryChange(value: string) {
@@ -109,12 +177,12 @@ export function SearchDialog({ items }: { items: SearchItem[] }) {
   function onInputKeyDown(e: React.KeyboardEvent) {
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveIndex((i) => Math.min(i + 1, results.length - 1));
+      setActiveIndex((i) => Math.min(i + 1, displayed.length - 1));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setActiveIndex((i) => Math.max(i - 1, 0));
-    } else if (e.key === "Enter" && results[activeIndex]) {
-      go(results[activeIndex].href);
+    } else if (e.key === "Enter" && displayed[activeIndex]) {
+      go(displayed[activeIndex]);
     }
   }
 
@@ -174,40 +242,52 @@ export function SearchDialog({ items }: { items: SearchItem[] }) {
               </div>
 
               <div className="flex-1 overflow-y-auto p-2">
-                {results.length === 0 && (
+                {displayed.length === 0 && (
                   <p className="text-muted px-3 py-6 text-center text-sm">Nenhum resultado.</p>
                 )}
                 {groups.map(([section, sectionItems]) => (
                   <div key={section} className="mb-2 last:mb-0">
-                    <p className="text-muted px-2.5 py-1.5 text-[11px] font-semibold tracking-wide uppercase">
-                      {section}
-                    </p>
+                    <div className="flex items-center justify-between px-2.5 py-1.5">
+                      <p className="text-muted text-[11px] font-semibold tracking-wide uppercase">
+                        {section}
+                      </p>
+                      {showingRecents && section === RECENTS_SECTION && (
+                        <button
+                          type="button"
+                          onClick={() => setRecents(clearRecents())}
+                          className="text-muted hover:text-foreground cursor-pointer text-[11px] font-medium transition-colors"
+                        >
+                          Limpar
+                        </button>
+                      )}
+                    </div>
                     <ul>
                       {sectionItems.map((item) => {
-                        const i = results.indexOf(item);
+                        const i = displayed.indexOf(item);
                         const active = i === activeIndex;
+                        const RowIcon = showingRecents ? Clock : FileText;
                         return (
                           <li key={item.href}>
                             <button
                               type="button"
-                              onClick={() => go(item.href)}
+                              onClick={() => go(item)}
                               onMouseEnter={() => setActiveIndex(i)}
                               className={`flex w-full cursor-pointer items-start gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition-colors ${
                                 active ? "bg-accent text-accent-foreground" : "text-foreground"
                               }`}
                             >
-                              <FileText
+                              <RowIcon
                                 className={`mt-0.5 h-4 w-4 shrink-0 ${active ? "" : "text-muted"}`}
                               />
                               <span className="flex min-w-0 flex-1 flex-col">
-                                <span className="truncate font-medium">{item.title}</span>
-                                {!active && (
-                                  <Snippet
-                                    text={item.text}
-                                    query={query.trim().toLowerCase()}
-                                    idx={item.bodyIdx}
-                                  />
-                                )}
+                                <span className="truncate font-medium">
+                                  {highlight(
+                                    item.title,
+                                    item.titleRanges,
+                                    "bg-transparent font-semibold underline decoration-2 underline-offset-2",
+                                  )}
+                                </span>
+                                {!active && <Snippet text={item.text} ranges={item.textRanges} />}
                               </span>
                               {active && <CornerDownLeft className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
                             </button>
