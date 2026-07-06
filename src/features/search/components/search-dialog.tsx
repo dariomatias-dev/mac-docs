@@ -8,6 +8,7 @@ import Fuse, { type FuseResultMatch } from "fuse.js";
 import { Clock, CornerDownLeft, FileText, Search, X } from "lucide-react";
 
 import {
+  SEARCH_INDEX_URL,
   SEARCH_OPEN_EVENT,
   type RecentItem,
   type SearchItem,
@@ -70,13 +71,26 @@ function Snippet({ text, ranges }: { text: string; ranges: readonly Range[] }) {
   );
 }
 
-export function SearchDialog({ items }: { items: SearchItem[] }) {
+export function SearchDialog() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [recents, setRecents] = useState<RecentItem[]>([]);
+  const [items, setItems] = useState<SearchItem[]>([]);
+  const loadedRef = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const loadIndex = useCallback(async () => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+    try {
+      const res = await fetch(SEARCH_INDEX_URL);
+      setItems((await res.json()) as SearchItem[]);
+    } catch {
+      loadedRef.current = false; // allow a retry on next open
+    }
+  }, []);
 
   const fuse = useMemo(
     () =>
@@ -133,8 +147,9 @@ export function SearchDialog({ items }: { items: SearchItem[] }) {
     setQuery("");
     setActiveIndex(0);
     setRecents(loadRecents());
+    void loadIndex();
     requestAnimationFrame(() => inputRef.current?.focus());
-  }, []);
+  }, [loadIndex]);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {

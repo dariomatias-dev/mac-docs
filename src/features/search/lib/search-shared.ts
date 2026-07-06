@@ -1,5 +1,8 @@
 export const SEARCH_OPEN_EVENT = "macdocs:search-open";
 
+/** Static JSON artifact holding the search index, fetched lazily on first open. */
+export const SEARCH_INDEX_URL = "/search-index.json";
+
 export type SearchItem = {
   title: string;
   href: string;
