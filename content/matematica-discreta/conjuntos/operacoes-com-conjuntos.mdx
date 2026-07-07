@@ -1,0 +1,113 @@
+---
+title: Operações com conjuntos
+description: União, interseção, diferença, diagrama de Venn, complementar e propriedades.
+order: 6
+prerequisites:
+  - /docs/matematica-discreta/conjuntos/relacao-entre-conjuntos
+---
+
+## União (∪)
+
+Sejam $A$ e $B$ conjuntos. A união $A \cup B$ é dada por:
+
+$$
+A \cup B = \{x \mid x \in A \text{ ou } x \in B\}
+$$
+
+## Interseção (∩)
+
+$$
+A \cap B = \{x \mid x \in A \text{ e } x \in B\}
+$$
+
+## Diferença de dois conjuntos (−)
+
+$A - B$ é o conjunto de todos os elementos de $A$ que não pertencem a $B$:
+
+$$
+A - B = \{x \mid x \in A \text{ e } x \notin B\}
+$$
+
+## Diagrama de Venn
+
+Para ilustrar definições, resultados e demonstrações da teoria dos conjuntos, é
+muito comum usar uma representação gráfica por curvas fechadas simples tais como
+círculos, ovais ou polígonos. Tal representação tem o nome de **diagrama de
+Venn**.
+
+<Exercise>
+Em uma clínica todos os cachorros foram vacinados: 15% contra a doença B, 13%
+contra a doença C, 12% contra a doença A, 7% contra A e B, 3% contra B e C, 8%
+contra A e C. Sabendo que 43% foram vacinados contra as doenças A, B e C, então
+determine a porcentagem contra as doenças A, B e C ao mesmo tempo.
+
+<Answer>
+Chamando de $x$ a porcentagem no centro (A, B e C), o somatório de todas as
+regiões do diagrama de Venn é $100\%$. Resolvendo, obtemos
+$x + 90 = 100 \Rightarrow x = 10\%$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $A$ e $B$ conjuntos não vazios, com $A \cup B = \{1,2,3,4,5,6,7,8\}$,
+$A \cap B = \{3,4,8\}$ e $A = \{1,2,3,4,8\}$. Determine $B$.
+
+<Answer>
+$B = \{3, 4, 5, 6, 7, 8\}$.
+</Answer>
+</Exercise>
+
+## Complementar de um conjunto
+
+Seja $A$ um subconjunto de $B$ ($A \subseteq B$). O complementar de $A$ em
+relação a $B$, representado por $\complement_{A}^{B}$, é o conjunto de todos os
+elementos de $B$ que não pertencem a $A$:
+
+$$
+\complement_{A}^{B} = B - A = \{x \mid x \in B \text{ e } x \notin A\}
+$$
+
+<Exercise>
+Em uma clínica todos os cães foram vacinados contra duas doenças A e B. Sabe-se
+que 77% deles contra a doença A e 82% contra a doença B. Qual a porcentagem de
+cães vacinados contra as duas doenças?
+
+<Answer>
+Sendo $x$ a interseção, temos $(77 - x) + x + (82 - x) = 100$, ou seja
+$159 - x = 100 \Rightarrow x = 59\%$.
+</Answer>
+</Exercise>
+
+## Algumas propriedades
+
+**I.** $A \cap B = B \cap A$
+
+**II.** $A \cup B = B \cup A$
+
+**III.** $A \cup \varnothing = A$ e $A \cap \varnothing = \varnothing$
+
+**IV.** $(A \cup B) \cup C = A \cup (B \cup C)$
+
+**V.** Se $A \cap B = \varnothing$, então $A$ e $B$ são disjuntos (definição).
+
+**VI.** Se $A \subseteq B$, então $A \cup B = B$.
+
+Para provar que $A \cup B = B$, mostramos as duas inclusões:
+$A \cup B \subseteq B$ e $B \subseteq A \cup B$.
+
+<StepByStep title="Demonstração de VI: se A ⊆ B, então A ∪ B = B">
+  <Step title="A ∪ B ⊆ B">
+    Vamos mostrar que $A \cup B \subseteq B$. Por hipótese,
+    $(\forall x)\, x \in A \Rightarrow x \in B$. Assim
+    $x \in A \cup B \Rightarrow x \in A$ ou $x \in B$; como
+    $x \in A \Rightarrow x \in B$, então $x \in B$. Logo $A \cup B \subseteq B$.
+  </Step>
+  <Step title="B ⊆ A ∪ B">
+    Vamos mostrar que $B \subseteq A \cup B$. Temos
+    $(\forall x)\, x \in B \Rightarrow x \in (A \cup B)$. Logo
+    $B \subseteq A \cup B$.
+  </Step>
+  <Step title="Conclusão">
+    Como $A \cup B \subseteq B$ e $B \subseteq A \cup B$, então $A \cup B = B$. $\blacksquare$
+  </Step>
+</StepByStep>

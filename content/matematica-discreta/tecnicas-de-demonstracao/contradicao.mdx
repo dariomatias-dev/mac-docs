@@ -1,0 +1,65 @@
+---
+title: Demonstração por contradição
+description: Supor a negação da tese e chegar a uma contradição.
+order: 4
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/direta
+---
+
+Tal tipo de demonstração envolve supor absurdamente que a afirmação a ser
+demonstrada é falsa e obter, através de implicações válidas, uma conclusão
+contraditória.
+
+- A contradição obtida implica que a hipótese absurda é falsa; portanto, a
+  afirmação é de fato verdadeira.
+- No caso de uma implicação $P \Rightarrow Q$, equivalente a $\lnot P \lor Q$, a
+  negação é $P \land \lnot Q$.
+
+Em suma, demonstrar por contradição uma afirmação do tipo $P \Rightarrow Q$
+consiste em supor a hipótese $P$, supor a negação da tese $\lnot Q$ e chegar a
+uma contradição.
+
+## Exercícios
+
+<Exercise>
+Mostre por contraposição/contradição que, se $3m + 2$ é ímpar, então $m$ é ímpar.
+
+<Answer>
+**Hipótese:** $3m + 2 = 2k + 1$, $k \in \mathbb{Z}$. &nbsp; **Tese:** $m = 2k + 1$.
+
+Vamos supor por contradição que $P$ e $\lnot Q$ são verdadeiros, ou seja, $3m + 2$
+é ímpar e $m$ é par, então $m = 2k$, com $k \in \mathbb{Z}$. Assim
+$3m + 2 = 3(2k) + 2 = 6k + 2 = 2(3k + 1)$, ou seja, é par. No entanto $3m + 2$ é
+ímpar, o que é um absurdo! Logo a afirmação inicial é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que, se um número somado a ele mesmo resulta no próprio número, então o
+número é zero.
+
+<Answer>
+**Hipótese:** $x + x = x$. &nbsp; **Tese:** $x = 0$.
+
+Vamos supor por contradição que $P$ e $\lnot Q$ são verdadeiros, ou seja,
+$x + x = x$ e $x \ne 0$. Assim $x + x = x$; $2x = x$; $\dfrac{2x}{x} = \dfrac{x}{x}$;
+$2 = 1$, o que é um absurdo! Logo a afirmação inicial é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que, se $P^{2}$ é par, então $P$ é par.
+
+<Answer>
+**Hipótese:** $P^{2} = 2k$, $k \in \mathbb{Z}$. &nbsp; **Tese:** $P = 2k$.
+
+Vamos supor por contradição que $P^{2}$ é par e $P$ é ímpar, então $P = 2k + 1$,
+com $k \in \mathbb{Z}$. Assim
+$P^{2} = (2k + 1)^{2} = 4k^{2} + 4k + 1 = 2(2k^{2} + 2k) + 1$, o que é um absurdo,
+pois $P^{2}$ é par. Logo a afirmação
+inicial é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>

@@ -1,0 +1,114 @@
+---
+title: Operações com matrizes
+description: Adição, subtração, multiplicação por escalar e multiplicação de matrizes.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/matrizes
+---
+
+## Adição
+
+Só pode ser feita se as matrizes forem do mesmo tipo (mesma ordem).
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+2 & 3
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+-1 & 2 \\
+0 & -2
+\end{bmatrix}
+$$
+
+$$
+A + B =
+\begin{bmatrix}
+1 + (-1) & 2 + 2 \\
+2 + 0 & 3 + (-2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 4 \\
+2 & 1
+\end{bmatrix}
+$$
+
+## Subtração
+
+Só pode ser feita se as matrizes forem do mesmo tipo.
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+2 & 3
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+-1 & 2 \\
+0 & -2
+\end{bmatrix}
+$$
+
+$$
+A - B =
+\begin{bmatrix}
+1 - (-1) & 2 - 2 \\
+2 - 0 & 3 - (-2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 0 \\
+2 & 5
+\end{bmatrix}
+$$
+
+## Multiplicação por escalar
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -3 \\
+4 & 0 & 2
+\end{bmatrix}
+\qquad
+-3 \cdot A =
+\begin{bmatrix}
+-3 & -6 & 9 \\
+-12 & 0 & -6
+\end{bmatrix}
+$$
+
+## Multiplicação de matrizes
+
+Sejam $A_{m \times n}$ e $B_{p \times q}$. A multiplicação $A \cdot B$ só existe
+quando $n = p$ (o número de colunas de $A$ é igual ao número de linhas de $B$).
+A matriz resultante tem ordem $m \times q$.
+
+<Exercise>
+Sejam as matrizes
+
+$$
+A =
+\begin{bmatrix}
+2 & 3 \\
+-2 & 3
+\end{bmatrix}_{2 \times 2}
+$$
+
+Então determine:
+
+**a)** $A \cdot B$ &nbsp;&nbsp; **b)** $B \cdot C$ &nbsp;&nbsp; **c)** $A \cdot C$
+
+</Exercise>
+
+<Callout type="caution" title="Transcrição">
+  No caderno original, as matrizes $B$ e $C$ deste exercício e os produtos resolvidos estão em uma
+  página fotografada de lado e com traço apagado, não sendo possível transcrevê-los com segurança.
+  Refotografe essa página se quiser incluir os valores exatos.
+</Callout>

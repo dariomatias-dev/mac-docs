@@ -1,0 +1,100 @@
+---
+title: Demonstração direta
+description: Supor a hipótese verdadeira e deduzir a tese.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao
+---
+
+Uma demonstração é dita **direta** quando supomos a hipótese como verdadeira e, a
+partir dela, verificamos que a tese é verdadeira por meio de uma sequência de
+passos, cada um seguido dos anteriores, através da combinação lógica dos axiomas,
+definições, simplificações ou outras afirmações verdadeiras já existentes.
+
+## Exercícios
+
+<Exercise>
+Mostre que se $x$ é um número par e $y$ é um número ímpar, então $x \cdot y$ é um
+número par.
+
+<Answer>
+**Hipótese:** $x = 2k$ e $y = 2m + 1$, com $k, m \in \mathbb{Z}$.
+
+$x \cdot y = (2k)(2m + 1) = 4km + 2k = 2(2km + k)$. Logo $x \cdot y$ é múltiplo de
+$2$, ou seja, é par. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se um número é divisível por $6$, então duas vezes esse número é
+divisível por $4$.
+
+<Answer>
+**Hipótese:** $x = 6k$, com $k \in \mathbb{Z}$.
+
+$2x = 2(6k) = 12k = 4(3k)$. Logo $2x$ é múltiplo de $4$, ou seja, é divisível por
+$4$. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se $x$ e $y$ são números pares, então $x \cdot y$ é par.
+
+<Answer>
+**Hipótese:** $x = 2k$ e $y = 2m$, com $k, m \in \mathbb{Z}$.
+
+$x \cdot y = (2k)(2m) = 4km = 2(2km)$. Logo $x \cdot y$ é par. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se $x$ e $y$ são números inteiros ímpares, então $x \cdot y$ é ímpar.
+
+<Answer>
+**Hipótese:** $x = 2k + 1$ e $y = 2m + 1$, com $k, m \in \mathbb{Z}$.
+
+$x \cdot y = (2k + 1)(2m + 1) = 4km + 2k + 2m + 1 = 2(2km + k + m) + 1$. Logo
+$x \cdot y$ é ímpar. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se $x$ e $y$ são números ímpares, então $x + y$ é par.
+
+<Answer>
+**Hipótese:** $x = 2k + 1$ e $y = 2m + 1$, com $k, m \in \mathbb{Z}$.
+
+$x + y = (2k + 1) + (2m + 1) = 2k + 2m + 2 = 2(k + m + 1)$. Logo $x + y$ é
+múltiplo de $2$, ou seja, é par. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se $m \in \mathbb{Z}$, então $5m^{2} + 3m + 7$ é ímpar.
+
+<Answer>
+**Se $m$ é par:** $m = 2k$, $k \in \mathbb{Z}$.
+
+$$
+5m^{2} + 3m + 7 = 5(2k)^{2} + 3(2k) + 7 = 20k^{2} + 6k + 7 = 2(10k^{2} + 3k + 3) + 1
+$$
+
+que é ímpar.
+
+**Se $m$ é ímpar:** $m = 2k + 1$, $k \in \mathbb{Z}$.
+
+$$
+5m^{2} + 3m + 7 = 5(2k + 1)^{2} + 3(2k + 1) + 7 = 20k^{2} + 20k + 5 + 6k + 10 = 2(10k^{2} + 13k + 7) + 1
+$$
+
+que é ímpar.
+
+Logo, seja $m$ par ou ímpar, $5m^{2} + 3m + 7$ é sempre ímpar. $\blacksquare$
+
+</Answer>
+</Exercise>

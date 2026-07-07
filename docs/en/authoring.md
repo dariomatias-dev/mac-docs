@@ -8,11 +8,11 @@ Content lives in `content/`, in three levels:
 
 ```
 content/
-  calculo-1/                 # course (uppercase label in the sidebar)
-    limites/                 # group (collapsible dropdown)
+  matematica-discreta/       # course (label in the sidebar)
+    matrizes/                # group (collapsible dropdown)
       index.mdx              # group page (sets the title and order)
-      conceito-intuitivo.mdx # page
-      definicao-formal.mdx   # page
+      operacoes.mdx          # page
+      matrizes-booleanas.mdx # page
 ```
 
 - **Course**: a top level folder. Its label comes from `COURSE_TITLES` in
@@ -31,11 +31,11 @@ clear error.
 
 ```yaml
 ---
-title: Conceito intuitivo # required
-description: A first idea of a limit. # optional
+title: Operações com matrizes # required
+description: Addition, subtraction and multiplication. # optional
 order: 1 # optional (orders the pages in a group)
 prerequisites: # optional, each item must start with /docs/
-  - /docs/calculo-1/limites
+  - /docs/matematica-discreta/matrizes
 ---
 ```
 

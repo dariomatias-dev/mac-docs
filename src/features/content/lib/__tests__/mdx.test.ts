@@ -13,15 +13,15 @@ describe("mdx content reader", () => {
   });
 
   it("maps a group index.mdx to its section url and marks it", () => {
-    const doc = getDocBySlug(["calculo-1", "limites"]);
+    const doc = getDocBySlug(["matematica-discreta", "matrizes"]);
     expect(doc?.isSection).toBe(true);
-    expect(doc?.url).toBe("/docs/calculo-1/limites");
+    expect(doc?.url).toBe("/docs/matematica-discreta/matrizes");
   });
 
   it("finds a page by slug and returns null for a missing one", () => {
-    expect(getDocBySlug(["calculo-1", "limites", "definicao-formal"])?.frontmatter.title).toBe(
-      "Definição formal",
-    );
+    expect(
+      getDocBySlug(["matematica-discreta", "matrizes", "operacoes"])?.frontmatter.title,
+    ).toBe("Operações com matrizes");
     expect(getDocBySlug(["nao", "existe"])).toBeNull();
   });
 

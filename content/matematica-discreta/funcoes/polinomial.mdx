@@ -1,0 +1,60 @@
+---
+title: Função polinomial
+description: Definição, grau, raízes e o algoritmo da divisão de Euclides.
+order: 8
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+---
+
+Diz-se que $p : \mathbb{R} \to \mathbb{R}$ é uma função polinomial se existir um
+inteiro $n \ge 0$ e existirem números reais $a_{0}, a_{1}, a_{2}, \ldots, a_{n}$
+tais que, $\forall x \in \mathbb{R}$, tem-se que:
+
+$$
+p(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x + a_{0}, \quad \text{com } a_{n} \ne 0
+$$
+
+Dizemos que $p$ tem grau $n$. Se $p(\alpha) = 0$, então dizemos que $\alpha$ é uma
+**raiz** de $p$.
+
+## Exemplos
+
+1. $p(x) = x^{3} - 2x + 1$ &nbsp; (grau $3$)
+2. $p(x) = x^{7} - \sqrt{2x - 9}$ &nbsp; (grau $7$)
+
+## O algoritmo da divisão de Euclides
+
+Dadas duas funções polinomiais $p$ e $d$, com $d$ não nula, existem únicas
+funções polinomiais $q$ e $r$ tais que:
+
+$$
+p(x) = q(x) \cdot d(x) + r(x), \quad \forall x \in \mathbb{R}
+$$
+
+Exemplos:
+
+1. $x^{4} - 3x^{3} - 1 = (x^{3} + x - 3)(x^{2} - x + 1) + (-3x + 2)$
+2. $x^{4} - 3x^{3} + 2x^{2} - 2 = (x^{3} - 4x^{2} + 6x - 6)(x + 1) + 4$
+
+## Exercício
+
+<Exercise>
+Quais são as raízes do polinômio $p(x) = 9x^{3} - 36x^{2} + 29x - 6$, sabendo que
+ele é divisível por $x - 3$?
+
+<Answer>
+Dividindo por $x - 3$ (dispositivo de Briot-Ruffini), obtemos o quociente
+$9x^{2} - 9x + 2$, logo:
+
+$$
+p(x) = (9x^{2} - 9x + 2)(x - 3) = 0
+$$
+
+Resolvendo $9x^{2} - 9x + 2 = 0$: $\Delta = (-9)^{2} - 4 \cdot 9 \cdot 2 = 81 - 72 = 9$;
+$x = \dfrac{9 \pm 3}{18}$, logo $x' = \dfrac{12}{18} = \dfrac{2}{3}$ e
+$x'' = \dfrac{6}{18} = \dfrac{1}{3}$.
+
+As raízes são $3$, $\dfrac{2}{3}$ e $\dfrac{1}{3}$.
+
+</Answer>
+</Exercise>

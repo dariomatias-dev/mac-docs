@@ -1,0 +1,78 @@
+---
+title: Função injetora
+description: Definição de função injetora e demonstrações.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+---
+
+Uma função $f : A \to B$ é uma função injetora (ou injetiva) se, e somente se,
+nenhum elemento de $B$ é imagem de dois elementos distintos de $A$, isto é:
+
+$$
+f \text{ é injetora} \Leftrightarrow \forall x, y \in A,\ x \ne y \Leftrightarrow f(x) \ne f(y)
+$$
+
+Isso é equivalente a:
+
+$$
+\forall x, y \in A,\ f(x) = f(y) \Rightarrow x = y
+$$
+
+## Exercícios
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x + 1$ é
+injetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos que $f(x) = f(y)$. Logo $x + 1 = y + 1$;
+$x = y + 1 - 1$; $x = y$. Desse modo, se $x = y$ e $y = x$, $f$ é uma função
+injetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{2} - 4$
+**não** é injetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos que $f(x) = f(y)$; $x^{2} - 4 = y^{2} - 4$;
+$x^{2} = y^{2} - 4 + 4$; $x^{2} = y^{2}$; $x = \pm\sqrt{y^{2}}$; $x = \pm y$. Logo
+$x \ne y$ e $y \ne x$. Assim $f$ não é uma função injetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{3}$ é
+injetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos que $f(x) = f(y)$; $x^{3} = y^{3}$;
+$x = \sqrt[3]{y^{3}}$; $x = y$. Logo, se $x = y$ e $y = x$, $f$ é uma função
+injetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = 2x - 5$ é
+injetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos que $f(x) = f(y)$; $2x - 5 = 2y - 5$;
+$2x = 2y - 5 + 5$; $2x = 2y$; $x = \dfrac{2y}{2}$; $x = y$. Logo $f$ é uma função
+injetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = 2x^{2} - 7$ **não** é injetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos que $f(x) = f(y)$; $2x^{2} - 7 = 2y^{2} - 7$;
+$2x^{2} = 2y^{2} - 7 + 7$; $2x^{2} = 2y^{2}$; $x^{2} = \dfrac{2y^{2}}{2}$;
+$x^{2} = y^{2}$; $x = \pm\sqrt{y^{2}}$; $x = \pm y$. Logo $x \ne y$ e $y \ne x$.
+$f$ não é uma função injetora. $\blacksquare$
+</Answer>
+</Exercise>

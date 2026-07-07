@@ -10,13 +10,13 @@ describe("frontmatterSchema", () => {
 
   it("accepts optional fields", () => {
     const parsed = frontmatterSchema.parse({
-      title: "Limites",
+      title: "Matrizes",
       description: "Uma descrição",
       order: 2,
-      prerequisites: ["/docs/calculo-1/limites"],
+      prerequisites: ["/docs/matematica-discreta/matrizes"],
     });
     expect(parsed.order).toBe(2);
-    expect(parsed.prerequisites).toEqual(["/docs/calculo-1/limites"]);
+    expect(parsed.prerequisites).toEqual(["/docs/matematica-discreta/matrizes"]);
   });
 
   it("rejects an empty title", () => {

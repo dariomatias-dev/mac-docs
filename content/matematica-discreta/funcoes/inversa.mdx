@@ -1,0 +1,73 @@
+---
+title: Função inversa
+description: Definição e cálculo da função inversa.
+order: 6
+prerequisites:
+  - /docs/matematica-discreta/funcoes/bijetora
+---
+
+Seja $f : A \to B$ uma função bijetora. Assim, a relação inversa de $f$ é uma
+função de $B$ em $A$, chamada de função inversa de $f$ e denotada por $f^{-1}$.
+Também é bijetora, isto é:
+
+$$
+(x, y) \in f \Leftrightarrow (y, x) \in f^{-1} \qquad f(x) = y \Leftrightarrow f^{-1}(y) = x
+$$
+
+A função inversa é composta pelos pares ordenados obtidos pela inversão da ordem
+dos elementos dos pares ordenados da função original. Ou seja, a função
+$f : A \to B$ associa cada elemento $x \in A$ a um elemento correspondente
+$y \in B$; já a função $f^{-1}$ associa cada elemento $y \in B$ ao elemento
+correspondente $x \in A$.
+
+## Exercícios
+
+<Exercise>
+Seja a função bijetora $f(x) = 2x + 1$. Então encontre o valor de $f^{-1}(7)$.
+
+<Answer>
+$f^{-1}(x) = \dfrac{x - 1}{2}$. De $y = 2x + 1$: $7 = 2x + 1$; $7 - 1 = 2x$;
+$x = \dfrac{7 - 1}{2} = 3$. Logo $f^{-1}(7) = 3$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $f : \mathbb{R} \to \mathbb{R}$ dada por $f(x) = 3x + 4$. Responda:
+
+**a)** $f^{-1}(x)$ existe? &nbsp;&nbsp; **b)** Caso exista, calcule $f^{-1}(x)$.
+
+**c)** Caso exista, calcule $f^{-1}(2)$. &nbsp;&nbsp; **d)** Caso exista, calcule $f^{-1}(0)$.
+
+<Answer>
+**a)** $f$ é injetora ($3x + 4 = 3y + 4 \Rightarrow x = y$) e sobrejetora
+($x = \dfrac{y - 4}{3}$, e $f\!\left(\dfrac{y-4}{3}\right) = y$), logo bijetora.
+Então $f^{-1}$ existe.
+
+**b)** $f^{-1}(x) = \dfrac{x - 4}{3}$.
+
+**c)** $f^{-1}(2) = \dfrac{2 - 4}{3} = -\dfrac{2}{3}$.
+
+**d)** $f^{-1}(0) = \dfrac{0 - 4}{3} = -\dfrac{4}{3}$.
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = 2x - 4$. Determine
+$f^{-1}(x)$.
+
+<Answer>
+$y = 2x - 4$; $y + 4 = 2x$; $x = \dfrac{y + 4}{2}$. Logo
+$f^{-1}(x) = \dfrac{x + 4}{2}$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $f : \mathbb{R} - \{1\} \to \mathbb{R}$ definida por
+$f(x) = \dfrac{1}{x - 1}$. Determine $f^{-1}(x)$.
+
+<Answer>
+$y = \dfrac{1}{x - 1}$; $y(x - 1) = 1$; $xy - y = 1$; $xy = 1 + y$;
+$x = \dfrac{1 + y}{y}$. Logo $f^{-1}(x) = \dfrac{x + 1}{x}$.
+</Answer>
+</Exercise>

@@ -1,0 +1,62 @@
+---
+title: Técnicas de demonstração
+description: Teoremas, hipótese e tese, raciocínio indutivo e dedutivo.
+order: 5
+---
+
+Resultados matemáticos geralmente são expressos como **teoremas** da forma "Se
+$P$, então $Q$" ou $P \Rightarrow Q$, onde $P$ e $Q$ podem representar sentenças
+compostas.
+
+Quando nos propomos a fazer uma demonstração, devemos procurar expressar de forma
+concisa, usando uma linguagem natural, com sentenças completas, bem como
+identificar cada objeto usando sua definição e possíveis propriedades. Assim,
+tentaremos deduzir $Q$ de $P$, utilizando uma sequência lógica de passos que
+começam em $P$ (que chamamos de **hipótese**) e terminam em $Q$ (que chamamos de
+**tese**).
+
+Geralmente organizaremos um teorema para ser demonstrado da seguinte forma
+$(\forall x)[p(x) \Rightarrow Q(x)]$. Se podemos provar que
+$p(x) \Rightarrow Q(x)$ onde $x$ é tratado como um elemento arbitrário do
+domínio, teremos então provado $(\forall x)[p(x) \Rightarrow Q(x)]$.
+
+## Raciocínio indutivo e dedutivo
+
+Supondo que você é um pesquisador tentando formular e demonstrar um teorema, e
+examinou um conjunto de casos nos quais, se $P$ é verdadeira, então $Q$ também é
+verdadeira. Por exemplo, você pode ter examinado vários inteiros divisíveis por
+$6$ e constatado que estes inteiros também são divisíveis por $3$. Com base nessa
+experiência, você pode conjecturar: se $P$, então $Q$ (se um número é divisível
+por $6$, ele também é divisível por $3$).
+
+Quantos mais casos você encontrar em que $Q$ resulta de $P$, mais confiante você
+estará em sua conjectura. Isto ilustra o **raciocínio indutivo**, construindo uma
+conclusão baseada na experiência.
+
+Não importa o quanto a conjectura pareça confiável, é necessário aplicar o
+**raciocínio dedutivo** para verificar se sua conjectura é de fato verdadeira.
+Para tanto, pode-se elaborar a prova de que $P \Rightarrow Q$ (construindo um
+teorema) ou então encontrar um exemplo que contrarie sua conjectura
+(**contra-exemplo**).
+
+## Exercícios
+
+<Exercise>
+Mostre que "todo número inteiro menor que $10$ é maior que $5$".
+
+<Answer>
+$(\forall x) \in \mathbb{Z} \mid x < 10$ temos que, por exemplo, $x = 4$, no
+entanto $x < 5$. Logo a conjectura é falsa (contra-exemplo). $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que se um número inteiro entre $15$ e $20$ é divisível por $6$, então
+também é divisível por $3$.
+
+<Answer>
+$(\forall x) \in \mathbb{Z}$, $15 < x < 20$ e $x = 6k$, com $k \in \mathbb{Z}$.
+Assim $x$ pode ser representado por $x = 18$. Logo $x = 3m$, com
+$m \in \mathbb{Z}$. Assim $x$ é divisível por $3$. $\blacksquare$
+</Answer>
+</Exercise>

@@ -72,17 +72,17 @@ export default function Home() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/docs/calculo-1/limites/conceito-intuitivo"
+            href="/docs/matematica-discreta/matrizes"
             className="bg-accent text-accent-foreground flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
           >
             Começar agora
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/docs/referencia/formulas"
+            href="/docs/matematica-discreta"
             className="bg-surface-2 text-foreground hover:bg-border rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
           >
-            Referência rápida
+            Ver todos os tópicos
           </Link>
         </div>
       </section>
@@ -113,13 +113,13 @@ export default function Home() {
 
         <div className="max-w-2xl">
           <Callout type="definition" title="Definição">
-            O limite descreve o comportamento de uma função no entorno de um ponto, mesmo que ela
-            não esteja definida ali.
+            Uma função é sobrejetora quando sua imagem é igual ao contradomínio, ou seja, todo
+            elemento do contradomínio é atingido por pelo menos um elemento do domínio.
           </Callout>
 
           <Quiz
-            question="O limite de uma função em um ponto depende do valor dela nesse ponto?"
-            explanation="O limite olha apenas o entorno do ponto, não o valor exato nele."
+            question="Toda função injetora é também sobrejetora?"
+            explanation="São propriedades independentes: uma função pode ser injetora sem ser sobrejetora. Quando é as duas ao mesmo tempo, é bijetora."
           >
             <Option>Sim, sempre</Option>
             <Option correct>Não necessariamente</Option>
@@ -175,36 +175,50 @@ export default function Home() {
           Começando do zero?
         </h3>
         <ol className="text-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
-          <li>Entenda a notação usada na documentação: funções, limites e ε-δ.</li>
+          <li>Entenda a notação usada na documentação: conjuntos, relações e funções.</li>
           <li>
             Comece por{" "}
             <Link
-              href="/docs/calculo-1/limites"
+              href="/docs/matematica-discreta/matrizes"
               className="text-accent underline underline-offset-2"
             >
-              Limites
+              Matrizes
+            </Link>{" "}
+            e{" "}
+            <Link
+              href="/docs/matematica-discreta/conjuntos"
+              className="text-accent underline underline-offset-2"
+            >
+              Conjuntos
             </Link>
             , a base de tudo o que vem depois.
           </li>
           <li>
             Siga para{" "}
             <Link
-              href="/docs/calculo-1/derivadas"
+              href="/docs/matematica-discreta/relacoes"
               className="text-accent underline underline-offset-2"
             >
-              Derivadas
+              Relações
             </Link>{" "}
-            quando limites estiverem confortáveis.
+            e{" "}
+            <Link
+              href="/docs/matematica-discreta/funcoes"
+              className="text-accent underline underline-offset-2"
+            >
+              Funções
+            </Link>{" "}
+            quando os fundamentos estiverem confortáveis.
           </li>
           <li>
-            Use a{" "}
+            Feche com{" "}
             <Link
-              href="/docs/referencia/formulas"
+              href="/docs/matematica-discreta/tecnicas-de-demonstracao"
               className="text-accent underline underline-offset-2"
             >
-              Referência rápida
+              Técnicas de demonstração
             </Link>{" "}
-            para consultar fórmulas durante os estudos.
+            para provar os resultados com rigor.
           </li>
         </ol>
       </section>

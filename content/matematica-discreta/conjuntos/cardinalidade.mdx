@@ -1,0 +1,45 @@
+---
+title: Cardinalidade de um conjunto
+description: Quantidade de elementos, conjuntos finitos, enumeráveis e não enumeráveis.
+order: 8
+prerequisites:
+  - /docs/matematica-discreta/conjuntos
+---
+
+A cardinalidade de um conjunto é a quantidade de elementos que o conjunto possui.
+
+## Exemplo
+
+Sejam $A = \{x, y, w, z\}$ e $B = \{x \in \mathbb{N} \mid 5 \le x \le 10\}$.
+Assim, $\operatorname{Card}(A) = 4$ e $\operatorname{Card}(B) = 6$. Com isso,
+$\operatorname{Card}(A) < \operatorname{Card}(B)$.
+
+## Conjuntos infinitos
+
+A cardinalidade torna-se mais complexa quando estamos nos referindo aos
+conjuntos infinitos, já que não podemos contar todos os seus elementos. Quando
+estendemos a noção de cardinalidade a conjuntos infinitos, devemos levar em
+conta outros aspectos.
+
+Qualquer conjunto $X$ com cardinalidade menor que a do conjunto dos números
+naturais, ou $\operatorname{Card}(X) < \operatorname{Card}(\mathbb{N})$, é dito
+**conjunto finito**.
+
+Qualquer conjunto $X$ que tenha a mesma cardinalidade do conjunto dos números
+naturais, ou seja,
+$\operatorname{Card}(\mathbb{N}) = \operatorname{Card}(X) = \aleph_{0}$, é
+denominado **conjunto enumerável**.
+
+Note que $\mathbb{N}$ e $\mathbb{Z}$ têm a mesma cardinalidade, isto é, podemos
+estabelecer uma relação um-a-um entre todos os seus elementos:
+
+$$
+1 \to 0, \quad 2 \to 1, \quad 3 \to 2, \quad 4 \to 3, \quad \ldots
+$$
+
+Alguns conjuntos infinitos não conseguimos fazer uma relação biunívoca deles com
+os números naturais: são os chamados **não enumeráveis**, por exemplo, os
+números reais.
+
+Tais demonstrações das cardinalidades de conjuntos infinitos terminam aqui por
+não ser o objetivo do curso.

@@ -12,10 +12,7 @@ function titleCaseFallback(name: string): string {
 }
 
 const COURSE_TITLES: Record<string, string> = {
-  "calculo-1": "Cálculo 1",
-  "calculo-2": "Cálculo 2",
-  "calculo-3": "Cálculo 3",
-  referencia: "Referência",
+  "matematica-discreta": "Matemática Discreta",
 };
 
 function courseTitle(dirName: string): string {

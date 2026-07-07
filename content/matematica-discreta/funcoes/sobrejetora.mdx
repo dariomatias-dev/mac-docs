@@ -1,0 +1,84 @@
+---
+title: Função sobrejetora
+description: Definição de função sobrejetora e demonstrações.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+---
+
+Uma função $f : A \to B$ é sobrejetora se, e somente se, a imagem de $f$ é igual
+ao contradomínio, isto é:
+
+$$
+f \text{ é sobrejetora} \Leftrightarrow \forall y \in B,\ \exists x \in A \mid y = f(x)
+$$
+
+## Exercícios
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{3}$ é
+sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Tomamos $y = f(x)$; $y = x^{3}$; $x = \sqrt[3]{y}$.
+Agora seja $f(x) = x^{3}$; assim $f(x) = (\sqrt[3]{y})^{3}$, ou seja $f(x) = y$.
+Logo, como $y = f(x)$ e $f(x) = y$, então $f$ é sobrejetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x - 1$ é
+sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Tomamos $y = f(x)$; $y = x - 1$; $y + 1 = x$. Agora
+seja $x = 1 + y$. Temos $f(x) = (1 + y) - 1$; $f(x) = y$. Logo $f$ é sobrejetora.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x + 4$ é
+sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Tomamos $y = f(x)$; $y = x + 4$; $y - 4 = x$. Agora
+seja $x = y - 4$. Temos $f(x) = (y - 4) + 4$; $f(x) = y$. Logo $f$ é sobrejetora.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{2} - 4$
+**não** é sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Tomamos $y = f(x)$; $y = x^{2} - 4$;
+$y + 4 = x^{2}$; $x = \pm\sqrt{y + 4}$. Logo seja $y = -8 \in \mathbb{R}$. Assim
+$\sqrt{-8 - 4} = \sqrt{-4} \notin \mathbb{R}$. Portanto $f$ não é sobrejetora.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = 2x - 3$ é
+sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Tomamos $y = f(x)$; $y = 2x - 3$; $y + 3 = 2x$;
+$x = \dfrac{y + 3}{2}$. Agora seja $x = \dfrac{y + 3}{2}$. Temos
+$f(x) = 2\left(\dfrac{y + 3}{2}\right) - 3 = y + 3 - 3 = y$. Logo $f$ é
+sobrejetora. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{Z} \to \mathbb{Z}$ definida por $f(x) = 2x - 3$
+**não** é sobrejetora.
+
+<Answer>
+$(\forall x) \in \mathbb{Z}$. Tomamos $y = f(x)$; $y = 2x - 3$; $y + 3 = 2x$;
+$x = \dfrac{y + 3}{2}$. Assim $x = \dfrac{y + 3}{2} \notin \mathbb{Z}$ (para $y$
+par). Desse modo $f$ não é uma função sobrejetora. $\blacksquare$
+</Answer>
+</Exercise>

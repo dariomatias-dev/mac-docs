@@ -1,0 +1,197 @@
+---
+title: Matrizes
+description: Definição, notação, tipos de matrizes e igualdade.
+order: 1
+---
+
+Uma **matriz** é uma forma de representação organizada em **linhas** e
+**colunas**. Denotamos um elemento por $a_{ij}$ (ou $a_{i \times j}$), onde $i$
+indica a **linha** e $j$ indica a **coluna**. A letra maiúscula é o nome da
+matriz.
+
+$$
+A =
+\begin{bmatrix}
+-3 & 2 & 3 \\
+0 & 1 & 1
+\end{bmatrix}_{2 \times 3}
+$$
+
+Na matriz genérica
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}_{2 \times 3}
+$$
+
+temos, no exemplo acima, $a_{12} = 2$ e $a_{23} = 1$.
+
+## Construção de uma matriz
+
+Construa a matriz $(a_{ij})_{5 \times 2}$ onde $a_{ij} = 2^{i} - j$.
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+a_{31} & a_{32} \\
+a_{41} & a_{42} \\
+a_{51} & a_{52}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+3 & 2 \\
+7 & 6 \\
+15 & 14 \\
+31 & 30
+\end{bmatrix}
+$$
+
+Por exemplo, $a_{31} = 2^{3} - 1 = 7$ e $a_{42} = 2^{4} - 2 = 14$.
+
+## Igualdade de matrizes
+
+Duas matrizes são iguais quando têm o mesmo número de linhas e colunas e os
+elementos correspondentes são iguais.
+
+<Exercise>
+Sejam as matrizes
+
+$$
+A =
+\begin{bmatrix}
+z & x + y \\
+3 & 1
+\end{bmatrix}_{2 \times 2}
+\qquad
+B =
+\begin{bmatrix}
+-2 & 1 \\
+3 & x - y
+\end{bmatrix}_{2 \times 2}
+$$
+
+Se $A = B$, então determine $x$ e $y$.
+
+<Answer>
+Igualando os elementos correspondentes:
+
+$$
+\begin{cases}
+x + y = 1 \\
+x - y = -1
+\end{cases}
+$$
+
+Somando as equações: $2x = 0 \Rightarrow x = 0$. Subtraindo:
+$2y = 2 \Rightarrow y = 1$.
+
+</Answer>
+</Exercise>
+
+## Tipos de matrizes
+
+### Nula
+
+Todos os elementos são iguais a $0$.
+
+$$
+A =
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix}_{2 \times 3}
+$$
+
+### Linha
+
+Sempre vai ter apenas $1$ linha.
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}_{1 \times 3}
+$$
+
+### Coluna
+
+Sempre vai ter apenas $1$ coluna.
+
+$$
+A =
+\begin{bmatrix}
+1 \\ 2 \\ 3
+\end{bmatrix}_{3 \times 1}
+$$
+
+### Transposta
+
+Inverte-se linha por coluna.
+
+$$
+A =
+\begin{bmatrix}
+-1 & 0 \\
+3 & 2 \\
+4 & 1
+\end{bmatrix}_{3 \times 2}
+\qquad
+A^{T} =
+\begin{bmatrix}
+-1 & 3 & 4 \\
+0 & 2 & 1
+\end{bmatrix}_{2 \times 3}
+$$
+
+### Quadrada
+
+Possui o número de linhas igual ao número de colunas.
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2 \\
+0 & 0 & 1
+\end{bmatrix}_{3 \times 3}
+$$
+
+### Identidade
+
+Todos os elementos da diagonal principal são iguais a $1$ e os demais são iguais
+a $0$. Numa matriz quadrada, a **diagonal principal** vai do canto superior
+esquerdo ao canto inferior direito e a **diagonal secundária** vai do canto
+superior direito ao canto inferior esquerdo.
+
+### Triangular
+
+Os elementos acima da diagonal principal são nulos (triangular inferior), ou os
+elementos abaixo da diagonal principal são nulos (triangular superior).
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 3 & 0 \\
+1 & 2 & 1
+\end{bmatrix}_{3 \times 3}
+$$
+
+### Diagonal
+
+Os elementos acima e abaixo da diagonal principal são todos nulos.
+
+$$
+A =
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}_{3 \times 3}
+$$

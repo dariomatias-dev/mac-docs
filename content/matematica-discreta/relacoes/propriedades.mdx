@@ -1,0 +1,103 @@
+---
+title: Propriedades das relações
+description: Relações reflexiva, simétrica, transitiva e anti-simétrica.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/relacoes
+---
+
+Seja $p$ uma relação binária em $S$. Então:
+
+- **$p$ é reflexiva:** $(\forall x)(x \in S \Rightarrow (x, x) \in p)$
+- **$p$ é simétrica:** $(\forall x)(\forall y)(x \in S \text{ e } y \in S \text{ e } (x, y) \in p \Rightarrow (y, x) \in p)$
+- **$p$ é transitiva:** $(\forall x)(\forall y)(\forall z)(x, y, z \in S \text{ e } (x, y) \in p \text{ e } (y, z) \in p \Rightarrow (x, z) \in p)$
+
+<Callout type="connection" title="Observação">
+  Se
+  $(\forall x)(\forall y)(x, y \in S,\ (x, y) \in p \text{ e } (y, x) \in p \Rightarrow x = y)$,
+  então chamaremos essa relação de **anti-simétrica**.
+</Callout>
+
+## Exercícios
+
+<Exercise>
+Mostre que a relação $\le$ no conjunto $\mathbb{N}$ é uma relação reflexiva.
+
+<Answer>
+$(\forall x)(x \in \mathbb{N})$ temos que $x \le x$. Logo $x\,p\,x$, ou seja
+$(x, x) \in p$. Logo é reflexiva. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a relação $<$ no conjunto $\mathbb{N}$ não é uma relação simétrica.
+
+<Answer>
+$(\forall x)(\forall y)(x, y \in \mathbb{N} \text{ e } (x, y) \in p)$, com
+$(x, y) \in p \Rightarrow x < y$. Logo $y \not< x$; somente se $x = y$, o que
+seria anti-simétrica. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a relação $\le$ no conjunto $\mathbb{N}$ é uma relação transitiva.
+
+<Answer>
+$(\forall x)(\forall y)(\forall z)(x, y, z \in \mathbb{N} \text{ e } (x, y) \in p \text{ e } (y, z) \in p)$.
+Como $(x, y) \in p$ e $(y, z) \in p$, então $x \le y$
+e $y \le z$. Assim $x \le y \le z$. Logo $x \le z$, ou seja $x\,p\,z$, isto é
+$(x, z) \in p$. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $S = \mathbb{N}$, onde $x\,p\,y \Leftrightarrow x + y$ é par. Mostre que $p$
+é uma relação simétrica.
+
+<Answer>
+$(\forall x)(\forall y)(x, y \in \mathbb{N} \text{ e } (x, y) \in p)$. Logo se
+$(x, y) \in p$, então $x + y = 2k$, com $k \in \mathbb{Z}$. Como a ordem dos
+fatores não altera a soma, logo $y + x = 2k$, ou seja $y\,p\,x$. Assim
+$(y, x) \in p$. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $S = \mathbb{N}$, $x\,p\,y \Leftrightarrow x + y$ é par. Mostre que $p$ é uma
+relação transitiva.
+
+<Answer>
+$(\forall x)(\forall y)(\forall z)(x, y, z \in \mathbb{N} \text{ e } (x, y) \in p \text{ e } (y, z) \in p)$.
+Então $x + y = 2k$, com $k \in \mathbb{Z}$, e
+$y + z = 2m$, com $m \in \mathbb{Z}$. Então:
+
+$$
+x + y + y + z = 2k + 2m \Rightarrow x + 2y + z = 2k + 2m \Rightarrow x + z = 2(k + m - y)
+$$
+
+Assim $x\,p\,z$, isto é $(x, z) \in p$. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $S = \mathbb{N}$, $x\,p\,y \Leftrightarrow x$ divide $y$. Mostre que $p$ não
+é uma relação simétrica.
+
+<Answer>
+$(\forall x, y)(x, y \in \mathbb{N},\ (x, y) \in p \Rightarrow (y, x) \in p)$.
+Temos que se $(x, y) \in p \Rightarrow x \mid y$, mas em geral $y \nmid x$. Logo
+$p$ não é simétrica. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $S = \mathbb{N}$, $x\,p\,y \Leftrightarrow x = y^{2}$. Mostre que $p$ não é
+uma relação simétrica.
+
+<Answer>
+$(\forall x, y)(x, y \in \mathbb{N},\ (x, y) \in p \Rightarrow (y, x) \in p)$.
+Temos $x\,p\,y \Rightarrow x = y^{2}$. Assim $y = \sqrt{x}$; logo $y$ não se
+relaciona com $x$. Logo $p$ não é simétrica. $\blacksquare$
+</Answer>
+</Exercise>

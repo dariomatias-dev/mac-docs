@@ -1,0 +1,70 @@
+---
+title: Relações
+description: Relação binária e sua definição a partir do produto cartesiano.
+order: 3
+---
+
+Se ouvimos que duas pessoas se relacionam, entendemos que existe algum laço
+afetivo entre elas que as distingue dos demais pares ordenados de pessoas.
+
+O análogo matemático é distinguir determinados pares ordenados de objetos dos
+demais porque seus elementos satisfazem alguma relação que os componentes dos
+demais pares, em geral, não satisfazem.
+
+## Exemplo
+
+Sejam $S = \{1, 2\}$ e $T = \{2, 3\}$. Então temos
+$S \times T = \{(1,2), (1,3), (2,2), (2,3)\}$. Assim, se estivermos interessados
+na relação de igualdade, então $(2,2)$ será o único par que a satisfaz no produto
+$S \times T$.
+
+Se estivermos interessados na propriedade do primeiro número menor que o
+segundo, teremos os pares $(1,2)$, $(1,3)$ e $(2,3)$.
+
+## Relação binária
+
+Sejam $S = \{1, 2\}$ e $T = \{2, 3, 4\}$. Uma relação $p$ no conjunto
+$S \times T = \{(1,2), (1,3), (1,4), (2,2), (2,3), (2,4)\}$ pode ser definida por
+$x\,p\,y$ se e somente se $x = \tfrac{1}{2} y$. Assim, somente os pares $(1,2)$ e
+$(2,4)$ satisfazem $p$.
+
+<Callout type="connection" title="Observação">
+  Essas relações são chamadas de **relação binária**: uma relação binária dada em $S \times T$ é um
+  subconjunto de $S \times T$. Em símbolos: $x\,p\,y \Leftrightarrow (x, y) \in p$.
+</Callout>
+
+<Exercise>
+Sejam $S = \{1, 2\}$ e $T = \{2, 3, 4\}$. Seja $p$ dada pela descrição
+$x\,p\,y \Leftrightarrow x + y$ for ímpar. Determine os pares $(x, y) \in p$.
+
+<Answer>
+$S \times T = \{(1,2), (1,3), (1,4), (2,2), (2,3), (2,4)\}$
+
+$x\,p\,y = \{(1,2), (1,4), (2,3)\}$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Para cada relação binária $p$ em $\mathbb{N} \times \mathbb{N}$, determine quais
+dos pares ordenados pertencem a $p$.
+
+**a)** $x\,p\,y \Leftrightarrow x = y + 1$: &nbsp; $(2,2)$, $(3,3)$, $(2,3)$, $(3,2)$
+
+**b)** $x\,p\,y \Leftrightarrow x$ divide $y$: &nbsp; $(2,4)$, $(2,6)$, $(2,5)$
+
+**c)** $x\,p\,y \Leftrightarrow x$ é ímpar: &nbsp; $(2,3)$, $(4,5)$, $(3,4)$, $(5,6)$
+
+**d)** $x\,p\,y \Leftrightarrow x > y^{2}$: &nbsp; $(1,2)$, $(6,4)$, $(2,1)$, $(4,3)$, $(5,2)$
+
+<Answer>
+**a)** apenas $(3,2)$.
+
+**b)** $(2,4)$ e $(2,6)$.
+
+**c)** $(3,4)$ e $(5,6)$.
+
+**d)** $(2,1)$ e $(5,2)$.
+
+</Answer>
+</Exercise>

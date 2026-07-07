@@ -7,9 +7,9 @@ describe("getSearchIndex", () => {
     const index = getSearchIndex();
     expect(index.length).toBeGreaterThan(0);
 
-    const page = index.find((i) => i.href === "/docs/calculo-1/limites/conceito-intuitivo");
+    const page = index.find((i) => i.href === "/docs/matematica-discreta/matrizes/operacoes");
     expect(page).toBeDefined();
-    expect(page?.section).toContain("Cálculo 1");
+    expect(page?.section).toContain("Matemática Discreta");
     expect(page?.text.length).toBeGreaterThan(0);
   });
 

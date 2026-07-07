@@ -1,18 +1,20 @@
 import { expect, test } from "@playwright/test";
 
-const DOC = "/docs/calculo-1/limites/conceito-intuitivo";
+const DOC = "/docs/matematica-discreta/matrizes/operacoes";
 
 test("renders a documentation page", async ({ page }) => {
   const res = await page.goto(DOC);
   expect(res?.status()).toBe(200);
-  await expect(page.getByRole("heading", { level: 1, name: "Conceito intuitivo" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Operações com matrizes" }),
+  ).toBeVisible();
 });
 
 test("navigates through the sidebar", async ({ page }) => {
   await page.goto(DOC);
-  await page.getByRole("link", { name: "Definição formal", exact: true }).click();
-  await expect(page).toHaveURL(/definicao-formal$/);
-  await expect(page.getByRole("heading", { level: 1, name: "Definição formal" })).toBeVisible();
+  await page.getByRole("link", { name: "Matrizes booleanas", exact: true }).click();
+  await expect(page).toHaveURL(/matrizes-booleanas$/);
+  await expect(page.getByRole("heading", { level: 1, name: "Matrizes booleanas" })).toBeVisible();
 });
 
 test("toggles the color theme", async ({ page }) => {
@@ -28,8 +30,8 @@ test("opens search with the keyboard and finds a page", async ({ page }) => {
   await page.locator("body").press("Control+k");
   const input = page.getByPlaceholder("Buscar na documentação…");
   await expect(input).toBeVisible();
-  await input.fill("derivadas");
-  await page.getByRole("button").filter({ hasText: "Derivadas" }).first().click();
+  await input.fill("conjuntos");
+  await page.getByRole("button").filter({ hasText: "Conjuntos" }).first().click();
   await expect(page).toHaveURL(/\/docs\//);
 });
 

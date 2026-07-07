@@ -1,0 +1,95 @@
+---
+title: Relação entre conjuntos
+description: Subconjunto, conjunto das partes, igualdade e demonstrações.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/conjuntos
+---
+
+## Símbolos de relação
+
+| Símbolo       | Significado      |
+| ------------- | ---------------- |
+| $\subset$     | está contido     |
+| $\supset$     | contém           |
+| $\not\subset$ | não está contido |
+| $\in$         | pertence         |
+| $\notin$      | não pertence     |
+
+Ex.: dados $A = \{1, 2, 3, 4, 5\}$, $B = \{4, 5, 6\}$ e $C = \{3, 4\}$, temos
+$5 \in B$, $7 \notin A$, $B \supset C$ e $2 \notin C$.
+
+## Subconjunto
+
+Um subconjunto é uma parte de um conjunto. $B$ é um subconjunto de $A$ (isto é,
+$A \supset B$) quando $(\forall x)(x \in B \Rightarrow x \in A)$.
+
+## Conjunto das partes
+
+Seja $A$ um conjunto. O conjunto das partes de $A$ é o conjunto de todos os
+subconjuntos possíveis de $A$. Denotamos $P(A)$.
+
+$$
+A = \{1, 2, 3\} \quad\Rightarrow\quad
+P(A) = \big\{ \varnothing, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\} \big\}
+$$
+
+$$
+C = \{1, 2, 3, 4\} \Rightarrow P(C) = \{ \varnothing, \{1\}, \{2\}, \{3\}, \{4\}, \{1,2\}, \{1,3\}, \{1,4\}, \{2,3\}, \{2,4\}, \{3,4\}, \{1,2,3\}, \{1,2,4\}, \{1,3,4\}, \{2,3,4\}, \{1,2,3,4\} \}
+$$
+
+Para $D = \{1,2,3,4,5\}$ temos $P(D) = 32$ e para $E = \{1,2,3,4,5,6\}$ temos
+$P(E) = 64$.
+
+<Callout type="tip" title="Fórmula">
+  A quantidade de partes de um conjunto com $n$ elementos é $2^{n}$.
+</Callout>
+
+## Demonstração matemática
+
+<StepByStep title="Se A ⊆ B e B ⊆ C, então A ⊆ C">
+  <Step title="Hipótese">
+    $A \subseteq B \Rightarrow (\forall x)(x \in A \Rightarrow x \in B)$ e
+    $B \subseteq C \Rightarrow (\forall x)(x \in B \Rightarrow x \in C)$.
+  </Step>
+  <Step title="Combinação">Assim $(\forall x)(x \in A \Rightarrow x \in C)$.</Step>
+  <Step title="Tese">Logo $A \subseteq C$. $\blacksquare$</Step>
+</StepByStep>
+
+<Exercise>
+Seja $B = \{x \mid x \text{ é múltiplo de } 4\}$ e $A = \{y \mid y \text{ é múltiplo de } 8\}$.
+Mostre que $A \subseteq B$.
+
+<Answer>
+$(\forall y)\, y \in A \Rightarrow y = 8m$, com $m \in \mathbb{Z}_{+}$. Assim
+$y = 4 \cdot 2m$. Como $2m \in \mathbb{Z}_{+}$, temos $y = 4c$ com
+$c \in \mathbb{Z}_{+}$, logo $y \in B$. Portanto $A \subseteq B$. $\blacksquare$
+</Answer>
+</Exercise>
+
+## Conjuntos iguais
+
+Se $A$ e $B$ são dois conjuntos tais que $A = B$, então $A \subseteq B$ e
+$B \subseteq A$. Ou seja:
+
+$$
+A = B \Leftrightarrow A \subseteq B \text{ e } B \subseteq A
+$$
+
+<Exercise>
+Seja $A = \{x \mid x \in \mathbb{N} \text{ e } x^{2} < 15\}$ e
+$B = \{y \mid y \in \mathbb{N} \text{ e } 2y < 7\}$. Mostre que $A = B$.
+
+<Answer>
+Para mostrar que $A = B$, vamos mostrar que $A \subseteq B$ e $B \subseteq A$.
+
+**($\Rightarrow$) $A \subseteq B$:** $(\forall x)\, x \in A$, com $x^{2} < 15$ e
+$x \in \mathbb{N}$, então $x \in \{0, 1, 2, 3\}$; logo $2x < 7$. Assim $x \in B$.
+
+**($\Leftarrow$) $B \subseteq A$:** $(\forall y)\, y \in B$, com $2y < 7$ e
+$y \in \mathbb{N}$, então $y \in \{0, 1, 2, 3\}$; logo $y^{2} < 15$. Assim $y \in A$.
+
+Como $A \subseteq B$ e $B \subseteq A$, então $A = B$. $\blacksquare$
+
+</Answer>
+</Exercise>

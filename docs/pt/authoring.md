@@ -8,11 +8,11 @@ O conteúdo fica em `content/`, em três níveis:
 
 ```
 content/
-  calculo-1/                 # curso (rótulo maiúsculo na sidebar)
-    limites/                 # grupo (dropdown colapsável)
+  matematica-discreta/       # curso (rótulo na sidebar)
+    matrizes/                # grupo (dropdown colapsável)
       index.mdx              # página do grupo (define título e ordem)
-      conceito-intuitivo.mdx # página
-      definicao-formal.mdx   # página
+      operacoes.mdx          # página
+      matrizes-booleanas.mdx # página
 ```
 
 - **Curso**: pasta de topo. O rótulo vem de `COURSE_TITLES` em
@@ -31,11 +31,11 @@ claro.
 
 ```yaml
 ---
-title: Conceito intuitivo # obrigatório
-description: Uma primeira ideia de limite. # opcional
+title: Operações com matrizes # obrigatório
+description: Adição, subtração e multiplicação. # opcional
 order: 1 # opcional (ordena as páginas do grupo)
 prerequisites: # opcional, cada item deve começar com /docs/
-  - /docs/calculo-1/limites
+  - /docs/matematica-discreta/matrizes
 ---
 ```
 

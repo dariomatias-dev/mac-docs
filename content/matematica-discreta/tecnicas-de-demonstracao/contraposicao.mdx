@@ -1,0 +1,84 @@
+---
+title: Demonstração por contraposição
+description: Provar P ⇒ Q construindo uma prova direta de ¬Q ⇒ ¬P.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/direta
+---
+
+Em alguns casos, produzir uma demonstração direta de uma conjectura
+$P \Rightarrow Q$ é um trabalho árduo. Assim, você pode demonstrar o teorema
+$P \Rightarrow Q$ pelo uso da tautologia:
+
+$$
+(\lnot Q \Rightarrow \lnot P) \Rightarrow (P \Rightarrow Q)
+$$
+
+Lembre-se que $\lnot Q \Rightarrow \lnot P$ é a **contrapositiva** de
+$P \Rightarrow Q$.
+
+## Exemplos
+
+- Se o Botafogo venceu o Trige, então ele foi campeão paraibano.
+  Contrapositiva: se o Botafogo não foi campeão do campeonato paraibano, então
+  ele não venceu o Trige.
+- Se $2 + 3 = 5$, então $2 + 3 + 7 = 5 + 7$. Contrapositiva: se
+  $2 + 3 + 7 \ne 5 + 7$, então $2 + 3 \ne 5$.
+
+A técnica para demonstrar que $P \Rightarrow Q$ construindo uma prova direta de
+$\lnot Q \Rightarrow \lnot P$ é chamada de **demonstração por contraposição**.
+
+## Exercícios
+
+<Exercise>
+Mostre por contraposição que, se um número inteiro é divisível por $6$, então ele
+também é divisível por $3$.
+
+<Answer>
+**Hipótese:** $x = 6m$, $m \in \mathbb{Z}$. &nbsp; **Tese:** $x = 3m$,
+$m \in \mathbb{Z}$.
+
+Por contraposição, temos que $x \ne 3m$, com $m \in \mathbb{Z}$. Logo
+$x \ne 3 \cdot 2m$, ou seja, $x \ne 6m$. Assim $\lnot Q \Rightarrow \lnot P$.
+Logo a afirmação é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que, se o quadrado de um número é ímpar, então o número também é ímpar.
+
+<Answer>
+**Hipótese:** $x^{2} = 2k + 1$, $k \in \mathbb{Z}$. &nbsp; **Tese:** $x = 2m + 1$,
+$m \in \mathbb{Z}$.
+
+Por contraposição, temos que $x = 2m$, com $m \in \mathbb{Z}$. Assim
+$x^{2} = (2m)^{2} = 4m^{2} = 2(2m^{2})$. Logo $x^{2}$ é par. Assim
+$\lnot Q \Rightarrow \lnot P$. Logo a afirmação é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que, se $m$ é um número ímpar, então $3m + 9$ é par.
+
+<Answer>
+**Hipótese:** $m = 2k + 1$, $k \in \mathbb{Z}$.
+
+Por contraposição, supomos $3m + 9$ ímpar e concluímos que $m$ é par: se $m = 2k$,
+então $3m + 9 = 3(2k) + 9 = 6k + 9 = 2(3k + 4) + 1$, ímpar. Assim
+$\lnot Q \Rightarrow \lnot P$, e a afirmação é verdadeira. $\blacksquare$
+
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a soma de um número par com um número ímpar é um número ímpar.
+
+<Answer>
+**Hipótese:** $x = 2k$ e $y = 2m + 1$, com $k, m \in \mathbb{Z}$.
+
+$x + y = 2k + (2m + 1) = 2(k + m) + 1$, que é ímpar. $\blacksquare$
+
+</Answer>
+</Exercise>

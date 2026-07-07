@@ -1,0 +1,82 @@
+---
+title: Operações binárias e unárias
+description: Definição de operação binária e unária sobre um conjunto.
+order: 5
+prerequisites:
+  - /docs/matematica-discreta/conjuntos
+---
+
+Um conjunto por si só não é objeto de muito interesse até que se faça "algo" com
+seus elementos.
+
+## Operação binária
+
+$\circ$ é uma operação binária sobre um conjunto $S$ se, para qualquer par
+ordenado $(x, y)$ de elementos de $S$, $x \circ y$ existe, é único e é elemento
+de $S$.
+
+A adição, a subtração e a multiplicação são todas operações binárias em
+$\mathbb{Z}$. Por exemplo, quando realizamos a adição no par ordenado $(x, y)$ de
+$\mathbb{Z}$, $x + y$ existe, é único e é inteiro.
+
+<Exercise>
+**1.** A operação de divisão é uma operação binária em $\mathbb{Z}$?
+
+<Answer>
+Seja $x = 7 \in \mathbb{Z}$ e $y = 2 \in \mathbb{Z}$. Assim
+$x / y = 7/2 = 3{,}5 \notin \mathbb{Z}$. Logo não pertence aos inteiros — **não**
+é operação binária.
+</Answer>
+</Exercise>
+
+<Exercise>
+**2.** A subtração é uma operação binária em $\mathbb{N}$?
+
+<Answer>
+Seja $x = 7 \in \mathbb{N}$ e $y = 8 \in \mathbb{N}$. Assim
+$x - y = 7 - 8 = -1 \notin \mathbb{N}$. Logo não pertence aos naturais — **não**
+é operação binária.
+</Answer>
+</Exercise>
+
+<Exercise>
+**3.** Seja $S = \{3, 4\}$. Liste todos os pares ordenados $(x, y)$ de elementos
+de $S$.
+
+<Answer>
+$(3, 3),\ (3, 4),\ (4, 3),\ (4, 4)$.
+</Answer>
+</Exercise>
+
+## Operação unária
+
+Uma operação unária atua em um único número de um conjunto. Assim, para $\#$ ser
+uma operação unária no conjunto $S$, é preciso que, para qualquer $x \in S$,
+$x^{\#}$ exista, seja único e seja um elemento de $S$.
+
+<Exercise>
+**1.** Seja $x^{\#}$ definido por $x^{\#} = -x$. $\#$ é uma operação unária em
+$\mathbb{N}$?
+
+<Answer>
+Seja $x = 5 \in \mathbb{N}$, assim $x^{\#} = -5 \notin \mathbb{N}$. Logo **não**
+é uma operação unária.
+</Answer>
+</Exercise>
+
+<Exercise>
+**2.** Seja $x^{\#}$ definido por $x^{\#} = x^{2}$. Responda:
+
+**a)** $\#$ é uma operação unária em $\mathbb{Z}$?
+
+**b)** $\#$ é uma operação unária em $\mathbb{N}$?
+
+<Answer>
+**a)** $(\forall x) \in \mathbb{Z}$, $x^{2}$ existe, é único e é um elemento que
+pertence aos inteiros. Assim $x^{\#}$ é uma operação unária.
+
+**b)** $(\forall x) \in \mathbb{N}$, $x^{2}$ existe, é único e é um elemento que
+pertence aos naturais. Assim $x^{\#}$ é uma operação unária.
+
+</Answer>
+</Exercise>

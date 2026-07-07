@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const PAGES = ["/", "/docs/calculo-1/limites/conceito-intuitivo"];
+const PAGES = ["/", "/docs/matematica-discreta/matrizes/operacoes"];
 
 for (const path of PAGES) {
   test(`has no critical accessibility violations: ${path}`, async ({ page }) => {

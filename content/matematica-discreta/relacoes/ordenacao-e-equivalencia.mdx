@@ -1,0 +1,49 @@
+---
+title: Ordenação parcial e relação de equivalência
+description: Definições de ordenação parcial e de relação de equivalência.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/relacoes/propriedades
+---
+
+## Ordenação parcial
+
+Uma relação binária em um conjunto $S$ que seja **reflexiva**, **anti-simétrica**
+e **transitiva** é chamada de ordenação parcial em $S$.
+
+Observações:
+
+1. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x \le y$ é uma ordenação parcial.
+2. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x = y^{2}$ **não** é uma ordenação parcial.
+
+<Exercise>
+Considere a relação $x\,p\,y \Leftrightarrow x$ divide $y$ em
+$\{1, 2, 3, 6, 12, 18\}$. Escreva todos os pares ordenados desta relação.
+
+<Answer>
+$$
+\begin{aligned}
+&(1,1), (1,2), (1,3), (1,6), (1,12), (1,18), \\
+&(2,2), (2,6), (2,12), (2,18), \\
+&(3,3), (3,6), (3,12), (3,18), \\
+&(6,6), (6,12), (6,18), \\
+&(12,12),\ (18,18)
+\end{aligned}
+$$
+
+É uma ordenação parcial.
+
+</Answer>
+</Exercise>
+
+## Relação de equivalência
+
+Uma relação binária em um conjunto $S$ que seja **reflexiva**, **simétrica** e
+**transitiva** é chamada de relação de equivalência em $S$.
+
+Observações:
+
+1. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x + y$ é par é uma relação de
+   equivalência em $\mathbb{N}$.
+2. Em qualquer conjunto $S$, $x\,p\,y \Leftrightarrow x = y$ é uma relação de
+   equivalência em $S$.

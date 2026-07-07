@@ -1,0 +1,94 @@
+---
+title: Função par e operações com funções
+description: Função par, soma, diferença, produto e quociente de funções.
+order: 7
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+---
+
+## Função par
+
+Uma função $f : A \to B$ é par se, e somente se, $\forall x \in A,\ f(-x) = f(x)$.
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{2} - 2$
+é par.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos $f(-x) = (-x)^{2} - 2 = x^{2} - 2$. Logo
+$f(-x) = f(x)$. Portanto $f$ é uma função par. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = 2x^{4} + x^{2} - 1$ é par.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos
+$f(-x) = 2(-x)^{4} + (-x)^{2} - 1 = 2x^{4} + x^{2} - 1$. Logo $f(-x) = f(x)$.
+Portanto $f$ é uma função par.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+## Operações com funções
+
+Sejam $f : D_{f} \to \mathbb{R}$ e $g : D_{g} \to \mathbb{R}$ duas funções reais.
+Definimos a soma $f + g$, a diferença $f - g$, o produto $f \cdot g$ e o
+quociente $f / g$ da seguinte forma:
+
+$$
+\begin{aligned}
+(f + g)(x) &= f(x) + g(x), & D_{f+g} &= D_{f} \cap D_{g} \\
+(f - g)(x) &= f(x) - g(x), & D_{f-g} &= D_{f} \cap D_{g} \\
+(f \cdot g)(x) &= f(x) \cdot g(x), & D_{f \cdot g} &= D_{f} \cap D_{g} \\
+(f / g)(x) &= f(x) / g(x), & D_{f/g} &= \{x \in D_{f} \cap D_{g} \mid g(x) \ne 0\}
+\end{aligned}
+$$
+
+<Exercise>
+Sejam $f(x) = 1 + \sqrt{x - 2}$ e $g(x) = x - 3$. Determine $f(x) + g(x)$.
+
+<Answer>
+$(f + g)(x) = x - 2 + \sqrt{x - 2}$, com
+$D_{f+g} = \{x \in \mathbb{R} \mid x \ge 2\}$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $f(x) = 5 - \sqrt{3x - 4}$ e $g(x) = 2x + 1$. Determine $f(x) - g(x)$.
+
+<Answer>
+$(f - g)(x) = 4 - 2x - \sqrt{3x - 4}$, com
+$D_{f-g} = \{x \in \mathbb{R} \mid x \ge 4/3\}$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $f(x) = \dfrac{1}{x + 4}$ e $g(x) = x + 2$. Determine $f(x) \cdot g(x)$.
+
+<Answer>
+$(f \cdot g)(x) = \dfrac{x + 2}{x + 4}$, com
+$D_{f \cdot g} = \{x \in \mathbb{R} \mid x \ne -4\}$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $f(x) = x^{2} - 2$ e $g(x) = x - 6$. Determine $f(x) / g(x)$.
+
+<Answer>
+$(f / g)(x) = \dfrac{x^{2} - 2}{x - 6}$, com
+$D_{f/g} = \{x \in \mathbb{R} \mid x \ne 6\}$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $f(x) = x^{2} - 25$ e $g(x) = x + 5$. Determine $f(x) / g(x)$ e o seu
+domínio.
+
+<Answer>
+$(f / g)(x) = \dfrac{x^{2} - 25}{x + 5} = \dfrac{(x - 5)(x + 5)}{x + 5} = x - 5$,
+com $D_{f/g} = \{x \in \mathbb{R} \mid x \ne -5\}$.
+</Answer>
+</Exercise>

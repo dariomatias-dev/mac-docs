@@ -31,17 +31,17 @@ describe("getReadingMinutes", () => {
 
 describe("getPagePlainText", () => {
   it("joins the title, description and body of a page", () => {
-    const doc = getDocBySlug(["calculo-1", "limites", "conceito-intuitivo"])!;
+    const doc = getDocBySlug(["matematica-discreta", "conjuntos", "cardinalidade"])!;
     const text = getPagePlainText(doc);
     expect(text).toContain(doc.frontmatter.title);
-    expect(text).toContain("Intuitivamente");
+    expect(text).toContain("cardinalidade");
   });
 });
 
 describe("getSectionPlainText", () => {
   it("concatenates every page in a group", () => {
-    const text = getSectionPlainText(["calculo-1", "limites"]);
-    expect(text).toContain("Conceito intuitivo");
-    expect(text).toContain("Definição formal");
+    const text = getSectionPlainText(["matematica-discreta", "matrizes"]);
+    expect(text).toContain("Operações com matrizes");
+    expect(text).toContain("Matrizes booleanas");
   });
 });

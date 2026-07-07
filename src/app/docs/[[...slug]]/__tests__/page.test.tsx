@@ -33,7 +33,7 @@ async function renderDocPage(slug: string[]) {
 
 describe("DocPage", () => {
   it("renders the resolved doc with its title, breadcrumb, edit link and prev/next nav", async () => {
-    const slug = ["calculo-1", "limites", "conceito-intuitivo"];
+    const slug = ["matematica-discreta", "matrizes", "operacoes"];
     const doc = getDocBySlug(slug)!;
     const nodes = await renderDocPage(slug);
 
@@ -47,11 +47,11 @@ describe("DocPage", () => {
     // Breadcrumb trail reaches the course, prev/next nav wires a following page.
     const breadcrumb = nodes.find((n) => Array.isArray(n.props.items));
     const items = breadcrumb?.props.items as { title: string }[];
-    expect(items[0].title).toBe("Cálculo 1");
+    expect(items[0].title).toBe("Matemática Discreta");
 
     const nav = nodes.find((n) => "prev" in n.props && "next" in n.props);
     const next = nav?.props.next as { href: string } | null;
-    expect(next?.href).toBe("/docs/calculo-1/limites/definicao-formal");
+    expect(next?.href).toBe("/docs/matematica-discreta/matrizes/matrizes-booleanas");
   });
 
   it("calls notFound for an unknown slug", async () => {

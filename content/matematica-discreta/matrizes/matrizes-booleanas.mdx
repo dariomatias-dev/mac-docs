@@ -1,0 +1,46 @@
+---
+title: Matrizes booleanas
+description: Soma booleana, produto booleano e produto de matrizes booleanas.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/matrizes/operacoes
+---
+
+São matrizes que têm apenas elementos iguais a $0$ ou $1$. Podemos definir
+operações booleanas sobre esses elementos.
+
+## Soma booleana
+
+$$
+x \lor y = \max(x, y)
+$$
+
+| $x$ | $y$ | $x \lor y$ |
+| --- | --- | ---------- |
+| 0   | 0   | 0          |
+| 0   | 1   | 1          |
+| 1   | 0   | 1          |
+| 1   | 1   | 1          |
+
+## Produto booleano
+
+$$
+x \land y = \min(x, y)
+$$
+
+| $x$ | $y$ | $x \land y$ |
+| --- | --- | ----------- |
+| 0   | 0   | 0           |
+| 0   | 1   | 0           |
+| 1   | 0   | 0           |
+| 1   | 1   | 1           |
+
+## Produto de matrizes booleanas
+
+O produto booleano de duas matrizes booleanas é obtido de forma análoga à
+multiplicação de matrizes $A \times B$, mas trocando a soma pela **soma
+booleana** ($\lor$) e o produto pelo **produto booleano** ($\land$):
+
+$$
+(A \times B)_{ij} = (a_{i1} \land b_{1j}) \lor (a_{i2} \land b_{2j}) \lor \cdots \lor (a_{in} \land b_{nj})
+$$
