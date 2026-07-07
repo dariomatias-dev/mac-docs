@@ -64,7 +64,8 @@ export function getAllSlugs(): string[][] {
   return getAllDocs().map((doc) => doc.slug);
 }
 
+const docBySlug = cache(() => new Map(getAllDocs().map((doc) => [doc.slug.join("/"), doc])));
+
 export function getDocBySlug(slug: string[]): Doc | null {
-  const target = slug.join("/");
-  return getAllDocs().find((doc) => doc.slug.join("/") === target) ?? null;
+  return docBySlug().get(slug.join("/")) ?? null;
 }

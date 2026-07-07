@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import readingTime from "reading-time";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
@@ -8,7 +10,7 @@ import { unified } from "unified";
 import type { Doc } from "../content.types";
 import { getAllDocs } from "./mdx";
 
-export function toPlainText(markdown: string): string {
+export const toPlainText = cache((markdown: string): string => {
   const file = unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -16,7 +18,7 @@ export function toPlainText(markdown: string): string {
     .use(remarkStringify)
     .processSync(markdown);
   return String(file).trim();
-}
+});
 
 export function getPagePlainText(doc: Doc): string {
   const parts = [doc.frontmatter.title, doc.frontmatter.description, toPlainText(doc.content)];
