@@ -23,7 +23,7 @@ import {
 import { mdxComponents } from "@/features/study";
 import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
