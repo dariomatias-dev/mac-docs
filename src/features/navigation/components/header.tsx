@@ -8,7 +8,7 @@ import { MobileMenuButton } from "./mobile-menu-button";
 export function Header({ search, searchMobile }: { search?: ReactNode; searchMobile?: ReactNode }) {
   return (
     <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur">
-      <div className="relative flex h-16 w-full items-center gap-4 px-20 md:px-44 lg:px-56 xl:px-64">
+      <div className="relative flex h-16 w-full items-center gap-3 px-4 sm:gap-4 sm:px-6 md:px-44 lg:px-56 xl:px-64">
         <MobileMenuButton />
 
         <Link href="/" className="text-foreground shrink-0 text-base font-bold tracking-tight">

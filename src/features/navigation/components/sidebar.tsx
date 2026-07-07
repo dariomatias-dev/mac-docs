@@ -100,7 +100,7 @@ function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: number })
 }
 
 export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
-  const { open } = useSidebarMobile();
+  const { open, close } = useSidebarMobile();
   const { collapsed, toggle } = useSidebarCollapse();
   const pathname = usePathname();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -118,41 +118,54 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
   }, [pathname]);
 
   return (
-    <aside
-      onClick={collapsed ? toggle : undefined}
-      role={collapsed ? "button" : undefined}
-      aria-label={collapsed ? "Abrir barra lateral" : undefined}
-      className={`group/side ${
-        open ? "flex" : "hidden"
-      } border-border bg-background fixed inset-x-0 top-28 bottom-0 z-30 flex-col overflow-hidden border-b transition-[width] duration-300 ease-in-out md:sticky md:top-16 md:flex md:h-[calc(100vh-4rem)] md:shrink-0 md:border-r md:border-b-0 ${
-        collapsed ? "md:hover:bg-surface md:w-14 md:cursor-pointer" : "md:w-95 lg:w-105"
-      }`}
-    >
-      {collapsed ? (
-        <div className="text-muted group-hover/side:text-accent hidden flex-1 items-center justify-center transition-colors md:flex">
+    <>
+      <div
+        onClick={close}
+        aria-hidden="true"
+        className={`bg-background/60 fixed inset-0 top-28 z-20 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      <aside
+        onClick={collapsed ? toggle : undefined}
+        role={collapsed ? "button" : undefined}
+        aria-label={collapsed ? "Abrir barra lateral" : undefined}
+        className={`group/side border-border bg-background fixed top-28 bottom-0 left-0 z-30 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
+          open ? "translate-x-0" : "-translate-x-full"
+        } ${collapsed ? "md:hover:bg-surface md:w-14 md:cursor-pointer" : "md:w-95 lg:w-105"}`}
+      >
+        <div
+          className={`text-muted group-hover/side:text-accent hidden flex-1 items-center justify-center transition-colors ${
+            collapsed ? "md:flex" : ""
+          }`}
+          aria-hidden={!collapsed}
+        >
           <PanelLeftOpen className="h-5 w-5" />
         </div>
-      ) : (
-        <>
-          <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto py-4 pr-7 pl-6 md:w-95 md:pr-9 md:pl-2 lg:w-105"
-          >
-            {tree.map((course) => (
-              <div
-                key={course.slug.join("/")}
-                className="border-border mt-6 border-t pt-6 first:mt-0 first:border-t-0 first:pt-0"
-              >
-                <p className="text-muted-2 mb-2 px-4 text-xs font-semibold tracking-wide uppercase">
-                  {course.title}
-                </p>
-                {course.groups.map((group) => (
-                  <GroupNav key={group.href} group={group} />
-                ))}
-              </div>
-            ))}
-          </div>
 
+        <div
+          ref={scrollRef}
+          className={`flex-1 overflow-y-auto pt-7 pr-7 pb-4 pl-6 md:py-4 md:pr-9 md:pl-2 ${
+            collapsed ? "md:hidden" : ""
+          }`}
+        >
+          {tree.map((course) => (
+            <div
+              key={course.slug.join("/")}
+              className="border-border mt-6 border-t pt-6 first:mt-0 first:border-t-0 first:pt-0"
+            >
+              <p className="text-muted-2 mb-2 px-4 text-xs font-semibold tracking-wide uppercase">
+                {course.title}
+              </p>
+              {course.groups.map((group) => (
+                <GroupNav key={group.href} group={group} />
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {!collapsed && (
           <button
             type="button"
             aria-label="Recolher barra lateral"
@@ -161,8 +174,8 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
           >
             <PanelLeftClose className="h-5 w-5" />
           </button>
-        </>
-      )}
-    </aside>
+        )}
+      </aside>
+    </>
   );
 }

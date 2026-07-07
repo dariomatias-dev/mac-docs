@@ -1,11 +1,16 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { Menu, X } from "lucide-react";
 
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
 
 export function MobileMenuButton() {
   const { open, toggle } = useSidebarMobile();
+  const pathname = usePathname();
+
+  if (!pathname.startsWith("/docs")) return null;
 
   return (
     <button

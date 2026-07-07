@@ -85,7 +85,7 @@ export default async function DocPage({ params }: DocPageProps) {
   }));
 
   return (
-    <div className="mx-auto flex max-w-[1600px] gap-8 px-12 pt-12 pb-28">
+    <div className="mx-auto flex max-w-[1600px] gap-8 px-6 pt-12 pb-28 sm:px-8 lg:px-10">
       <ReadingProgress />
       <article className="max-w-300 min-w-0 flex-1">
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
