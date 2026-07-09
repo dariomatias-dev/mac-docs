@@ -11,8 +11,45 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
       <div className="relative flex h-16 w-full items-center gap-3 px-4 sm:gap-4 sm:px-6 md:px-44 lg:px-56 xl:px-64">
         <MobileMenuButton />
 
-        <Link href="/" className="text-foreground shrink-0 text-base font-bold tracking-tight">
-          mac-docs
+        <Link href="/" aria-label="MACDocs — página inicial" className="text-foreground shrink-0">
+          <svg viewBox="20 22 380 74" className="h-7 w-auto" role="img" aria-label="MACDocs">
+            <defs>
+              <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#0a7194" />
+                <stop offset="100%" stopColor="#5ccce4" />
+              </linearGradient>
+            </defs>
+            <g transform="translate(35, 30)">
+              <path
+                d="M 10,20 L 30,40 L 10,60"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M 40,10 C 60,10 50,70 70,70"
+                stroke="url(#headerLogoGradient)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <circle cx="70" cy="70" r="6" fill="currentColor" />
+            </g>
+            <text
+              x="140"
+              y="85"
+              fontFamily="inherit"
+              fontSize="56"
+              fontWeight="200"
+              fill="currentColor"
+            >
+              MAC
+              <tspan fontWeight="800" fill="url(#headerLogoGradient)">
+                Docs
+              </tspan>
+            </text>
+          </svg>
         </Link>
 
         {search && (
