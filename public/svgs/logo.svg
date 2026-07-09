@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="100%" height="100%">
+    <defs>
+        <linearGradient id="theoryGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0a7194" />
+            <stop offset="100%" stop-color="#5ccce4" />
+        </linearGradient>
+    </defs>
+
+    <g transform="translate(35, 30)">
+        <path d="M 10,20 L 30,40 L 10,60" stroke="#f4f4f5" stroke-width="6" stroke-linecap="round" fill="none" />
+
+        <path d="M 40,10 C 60,10 50,70 70,70" stroke="url(#theoryGradient3)" stroke-width="6" stroke-linecap="round"
+            fill="none" />
+
+        <circle cx="70" cy="70" r="6" fill="#f4f4f5" />
+    </g>
+
+    <text x="140" y="85"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="56"
+        font-weight="200" fill="#f4f4f5">
+        MAC<tspan font-weight="800" fill="url(#theoryGradient3)">Docs</tspan>
+    </text>
+
+    <text x="142" y="112"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11"
+        font-weight="400" fill="#a1a1aa" letter-spacing="4">
+        APPLIED MATHEMATICS FOR COMPUTING
+    </text>
+</svg>
