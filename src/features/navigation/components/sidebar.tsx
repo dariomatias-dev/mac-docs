@@ -20,8 +20,13 @@ function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: number })
 
   useEffect(() => {
     seedGroupOpen(group.href, isActiveBranch);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [seedGroupOpen, group.href, isActiveBranch]);
+
+  // Navigating into this branch (e.g. via prev/next) forces it open so the
+  // active page is visible, even if the group was previously collapsed.
+  useEffect(() => {
+    if (isActiveBranch) setGroupOpen(group.href, true);
+  }, [setGroupOpen, group.href, isActiveBranch]);
 
   const groupActive = pathname === group.href;
 

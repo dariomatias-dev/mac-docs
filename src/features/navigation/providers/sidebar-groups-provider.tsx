@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useMemo, type ReactNode } from "react";
 
 import { usePersistedState } from "@/shared/hooks/use-persisted-state";
 
@@ -15,23 +15,31 @@ const SidebarGroupsContext = createContext<SidebarGroupsContextValue | null>(nul
 export function SidebarGroupsProvider({ children }: { children: ReactNode }) {
   const [openMap, setOpenMap] = usePersistedState<Record<string, boolean>>("sidebar-groups", {});
 
-  function isOpen(href: string, defaultOpen: boolean) {
-    return href in openMap ? openMap[href] : defaultOpen;
-  }
-
-  function setGroupOpen(href: string, value: boolean) {
-    setOpenMap((prev) => ({ ...prev, [href]: value }));
-  }
-
-  function seedGroupOpen(href: string, defaultOpen: boolean) {
-    setOpenMap((prev) => (href in prev ? prev : { ...prev, [href]: defaultOpen }));
-  }
-
-  return (
-    <SidebarGroupsContext.Provider value={{ isOpen, setGroupOpen, seedGroupOpen }}>
-      {children}
-    </SidebarGroupsContext.Provider>
+  const isOpen = useCallback(
+    (href: string, defaultOpen: boolean) => (href in openMap ? openMap[href] : defaultOpen),
+    [openMap],
   );
+
+  const setGroupOpen = useCallback(
+    (href: string, value: boolean) => {
+      setOpenMap((prev) => ({ ...prev, [href]: value }));
+    },
+    [setOpenMap],
+  );
+
+  const seedGroupOpen = useCallback(
+    (href: string, defaultOpen: boolean) => {
+      setOpenMap((prev) => (href in prev ? prev : { ...prev, [href]: defaultOpen }));
+    },
+    [setOpenMap],
+  );
+
+  const value = useMemo(
+    () => ({ isOpen, setGroupOpen, seedGroupOpen }),
+    [isOpen, setGroupOpen, seedGroupOpen],
+  );
+
+  return <SidebarGroupsContext.Provider value={value}>{children}</SidebarGroupsContext.Provider>;
 }
 
 export function useSidebarGroups() {
