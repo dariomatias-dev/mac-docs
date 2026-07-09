@@ -88,7 +88,78 @@ $$
 
 Sejam $A_{m \times n}$ e $B_{p \times q}$. A multiplicação $A \cdot B$ só existe
 quando $n = p$ (o número de colunas de $A$ é igual ao número de linhas de $B$).
-A matriz resultante tem ordem $m \times q$.
+A matriz resultante tem ordem $m \times q$. Cada entrada é o produto de uma linha
+de $A$ por uma coluna de $B$:
+
+$$
+c_{ij} = \sum_{k=1}^{n} a_{ik}\, b_{kj}
+$$
+
+<StepByStep title="Exemplo: multiplicar A · B">
+  <Step title="Verificar compatibilidade">
+    Sejam
+
+    $$
+    A =
+    \begin{bmatrix}
+    2 & 3 \\
+    -2 & 3
+    \end{bmatrix}_{2 \times 2}
+    \qquad
+    B =
+    \begin{bmatrix}
+    1 & 0 \\
+    4 & 2
+    \end{bmatrix}_{2 \times 2}
+    $$
+
+    O número de colunas de $A$ é igual ao número de linhas de $B$ ($n = p = 2$),
+    logo $A \cdot B$ existe e tem ordem $2 \times 2$.
+
+  </Step>
+  <Step title="Aplicar a regra linha × coluna">
+    Cada entrada $c_{ij}$ é a soma dos produtos da linha $i$ de $A$ pela coluna
+    $j$ de $B$:
+
+    $$
+    A \cdot B =
+    \begin{bmatrix}
+    (2)(1) + (3)(4) & (2)(0) + (3)(2) \\
+    (-2)(1) + (3)(4) & (-2)(0) + (3)(2)
+    \end{bmatrix}
+    $$
+
+  </Step>
+  <Step title="Calcular cada entrada">
+    $$
+    \begin{aligned}
+    c_{11} &= 2 + 12 = 14 & c_{12} &= 0 + 6 = 6 \\
+    c_{21} &= -2 + 12 = 10 & c_{22} &= 0 + 6 = 6
+    \end{aligned}
+    $$
+
+  </Step>
+  <Step title="Resultado">
+    $$
+    A \cdot B =
+    \begin{bmatrix}
+    14 & 6 \\
+    10 & 6
+    \end{bmatrix}
+    $$
+
+    Note que, em geral, $A \cdot B \ne B \cdot A$: a multiplicação de matrizes
+    **não** é comutativa. $\blacksquare$
+
+  </Step>
+</StepByStep>
+
+<Callout type="definition" title="O que é ser comutativa?">
+  Uma operação é **comutativa** quando a ordem dos operandos não altera o
+  resultado, isto é, $a * b = b * a$. A adição e a multiplicação de números reais
+  são comutativas ($3 + 5 = 5 + 3$). Mas a multiplicação de matrizes **não** é: em
+  geral $A \cdot B \ne B \cdot A$.
+</Callout>
 
 <Exercise>
 Sejam as matrizes
@@ -106,9 +177,3 @@ Então determine:
 **a)** $A \cdot B$ &nbsp;&nbsp; **b)** $B \cdot C$ &nbsp;&nbsp; **c)** $A \cdot C$
 
 </Exercise>
-
-<Callout type="caution" title="Transcrição">
-  No caderno original, as matrizes $B$ e $C$ deste exercício e os produtos resolvidos estão em uma
-  página fotografada de lado e com traço apagado, não sendo possível transcrevê-los com segurança.
-  Refotografe essa página se quiser incluir os valores exatos.
-</Callout>
