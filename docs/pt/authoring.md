@@ -46,6 +46,12 @@ prerequisites: # opcional, cada item deve começar com /docs/
 - Títulos `##` e `###` viram o índice do artigo, com âncoras.
 - Não use `#` (h1): o título da página já é renderizado a partir do frontmatter.
 
+Para a sintaxe das fórmulas, veja:
+
+- [KaTeX: Supported Functions](https://katex.org/docs/supported.html): lista completa de comandos, símbolos e ambientes aceitos pelo renderizador.
+- [KaTeX: Support Table](https://katex.org/docs/support_table.html): tabela pesquisável com cada símbolo e seu comando.
+- [LaTeX/Mathematics (Wikibooks)](https://en.wikibooks.org/wiki/LaTeX/Mathematics): guia mais amplo de notação matemática em LaTeX.
+
 ## Componentes de estudo
 
 Disponíveis dentro de qualquer arquivo `.mdx`, recebendo conteúdo via children.
