@@ -11,7 +11,9 @@
 <strong>Language:</strong> English | <a href="README.pt.md">Português</a>
 </p>
 
-<h1 align="center">MacDocs</h1>
+<p align="center">
+<img src="public/svgs/logo.svg" alt="MAC Docs logo" width="700">
+</p>
 
 <p align="center">
 Interactive documentation for Applied Mathematics for Computing, rendered from MDX with LaTeX formulas, full text search, and interactive study components.

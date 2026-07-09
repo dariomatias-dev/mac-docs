@@ -11,7 +11,9 @@
 <strong>Idioma:</strong> <a href="README.md">English</a> | Português
 </p>
 
-<h1 align="center">MacDocs</h1>
+<p align="center">
+<img src="public/svgs/logo.svg" alt="Logo do MAC Docs" width="700">
+</p>
 
 <p align="center">
 Documentação interativa de Matemática Aplicada à Computação, renderizada a partir de MDX com fórmulas em LaTeX, busca full text e componentes de estudo interativos.
