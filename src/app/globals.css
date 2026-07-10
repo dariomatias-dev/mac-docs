@@ -226,6 +226,21 @@ html {
   border-bottom: none;
 }
 
+.proof {
+  border-left: 2px solid var(--border);
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.proof p {
+  margin: 0.75rem 0;
+}
+
+.proof .katex-display,
+.proof .katex-display > .katex {
+  text-align: left;
+}
+
 .exercise-answer {
   display: grid;
   grid-template-rows: 0fr;
