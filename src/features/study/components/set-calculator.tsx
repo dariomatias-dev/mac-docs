@@ -2,6 +2,8 @@
 
 import { useId, useMemo, useState } from "react";
 
+import { TextField } from "./form-controls";
+
 type Operation = "union" | "intersection" | "difference-ab" | "difference-ba" | "symmetric";
 
 const OPERATIONS: { id: Operation; label: string; symbol: string }[] = [
@@ -82,13 +84,13 @@ export function SetCalculator() {
             <label htmlFor={inputIdA} className="text-foreground mb-1 block text-sm font-medium">
               Conjunto A
             </label>
-            <input
+            <TextField
               id={inputIdA}
               type="text"
               value={rawA}
               onChange={(e) => setRawA(e.target.value)}
               placeholder="ex: 1, 2, 3"
-              className="border-border bg-background text-foreground focus:border-accent w-full rounded-lg border px-3 py-2 text-sm outline-none"
+              className="w-full rounded-lg px-3 py-2 text-sm"
             />
           </div>
 
@@ -96,13 +98,13 @@ export function SetCalculator() {
             <label htmlFor={inputIdB} className="text-foreground mb-1 block text-sm font-medium">
               Conjunto B
             </label>
-            <input
+            <TextField
               id={inputIdB}
               type="text"
               value={rawB}
               onChange={(e) => setRawB(e.target.value)}
               placeholder="ex: 3, 4, 5"
-              className="border-border bg-background text-foreground focus:border-accent w-full rounded-lg border px-3 py-2 text-sm outline-none"
+              className="w-full rounded-lg px-3 py-2 text-sm"
             />
           </div>
 
