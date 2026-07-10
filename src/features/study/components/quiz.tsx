@@ -17,6 +17,8 @@ function shuffle<T>(arr: T[]): T[] {
   return out;
 }
 
+const LETTERS = "abcdefghij";
+
 export function Quiz({
   question,
   explanation,
@@ -53,7 +55,7 @@ export function Quiz({
         </div>
 
         <ul className="space-y-2">
-          {order.map((oi) => {
+          {order.map((oi, position) => {
             const opt = options[oi];
             const correct = opt.correct;
             const chosen = picked === oi;
@@ -75,7 +77,10 @@ export function Quiz({
                     answered ? "cursor-default" : "cursor-pointer"
                   }`}
                 >
-                  <span>{opt.children}</span>
+                  <span className="flex items-center gap-2">
+                    <span className="font-semibold">{LETTERS[position]})</span>
+                    <span>{opt.children}</span>
+                  </span>
                   {answered && correct && <Check className="h-4 w-4 shrink-0" />}
                   {chosen && !correct && <X className="h-4 w-4 shrink-0" />}
                 </button>
