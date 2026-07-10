@@ -44,3 +44,76 @@ booleana** ($\lor$) e o produto pelo **produto booleano** ($\land$):
 $$
 (A \times B)_{ij} = (a_{i1} \land b_{1j}) \lor (a_{i2} \land b_{2j}) \lor \cdots \lor (a_{in} \land b_{nj})
 $$
+
+<BooleanMatrixCalculator />
+
+## Exercícios
+
+<Exercise>
+Sejam as matrizes booleanas
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+1 & 1 \\
+0 & 0
+\end{bmatrix}
+$$
+
+Determine $A \lor B$ e $A \land B$.
+
+<Answer>
+$$
+A \lor B =
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix}
+\qquad
+A \land B =
+\begin{bmatrix}
+1 & 0 \\
+0 & 0
+\end{bmatrix}
+$$
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam as matrizes booleanas
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+Determine o produto booleano de matrizes $A \odot B$.
+
+<Answer>
+$(A \odot B)_{11} = (a_{11} \land b_{11}) \lor (a_{12} \land b_{21}) = (1 \land 0) \lor (0 \land 1) = 0$.
+Calculando as demais entradas da mesma forma:
+
+$$
+A \odot B =
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+</Answer>
+</Exercise>
