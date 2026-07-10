@@ -1,0 +1,328 @@
+---
+title: Prova 1 — Matrizes e conjuntos
+description: Avaliação 1 de Matemática Aplicada à Computação (2023.1), com resolução comentada.
+order: 1
+prerequisites:
+  - /docs/matematica-discreta/matrizes
+  - /docs/matematica-discreta/conjuntos
+---
+
+Avaliação 1 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2023.1**, professor Suemilton Nunes Gervázio. Cobre
+matrizes, matrizes booleanas e teoria dos conjuntos. Tente cada questão
+sozinho antes de abrir a **resposta**.
+
+<Exercise title="Questão 1 (1,0 pt)">
+Sabendo que uma matriz quadrada $A$ de ordem $2$ possui lei de formação
+$a_{ij} = 3i - 2j + 4$ e a matriz
+
+$$
+B =
+\begin{bmatrix}
+-3 & -8 \\
+-4 & 2
+\end{bmatrix}
+$$
+
+Assim, determine:
+
+a) A matriz $A$
+
+b) $A \times B$
+
+c) $B \times A$
+
+d) $-A + 2B$
+
+<Answer>
+$$
+A =
+\begin{bmatrix} 5 & 3 \\ 8 & 6 \end{bmatrix}
+$$
+
+$$
+A \times B =
+\begin{bmatrix} -27 & -34 \\ -48 & -52 \end{bmatrix}
+$$
+
+$$
+B \times A =
+\begin{bmatrix} -79 & -57 \\ -4 & 0 \end{bmatrix}
+$$
+
+$$
+-A + 2B =
+\begin{bmatrix} -11 & -19 \\ -16 & -2 \end{bmatrix}
+$$
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 2 (1,0 pt)">
+Sejam as matrizes booleanas $A$, $B$ e $C$ apresentadas a seguir:
+
+$$
+A =
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&0&0 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} 0&0&1 \\ 1&0&1 \\ 0&1&0 \end{bmatrix}
+\qquad
+C =
+\begin{bmatrix} 1&0&1 \\ 0&1&0 \\ 1&1&0 \end{bmatrix}
+$$
+
+Assim, calcule:
+
+a) $(C \wedge B) \vee A$
+
+b) $A \times B$ (multiplicação booleana de matrizes)
+
+<Answer>
+$$
+(C \wedge B) \vee A =
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&1&0 \end{bmatrix}
+$$
+
+$$
+A \times B =
+\begin{bmatrix} 1&1&1 \\ 1&0&1 \\ 0&0&1 \end{bmatrix}
+$$
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 3 (1,0 pt)">
+Para que valores de "$a$" a matriz $A$ a seguir é simétrica?
+
+$$
+A =
+\begin{bmatrix}
+a & a^{2}-1 & -3 \\
+a+1 & 2 & a^{2}+4 \\
+-3 & 4a & -1
+\end{bmatrix}
+$$
+
+<Answer>
+$a = 2$
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 4 — Unicamp 2018, adaptada (1,0 pt)">
+Sejam $a$ e $b$ números reais tais que a matriz
+
+$$
+A =
+\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
+$$
+
+satisfaz a equação $A^{2} = a \cdot A + b \cdot I$, em que $I$ é a matriz
+identidade de ordem $2$. Logo, mostre que $a$ e $b$ também pertencem ao conjunto dos
+números inteiros.
+
+<Answer>
+$a = 2$ e $b = -1$, ambos inteiros.
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 5 — UNIFACS, adaptada (1,0 pt)">
+As imagens vistas em uma página na internet, assim como fotos tiradas com máquinas digitais podem ser representadas usando-se matrizes. Uma imagem em preto e branco pode ser representada por uma matriz cujos
+termos são os números 0 e 1, especificando a cor do pixel: 0 indica preta e 1, a cor branca.
+Confirme ilustração a seguir:
+
+<div className="not-prose my-4 flex flex-wrap items-center justify-center gap-6 [&_.katex-display]:shrink-0 [&_.katex-display]:overflow-visible">
+  <PixelGrid columns="3" pattern="000 011 001 011 011" />
+
+$$
+(a_{ij})_{5 \times 3} =
+\begin{bmatrix}
+0&0&0 \\
+0&1&1 \\
+0&0&1 \\
+0&1&1 \\
+0&1&1
+\end{bmatrix}
+$$
+
+</div>
+
+Considerando-se a figura acima, sua representação matricial, e sabendo que a matriz $B = (b_{ij})_{3 \times 5}$, em que $b_{ij} = a_{ji}$, então a matriz B será representada por qual imagem a seguir?
+
+<Quiz question="Qual imagem representa a matriz B = Aᵀ?">
+  <Option>
+    <PixelGrid columns="5" pattern="11110 11010 00000" />
+  </Option>
+  <Option>
+    <PixelGrid columns="5" pattern="01111 01011 00000" />
+  </Option>
+  <Option>
+    <PixelGrid columns="5" pattern="00000 11010 11110" />
+  </Option>
+  <Option correct>
+    <PixelGrid columns="5" pattern="00000 01011 01111" />
+  </Option>
+  <Option>
+    <PixelGrid columns="5" pattern="00000 01010 01010" />
+  </Option>
+</Quiz>
+
+<Answer>
+$$
+B =
+\begin{bmatrix}
+0&0&0&0&0 \\
+0&1&0&1&1 \\
+0&1&1&1&1
+\end{bmatrix}
+$$
+
+— a imagem com a primeira linha totalmente preta.
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 6 (1,0 pt)">
+Escreva os seguintes conjuntos, fornecendo-lhes uma propriedade característica que
+envolve todos os elementos.
+
+a) $A = \{-1, 0, 3, 8, 15, 24, \ldots\}$
+b) $B = \{7/2, 4, 9/2, 5, 11/2, 6, \ldots\}$
+
+<Answer>
+$$
+A = \{x \in \mathbb{Z} \mid x = y^{2}-1,\; y \in \mathbb{N}\}
+$$
+
+$$
+B = \{x \in \mathbb{Q} \mid x = \tfrac{y}{2}+3,\; y \in \mathbb{N}^{*}\}
+$$
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 7 (1,0 pt)">
+Sejam $A$, $B$ e $C$ conjuntos. Mostre que se $A \subseteq B$ e
+$B \subseteq C$, então $A \subseteq C$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+A \subseteq B \iff (\forall x)(x \in A \Rightarrow x \in B)
+$$
+
+da mesma forma,
+
+$$
+B \subseteq C \iff (\forall x)(x \in B \Rightarrow x \in C)
+$$
+
+Como $A \subseteq B$ e $B \subseteq C$, assim:
+
+$$
+(\forall x)(x \in A \Rightarrow x \in B \Rightarrow x \in C)
+$$
+
+Logo, $A \subseteq C$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 8 (1,0 pt)">
+Mostre que se $A \subseteq B$ e $C \subseteq D$, então $(A \cap C) \subseteq
+(B \cap D)$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+A \subseteq B \iff (\forall x)(x \in A \Rightarrow x \in B)
+$$
+
+da mesma forma,
+
+$$
+C \subseteq D \iff (\forall x)(x \in C \Rightarrow x \in D)
+$$
+
+$$
+(A \cap C) \iff (\forall x)(x \in A \text{ e } x \in C)
+$$
+
+da mesma forma,
+
+$$
+(B \cap D) \iff (\forall x)(x \in B \text{ e } x \in D)
+$$
+
+Como $A \subseteq B$ e $C \subseteq D$,
+
+$$
+(\forall x)\big(x \in (A \cap C) \Rightarrow x \in (B \cap D)\big)
+$$
+
+$$
+\therefore (A \cap C) \subseteq (B \cap D) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 9 (1,0 pt)">
+Sejam os conjuntos $A = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 3\}$ e
+$B = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 15\}$. Mostre que $B
+\subseteq A$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+A = (\forall x)(x \in A \iff x = 3k \text{ e } k \in \mathbb{N})
+$$
+
+e
+
+$$
+B = (\forall x)(x \in B \iff x = 3 \cdot 5k \text{ e } k \in \mathbb{N})
+$$
+
+denotando $5k$ como $m$ (com $m \in \mathbb{N}$)
+
+Temos que $(\forall m)(m \in B \Rightarrow m \in A)$
+
+$$
+\therefore B \subseteq A \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise title="Questão 10 — PUCC, adaptada (1,0 pt)">
+Sejam os conjuntos $A = \{x \in \mathbb{R} \mid 0 \le x \le 5\}$ e $B = \{x
+\in \mathbb{R} \mid 3 \le x \le 7\}$. Assim, o resultado do produto cartesiano entre
+os conjuntos, resultante de $(A - B) \times (B - A)$ é representado por qual das regiões a
+seguir?
+
+<div className="not-prose my-4 flex justify-center">
+  <RegionDiagram xMax="5" yMax="7" xSplit="3" ySplit="5" highlight="top-left" />
+</div>
+
+<Quiz question="Qual região representa (A - B) × (B - A)?">
+  <Option>$R_1$</Option>
+  <Option>$R_2$</Option>
+  <Option>$R_3$</Option>
+  <Option correct>$R_4$</Option>
+  <Option>$R_1 \cup R_4$</Option>
+</Quiz>
+
+<Answer>
+d) $R_{4}$, pois $(A-B)\times(B-A) = [0,3) \times (5,7]$.
+</Answer>
+</Exercise>
