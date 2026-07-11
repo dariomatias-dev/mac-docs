@@ -13,6 +13,8 @@ período, semestre **2023.1**, professor Suemilton Nunes Gervázio. Cobre
 matrizes, matrizes booleanas e teoria dos conjuntos. Tente cada questão
 sozinho antes de abrir a **resposta**.
 
+## Questão 1
+
 <Exercise title="Questão 1 (1,0 pt)">
 Sabendo que uma matriz quadrada $A$ de ordem $2$ possui lei de formação
 $a_{ij} = 3i - 2j + 4$ e a matriz
@@ -123,6 +125,8 @@ $$
 </Answer>
 </Exercise>
 
+## Questão 2
+
 <Exercise title="Questão 2 (1,0 pt)">
 Sejam as matrizes booleanas $A$, $B$ e $C$ apresentadas a seguir:
 
@@ -143,6 +147,41 @@ a) $(C \wedge B) \vee A$
 
 b) $A \times B$ (multiplicação booleana de matrizes)
 
+<Resolution>
+
+a) Em $C \wedge B$ (E lógico, elemento a elemento), cada posição só é $1$
+se os dois termos forem $1$:
+
+$$
+C \wedge B =
+\begin{bmatrix} 1\wedge0 & 0\wedge0 & 1\wedge1 \\ 0\wedge1 & 1\wedge0 & 0\wedge1 \\ 1\wedge0 & 1\wedge1 & 0\wedge0 \end{bmatrix}
+=
+\begin{bmatrix} 0&0&1 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+$$
+
+Em seguida, $(C \wedge B) \vee A$ (OU lógico, elemento a elemento) — cada
+posição é $1$ se pelo menos um dos termos for $1$:
+
+$$
+\begin{bmatrix} 0&0&1 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+\vee
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&0&0 \end{bmatrix}
+=
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&1&0 \end{bmatrix}
+$$
+
+b) Na multiplicação booleana, cada posição $(i,j)$ é o OU dos E entre
+linha de $A$ e coluna de $B$: $\bigvee_k (a_{ik} \wedge b_{kj})$. Por
+exemplo, na posição $(1,1)$: $(1\wedge0)\vee(1\wedge1)\vee(1\wedge0)=1$.
+Repetindo para todas as posições:
+
+$$
+A \times B =
+\begin{bmatrix} 1&1&1 \\ 1&0&1 \\ 0&0&1 \end{bmatrix}
+$$
+
+</Resolution>
+
 <Answer>
 $$
 (C \wedge B) \vee A =
@@ -156,6 +195,8 @@ $$
 </Answer>
 </Exercise>
 
+## Questão 3
+
 <Exercise title="Questão 3 (1,0 pt)">
 Para que valores de "$a$" a matriz $A$ a seguir é simétrica?
 
@@ -168,10 +209,44 @@ a+1 & 2 & a^{2}+4 \\
 \end{bmatrix}
 $$
 
+<Resolution>
+
+$A$ é simétrica quando $A = A^{T}$, ou seja, quando $a_{ij} = a_{ji}$ para
+todo par $(i,j)$. Isso gera uma equação por par de posições espelhadas.
+
+Posições $(1,2)$ e $(2,1)$:
+
+$$
+a^{2}-1 = a+1 \;\Rightarrow\; a^{2}-a-2=0 \;\Rightarrow\; (a-2)(a+1)=0
+$$
+
+Logo $a = 2$ ou $a = -1$.
+
+Posições $(1,3)$ e $(3,1)$:
+
+$$
+-3 = -3
+$$
+
+Verdadeiro para qualquer $a$ — essa posição não restringe a solução.
+
+Posições $(2,3)$ e $(3,2)$:
+
+$$
+a^{2}+4 = 4a \;\Rightarrow\; a^{2}-4a+4=0 \;\Rightarrow\; (a-2)^{2}=0 \;\Rightarrow\; a=2
+$$
+
+O único valor que satisfaz **todas** as posições ao mesmo tempo é $a=2$
+(o valor $a=-1$ resolve a primeira equação, mas não a terceira).
+
+</Resolution>
+
 <Answer>
 $a = 2$
 </Answer>
 </Exercise>
+
+## Questão 4
 
 <Exercise title="Questão 4 — Unicamp 2018, adaptada (1,0 pt)">
 Sejam $a$ e $b$ números reais tais que a matriz
@@ -185,28 +260,116 @@ satisfaz a equação $A^{2} = a \cdot A + b \cdot I$, em que $I$ é a matriz
 identidade de ordem $2$. Logo, mostre que $a$ e $b$ também pertencem ao conjunto dos
 números inteiros.
 
+<Resolution>
+
+Primeiro calculamos $A^{2}$:
+
+$$
+A^{2} = A \times A =
+\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}
+\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}
+=
+\begin{bmatrix} 1&4 \\ 0&1 \end{bmatrix}
+$$
+
+Depois escrevemos $a \cdot A + b \cdot I$ em função de $a$ e $b$. Multiplicamos
+cada matriz pelo seu escalar, termo a termo:
+
+$$
+a \cdot A =
+a \cdot \begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} a\cdot1 & a\cdot2 \\ a\cdot0 & a\cdot1 \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} a&2a \\ 0&a \end{bmatrix}
+$$
+
+$$
+b \cdot I =
+b \cdot \begin{bmatrix} 1&0 \\ 0&1 \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} b\cdot1 & b\cdot0 \\ b\cdot0 & b\cdot1 \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} b&0 \\ 0&b \end{bmatrix}
+$$
+
+Somando as duas, termo a termo:
+
+$$
+a \cdot A + b \cdot I =
+\begin{bmatrix} a&2a \\ 0&a \end{bmatrix}
++
+\begin{bmatrix} b&0 \\ 0&b \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} a+b & 2a+0 \\ 0+0 & 0+a+b \end{bmatrix}
+\;\Rightarrow\;
+\begin{bmatrix} a+b & 2a \\ 0 & a+b \end{bmatrix}
+$$
+
+Igualando $A^{2}$ a $a \cdot A + b \cdot I$, posição por posição:
+
+$$
+\begin{bmatrix} 1&4 \\ 0&1 \end{bmatrix}
+=
+\begin{bmatrix} a+b & 2a \\ 0 & a+b \end{bmatrix}
+$$
+
+Cada posição vira uma equação:
+
+- Posição $(1,1)$: $a+b=1$
+- Posição $(1,2)$: $2a=4$
+- Posição $(2,1)$: $0=0$ — sempre verdade, não ajuda
+- Posição $(2,2)$: $a+b=1$ — repete a posição $(1,1)$
+
+Sobram só duas equações independentes, $a+b=1$ e $2a=4$, que formam o
+sistema:
+
+$$
+\begin{cases} a+b = 1 \\ 2a = 4 \end{cases}
+$$
+
+Resolvendo o sistema:
+
+$$
+2a=4 \;\Rightarrow\; a = \frac{4}{2} \;\Rightarrow\; a=2
+$$
+
+Substituindo $a=2$ na primeira equação:
+
+$$
+a+b=1 \;\Rightarrow\; 2+b=1 \;\Rightarrow\; b=1-2 \;\Rightarrow\; b=-1
+$$
+
+Como $a=2 \in \mathbb{Z}$ e $b=-1 \in \mathbb{Z}$, fica mostrado que $a$ e
+$b$ são inteiros.
+
+</Resolution>
+
 <Answer>
 $a = 2$ e $b = -1$, ambos inteiros.
 </Answer>
 </Exercise>
+
+## Questão 5
 
 <Exercise title="Questão 5 — UNIFACS, adaptada (1,0 pt)">
 As imagens vistas em uma página na internet, assim como fotos tiradas com máquinas digitais podem ser representadas usando-se matrizes. Uma imagem em preto e branco pode ser representada por uma matriz cujos
 termos são os números 0 e 1, especificando a cor do pixel: 0 indica preta e 1, a cor branca.
 Confirme ilustração a seguir:
 
-<div className="not-prose my-4 flex flex-wrap items-center justify-center gap-6 [&_.katex-display]:shrink-0 [&_.katex-display]:overflow-visible">
+<div className="illustration not-prose my-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
   <PixelGrid columns="3" pattern="000 011 001 011 011" />
 
 $$
+\small
 (a_{ij})_{5 \times 3} =
-\begin{bmatrix}
+\begin{pmatrix}
 0&0&0 \\
 0&1&1 \\
 0&0&1 \\
 0&1&1 \\
 0&1&1
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 </div>
@@ -231,6 +394,33 @@ Considerando-se a figura acima, sua representação matricial, e sabendo que a m
   </Alternative>
 </Alternatives>
 
+<Resolution>
+
+A relação $b_{ij} = a_{ji}$ diz que $B$ é a **transposta** de $A$: $B =
+A^{T}$. Uma matriz $5 \times 3$ transposta vira $3 \times 5$ — por isso
+$B$ tem $3$ linhas e $5$ colunas.
+
+Transpondo, as linhas de $A$ viram colunas de $B$:
+
+A 1ª coluna de $A$ é $(0,0,0,0,0)$ → vira a 1ª linha de $B$.
+A 2ª coluna de $A$ é $(0,1,0,1,1)$ → vira a 2ª linha de $B$.
+A 3ª coluna de $A$ é $(0,1,1,1,1)$ → vira a 3ª linha de $B$.
+
+$$
+B =
+\begin{bmatrix}
+0&0&0&0&0 \\
+0&1&0&1&1 \\
+0&1&1&1&1
+\end{bmatrix}
+$$
+
+Traduzindo de volta para pixels ($0$ = preto, $1$ = branco): a primeira
+linha de $B$ é toda preta; a segunda alterna preto/branco/preto/branco/
+branco; a terceira é preta só na primeira coluna e branca no resto.
+
+</Resolution>
+
 <Answer>
 $$
 B =
@@ -244,6 +434,8 @@ $$
 — a imagem com a primeira linha totalmente preta.
 </Answer>
 </Exercise>
+
+## Questão 6
 
 <Exercise title="Questão 6 (1,0 pt)">
 Escreva os seguintes conjuntos, fornecendo-lhes uma propriedade característica que
@@ -262,6 +454,8 @@ B = \{x \in \mathbb{Q} \mid x = \tfrac{y}{2}+3,\; y \in \mathbb{N}^{*}\}
 $$
 </Answer>
 </Exercise>
+
+## Questão 7
 
 <Exercise title="Questão 7 (1,0 pt)">
 Sejam $A$, $B$ e $C$ conjuntos. Mostre que se $A \subseteq B$ e
@@ -293,6 +487,8 @@ Logo, $A \subseteq C$. $\blacksquare$
 </Proof>
 </Answer>
 </Exercise>
+
+## Questão 8
 
 <Exercise title="Questão 8 (1,0 pt)">
 Mostre que se $A \subseteq B$ e $C \subseteq D$, então $(A \cap C) \subseteq
@@ -337,6 +533,8 @@ $$
 </Answer>
 </Exercise>
 
+## Questão 9
+
 <Exercise title="Questão 9 (1,0 pt)">
 Sejam os conjuntos $A = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 3\}$ e
 $B = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 15\}$. Mostre que $B
@@ -368,6 +566,8 @@ $$
 </Proof>
 </Answer>
 </Exercise>
+
+## Questão 10
 
 <Exercise title="Questão 10 — PUCC, adaptada (1,0 pt)">
 Sejam os conjuntos $A = \{x \in \mathbb{R} \mid 0 \le x \le 5\}$ e $B = \{x
