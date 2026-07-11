@@ -24,9 +24,17 @@ export function HeadingAnchor({ level, id, children, className, ...props }: Head
     window.setTimeout(() => setCopied(false), 1500);
   };
 
+  const levelClass = level === 2 ? "border-border mt-12 border-t pt-6" : "";
+
   return createElement(
     `h${level}`,
-    { id, className: ["group scroll-mt-28", className].filter(Boolean).join(" "), ...props },
+    {
+      id,
+      className: ["group scroll-mt-24 font-bold tracking-[-0.02em]", levelClass, className]
+        .filter(Boolean)
+        .join(" "),
+      ...props,
+    },
     children,
     id ? (
       <button

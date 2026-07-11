@@ -8,7 +8,7 @@ export function Resolution({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="not-prose mt-4" data-resolution-open={open ? "" : undefined}>
+    <div className="not-prose group mt-4" data-resolution-open={open ? "" : undefined}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -19,9 +19,9 @@ export function Resolution({ children }: { children: ReactNode }) {
         {open ? "Ocultar resolução" : "Ver resolução"}
       </button>
 
-      <div className="resolution-content">
-        <div>
-          <div className="resolution prose prose-sm dark:prose-invert text-foreground mt-3 max-w-none">
+      <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-300 ease-in-out group-data-resolution-open:grid-rows-[1fr] group-data-resolution-open:opacity-100">
+        <div className="min-h-0 overflow-hidden">
+          <div className="katex-left no-math-copy border-border prose prose-sm dark:prose-invert text-foreground mt-3 ml-4 max-w-none border-l-2 pl-4 [&_p]:my-3">
             {children}
           </div>
         </div>

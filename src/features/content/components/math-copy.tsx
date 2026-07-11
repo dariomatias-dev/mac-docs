@@ -49,6 +49,9 @@ export function MathCopy() {
     document.querySelectorAll<HTMLElement>(".katex-display").forEach((display) => {
       // Guard against React strict-mode double-invoke and re-renders.
       if (display.dataset.mathCopy) return;
+      // Skip intermediate working steps (Proof/Resolution) — only the
+      // final answer is worth a copy button.
+      if (display.closest(".no-math-copy")) return;
       const latex = latexOf(display);
       if (!latex) return;
 

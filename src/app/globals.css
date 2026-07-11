@@ -48,16 +48,6 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family:
-    var(--font-sans),
-    system-ui,
-    -apple-system,
-    sans-serif;
-}
-
 @layer base {
   :focus-visible {
     outline: 2px solid var(--accent);
@@ -106,61 +96,8 @@ html {
   background-clip: padding-box;
 }
 
-.prose :where(h1):not(:where([class~="not-prose"] *)) {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.prose :where(h2):not(:where([class~="not-prose"] *)) {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  scroll-margin-top: 6rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.prose :where(h3):not(:where([class~="not-prose"] *)) {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  scroll-margin-top: 6rem;
-}
-
-.prose :where(a):not(:where([class~="not-prose"] *)) {
-  color: var(--accent);
-  text-decoration-color: transparent;
-  text-underline-offset: 2px;
-  transition: text-decoration-color 0.15s ease;
-}
-
-.prose :where(a):not(:where([class~="not-prose"] *)):hover {
-  text-decoration-color: var(--accent);
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *)) {
-  color: var(--accent-dark);
-  font-weight: 500;
-}
-
-.dark .prose :where(code):not(:where([class~="not-prose"] *)) {
-  color: var(--accent);
-}
-
-.prose :where(pre):not(:where([class~="not-prose"] *)) {
-  background: var(--surface);
-  color: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-}
-
-.prose :where(pre code):not(:where([class~="not-prose"] *)) {
-  color: inherit;
-  font-weight: 400;
-  background: transparent;
-}
-
-/* Shiki dual-theme token colors (rehype-pretty-code). Light by default,
-   dark under .dark. Backgrounds come from the .prose pre rule above. */
+/* Shiki injects its own <span style="--shiki-light/--shiki-dark"> tokens
+   outside React's control — can only be targeted with plain CSS. */
 .prose :where(pre code) span {
   color: var(--shiki-light);
 }
@@ -173,25 +110,8 @@ html {
   display: block;
 }
 
-.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-  border-left: 3px solid var(--accent);
-  background: var(--surface);
-  border-radius: 0 8px 8px 0;
-  padding: 0.875rem 1.25rem;
-  font-style: normal;
-  color: var(--muted-2);
-  quotes: none;
-}
-
-.prose :where(blockquote p):not(:where([class~="not-prose"] *)) {
-  margin: 0;
-}
-
-.prose :where(blockquote p):not(:where([class~="not-prose"] *))::before,
-.prose :where(blockquote p):not(:where([class~="not-prose"] *))::after {
-  content: none;
-}
-
+/* KaTeX renders its own markup outside React's control, so these can
+   only be targeted with plain CSS, not component classNames. */
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
@@ -202,71 +122,16 @@ html {
   overflow-x: hidden;
 }
 
-.prose :where(table):not(:where([class~="not-prose"] *)) {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.prose :where(thead):not(:where([class~="not-prose"] *)) {
-  background: var(--surface);
-}
-
-.prose :where(thead th):not(:where([class~="not-prose"] *)) {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--muted);
-}
-
-.prose :where(th):not(:where([class~="not-prose"] *)),
-.prose :where(td):not(:where([class~="not-prose"] *)) {
-  padding: 0.625rem 1rem;
-}
-
+/* The td component doesn't know its row's position, so the last-row
+   border can't be expressed as a per-cell className. */
 .prose :where(tbody tr):last-child :where(td):not(:where([class~="not-prose"] *)) {
   border-bottom: none;
 }
 
-.proof,
-.resolution {
-  border-left: 2px solid var(--border);
-  margin-left: 1rem;
-  padding-left: 1rem;
-}
-
-.proof p,
-.resolution p {
-  margin: 0.75rem 0;
-}
-
-.exercise-answer .katex-display,
-.exercise-answer .katex-display > .katex,
-.resolution .katex-display,
-.resolution .katex-display > .katex {
+/* KaTeX's own CSS is unlayered, so it always wins over Tailwind's
+   @layer utilities regardless of selector specificity — these need
+   to be plain (unlayered) CSS to take effect. */
+.katex-left .katex-display,
+.katex-left .katex-display > .katex {
   text-align: left;
-}
-
-.exercise-answer,
-.resolution-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition:
-    grid-template-rows 0.3s ease,
-    opacity 0.25s ease;
-}
-
-[data-exercise-open] .exercise-answer,
-[data-resolution-open] .resolution-content {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
-.exercise-answer > *,
-.resolution-content > * {
-  overflow: hidden;
-  min-height: 0;
 }
