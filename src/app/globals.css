@@ -226,22 +226,27 @@ html {
   border-bottom: none;
 }
 
-.proof {
+.proof,
+.resolution {
   border-left: 2px solid var(--border);
   margin-left: 1rem;
   padding-left: 1rem;
 }
 
-.proof p {
+.proof p,
+.resolution p {
   margin: 0.75rem 0;
 }
 
 .exercise-answer .katex-display,
-.exercise-answer .katex-display > .katex {
+.exercise-answer .katex-display > .katex,
+.resolution .katex-display,
+.resolution .katex-display > .katex {
   text-align: left;
 }
 
-.exercise-answer {
+.exercise-answer,
+.resolution-content {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
@@ -250,12 +255,14 @@ html {
     opacity 0.25s ease;
 }
 
-[data-exercise-open] .exercise-answer {
+[data-exercise-open] .exercise-answer,
+[data-resolution-open] .resolution-content {
   grid-template-rows: 1fr;
   opacity: 1;
 }
 
-.exercise-answer > * {
+.exercise-answer > *,
+.resolution-content > * {
   overflow: hidden;
   min-height: 0;
 }

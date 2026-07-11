@@ -7,5 +7,6 @@ export { PixelGrid } from "./components/pixel-grid";
 export { Proof } from "./components/proof";
 export { Quiz, Option } from "./components/quiz";
 export { RegionDiagram } from "./components/region-diagram";
+export { Resolution } from "./components/resolution";
 export { StepByStep, Step } from "./components/step-by-step";
 export { YouTube } from "./components/youtube";

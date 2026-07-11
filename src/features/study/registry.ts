@@ -8,6 +8,7 @@ import { PixelGrid } from "./components/pixel-grid";
 import { Proof } from "./components/proof";
 import { Option, Quiz } from "./components/quiz";
 import { RegionDiagram } from "./components/region-diagram";
+import { Resolution } from "./components/resolution";
 import { SetCalculator } from "./components/set-calculator";
 import { Step, StepByStep } from "./components/step-by-step";
 import { YouTube } from "./components/youtube";
@@ -24,6 +25,7 @@ export const mdxComponents = {
   PixelGrid,
   Proof,
   RegionDiagram,
+  Resolution,
   StepByStep,
   Step,
   YouTube,
