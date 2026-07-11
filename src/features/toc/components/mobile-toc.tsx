@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 
 import type { TocItem } from "../lib/extract-toc";
 
-export function MobileToc({ items }: { items: TocItem[] }) {
+export function MobileToc({ items, label = "Neste artigo" }: { items: TocItem[]; label?: string }) {
   const [open, setOpen] = useState(false);
   if (items.length === 0) return null;
 
@@ -18,7 +18,7 @@ export function MobileToc({ items }: { items: TocItem[] }) {
         aria-expanded={open}
         className="text-foreground flex w-full cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold"
       >
-        Neste artigo
+        {label}
         <ChevronDown
           className={`text-muted h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
         />

@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 
 import type { TocItem } from "../lib/extract-toc";
 
-export function TableOfContents({ items }: { items: TocItem[] }) {
+export function TableOfContents({
+  items,
+  label = "Neste artigo",
+}: {
+  items: TocItem[];
+  label?: string;
+}) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -55,7 +61,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav aria-label="Índice do artigo" className="text-sm">
       <div className="border-border border-l pl-6">
-        <p className="text-foreground mb-3 font-semibold">Neste artigo</p>
+        <p className="text-foreground mb-3 font-semibold">{label}</p>
 
         <ul className="space-y-0.5">
           {items.map((item) => {
