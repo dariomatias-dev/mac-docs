@@ -83,6 +83,7 @@ export default async function DocPage({ params }: DocPageProps) {
     href,
     title: flat.find((page) => page.href === href)?.title ?? href,
   }));
+  const tocLabel = doc.slug.includes("avaliacoes") ? "Nesta prova" : undefined;
 
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-6 pt-12 pb-28 sm:px-8 lg:px-10">
@@ -96,7 +97,7 @@ export default async function DocPage({ params }: DocPageProps) {
           {doc.frontmatter.title}
         </h1>
         <PageMeta minutes={minutes} prerequisites={prerequisites} />
-        <MobileToc items={toc} />
+        <MobileToc items={toc} label={tocLabel} />
         <div className="prose prose-neutral dark:prose-invert mt-6 max-w-none">
           <MdxRenderer source={doc.content} components={mdxComponents} />
           <MathCopy />
@@ -107,7 +108,7 @@ export default async function DocPage({ params }: DocPageProps) {
 
       <aside className="hidden w-72 shrink-0 xl:block">
         <div className="sticky top-28">
-          <TableOfContents items={toc} />
+          <TableOfContents items={toc} label={tocLabel} />
         </div>
       </aside>
     </div>
