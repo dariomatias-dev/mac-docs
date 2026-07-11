@@ -1,3 +1,4 @@
+import { Alternative, Alternatives } from "./components/alternatives";
 import { BooleanMatrixCalculator } from "./components/boolean-matrix-calculator";
 import { Callout } from "./components/callout";
 import { Collapsible } from "./components/collapsible";
@@ -18,6 +19,8 @@ export const mdxComponents = {
   Answer,
   Quiz,
   Option,
+  Alternatives,
+  Alternative,
   PixelGrid,
   Proof,
   RegionDiagram,

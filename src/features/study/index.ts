@@ -1,4 +1,5 @@
 export { mdxComponents } from "./registry";
+export { Alternatives, Alternative } from "./components/alternatives";
 export { Callout } from "./components/callout";
 export { Collapsible } from "./components/collapsible";
 export { Exercise, Answer } from "./components/exercise";
