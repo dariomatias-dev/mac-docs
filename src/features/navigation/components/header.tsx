@@ -12,7 +12,7 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
         <MobileMenuButton />
 
         <Link href="/" aria-label="MACDocs — página inicial" className="text-foreground shrink-0">
-          <svg viewBox="20 22 380 74" className="h-7 w-auto" role="img" aria-label="MACDocs">
+          <svg viewBox="20 22 400 74" className="h-7 w-auto" role="img" aria-label="MACDocs">
             <defs>
               <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#0a7194" />
