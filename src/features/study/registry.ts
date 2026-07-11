@@ -1,4 +1,5 @@
 import { Alternative, Alternatives } from "./components/alternatives";
+import { Badge } from "./components/badge";
 import { BooleanMatrixCalculator } from "./components/boolean-matrix-calculator";
 import { Callout } from "./components/callout";
 import { Collapsible } from "./components/collapsible";
@@ -6,6 +7,7 @@ import { Answer, Exercise } from "./components/exercise";
 import { MatrixCalculator } from "./components/matrix-calculator";
 import { PixelGrid } from "./components/pixel-grid";
 import { Proof } from "./components/proof";
+import { Question } from "./components/question";
 import { Option, Quiz } from "./components/quiz";
 import { RegionDiagram } from "./components/region-diagram";
 import { Resolution } from "./components/resolution";
@@ -22,8 +24,10 @@ export const mdxComponents = {
   Option,
   Alternatives,
   Alternative,
+  Badge,
   PixelGrid,
   Proof,
+  Question,
   RegionDiagram,
   Resolution,
   StepByStep,

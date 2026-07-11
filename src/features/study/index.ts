@@ -1,10 +1,12 @@
 export { mdxComponents } from "./registry";
 export { Alternatives, Alternative } from "./components/alternatives";
+export { Badge } from "./components/badge";
 export { Callout } from "./components/callout";
 export { Collapsible } from "./components/collapsible";
 export { Exercise, Answer } from "./components/exercise";
 export { PixelGrid } from "./components/pixel-grid";
 export { Proof } from "./components/proof";
+export { Question } from "./components/question";
 export { Quiz, Option } from "./components/quiz";
 export { RegionDiagram } from "./components/region-diagram";
 export { Resolution } from "./components/resolution";
