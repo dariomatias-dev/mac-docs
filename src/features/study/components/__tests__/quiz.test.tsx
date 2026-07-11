@@ -16,19 +16,19 @@ function renderQuiz() {
 describe("Quiz", () => {
   it("marks a wrong pick as incorrect", async () => {
     renderQuiz();
-    await userEvent.click(screen.getByRole("button", { name: "Errada" }));
+    await userEvent.click(screen.getByRole("button", { name: /Errada/ }));
     expect(screen.getByText(/tente entender o porquê/i)).toBeInTheDocument();
   });
 
   it("marks the correct pick as right", async () => {
     renderQuiz();
-    await userEvent.click(screen.getByRole("button", { name: "Certa" }));
+    await userEvent.click(screen.getByRole("button", { name: /Certa/ }));
     expect(screen.getByText("Correto!")).toBeInTheDocument();
   });
 
   it("locks the options after answering", async () => {
     renderQuiz();
-    await userEvent.click(screen.getByRole("button", { name: "Certa" }));
-    expect(screen.getByRole("button", { name: "Errada" })).toBeDisabled();
+    await userEvent.click(screen.getByRole("button", { name: /Certa/ }));
+    expect(screen.getByRole("button", { name: /Errada/ })).toBeDisabled();
   });
 });
