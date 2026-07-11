@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
 import { HeadingAnchor } from "./heading-anchor";
+import { rehypeHeadingId } from "../lib/rehype-heading-id";
 
 // Dual-theme Shiki output: each token carries both a --shiki-light and
 // --shiki-dark CSS variable; globals.css swaps between them on `.dark`.
@@ -18,7 +19,12 @@ const prettyCodeOptions: PrettyCodeOptions = {
 const options: MDXRemoteProps["options"] = {
   mdxOptions: {
     remarkPlugins: [remarkGfm, remarkMath],
-    rehypePlugins: [rehypeSlug, rehypeKatex, [rehypePrettyCode, prettyCodeOptions]],
+    rehypePlugins: [
+      rehypeHeadingId,
+      rehypeSlug,
+      rehypeKatex,
+      [rehypePrettyCode, prettyCodeOptions],
+    ],
   },
 };
 
