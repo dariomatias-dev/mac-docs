@@ -7,6 +7,7 @@ import remarkMath from "remark-math";
 
 import { HeadingAnchor } from "./heading-anchor";
 import { rehypeHeadingId } from "../lib/rehype-heading-id";
+import { rehypeKatexA11y } from "../lib/rehype-katex-a11y";
 
 // Dual-theme Shiki output: each token carries both a --shiki-light and
 // --shiki-dark CSS variable; globals.css swaps between them on `.dark`.
@@ -23,6 +24,7 @@ const options: MDXRemoteProps["options"] = {
       rehypeHeadingId,
       rehypeSlug,
       rehypeKatex,
+      rehypeKatexA11y,
       [rehypePrettyCode, prettyCodeOptions],
     ],
   },
