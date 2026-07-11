@@ -24,4 +24,16 @@ describe("extractToc", () => {
   it("returns an empty list when there are no headings", () => {
     expect(extractToc("Apenas um parágrafo.")).toEqual([]);
   });
+
+  it("excludes a trailing inline JSX tag from the label and id", () => {
+    // Must match rehypeHeadingId's real-render behavior exactly, or the
+    // sidebar link and the actual heading id drift apart.
+    const toc = extractToc("## Questão 7 <Badge>1,0 pt</Badge>\n");
+    expect(toc).toEqual([{ id: "questão-7", text: "Questão 7", depth: 2 }]);
+  });
+
+  it("excludes a leading inline JSX tag from the label and id", () => {
+    const toc = extractToc("## <Icon /> Questão 7\n");
+    expect(toc).toEqual([{ id: "questão-7", text: "Questão 7", depth: 2 }]);
+  });
 });
