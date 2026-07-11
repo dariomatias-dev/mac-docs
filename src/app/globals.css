@@ -236,8 +236,8 @@ html {
   margin: 0.75rem 0;
 }
 
-.proof .katex-display,
-.proof .katex-display > .katex {
+.exercise-answer .katex-display,
+.exercise-answer .katex-display > .katex {
   text-align: left;
 }
 
