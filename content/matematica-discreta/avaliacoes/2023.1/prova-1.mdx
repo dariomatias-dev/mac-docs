@@ -35,6 +35,71 @@ c) $B \times A$
 
 d) $-A + 2B$
 
+<Resolution>
+
+a) $A$ é $2 \times 2$, então precisamos calcular $a_{11}, a_{12}, a_{21},
+a_{22}$ substituindo $i$ e $j$ em $a_{ij} = 3i - 2j + 4$:
+
+$$
+a_{11} = 3(1)-2(1)+4 = 5 \qquad a_{12} = 3(1)-2(2)+4 = 3
+$$
+
+$$
+a_{21} = 3(2)-2(1)+4 = 8 \qquad a_{22} = 3(2)-2(2)+4 = 6
+$$
+
+Logo:
+
+$$
+A =
+\begin{bmatrix} 5 & 3 \\ 8 & 6 \end{bmatrix}
+$$
+
+b) Em $A \times B$, cada posição $(i,j)$ do resultado é o produto da linha
+$i$ de $A$ pela coluna $j$ de $B$, somando os termos:
+
+$$
+A \times B =
+\begin{bmatrix}
+5(-3)+3(-4) & 5(-8)+3(2) \\
+8(-3)+6(-4) & 8(-8)+6(2)
+\end{bmatrix}
+=
+\begin{bmatrix} -27 & -34 \\ -48 & -52 \end{bmatrix}
+$$
+
+c) Em $B \times A$ o processo é o mesmo, mas agora linha de $B$ por coluna
+de $A$ — repare que o resultado é diferente do item anterior, pois a
+multiplicação de matrizes não é comutativa:
+
+$$
+B \times A =
+\begin{bmatrix}
+-3(5)+(-8)(8) & -3(3)+(-8)(6) \\
+-4(5)+2(8) & -4(3)+2(6)
+\end{bmatrix}
+=
+\begin{bmatrix} -79 & -57 \\ -4 & 0 \end{bmatrix}
+$$
+
+d) Primeiro invertemos o sinal de $A$ e multiplicamos $B$ por $2$, depois
+somamos termo a termo:
+
+$$
+-A =
+\begin{bmatrix} -5 & -3 \\ -8 & -6 \end{bmatrix}
+\qquad
+2B =
+\begin{bmatrix} -6 & -16 \\ -8 & 4 \end{bmatrix}
+$$
+
+$$
+-A + 2B =
+\begin{bmatrix} -11 & -19 \\ -16 & -2 \end{bmatrix}
+$$
+
+</Resolution>
+
 <Answer>
 $$
 A =
