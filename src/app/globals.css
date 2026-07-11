@@ -198,6 +198,10 @@ html {
   padding: 0.25rem 0;
 }
 
+.illustration .katex-display {
+  overflow-x: hidden;
+}
+
 .prose :where(table):not(:where([class~="not-prose"] *)) {
   overflow: hidden;
   border: 1px solid var(--border);
