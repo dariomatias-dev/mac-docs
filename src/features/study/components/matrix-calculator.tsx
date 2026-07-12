@@ -4,6 +4,7 @@ import { useMemo, useRef, useState, type ReactNode } from "react";
 
 import { Plus, Trash2 } from "lucide-react";
 
+import { CalculatorCard } from "./calculator-shell";
 import { Dropdown, TextField } from "./form-controls";
 import { DimensionSelect, MatrixBox, resizeMatrix } from "./matrix-grid";
 
@@ -306,13 +307,7 @@ export function MatrixCalculator() {
   const matrixOptions = matrices.map((m) => ({ value: m.id, label: labelFor(m.id) }));
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          Calculadora de matrizes
-        </p>
-      </div>
-
+    <CalculatorCard title="Calculadora de matrizes">
       <div className="space-y-5 px-5 py-4">
         <div className="space-y-3">
           <SectionLabel>Matrizes</SectionLabel>
@@ -502,6 +497,6 @@ export function MatrixCalculator() {
           </div>
         )}
       </div>
-    </div>
+    </CalculatorCard>
   );
 }

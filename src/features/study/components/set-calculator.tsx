@@ -2,6 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 
+import { CalculatorCard, OperatorPicker } from "./calculator-shell";
 import { TextField } from "./form-controls";
 
 type Operation = "union" | "intersection" | "difference-ab" | "difference-ba" | "symmetric";
@@ -13,6 +14,9 @@ const OPERATIONS: { id: Operation; label: string; symbol: string }[] = [
   { id: "difference-ba", label: "Diferença", symbol: "B − A" },
   { id: "symmetric", label: "Diferença simétrica", symbol: "A △ B" },
 ];
+
+// OperatorPicker shows the symbol (e.g. "A ∪ B"), not the plain-language label.
+const operatorOptions = OPERATIONS.map((o) => ({ id: o.id, label: o.symbol }));
 
 function parseSet(raw: string): string[] {
   const seen = new Set<string>();
@@ -71,13 +75,7 @@ export function SetCalculator() {
   const resultLabel = result.size === 0 ? "∅" : `{ ${[...result].join(", ")} }`;
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          Calculadora de conjuntos
-        </p>
-      </div>
-
+    <CalculatorCard title="Calculadora de conjuntos">
       <div className="grid gap-6 px-5 py-4 md:grid-cols-2">
         <div className="space-y-4">
           <div>
@@ -110,23 +108,7 @@ export function SetCalculator() {
 
           <div>
             <p className="text-foreground mb-1.5 block text-sm font-medium">Operação</p>
-            <div className="flex flex-wrap gap-1.5">
-              {OPERATIONS.map((o) => (
-                <button
-                  key={o.id}
-                  type="button"
-                  onClick={() => setOp(o.id)}
-                  aria-pressed={op === o.id}
-                  className={`cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
-                    op === o.id
-                      ? "border-accent bg-accent/15 text-accent"
-                      : "border-border text-muted hover:border-accent hover:text-foreground"
-                  }`}
-                >
-                  {o.symbol}
-                </button>
-              ))}
-            </div>
+            <OperatorPicker options={operatorOptions} value={op} onChange={setOp} />
           </div>
 
           <div aria-live="polite" className="border-border bg-surface rounded-lg border px-4 py-3">
@@ -141,7 +123,7 @@ export function SetCalculator() {
           <VennDiagram setA={setA} setB={setB} regions={regions} />
         </div>
       </div>
-    </div>
+    </CalculatorCard>
   );
 }
 

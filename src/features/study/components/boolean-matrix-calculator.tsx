@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 
+import { CalculatorCard, OperatorPicker } from "./calculator-shell";
 import { DimensionSelect, MatrixBox, resizeMatrix } from "./matrix-grid";
 
 type BitMatrix = (0 | 1)[][];
@@ -110,13 +111,7 @@ export function BooleanMatrixCalculator() {
     );
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          Calculadora de matrizes booleanas
-        </p>
-      </div>
-
+    <CalculatorCard title="Calculadora de matrizes booleanas">
       <div className="space-y-5 px-5 py-4">
         <p className="text-muted text-sm">Clique nas células para alternar entre 0 e 1.</p>
 
@@ -178,23 +173,7 @@ export function BooleanMatrixCalculator() {
 
         <div>
           <p className="text-foreground mb-1.5 text-sm font-medium">Operação</p>
-          <div className="flex flex-wrap gap-1.5">
-            {OPERATIONS.map((o) => (
-              <button
-                key={o.id}
-                type="button"
-                onClick={() => setOp(o.id)}
-                aria-pressed={op === o.id}
-                className={`cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
-                  op === o.id
-                    ? "border-accent bg-accent/15 text-accent"
-                    : "border-border text-muted hover:border-accent hover:text-foreground"
-                }`}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
+          <OperatorPicker options={OPERATIONS} value={op} onChange={setOp} />
         </div>
 
         <div aria-live="polite" className="border-border bg-surface rounded-lg border px-4 py-3">
@@ -208,6 +187,6 @@ export function BooleanMatrixCalculator() {
           )}
         </div>
       </div>
-    </div>
+    </CalculatorCard>
   );
 }
