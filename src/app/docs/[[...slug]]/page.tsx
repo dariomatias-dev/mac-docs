@@ -9,19 +9,12 @@ import {
   ReadingProgress,
   getAllSlugs,
   getDocBySlug,
-  getPagePlainText,
-  getReadingMinutes,
-  getSectionPlainText,
 } from "@/features/content";
-import {
-  Breadcrumbs,
-  EditPageLink,
-  PrevNextNav,
-  getBreadcrumb,
-  getFlatPageList,
-} from "@/features/navigation";
+import { Breadcrumbs, EditPageLink, PrevNextNav } from "@/features/navigation";
 import { mdxComponents } from "@/features/study";
-import { MobileToc, TableOfContents, extractToc } from "@/features/toc";
+import { MobileToc, TableOfContents } from "@/features/toc";
+
+import { buildDocView } from "./build-doc-view";
 
 export const dynamicParams = false;
 
@@ -69,21 +62,8 @@ export default async function DocPage({ params }: DocPageProps) {
   const doc = getDocBySlug(slug ?? []);
   if (!doc) notFound();
 
-  const breadcrumb = getBreadcrumb(doc.slug);
-  const toc = extractToc(doc.content);
-  const flat = getFlatPageList();
-  const currentIndex = flat.findIndex((page) => page.href === doc.url);
-  const prev = currentIndex > 0 ? flat[currentIndex - 1] : null;
-  const next = currentIndex >= 0 && currentIndex < flat.length - 1 ? flat[currentIndex + 1] : null;
-
-  const minutes = getReadingMinutes(doc.content);
-  const pageText = getPagePlainText(doc);
-  const sectionText = doc.isSection ? getSectionPlainText(doc.slug) : undefined;
-  const prerequisites = (doc.frontmatter.prerequisites ?? []).map((href) => ({
-    href,
-    title: flat.find((page) => page.href === href)?.title ?? href,
-  }));
-  const tocLabel = doc.slug.includes("avaliacoes") ? "Nesta prova" : undefined;
+  const { breadcrumb, toc, prev, next, minutes, pageText, sectionText, prerequisites, tocLabel } =
+    buildDocView(doc);
 
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-6 pt-12 pb-28 sm:px-8 lg:px-10">
