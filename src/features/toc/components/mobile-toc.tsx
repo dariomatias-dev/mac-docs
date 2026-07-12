@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from "react";
-
 import { ChevronDown } from "lucide-react";
+
+import { useDisclosure } from "@/shared/hooks/use-disclosure";
 
 import type { TocItem } from "../lib/extract-toc";
 
 export function MobileToc({ items, label = "Neste artigo" }: { items: TocItem[]; label?: string }) {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, toggle } = useDisclosure();
   if (items.length === 0) return null;
 
   return (
     <div className="border-border mt-6 overflow-hidden rounded-xl border xl:hidden">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggle}
         aria-expanded={open}
         className="text-foreground flex w-full cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold"
       >

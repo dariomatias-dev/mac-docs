@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { ChevronRight } from "lucide-react";
+
+import { useDisclosure } from "@/shared/hooks/use-disclosure";
 
 export function Collapsible({
   title,
@@ -13,13 +15,13 @@ export function Collapsible({
   children: ReactNode;
   defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  const { open, toggle } = useDisclosure(defaultOpen);
 
   return (
     <div className="not-prose border-border my-6 overflow-hidden rounded-xl border">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggle}
         aria-expanded={open}
         className="bg-surface text-foreground hover:text-accent flex w-full cursor-pointer items-center gap-2 px-5 py-3 text-left text-sm font-semibold transition-colors"
       >

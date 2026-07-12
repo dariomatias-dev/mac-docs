@@ -1,17 +1,19 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { Eye, EyeOff } from "lucide-react";
 
+import { useDisclosure } from "@/shared/hooks/use-disclosure";
+
 export function Resolution({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(false);
+  const { open, toggle } = useDisclosure();
 
   return (
     <div className="not-prose group mt-4" data-resolution-open={open ? "" : undefined}>
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggle}
         aria-expanded={open}
         className="border-border hover:border-accent hover:bg-surface hover:text-accent flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-2 text-[0.8rem] font-medium transition-colors"
       >
