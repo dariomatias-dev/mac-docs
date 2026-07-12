@@ -11,8 +11,8 @@ export type TocItem = {
 };
 
 // Without an MDX parser, `<Tag>content</Tag>` shows up as three flat
-// siblings — an opening "html" node, the plain text, and a closing
-// "html" node — not a nested tree. So skipping inline JSX/HTML (e.g. a
+// siblings: an opening "html" node, the plain text, and a closing
+// "html" node, not a nested tree. So skipping inline JSX/HTML (e.g. a
 // trailing <Badge>) means tracking depth across open/close tags, not
 // just filtering "html"-typed children.
 // Must match rehypeHeadingId's skip logic exactly, or the sidebar link

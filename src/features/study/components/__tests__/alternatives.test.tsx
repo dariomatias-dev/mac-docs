@@ -17,7 +17,7 @@ describe("Alternatives", () => {
     expect(items.map((li) => li.textContent)).toEqual(["a)Primeira", "b)Segunda", "c)Terceira"]);
   });
 
-  it("renders no buttons — it's a static list, not an interactive quiz", () => {
+  it("renders no buttons: it's a static list, not an interactive quiz", () => {
     render(
       <Alternatives>
         <Alternative>Única</Alternative>

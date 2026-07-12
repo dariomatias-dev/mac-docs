@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 // Number, source and points live in the `## Questão N` heading above
-// (via <Badge>) — this is just the bordered container for the content,
+// (via <Badge>); this is just the bordered container for the content,
 // so nothing gets said twice.
 export function Question({ children }: { children: ReactNode }) {
   return (

@@ -276,7 +276,7 @@ export function MatrixCalculator() {
     [matrices, seedId, steps],
   );
 
-  // Only meaningful for a single seed × operand product — reinforces the
+  // Only meaningful for a single seed × operand product; reinforces the
   // "matrix multiplication isn't commutative" lesson taught right above.
   const commutativityCheck = useMemo(() => {
     const first = steps[0];

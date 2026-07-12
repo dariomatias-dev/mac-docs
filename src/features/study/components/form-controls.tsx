@@ -13,7 +13,7 @@ import { Check, ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-// Only theme/behavior classes live here (colors, border, focus state) — every
+// Only theme/behavior classes live here (colors, border, focus state); every
 // call site fully owns sizing (padding, text size, rounding, width) via
 // className, so there's no Tailwind class-precedence fight between this base
 // and per-use overrides.

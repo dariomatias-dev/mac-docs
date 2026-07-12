@@ -7,7 +7,7 @@ const HEADING_TAGS = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
 
 // Sets heading ids from text only, skipping inline JSX (e.g. a trailing
 // <Badge>). Runs before rehype-slug so decorative/metadata content next
-// to a heading doesn't bloat the id — rehype-slug leaves existing ids
+// to a heading doesn't bloat the id; rehype-slug leaves existing ids
 // alone. extractToc must use the exact same skip logic, or the sidebar
 // links and the real heading id drift apart.
 export function rehypeHeadingId() {

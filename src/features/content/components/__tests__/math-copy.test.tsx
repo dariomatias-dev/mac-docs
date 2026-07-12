@@ -31,7 +31,7 @@ describe("MathCopy", () => {
     document.body.appendChild(wrapper);
     appendKatexDisplay("A = 1", wrapper);
 
-    // A visible formula elsewhere confirms the effect actually ran —
+    // A visible formula elsewhere confirms the effect actually ran;
     // otherwise an absent button could just mean the assertion ran too soon.
     appendKatexDisplay("B = 2");
     render(<MathCopy />);

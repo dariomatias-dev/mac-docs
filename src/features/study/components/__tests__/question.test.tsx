@@ -11,7 +11,7 @@ describe("Question", () => {
       </Question>,
     );
     expect(screen.getByText("Sejam a e b números reais")).toBeInTheDocument();
-    // Number/source/points live in the heading above — Question must
+    // Number/source/points live in the heading above; Question must
     // not render its own "Questão N" label.
     expect(screen.queryByText(/questão/i)).toBeNull();
     expect(screen.queryByRole("heading")).toBeNull();
