@@ -7,7 +7,6 @@ import { usePersistedState } from "@/shared/hooks/use-persisted-state";
 type SidebarCollapseContextValue = {
   collapsed: boolean;
   toggle: () => void;
-  setCollapsed: (value: boolean) => void;
 };
 
 const SidebarCollapseContext = createContext<SidebarCollapseContextValue | null>(null);
@@ -16,9 +15,7 @@ export function SidebarCollapseProvider({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = usePersistedState("sidebar-collapsed", false);
 
   return (
-    <SidebarCollapseContext.Provider
-      value={{ collapsed, toggle: () => setCollapsed((v) => !v), setCollapsed }}
-    >
+    <SidebarCollapseContext.Provider value={{ collapsed, toggle: () => setCollapsed((v) => !v) }}>
       {children}
     </SidebarCollapseContext.Provider>
   );
