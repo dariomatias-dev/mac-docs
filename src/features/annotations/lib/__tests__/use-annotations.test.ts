@@ -1,0 +1,64 @@
+import { act, renderHook } from "@testing-library/react";
+import { beforeEach, describe, expect, it } from "vitest";
+
+import { useAnnotations } from "../use-annotations";
+
+describe("useAnnotations", () => {
+  beforeEach(() => localStorage.clear());
+
+  it("starts empty", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    expect(result.current.annotations).toEqual([]);
+  });
+
+  it("adds a note", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("my note"));
+    expect(result.current.annotations).toHaveLength(1);
+    expect(result.current.annotations[0]).toMatchObject({ note: "my note" });
+  });
+
+  it("updates a note by id", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    const id = result.current.annotations[0].id;
+    act(() => result.current.update(id, "edited"));
+    expect(result.current.annotations[0].note).toBe("edited");
+  });
+
+  it("removes a note by id", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    const id = result.current.annotations[0].id;
+    act(() => result.current.remove(id));
+    expect(result.current.annotations).toEqual([]);
+  });
+
+  it("keeps notes scoped per slug", () => {
+    const { result: a } = renderHook(() => useAnnotations("page-a"));
+    const { result: b } = renderHook(() => useAnnotations("page-b"));
+    act(() => a.current.add("note"));
+    expect(a.current.annotations).toHaveLength(1);
+    expect(b.current.annotations).toHaveLength(0);
+  });
+
+  it("ignores blank or whitespace-only notes on add", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("   "));
+    expect(result.current.annotations).toEqual([]);
+  });
+
+  it("ignores blank or whitespace-only notes on update", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    const id = result.current.annotations[0].id;
+    act(() => result.current.update(id, "   "));
+    expect(result.current.annotations[0].note).toBe("note");
+  });
+
+  it("trims stored note text", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("  padded note  "));
+    expect(result.current.annotations[0].note).toBe("padded note");
+  });
+});

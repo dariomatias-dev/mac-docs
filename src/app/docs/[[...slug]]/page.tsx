@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { Annotations } from "@/features/annotations";
 import {
   CopyButtons,
   MathCopy,
@@ -64,6 +65,7 @@ export default async function DocPage({ params }: DocPageProps) {
 
   const { breadcrumb, toc, prev, next, minutes, pageText, sectionText, prerequisites, tocLabel } =
     buildDocView(doc);
+  const slugPath = doc.slug.join("/");
 
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-6 pt-12 pb-28 sm:px-8 lg:px-10">
@@ -91,6 +93,11 @@ export default async function DocPage({ params }: DocPageProps) {
           <TableOfContents items={toc} label={tocLabel} />
         </div>
       </aside>
+
+      {/* `key` forces a remount per page so panel-open/editing UI state doesn't
+          leak across navigations; the persisted data itself is also safe on
+          its own via usePersistedState's per-key hydration guard. */}
+      <Annotations key={slugPath} slug={slugPath} />
     </div>
   );
 }
