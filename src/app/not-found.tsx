@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { ArrowLeft, Search } from "lucide-react";
+
+import { CtaLink } from "@/shared/components/cta-link";
 
 export default function NotFound() {
   return (
@@ -17,20 +17,14 @@ export default function NotFound() {
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Link
-          href="/"
-          className="bg-accent text-accent-foreground flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-        >
+        <CtaLink href="/">
           <ArrowLeft className="h-4 w-4" />
           Voltar ao início
-        </Link>
-        <Link
-          href="/docs/matematica-discreta"
-          className="bg-surface-2 text-foreground hover:bg-border flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
-        >
+        </CtaLink>
+        <CtaLink href="/docs/matematica-discreta" variant="secondary">
           <Search className="h-4 w-4" />
           Explorar a documentação
-        </Link>
+        </CtaLink>
       </div>
     </main>
   );

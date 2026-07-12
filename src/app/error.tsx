@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 import { RefreshCw } from "lucide-react";
 
+import { CtaButton } from "@/shared/components/cta-link";
+
 export default function Error({
   error,
   unstable_retry,
@@ -27,14 +29,10 @@ export default function Error({
       {error.digest && <p className="text-muted mt-2 font-mono text-xs">Código: {error.digest}</p>}
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => unstable_retry()}
-          className="bg-accent text-accent-foreground flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-        >
+        <CtaButton onClick={() => unstable_retry()}>
           <RefreshCw className="h-4 w-4" />
           Tentar novamente
-        </button>
+        </CtaButton>
       </div>
     </main>
   );

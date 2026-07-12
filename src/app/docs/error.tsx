@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 import { RefreshCw } from "lucide-react";
 
+import { CtaButton } from "@/shared/components/cta-link";
+
 type DocsErrorProps = {
   error: Error & { digest?: string };
   unstable_retry: () => void;
@@ -29,14 +31,10 @@ export default function DocsError({ error, unstable_retry }: DocsErrorProps) {
         )}
 
         <div className="mt-8">
-          <button
-            type="button"
-            onClick={() => unstable_retry()}
-            className="bg-accent text-accent-foreground flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-          >
+          <CtaButton onClick={() => unstable_retry()}>
             <RefreshCw className="h-4 w-4" />
             Tentar novamente
-          </button>
+          </CtaButton>
         </div>
       </div>
     </div>
