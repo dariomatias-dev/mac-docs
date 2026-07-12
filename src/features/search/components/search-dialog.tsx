@@ -50,7 +50,15 @@ function findMatch(matches: readonly FuseResultMatch[] | undefined, key: string)
   return (matches?.find((m) => m.key === key)?.indices as readonly Range[] | undefined) ?? [];
 }
 
-function Snippet({ text, ranges }: { text: string; ranges: readonly Range[] }) {
+function Snippet({
+  text,
+  ranges,
+  active,
+}: {
+  text: string;
+  ranges: readonly Range[];
+  active: boolean;
+}) {
   if (!ranges.length) return null;
   const [start, end] = ranges[0];
   const from = Math.max(0, start - 40);
@@ -59,12 +67,16 @@ function Snippet({ text, ranges }: { text: string; ranges: readonly Range[] }) {
     .filter(([s]) => s >= from && s <= to)
     .map(([s, e]) => [s - from, e - from] as Range);
   return (
-    <span className="text-muted mt-0.5 line-clamp-1 text-xs">
+    <span
+      className={`mt-0.5 line-clamp-1 text-xs ${active ? "text-accent-foreground/80" : "text-muted"}`}
+    >
       {from > 0 && "…"}
       {highlight(
         text.slice(from, to),
         windowRanges,
-        "bg-accent-soft text-accent rounded px-0.5 font-medium",
+        active
+          ? "bg-transparent text-inherit underline decoration-2 underline-offset-2"
+          : "bg-accent-soft text-accent rounded px-0.5 font-medium",
       )}
       {to < text.length && "…"}
     </span>
@@ -80,7 +92,12 @@ export function SearchDialog() {
   const [loading, setLoading] = useState(false);
   const loadedRef = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const activeItemRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    activeItemRef.current?.scrollIntoView({ block: "nearest" });
+  }, [activeIndex]);
 
   const loadIndex = useCallback(async () => {
     if (loadedRef.current) return;
@@ -146,6 +163,12 @@ export function SearchDialog() {
     return [...map.entries()];
   }, [displayed]);
 
+  // Grouping by section reorders items relative to `displayed`'s relevance
+  // order (e.g. a low-ranked item jumps up next to a section-mate ranked
+  // #0). Keyboard nav and "active" lookups must use this flattened,
+  // as-rendered order, or arrow keys skip past visually adjacent rows.
+  const flatOrder = useMemo(() => groups.flatMap(([, sectionItems]) => sectionItems), [groups]);
+
   const openDialog = useCallback(() => {
     setOpen(true);
     setQuery("");
@@ -194,14 +217,16 @@ export function SearchDialog() {
   }
 
   function onInputKeyDown(e: React.KeyboardEvent) {
+    if (!flatOrder.length) return;
+
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveIndex((i) => Math.min(i + 1, displayed.length - 1));
+      setActiveIndex((i) => (i + 1) % flatOrder.length);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setActiveIndex((i) => Math.max(i - 1, 0));
-    } else if (e.key === "Enter" && displayed[activeIndex]) {
-      go(displayed[activeIndex]);
+      setActiveIndex((i) => (i - 1 + flatOrder.length) % flatOrder.length);
+    } else if (e.key === "Enter" && flatOrder[activeIndex]) {
+      go(flatOrder[activeIndex]);
     }
   }
 
@@ -285,12 +310,13 @@ export function SearchDialog() {
                     </div>
                     <ul>
                       {sectionItems.map((item) => {
-                        const i = displayed.indexOf(item);
+                        const i = flatOrder.indexOf(item);
                         const active = i === activeIndex;
                         const RowIcon = showingRecents ? Clock : FileText;
                         return (
                           <li key={item.href}>
                             <button
+                              ref={active ? activeItemRef : undefined}
                               type="button"
                               onClick={() => go(item)}
                               onMouseEnter={() => setActiveIndex(i)}
@@ -306,10 +332,14 @@ export function SearchDialog() {
                                   {highlight(
                                     item.title,
                                     item.titleRanges,
-                                    "bg-transparent font-semibold underline decoration-2 underline-offset-2",
+                                    "bg-transparent text-inherit font-semibold underline decoration-2 underline-offset-2",
                                   )}
                                 </span>
-                                {!active && <Snippet text={item.text} ranges={item.textRanges} />}
+                                <Snippet
+                                  text={item.text}
+                                  ranges={item.textRanges}
+                                  active={active}
+                                />
                               </span>
                               {active && <CornerDownLeft className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
                             </button>
