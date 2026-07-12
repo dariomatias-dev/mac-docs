@@ -8,7 +8,7 @@ import { getBreadcrumb, getFlatPageList } from "@/features/navigation";
 import { extractToc } from "@/features/toc";
 
 // Composes content, navigation and toc data for a doc page. Lives here
-// (not in a feature) because it needs all three — features don't import
+// (not in a feature) because it needs all three, and features don't import
 // each other, so this kind of cross-feature composition only belongs in
 // the app layer.
 export function buildDocView(doc: Doc) {

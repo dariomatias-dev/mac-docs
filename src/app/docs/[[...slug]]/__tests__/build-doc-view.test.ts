@@ -28,7 +28,7 @@ describe("buildDocView", () => {
 
   it("has no next page for the last page in the flat list", () => {
     const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "prova-1"])!;
-    // The last content page in the site — adjust if new content is added after it.
+    // The last content page in the site; adjust if new content is added after it.
     const view = buildDocView(doc);
     expect(view.prev).not.toBeNull();
   });

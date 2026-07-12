@@ -1,20 +1,8 @@
 "use client";
 
-import { useState } from "react";
-
 import { Check, Copy, Layers } from "lucide-react";
 
-function useCopy() {
-  const [copied, setCopied] = useState(false);
-
-  async function copy(text: string) {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }
-
-  return { copied, copy };
-}
+import { useCopy } from "@/shared/hooks/use-copy";
 
 function CopyButton({
   label,

@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 
 import { Check, Copy } from "lucide-react";
 
+import { useCopy } from "@/shared/hooks/use-copy";
+
 type Target = { host: HTMLElement; latex: string };
 
 // KaTeX (htmlAndMathml) embeds the original TeX in a MathML
@@ -16,22 +18,12 @@ function latexOf(display: Element): string | null {
 }
 
 function MathCopyButton({ latex }: { latex: string }) {
-  const [copied, setCopied] = useState(false);
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(latex);
-    } catch {
-      return;
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }
+  const { copied, copy } = useCopy();
 
   return (
     <button
       type="button"
-      onClick={copy}
+      onClick={() => copy(latex)}
       aria-label={copied ? "Copiado" : "Copiar LaTeX"}
       className="border-border bg-background text-muted hover:border-accent hover:text-accent absolute top-1.5 right-1.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
     >
