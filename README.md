@@ -51,7 +51,8 @@ breadcrumb, previous/next navigation, and a search index entry.
   whose state is persisted.
 - Full text search opened with `Ctrl`/`Cmd` + `K`, ranked and keyboard driven.
 - Interactive study components: Callout, Collapsible, Exercise, Quiz, StepByStep,
-  and YouTube.
+  YouTube, and, for exam pages, Question, Badge, Resolution, Proof, Alternatives,
+  PixelGrid, RegionDiagram, and set/matrix calculators.
 - Table of contents with scroll spy on desktop and a dropdown on mobile.
 - Reading time and prerequisite chips per page.
 - Light and dark theme that follows the system, with no flash.

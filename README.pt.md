@@ -53,7 +53,9 @@ busca.
 - Busca full text aberta com `Ctrl`/`Cmd` + `K`, ranqueada e navegável por
   teclado.
 - Componentes de estudo interativos: Callout, Collapsible, Exercise, Quiz,
-  StepByStep e YouTube.
+  StepByStep, YouTube e, para páginas de avaliação, Question, Badge,
+  Resolution, Proof, Alternatives, PixelGrid, RegionDiagram e calculadoras de
+  conjuntos/matrizes.
 - Índice do artigo com scroll spy no desktop e dropdown no mobile.
 - Tempo de leitura e chips de pré-requisitos por página.
 - Tema claro e escuro que segue o sistema, sem flash.

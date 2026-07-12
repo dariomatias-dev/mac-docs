@@ -10,9 +10,12 @@ src/
 ├── app/                  # rotas finas, só compõem features
 │   ├── layout.tsx
 │   ├── page.tsx
-│   ├── not-found.tsx
-│   ├── sitemap.ts  robots.ts
-│   └── docs/[[...slug]]/page.tsx
+│   ├── error.tsx  not-found.tsx  loading.tsx
+│   ├── sitemap.ts  robots.ts  og/route.tsx
+│   └── docs/[[...slug]]/
+│       ├── page.tsx
+│       ├── build-doc-view.ts   # composição content + navigation + toc
+│       └── error.tsx  not-found.tsx  loading.tsx
 │
 ├── features/
 │   ├── content/          # ler, parsear e renderizar MDX, tempo de leitura, cópia
@@ -22,9 +25,13 @@ src/
 │   ├── toc/              # índice do artigo e scroll spy
 │   └── theme/            # provider e toggle de tema
 │
-└── shared/
-    ├── hooks/            # use-persisted-state
-    └── lib/              # site, content-config, cn
+├── shared/
+│   ├── hooks/            # use-persisted-state, use-disclosure, use-copy, use-raf-scroll
+│   ├── lib/              # site, content-config, env
+│   └── components/       # cta-link (CtaLink/CtaButton)
+│
+└── lib/
+    └── utils.ts          # cn (clsx + tailwind-merge)
 
 content/                  # conteúdo (.mdx) na raiz do repositório
 ```
@@ -33,8 +40,8 @@ content/                  # conteúdo (.mdx) na raiz do repositório
 
 - Imports só descem: `app`, depois `features`, depois `shared`.
 - Features não importam umas às outras. Quando precisam de dados de outra, a
-  composição acontece na camada `app` (por exemplo, a página de docs busca em
-  `content` e monta a árvore em `navigation`).
+  composição acontece na camada `app` (por exemplo, `build-doc-view.ts` combina
+  `content`, `navigation` e `toc` para montar a página de docs).
 - Cada feature expõe sua API pública via `index.ts`.
 - Arquivos em kebab-case, componentes em PascalCase, hooks nomeados `useX`.
 - Todo o código em inglês, textos de exibição em português.

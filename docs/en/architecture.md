@@ -10,9 +10,12 @@ src/
 ├── app/                  # thin routes, they only compose features
 │   ├── layout.tsx
 │   ├── page.tsx
-│   ├── not-found.tsx
-│   ├── sitemap.ts  robots.ts
-│   └── docs/[[...slug]]/page.tsx
+│   ├── error.tsx  not-found.tsx  loading.tsx
+│   ├── sitemap.ts  robots.ts  og/route.tsx
+│   └── docs/[[...slug]]/
+│       ├── page.tsx
+│       ├── build-doc-view.ts   # composes content + navigation + toc
+│       └── error.tsx  not-found.tsx  loading.tsx
 │
 ├── features/
 │   ├── content/          # read, parse and render MDX, reading time, copy
@@ -22,9 +25,13 @@ src/
 │   ├── toc/              # table of contents and scroll spy
 │   └── theme/            # theme provider and toggle
 │
-└── shared/
-    ├── hooks/            # use-persisted-state
-    └── lib/              # site, content-config, cn
+├── shared/
+│   ├── hooks/            # use-persisted-state, use-disclosure, use-copy, use-raf-scroll
+│   ├── lib/              # site, content-config, env
+│   └── components/       # cta-link (CtaLink/CtaButton)
+│
+└── lib/
+    └── utils.ts          # cn (clsx + tailwind-merge)
 
 content/                  # content (.mdx) at the repository root
 ```
@@ -33,8 +40,8 @@ content/                  # content (.mdx) at the repository root
 
 - Imports only go down: `app` then `features` then `shared`.
 - Features do not import each other. When they need data from another feature,
-  the composition happens in the `app` layer (for example, the docs page reads
-  from `content` and builds the tree in `navigation`).
+  the composition happens in the `app` layer (for example, `build-doc-view.ts`
+  combines `content`, `navigation` and `toc` to build the docs page).
 - Each feature exposes its public API through `index.ts`.
 - Files in kebab-case, components in PascalCase, hooks named `useX`.
 - All code in English, display text in Portuguese.

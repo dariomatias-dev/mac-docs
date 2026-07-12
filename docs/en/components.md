@@ -73,3 +73,74 @@ Embed via `youtube-nocookie`. Accepts an id or a URL.
 
 > The embed requires `frame-src https://www.youtube-nocookie.com` in the CSP,
 > already configured in `next.config.ts`.
+
+## Question / Badge / Resolution / Proof
+
+Used on exam pages (`content/.../avaliacoes/`). `Badge` is an inline tag for
+the question heading (points, source); `Question` is the question container;
+`Resolution` hides the resolution behind a "Ver resolução" button; `Proof` is
+an always visible proof block with a side border.
+
+```mdx
+## Questão 1 <Badge>1,0 pt</Badge>
+
+<Question>Let A and B be finite sets...</Question>
+
+<Resolution>$|A \cup B| = |A| + |B| - |A \cap B|$.</Resolution>
+
+<Proof>By induction on $n$...</Proof>
+```
+
+## Alternatives / Alternative
+
+Static list of alternatives (a, b, c...), no interaction; not to be confused
+with `Quiz`, which grades the answer.
+
+```mdx
+<Alternatives>
+  <Alternative>First option.</Alternative>
+  <Alternative>Second option.</Alternative>
+</Alternatives>
+```
+
+## PixelGrid
+
+Black-and-white pixel grid built from a binary string, used in questions
+involving images/bitmaps.
+
+```mdx
+<PixelGrid columns="3" pattern="000 011 001 011 011" />
+```
+
+`pattern` ignores whitespace; each `1` becomes a white pixel, each `0` a
+black pixel. `columns` is the grid's column count.
+
+## RegionDiagram
+
+SVG diagram of a rectangle split into 4 regions by a cut point, with one
+region highlighted.
+
+```mdx
+<RegionDiagram xMax="5" yMax="7" xSplit="3" ySplit="5" highlight="top-left" />
+```
+
+`highlight` accepts `bottom-left`, `bottom-right`, `top-left` or
+`top-right`.
+
+## SetCalculator / MatrixCalculator / BooleanMatrixCalculator
+
+Interactive calculators with no props and no children; each is a
+self-contained client-side island for exploring a course topic.
+
+```mdx
+<SetCalculator />
+<MatrixCalculator />
+<BooleanMatrixCalculator />
+```
+
+- `SetCalculator`: union, intersection, difference and symmetric difference
+  between two user-typed sets.
+- `MatrixCalculator`: chained addition, subtraction, multiplication and
+  scalar multiplication over user-defined numeric matrices.
+- `BooleanMatrixCalculator`: boolean sum, boolean product and matrix product
+  over bit matrices.
