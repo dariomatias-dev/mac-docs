@@ -11,6 +11,9 @@ type SidebarMobileContextValue = {
 const SidebarMobileContext = createContext<SidebarMobileContextValue | null>(null);
 
 export function SidebarMobileProvider({ children }: { children: ReactNode }) {
+  // Plain useState on purpose, unlike the sibling collapse/groups providers:
+  // this is a transient mobile-menu-open flag, not a preference. Persisting
+  // it would reopen the menu on every reload.
   const [open, setOpen] = useState(false);
 
   return (
