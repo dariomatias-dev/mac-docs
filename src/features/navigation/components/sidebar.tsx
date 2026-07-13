@@ -33,7 +33,7 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
       <div
         onClick={close}
         aria-hidden="true"
-        className={`bg-background/60 fixed inset-0 top-28 z-20 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`bg-background/60 fixed inset-0 top-16 z-50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -42,7 +42,7 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
         onClick={collapsed ? toggle : undefined}
         role={collapsed ? "button" : undefined}
         aria-label={collapsed ? "Abrir barra lateral" : undefined}
-        className={`group/side border-border bg-background fixed top-28 bottom-0 left-0 z-30 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
+        className={`group/side border-border bg-background fixed top-16 bottom-0 left-0 z-50 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
           open ? "translate-x-0" : "-translate-x-full"
         } ${collapsed ? "md:hover:bg-surface md:w-14 md:cursor-pointer" : "md:w-95 lg:w-105"}`}
       >
@@ -87,6 +87,13 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
           </button>
         )}
       </aside>
+
+      <div
+        aria-hidden="true"
+        className={`bg-border fixed inset-x-0 top-16 z-60 h-px transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100" : "opacity-0"
+        }`}
+      />
     </>
   );
 }
