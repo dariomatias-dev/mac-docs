@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 type SidebarMobileContextValue = {
   open: boolean;
@@ -15,6 +15,15 @@ export function SidebarMobileProvider({ children }: { children: ReactNode }) {
   // this is a transient mobile-menu-open flag, not a preference. Persisting
   // it would reopen the menu on every reload.
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [open]);
 
   return (
     <SidebarMobileContext.Provider
