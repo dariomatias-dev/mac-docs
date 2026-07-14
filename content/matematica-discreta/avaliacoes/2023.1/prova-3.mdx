@@ -1,0 +1,557 @@
+---
+title: Prova 3 — Técnicas de demonstração, indução e recursão
+description: Avaliação 3 de Matemática Aplicada à Computação (2023.1), com resolução comentada.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/direta
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/contraposicao
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/contradicao
+---
+
+Avaliação 3 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2023.1**, professor Suemilton Nunes Gervázio. Cobre
+demonstração direta, contrapositiva, contradição, exaustão, indução
+matemática e recursão. Tente cada questão sozinho antes de abrir a
+**resposta**.
+
+## Questão 1 <Badge>1,0 pt</Badge>
+
+<Question>
+Dê uma demonstração direta ao teorema "Se um inteiro é divisível por 6,
+então duas vezes esse inteiro é divisível por 4".
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{Z},\; x = 6m,\; \text{com } m \in \mathbb{Z} \Rightarrow
+$$
+
+$$
+2x = 2 \cdot 6m \Rightarrow 2x = 2 \cdot 2 \cdot 3m
+$$
+
+$$
+2x = 4(3m)
+$$
+
+$$
+\therefore \text{ Se um inteiro é divisível por 6, duas vezes ele mesmo é divisível por 4} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 2 <Badge>1,0 pt</Badge>
+
+<Question>
+Prove pela contrapositiva que "Se $3n + 2$ é ímpar, no qual $n$ é um
+número inteiro, então $n$ é ímpar".
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, temos que $n$ é par, logo
+
+$$
+n = 2k,\; \text{com } k \in \mathbb{Z} \Rightarrow \text{(multiplicando os dois lados por 3)}
+$$
+
+$$
+3n = 3 \cdot 2k \Rightarrow 3n = 6k \Rightarrow \text{(somando 2 aos dois membros)}
+$$
+
+$$
+3n+2 = 6k+2 \Rightarrow
+$$
+
+$$
+3n+2 = 2(3k+1) \quad \text{(botando o 2 em evidência)}
+$$
+
+Logo, $3n+2$ é par $\Rightarrow \; \lnot q \Rightarrow \lnot p$
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 3 <Badge>1,0 pt</Badge>
+
+<Question>
+Faça as demonstrações a seguir usando a técnica que considera mais
+apropriada.
+
+a) Mostre que $\forall n \in \mathbb{N}$, se $n \le 5$ então $n^{2} \le
+5n + 10$.
+
+b) Mostre que se $n$ é um número inteiro par, então $n^{2}$ é par.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+Por exaustão (domínio finito: $n \in \mathbb{N}$ e $n \le 5$), temos:
+
+$$
+n=1 \Rightarrow 1^{2} \le 5(1)+10 \Rightarrow 1 \le 15
+$$
+
+$$
+n=2 \Rightarrow 2^{2} \le 5(2)+10 \Rightarrow 4 \le 20
+$$
+
+$$
+n=3 \Rightarrow 3^{2} \le 5(3)+10 \Rightarrow 9 \le 25
+$$
+
+$$
+n=4 \Rightarrow 4^{2} \le 5(4)+10 \Rightarrow 16 \le 30
+$$
+
+$$
+n=5 \Rightarrow 5^{2} \le 5(5)+10 \Rightarrow 25 \le 35 \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{Z} \mid x = 2m,\; \text{com } m \in \mathbb{Z} \Rightarrow
+$$
+
+$$
+x \cdot x = 2m \cdot 2m
+$$
+
+$$
+x^{2} = 2(2m^{2})
+$$
+
+$$
+\therefore \text{ O quadrado de um número par resulta em um número par} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>1,0 pt</Badge>
+
+<Question>
+Prove por contradição que $\sqrt{2}$ é um número irracional.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Por contradição, vamos supor que $\sqrt{2}$ é racional, logo
+
+$$
+\sqrt{2} = \frac{a}{b}, \text{ com } a \text{ e } b \text{ não possuindo fatores em comum, além de } \pm 1
+$$
+
+$$
+\left(\sqrt{2}\right)^{2} = \left(\frac{a}{b}\right)^{2} \Rightarrow 2 = \frac{a^{2}}{b^{2}} \Rightarrow a^{2} = 2b^{2}
+$$
+
+Logo, $a^{2}$ é par $\Rightarrow a$ é par (pela questão 3, letra b)
+
+$$
+a = 2k,\; \text{com } k \in \mathbb{Z} \Rightarrow a^{2} = 4k^{2}
+$$
+
+$$
+4k^{2} = 2b^{2} \Rightarrow b^{2} = \frac{4k^{2}}{2} \Rightarrow b^{2} = 2k^{2}
+$$
+
+Logo, $b^{2}$ é par $\Rightarrow b$ é par.
+
+Como $a$ é par e $b$ é par, eles possuem fator em comum, o $2$
+(contradição)
+
+$$
+\therefore \sqrt{2} \text{ é irracional} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>1,0 pt</Badge>
+
+<Question>
+Faça as demonstrações a seguir usando a técnica de demonstração por
+Indução.
+
+a) Prove que a soma de três números inteiros e consecutivos é
+divisível por 3.
+
+b) Mostre que se $a$ é um inteiro ímpar, então $a^{2} + 3a + 5$ é
+ímpar.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+Por indução, temos:
+
+**I)** Se $m=1 \Rightarrow m+(m+1)+(m+2) = 3m$, com $m \in \mathbb{Z}
+\Rightarrow 1+2+3 = 3(1) \Rightarrow 6 = 3$. Assim, a equação é válida,
+se $m=1$ (passo básico)
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para
+algum inteiro positivo $k$. Assim,
+
+$$
+k+(k+1)+(k+2) = 3m,\; m \in \mathbb{Z} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos provar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = (k+1)+(k+1+1)+(k+1+2) = 3k+6 \Rightarrow P(k+1) = 3(k+2)
+$$
+
+$P(k+1)$ é múltiplo de 3
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+Por indução, temos:
+
+**I)** Se $a=1 \Rightarrow 1^{2}+3(1)+5 = 2p+1$, com $p \in
+\mathbb{Z} \Rightarrow 9 = 2p+1$. Assim, a equação é verdadeira, se
+$a=1$ (passo básico)
+
+**II)** Por indução, vamos supor que a equação valha para algum
+inteiro ímpar $k$, com $k = 2p+1$ (hipótese de indução):
+
+$$
+P(k) = k^{2}+3k+5,\; \text{com } k = 2p+1
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = \big(2(p+1)+1\big)^{2} + 3\big(2(p+1)+1\big)+5
+$$
+
+$$
+P(k+1) = 4(p+1)^{2}+4(p+1)+1+6(p+1)+3+5
+$$
+
+$$
+P(k+1) = 2\big(2(p+1)^{2}+5(p+1)+4\big)+1 \;\Rightarrow\; P(k+1) \text{ é ímpar}
+$$
+
+$$
+\therefore P(k) \Rightarrow P(k+1), \text{ pelo P.I.F, a conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 6 <Badge>1,0 pt</Badge>
+
+<Question>
+Faça as demonstrações a seguir usando a técnica que considera mais
+apropriada.
+
+a) Mostre por contradição que se $x \in \mathbb{R}$, então $x^{2}+2x+3
+\neq (x+1)^{2}-5$.
+
+b) Mostre que a equação $1+3+5+\ldots+(2n-1) = n^{2}$ é verdadeira
+para qualquer inteiro positivo $n$.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+Por contradição, temos que $x \in \mathbb{R}$ e
+
+$$
+x^{2}+2x+3 = (x+1)^{2}-5 \Rightarrow
+$$
+
+$$
+x^{2}+2x+3 = x^{2}+2x+1-5
+$$
+
+$$
+x^{2}-x^{2}+2x-2x = -4-3
+$$
+
+$$
+0 = -7 \quad (\rightarrow\leftarrow)
+$$
+
+$$
+\therefore \text{ A tese é verdadeira, para todo } x \text{ pertencente aos reais} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+Por indução, temos:
+
+**I)** Se $n=1 \Rightarrow 2(1)-1 = 1^{2} \Rightarrow 1=1$. A equação
+é verdadeira para $n=1$ (passo básico)
+
+**II)** Vamos supor, por indução, que a expressão seja verdadeira
+para algum inteiro $k$. Assim,
+
+$$
+1+3+5+\ldots+(2k-1) = k^{2} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1+3+5+\ldots+(2k-1)+2(k+1)-1
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = k^{2}+2k+2-1 = k^{2}+2k+1 = (k+1)^{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \text{ e a equação está correta} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 7 <Badge>1,0 pt</Badge>
+
+<Question>
+Faça as demonstrações a seguir usando a técnica de demonstração por
+Indução.
+
+a) Mostre que, para qualquer inteiro positivo $n$, $2^{2n} - 1$ é
+divisível por 3.
+
+b) Mostre que a equação $1 \cdot 2 + 2 \cdot 3 + \ldots + n \cdot
+(n+1) = n(n+1)(n+2)/3$ é verdadeira para qualquer inteiro positivo $n
+\ge 1$.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+Por indução, temos:
+
+**I)** Se $n=1 \Rightarrow 2^{2(1)}-1 = 3m$, com $m \in \mathbb{Z}
+\Rightarrow 2^{2}-1=3 \Rightarrow 4-1=3 \Rightarrow 3=3$. A equação é
+verdadeira, se $n=1$ (passo básico)
+
+**II)** Vamos supor, por indução, que a equação é válida para algum
+inteiro positivo $k$. Assim,
+
+$$
+P(k) = 2^{2k}-1 = 3m,\; \text{com } m \in \mathbb{Z} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 2^{2(k+1)}-1 = 2^{2k+2}-1 = 2^{2k}\cdot 2^{2}-1 = 4 \cdot 2^{2k}-1
+$$
+
+$$
+P(k+1) = 3 \cdot 2^{2k} + 2^{2k}-1 \;\overset{\text{H.I.}}{=}\; 3 \cdot 2^{2k}+3m \Rightarrow P(k+1) = 3(2^{2k}+m)
+$$
+
+$P(k+1)$ é múltiplo de 3
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \text{ e a equação está certa} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+Por indução, temos:
+
+**I)** Se $n=1 \Rightarrow 1\cdot(1+1) = \dfrac{1(1+1)(1+2)}{3}
+\Rightarrow 2 = \dfrac{2\cdot 3}{3} \Rightarrow 2=2$. Assim, a equação
+é verdadeira, se $n=1$ (passo básico)
+
+**II)** Por indução, vamos supor que a equação valha para algum
+inteiro positivo $k$. Assim,
+
+$$
+1\cdot2+2\cdot3+\ldots+k(k+1) = \frac{k(k+1)(k+2)}{3} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1\cdot2+2\cdot3+\ldots+k(k+1)+(k+1)(k+2)
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = \frac{k(k+1)(k+2)}{3}+(k+1)(k+2)
+$$
+
+$$
+P(k+1) = \frac{k(k+1)(k+2)+3(k+1)(k+2)}{3} \quad \text{(pondo } (k+1)(k+2) \text{ em evidência)}
+$$
+
+$$
+P(k+1) = \frac{(k+1)(k+2)(k+3)}{3}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8 <Badge>1,0 pt</Badge>
+
+<Question>
+Prove por indução, usando recursão matemática, que na sequência de
+Fibonacci teremos que $F(n+4) = 3 \cdot F(n+2) - F(n)$, com $n > 0,\; n
+\in \mathbb{N}$.
+
+<Answer>
+Dem.: Por indução, temos:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow F(5) = 3F(3)-F(1) \Rightarrow 5 = 3\cdot2-1
+\Rightarrow 5=5$. Assim, a equação é verdadeira para $n=1$ (passo
+básico)
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para
+algum inteiro positivo $k$. Assim,
+
+$$
+F(k+4) = 3F(k+2)-F(k) \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+F(k+5) = F(k+4)+F(k+3)
+$$
+
+$$
+\text{(pela H.I.)} \quad F(k+5) = \big[3F(k+2)-F(k)\big]+F(k+3)
+$$
+
+Como $F(k+2) = F(k)+F(k+1)$, então $-F(k) = F(k+1)-F(k+2)$:
+
+$$
+F(k+5) = 3F(k+2)+F(k+1)-F(k+2)+F(k+3) = 2F(k+2)+F(k+1)+F(k+3)
+$$
+
+Como $F(k+3) = F(k+2)+F(k+1)$, então $F(k+2) = F(k+3)-F(k+1)$:
+
+$$
+F(k+5) = 2\big(F(k+3)-F(k+1)\big)+F(k+1)+F(k+3) = 3F(k+3)-F(k+1)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } F(k) \Rightarrow F(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9 <Badge>1,0 pt</Badge>
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule $P(a, n)
+= a^{n}$, onde $a \in \mathbb{R}^{*}$ e $n \in \mathbb{Z}^{*}$ para os
+valores de $a$ e $n$ informados.
+
+<Answer>
+```
+function P(a, n):
+begin
+  if n == 1:
+    return a;
+  else:
+    return P(a, n - 1) * a;
+end;
+```
+</Answer>
+</Question>
+
+## Questão 10 <Badge>1,0 pt</Badge>
+
+<Question>
+Desenhe um diagrama de árvore que ilustre as chamadas recursivas do
+algoritmo anterior para $P(3, 6)$.
+
+<Answer>
+Como cada chamada gera apenas uma chamada recursiva filha, a "árvore"
+é uma cadeia linear que desce até o caso base e depois volta
+multiplicando por $3$ em cada retorno:
+
+$$
+P(3,6) = P(3,5)\cdot3 = 243\cdot3 = 729
+$$
+
+$$
+P(3,5) = P(3,4)\cdot3 = 81\cdot3 = 243
+$$
+
+$$
+P(3,4) = P(3,3)\cdot3 = 27\cdot3 = 81
+$$
+
+$$
+P(3,3) = P(3,2)\cdot3 = 9\cdot3 = 27
+$$
+
+$$
+P(3,2) = P(3,1)\cdot3 = 3\cdot3 = 9
+$$
+
+$$
+P(3,1) = 3 \quad \text{(caso base)}
+$$
+
+$$
+\therefore P(3,6) = 729
+$$
+</Answer>
+</Question>
