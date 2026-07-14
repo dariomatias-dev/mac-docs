@@ -88,15 +88,14 @@ export default async function DocPage({ params }: DocPageProps) {
         <PrevNextNav prev={prev} next={next} />
       </article>
 
-      <aside className="hidden w-72 shrink-0 xl:block">
-        <div className="sticky top-28">
-          <TableOfContents items={toc} label={tocLabel} />
-        </div>
-      </aside>
+      <aside className="hidden w-72 shrink-0 xl:block" aria-hidden="true" />
+      <div
+        className="fixed top-28 hidden w-72 xl:block"
+        style={{ right: "max(2.5rem, calc((100vw - 26.25rem - 1600px) / 2 + 2.5rem))" }}
+      >
+        <TableOfContents items={toc} label={tocLabel} />
+      </div>
 
-      {/* `key` forces a remount per page so panel-open/editing UI state doesn't
-          leak across navigations; the persisted data itself is also safe on
-          its own via usePersistedState's per-key hydration guard. */}
       <Annotations key={slugPath} slug={slugPath} />
     </div>
   );
