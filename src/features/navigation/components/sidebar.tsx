@@ -43,7 +43,7 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
         onClick={collapsed ? toggle : undefined}
         role={collapsed ? "button" : undefined}
         aria-label={collapsed ? "Abrir barra lateral" : undefined}
-        className={`group/side border-border bg-background fixed top-16 bottom-0 left-0 z-50 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:sticky md:top-16 md:h-[calc(100vh-4rem)] md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
+        className={`group/side border-border bg-background fixed top-16 bottom-0 left-0 z-50 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:z-30 md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
           open ? "translate-x-0" : "-translate-x-full"
         } ${collapsed ? "md:hover:bg-surface md:w-14 md:cursor-pointer" : "md:w-95 lg:w-105"}`}
       >

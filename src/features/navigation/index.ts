@@ -1,4 +1,5 @@
 export { Sidebar } from "./components/sidebar";
+export { DocsShell } from "./components/docs-shell";
 export { Header } from "./components/header";
 export { Footer } from "./components/footer";
 export { MobileMenuButton } from "./components/mobile-menu-button";
