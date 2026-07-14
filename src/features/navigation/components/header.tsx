@@ -19,7 +19,7 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
                 <stop offset="100%" stopColor="#5ccce4" />
               </linearGradient>
             </defs>
-            <g transform="translate(35, 30)">
+            <g transform="translate(35, 18)">
               <path
                 d="M 10,20 L 30,40 L 10,60"
                 stroke="currentColor"

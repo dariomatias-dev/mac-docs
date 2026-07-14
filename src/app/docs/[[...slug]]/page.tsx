@@ -14,6 +14,8 @@ import {
 import { Breadcrumbs, EditPageLink, PrevNextNav } from "@/features/navigation";
 import { mdxComponents } from "@/features/study";
 import { MobileToc, TableOfContents } from "@/features/toc";
+import { jsonLd } from "@/shared/lib/json-ld";
+import { SITE_URL } from "@/shared/lib/site";
 
 import { buildDocView } from "./build-doc-view";
 
@@ -67,8 +69,42 @@ export default async function DocPage({ params }: DocPageProps) {
     buildDocView(doc);
   const slugPath = doc.slug.join("/");
 
+  const courseHref = `/docs/${doc.slug[0]}`;
+  const breadcrumbItems = [
+    { title: "Início", href: "/" },
+    ...breadcrumb.map((crumb) => ({ title: crumb.title, href: crumb.href ?? courseHref })),
+    { title: doc.frontmatter.title, href: doc.url },
+  ];
+
   return (
     <div className="mx-auto flex max-w-[1600px] gap-8 px-6 pt-12 pb-28 sm:px-8 lg:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: breadcrumbItems.map((item, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: item.title,
+                  item: `${SITE_URL}${item.href}`,
+                })),
+              },
+              {
+                "@type": "WebPage",
+                name: doc.frontmatter.title,
+                description: doc.frontmatter.description,
+                url: `${SITE_URL}${doc.url}`,
+                inLanguage: "pt-BR",
+                isPartOf: { "@type": "WebSite", url: SITE_URL },
+              },
+            ],
+          }),
+        }}
+      />
       <ReadingProgress />
       <article className="max-w-300 min-w-0 flex-1">
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3">

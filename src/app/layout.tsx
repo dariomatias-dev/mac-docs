@@ -7,6 +7,7 @@ import { Footer, Header } from "@/features/navigation";
 import { SidebarCollapseProvider, SidebarGroupsProvider } from "@/features/navigation";
 import { SearchButton, SearchDialog } from "@/features/search";
 import { ThemeProvider } from "@/features/theme";
+import { jsonLd } from "@/shared/lib/json-ld";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/shared/lib/site";
 import { ActiveMobileSheetProvider } from "@/shared/providers/active-mobile-sheet-provider";
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -57,6 +59,19 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: SITE_NAME,
+              description: SITE_DESCRIPTION,
+              url: SITE_URL,
+              inLanguage: "pt-BR",
+            }),
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <a
             href="#main-content"
