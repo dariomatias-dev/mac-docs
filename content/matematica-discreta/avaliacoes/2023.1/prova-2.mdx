@@ -1,0 +1,548 @@
+---
+title: Prova 2 — Funções e relações
+description: Avaliação 2 de Matemática Aplicada à Computação (2023.1), com resolução comentada.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+  - /docs/matematica-discreta/relacoes
+---
+
+Avaliação 2 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2023.1**, professor Suemilton Nunes Gervázio. Cobre
+funções (raízes, domínio, monotonicidade, paridade, composição, inversa,
+injetora/sobrejetora/bijetora) e relações (equivalência e ordenação
+parcial). Tente cada questão sozinho antes de abrir a **resposta**.
+
+## Questão 1 <Badge>1,0 pt</Badge>
+
+<Question>
+Considere a função polinomial $p(x) = x^{4} - 5x^{2} + 4$. Sabendo que $1$ é
+raiz dessa função, então determine todas as suas raízes.
+
+<Resolution>
+
+Como $p(x)$ só tem expoentes pares, fazemos a substituição $x^{2} = y$:
+
+$$
+x^{4} - 5x^{2} + 4 = 0 \;\Rightarrow\; y^{2} - 5y + 4 = 0
+$$
+
+Resolvendo por soma e produto: $S = 5$ e $P = 4$, o que dá $y' = 1$ e
+$y'' = 4$.
+
+Voltando para $x$ com $x^{2} = y$:
+
+$$
+x^{2} = 1 \;\Rightarrow\; x = \pm 1
+$$
+
+$$
+x^{2} = 4 \;\Rightarrow\; x = \pm 2
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S = \{-2, -1, 1, 2\}
+$$
+</Answer>
+</Question>
+
+## Questão 2 <Badge>1,0 pt</Badge>
+
+<Question>
+Seja, $f: \mathbb{R} \Rightarrow \mathbb{R}$ e $g: \mathbb{R} \Rightarrow
+\mathbb{R}$, com $f(x) = x^{2} - 4$ e $g(x) = x - 2$. Assim, em relação a
+operação entre as funções $f(x)/g(x)$ e o seu domínio, teremos que:
+
+<Alternatives>
+  <Alternative>$f(x)/g(x) = x + 2$ e $D = \mathbb{R} - \{-2\}$</Alternative>
+  <Alternative>$f(x)/g(x) = x - 2$ e $D = \mathbb{R} - \{-2\}$</Alternative>
+  <Alternative>$f(x)/g(x) = x - 2$ e $D = \mathbb{R}$</Alternative>
+  <Alternative>$f(x)/g(x) = x + 2$ e $D = \mathbb{R}$</Alternative>
+  <Alternative>$f(x)/g(x) = (x^{2} - 4)/(x + 2)$ e $D = \mathbb{R} - \{2\}$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Fatorando o numerador, $f(x) = x^{2} - 4 = (x-2)(x+2)$. Dividindo por
+$g(x) = x - 2$:
+
+$$
+\frac{f(x)}{g(x)} = \frac{(x-2)(x+2)}{x-2} = x + 2
+$$
+
+$$
+\therefore D = \mathbb{R}
+$$
+
+</Resolution>
+
+<Answer>
+d) $f(x)/g(x) = x + 2$ e $D = \mathbb{R}$
+</Answer>
+</Question>
+
+## Questão 3 <Badge>1,0 pt</Badge>
+
+<Question>
+Mostre que:
+
+a) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+-2x + 8$ é decrescente em $\mathbb{R}$.
+
+b) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+6x - 7$ é crescente em $\mathbb{R}$.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+$$
+(\forall a,b) \in \mathbb{R},\; a > b \iff f(a) < f(b). \text{ Assim, a função é decrescente}
+$$
+
+$$
+a > b \Rightarrow 2a > 2b \Rightarrow -2a < -2b
+$$
+
+$$
+-2a + 8 < -2b + 8
+$$
+
+$$
+f(a) < f(b)
+$$
+
+$$
+\therefore \text{ A função é decrescente em } \mathbb{R} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+$$
+(\forall a,b) \in \mathbb{R},\; a > b \iff f(a) > f(b). \text{ Apenas assim a função é crescente}
+$$
+
+$$
+a > b \Rightarrow 6a > 6b
+$$
+
+$$
+6a - 7 > 6b - 7
+$$
+
+$$
+f(a) > f(b)
+$$
+
+$$
+\therefore \text{ A função é crescente em } \mathbb{R} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>1,0 pt</Badge>
+
+<Question>
+Responda aos questionamentos a seguir, fazendo sempre a demostração
+condizente com a sua resposta.
+
+a) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+(x^{3} - 2x)/x^{5}$ é ímpar, par ou apenas uma função? Justifique a sua
+resposta.
+
+b) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+x^{2} - x + 1$ é ímpar, par ou apenas uma função? Justifique a sua
+resposta.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{R}, \text{ temos que}
+$$
+
+$$
+f(-x) = \frac{(-x)^{3} + 2(-x)}{(-x)^{5}} \;\Rightarrow\; f(-x) = \frac{-x^{3}+2x}{-x^{5}} = \frac{-(x^{3}-2x)}{-(x^{5})} = \frac{x^{3}-2x}{x^{5}} = f(x)
+$$
+
+$$
+\therefore \text{ A função é par} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{R}, \text{ temos que}
+$$
+
+$$
+f(-x) = (-x)^{2} - (-x) + 1 = x^{2} + x + 1 \neq f(x)
+$$
+
+$$
+-f(x) = -(x^{2}-x+1) \;\Rightarrow\; -f(x) = -x^{2}+x-1 \neq f(-x)
+$$
+
+$$
+\therefore \text{ A função é apenas uma função, nem par, nem ímpar} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>1,0 pt</Badge>
+
+<Question>
+Seja $f: \mathbb{R} \Rightarrow \mathbb{R}$ uma função definida por $f(x) =
+(2x + 4)/x$, então determine (caso exista) $f^{-1}(x)$.
+
+<Resolution>
+
+Trocamos $f(x)$ por $x$ e $x$ por $y$, depois isolamos $y$:
+
+$$
+f^{-1}(x) \;\Rightarrow\; x = \frac{2y+4}{y} \;\Rightarrow\; x = \frac{2y}{y}+\frac{4}{y} \;\Rightarrow\; x = 2+\frac{4}{y} \;\Rightarrow\; x-2=\frac{4}{y}
+$$
+
+$$
+y(x-2) = 4 \;\Rightarrow\; y = \frac{4}{x-2}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{4}{x-2}
+$$
+</Answer>
+</Question>
+
+## Questão 6 <Badge>Mackenzie – SP, adaptada — 1,0 pt</Badge>
+
+<Question>
+As funções $f(x) = -8x + 6$ e $g(x) = 4x + m$ são tais que $f(g(x)) =
+g(f(x))$, qualquer que seja $x$ real. Então, qual é o valor de $m$?
+
+<Alternatives>
+  <Alternative>$m = -9$</Alternative>
+  <Alternative>$m = 9$</Alternative>
+  <Alternative>$m = -2$</Alternative>
+  <Alternative>$m = 2$</Alternative>
+  <Alternative>$m = 3$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Substituindo $g(x)$ em $f$ e $f(x)$ em $g$:
+
+$$
+f(g(x)) = -8(4x+m)+6 \qquad g(f(x)) = 4(-8x+6)+m
+$$
+
+Igualando:
+
+$$
+-32x-8m+6 = -32x+24+m
+$$
+
+$$
+-8m-m = 24-6 \;\Rightarrow\; -9m = 18 \;\Rightarrow\; m = \frac{18}{-9}
+$$
+
+</Resolution>
+
+<Answer>
+c) $m = -2$
+</Answer>
+</Question>
+
+## Questão 7 <Badge>1,0 pt</Badge>
+
+<Question>
+Mostre que:
+
+a) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = x + 2$ é injetora.
+
+b) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por $f(x) =
+2x + 1$ é bijetora.
+
+c) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por $f(x) =
+2x - 3$ é sobrejetora.
+
+<Answer>
+Dem.: a)
+
+<Proof>
+
+$$
+(\forall x,y) \in \mathbb{R},\; f(x) = f(y) \Rightarrow x = y
+$$
+
+$$
+f(x) = f(y) \;\Rightarrow\; x+2 = y+2 \;\Rightarrow\; x = y+2-2
+$$
+
+$$
+x = y
+$$
+
+$$
+\therefore \text{ A função é injetora} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: b)
+
+<Proof>
+
+$$
+(\forall a,b) \in \mathbb{R},\; f(a) = f(b) \Rightarrow a = b
+$$
+
+$$
+f(a) = f(b) \;\Rightarrow\; 2a+1 = 2b+1 \;\Rightarrow\; 2a = 2b
+$$
+
+$$
+a = b \;\Rightarrow\; \text{ é injetora}
+$$
+
+$$
+(\forall y) \in \mathbb{R}, (\exists x) \in \mathbb{R} \mid f(x) = y \;\Rightarrow\;
+$$
+
+$$
+f(x) = y \Rightarrow y = 2x+1 \Rightarrow x = \frac{y-1}{2}
+$$
+
+$$
+f(x) = f\!\left(\frac{y-1}{2}\right) = 2\left(\frac{y-1}{2}\right)+1
+$$
+
+$$
+f(x) = 2\left(\frac{y-1}{2}\right)+1 \Rightarrow f(x) = y-1+1 \Rightarrow f(x) = y
+$$
+
+$$
+\therefore \text{ é sobrejetora e, consequentemente, bijetora} \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: c)
+
+<Proof>
+
+$$
+(\forall y) \in \mathbb{R}, (\exists x) \in \mathbb{R} \mid f(x) = y \;\Rightarrow\;
+$$
+
+$$
+y = 2x-3 \Rightarrow 2x = y+3 \Rightarrow x = \frac{y+3}{2}
+$$
+
+$$
+f(x) = f\!\left(\frac{y+3}{2}\right) = 2\left(\frac{y+3}{2}\right)-3
+$$
+
+$$
+f(x) = \frac{2(y+3)}{2}-3 \Rightarrow f(x) = y+3-3 \Rightarrow f(x) = y
+$$
+
+$$
+\therefore \text{ é sobrejetora} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8 <Badge>1,0 pt</Badge>
+
+<Question>
+Mostre que no conjunto $\mathbb{R}$ dos números reais a relação $R$
+definida por $xpy \Leftrightarrow x - y$ é um número inteiro é uma
+relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{R},\; xpx \Leftrightarrow x-x = \beta, \text{ com } \beta \in \mathbb{R}
+$$
+
+Então $x - x = 0$, e $0$ pertence aos inteiros
+
+$$
+\therefore \text{ é reflexiva}
+$$
+
+$$
+(\forall x,y) \in \mathbb{R},\; xpy \Rightarrow ypx
+$$
+
+Assim, $x-y = \beta$, com $\beta \in \mathbb{R}$
+
+$$
+-(x-y) = -\beta \;\Rightarrow\; -x+y = -\beta
+$$
+
+$$
+y-x = -\beta,\; -\beta \in \mathbb{R}
+$$
+
+$$
+ypx \quad \therefore \text{ é simétrica}
+$$
+
+$$
+(\forall x,y,z) \in \mathbb{R},\; xpy \text{ e } ypz \Rightarrow xpz. \text{ Assim,}
+$$
+
+$$
+x-y = b \qquad y-z = k,\; \text{com } k \text{ e } b \in \mathbb{R}
+$$
+
+$$
+-y = b-x \qquad (-b+x)-z = k
+$$
+
+$$
+y = -b+x \qquad -b+x-z = k
+$$
+
+$$
+x-2 = k+b \Rightarrow xpz,\; \text{com } k+b \in \mathbb{R}
+$$
+
+$$
+\therefore \text{ é transitiva e, consequentemente, uma relação de equivalência} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9 <Badge>1,0 pt</Badge>
+
+<Question>
+Mostre que no conjunto dos números inteiros a relação $R$ definida por
+$xpy \Leftrightarrow x - y$ é múltiplo de $3$ é uma relação de
+equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(\forall x) \in \mathbb{Z},\; xpx \Leftrightarrow x-x = 3k, \text{ com } k \in \mathbb{Z}
+$$
+
+Então $x-x=0$, e $0$ é múltiplo de $3$
+
+$$
+\therefore \text{ é reflexiva}
+$$
+
+$$
+(\forall x,y) \in \mathbb{Z},\; xpy \Rightarrow ypx. \text{ Então}
+$$
+
+$$
+xpy \Rightarrow x-y = 3k
+$$
+
+$$
+-(x-y) = -3k
+$$
+
+$$
+y-x = 3(-k) \Rightarrow ypx,\; -k \in \mathbb{Z} \quad \therefore \text{ é simétrica}
+$$
+
+$$
+(\forall x,y,z) \in \mathbb{Z},\; xpy \text{ e } ypz \Rightarrow xpz. \text{ Então}
+$$
+
+$$
+x-y = 3k \qquad y-z = 3m, \text{ com } m \in \mathbb{Z}
+$$
+
+$$
+-y = 3k-x \qquad 3(-k)+x-z = 3m
+$$
+
+$$
+y = 3(-k)+x \qquad x-z = 3m-3(-k)
+$$
+
+$$
+x-z = 3m+3k \Rightarrow xpz,\; 3(m+k) \in \mathbb{Z}
+$$
+
+$$
+\therefore \text{ é transitiva e, consequentemente, relação de equivalência} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 10 <Badge>1,0 pt</Badge>
+
+<Question>
+Para $f: \mathbb{R} \Rightarrow \mathbb{R}$ dada por $f(x) = x^{2} - 3x -
+10$, determine:
+
+a) Qual é a imagem de $-2$
+
+b) Quais são as pré-imagens de $0$?
+
+<Resolution>
+
+a) Basta substituir $x = -2$ em $f(x)$:
+
+$$
+(-2)^{2} - 3(-2) - 10 = 4 + 6 - 10 = 0
+$$
+
+b) Pré-imagens de $0$ são os valores de $x$ tais que $f(x) = 0$:
+
+$$
+0 = x^{2} - 3x - 10
+$$
+
+Resolvendo por soma e produto: $S = 3$ e $P = -10$, o que dá $x' = -2$ e
+$x'' = 5$.
+
+</Resolution>
+
+<Answer>
+a) $0$
+
+b) $x = -2$ e $x = 5$
+</Answer>
+</Question>
