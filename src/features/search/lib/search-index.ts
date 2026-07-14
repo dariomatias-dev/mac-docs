@@ -29,6 +29,20 @@ function collect(group: SidebarGroup, section: string, items: SearchItem[]) {
 export function getSearchIndex(): SearchItem[] {
   const items: SearchItem[] = [];
   for (const course of getSidebarTree()) {
+    items.push({
+      title: course.title,
+      href: course.href,
+      section: course.title,
+      text: docText([...course.slug]),
+    });
+    for (const page of course.pages) {
+      items.push({
+        title: page.title,
+        href: page.href,
+        section: course.title,
+        text: docText(page.slug),
+      });
+    }
     for (const group of course.groups) collect(group, course.title, items);
   }
   return items;

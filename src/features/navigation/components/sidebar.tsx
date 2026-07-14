@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
@@ -66,13 +67,45 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
               key={course.slug.join("/")}
               className="border-border mt-6 border-t pt-6 first:mt-0 first:border-t-0 first:pt-0"
             >
-              <p className="text-accent mb-3 flex items-center gap-2 px-4 text-[0.8rem] font-bold tracking-[0.08em] uppercase">
+              <Link
+                href={course.href}
+                onClick={close}
+                aria-current={pathname === course.href ? "page" : undefined}
+                className={`mb-3 flex items-center gap-2 rounded-[14px] px-4 py-3 text-[0.8rem] font-bold tracking-[0.08em] uppercase transition-colors ${
+                  pathname === course.href
+                    ? "bg-accent-soft text-accent"
+                    : "text-accent hover:bg-surface"
+                }`}
+              >
                 <BookOpen className="h-4 w-4 shrink-0" />
                 {course.title}
-              </p>
+              </Link>
               {course.groups.map((group) => (
                 <GroupNav key={group.href} group={group} />
               ))}
+              {course.pages.length > 0 && (
+                <ul className="mt-1 space-y-0.5">
+                  {course.pages.map((page) => {
+                    const active = pathname === page.href;
+                    return (
+                      <li key={page.href}>
+                        <Link
+                          href={page.href}
+                          onClick={close}
+                          aria-current={active ? "page" : undefined}
+                          className={`block rounded-[14px] px-4 py-3 text-[0.9rem] font-semibold transition-colors ${
+                            active
+                              ? "bg-accent-soft text-accent"
+                              : "text-foreground hover:bg-surface hover:text-accent"
+                          }`}
+                        >
+                          {page.title}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
           ))}
         </div>

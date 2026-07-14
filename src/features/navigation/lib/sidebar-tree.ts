@@ -86,14 +86,17 @@ export const getSidebarTree = cache((): SidebarCourse[] => {
   const courseNames = new Set<string>();
   for (const doc of docs) courseNames.add(doc.slug[0]);
 
-  return [...courseNames].map((name) => ({
-    title: courseTitle(name),
-    slug: [name],
-    order: 0,
-    groups: childDirs(docs, [name])
-      .map((groupSlug) => buildGroup(docs, groupSlug))
-      .sort(byOrderThenTitle),
-  }));
+  return [...courseNames].map((name) => {
+    const root = buildGroup(docs, [name]);
+    return {
+      title: courseTitle(name),
+      slug: [name],
+      href: root.href,
+      order: 0,
+      pages: root.pages,
+      groups: root.groups,
+    };
+  });
 });
 
 function findTrail(
@@ -134,7 +137,9 @@ export function getFlatPageList(): SidebarPage[] {
   }
 
   for (const course of getSidebarTree()) {
+    flat.push({ title: course.title, slug: course.slug, href: course.href, order: -1 });
     for (const group of course.groups) collect(group);
+    flat.push(...course.pages);
   }
   return flat;
 }

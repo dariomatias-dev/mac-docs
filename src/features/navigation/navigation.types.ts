@@ -18,7 +18,9 @@ export type SidebarGroup = {
 export type SidebarCourse = {
   title: string;
   slug: string[];
+  href: string;
   order: number;
+  pages: SidebarPage[];
   groups: SidebarGroup[];
 };
 
