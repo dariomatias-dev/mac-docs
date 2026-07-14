@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { BookOpen, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 
 import type { SidebarCourse } from "../navigation.types";
 import { useSidebarCollapse } from "../providers/sidebar-collapse-provider";
@@ -66,7 +66,8 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
               key={course.slug.join("/")}
               className="border-border mt-6 border-t pt-6 first:mt-0 first:border-t-0 first:pt-0"
             >
-              <p className="text-muted-2 mb-2 px-4 text-xs font-semibold tracking-wide uppercase">
+              <p className="text-accent mb-3 flex items-center gap-2 px-4 text-[0.8rem] font-bold tracking-[0.08em] uppercase">
+                <BookOpen className="h-4 w-4 shrink-0" />
                 {course.title}
               </p>
               {course.groups.map((group) => (
