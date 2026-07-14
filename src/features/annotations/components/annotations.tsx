@@ -2,21 +2,21 @@
 
 import { StickyNote } from "lucide-react";
 
-import { useDisclosure } from "@/shared/hooks/use-disclosure";
+import { useMobileSheet } from "@/shared/providers/active-mobile-sheet-provider";
 
 import { useAnnotations } from "../lib/use-annotations";
 import { AnnotationsPanel } from "./annotations-panel";
 
 export function Annotations({ slug }: { slug: string }) {
   const { annotations, add, update, remove } = useAnnotations(slug);
-  const { open, setOpen } = useDisclosure();
+  const { isOpen: open, openSheet, close } = useMobileSheet("annotations");
 
   return (
     <>
       {!open && (
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={openSheet}
           aria-label="Abrir anotações"
           aria-expanded={open}
           className="bg-accent text-accent-foreground hover:bg-accent-dark fixed right-6 bottom-6 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95"
@@ -32,7 +32,7 @@ export function Annotations({ slug }: { slug: string }) {
 
       <AnnotationsPanel
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={close}
         annotations={annotations}
         onAdd={add}
         onUpdate={update}

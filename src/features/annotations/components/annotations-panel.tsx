@@ -163,52 +163,66 @@ export function AnnotationsPanel({
   onRemove: (id: string) => void;
 }) {
   return (
-    <aside
-      aria-hidden={!open}
-      inert={!open}
-      className={`border-border bg-background fixed top-28 right-0 bottom-0 z-30 flex w-full max-w-md flex-col border-l shadow-2xl transition-transform duration-300 ease-in-out md:top-16 ${
-        open ? "translate-x-0" : "translate-x-full"
-      }`}
-    >
-      <div className="border-border flex shrink-0 items-center justify-between border-b px-5 py-3.5">
-        <p className="text-accent flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          <NotebookPen className="h-4 w-4" />
-          Anotações da página
-        </p>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Fechar anotações"
-          className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
+    <>
+      <aside
+        aria-hidden={!open}
+        inert={!open}
+        className={`border-border bg-background fixed top-16 right-0 bottom-0 z-70 flex w-full max-w-md flex-col border-l shadow-2xl transition-transform duration-300 ease-in-out ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="border-border flex shrink-0 items-center justify-between border-b px-5 py-3.5">
+          <p className="text-accent flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.08em] uppercase">
+            <NotebookPen className="h-4 w-4" />
+            Anotações da página
+          </p>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar anotações"
+            className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
 
-      <div className="flex-1 overflow-y-auto px-5 py-4">
-        <NoteForm
-          variant="new"
-          placeholder="Escreva uma anotação sobre esta página..."
-          submitLabel="Adicionar"
-          onSubmit={onAdd}
-        />
+        <div className="flex-1 overflow-y-auto px-5 py-4">
+          <NoteForm
+            variant="new"
+            placeholder="Escreva uma anotação sobre esta página..."
+            submitLabel="Adicionar"
+            onSubmit={onAdd}
+          />
 
-        {annotations.length === 0 ? (
-          <div className="text-muted-2 mt-10 flex flex-col items-center gap-2 text-center text-sm">
-            <StickyNote className="h-8 w-8 opacity-40" />
-            Nenhuma anotação ainda nesta página.
-          </div>
-        ) : (
-          <ul className="mt-4 space-y-2.5">
-            {annotations
-              .slice()
-              .reverse()
-              .map((a) => (
-                <AnnotationItem key={a.id} annotation={a} onUpdate={onUpdate} onRemove={onRemove} />
-              ))}
-          </ul>
-        )}
-      </div>
-    </aside>
+          {annotations.length === 0 ? (
+            <div className="text-muted-2 mt-10 flex flex-col items-center gap-2 text-center text-sm">
+              <StickyNote className="h-8 w-8 opacity-40" />
+              Nenhuma anotação ainda nesta página.
+            </div>
+          ) : (
+            <ul className="mt-4 space-y-2.5">
+              {annotations
+                .slice()
+                .reverse()
+                .map((a) => (
+                  <AnnotationItem
+                    key={a.id}
+                    annotation={a}
+                    onUpdate={onUpdate}
+                    onRemove={onRemove}
+                  />
+                ))}
+            </ul>
+          )}
+        </div>
+      </aside>
+
+      <div
+        aria-hidden="true"
+        className={`bg-border fixed inset-x-0 top-16 z-80 h-px transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </>
   );
 }

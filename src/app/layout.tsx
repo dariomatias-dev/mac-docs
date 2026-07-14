@@ -4,14 +4,11 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 
 import { Footer, Header } from "@/features/navigation";
-import {
-  SidebarCollapseProvider,
-  SidebarGroupsProvider,
-  SidebarMobileProvider,
-} from "@/features/navigation";
+import { SidebarCollapseProvider, SidebarGroupsProvider } from "@/features/navigation";
 import { SearchButton, SearchDialog } from "@/features/search";
 import { ThemeProvider } from "@/features/theme";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/shared/lib/site";
+import { ActiveMobileSheetProvider } from "@/shared/providers/active-mobile-sheet-provider";
 
 import "./globals.css";
 
@@ -69,13 +66,13 @@ export default function RootLayout({
           </a>
           <SidebarGroupsProvider>
             <SidebarCollapseProvider>
-              <SidebarMobileProvider>
+              <ActiveMobileSheetProvider>
                 <Header search={<SearchDialog />} searchMobile={<SearchButton />} />
                 <div id="main-content" className="flex flex-1 flex-col">
                   {children}
                 </div>
                 <Footer />
-              </SidebarMobileProvider>
+              </ActiveMobileSheetProvider>
             </SidebarCollapseProvider>
           </SidebarGroupsProvider>
         </ThemeProvider>

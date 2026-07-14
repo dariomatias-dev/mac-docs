@@ -7,6 +7,5 @@ export { PrevNextNav } from "./components/prev-next-nav";
 export { EditPageLink } from "./components/edit-page-link";
 export { SidebarGroupsProvider } from "./providers/sidebar-groups-provider";
 export { SidebarCollapseProvider } from "./providers/sidebar-collapse-provider";
-export { SidebarMobileProvider } from "./providers/sidebar-mobile-provider";
 export { getSidebarTree, getBreadcrumb, getFlatPageList } from "./lib/sidebar-tree";
 export type { SidebarCourse, SidebarGroup, SidebarPage, Crumb } from "./navigation.types";
