@@ -4,6 +4,7 @@ import { BooleanMatrixCalculator } from "./components/boolean-matrix-calculator"
 import { Callout } from "./components/callout";
 import { Collapsible } from "./components/collapsible";
 import { Answer, Exercise } from "./components/exercise";
+import { Marker } from "./components/marker";
 import { MatrixCalculator } from "./components/matrix-calculator";
 import { PixelGrid } from "./components/pixel-grid";
 import { Proof } from "./components/proof";
@@ -20,6 +21,7 @@ export const mdxComponents = {
   Collapsible,
   Exercise,
   Answer,
+  Marker,
   Quiz,
   Option,
   Alternatives,

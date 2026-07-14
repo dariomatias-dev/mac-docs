@@ -27,7 +27,7 @@ export function Answer({ children }: { children: ReactNode }) {
             <p className="text-accent mb-1.5 text-[0.7rem] font-bold tracking-[0.08em] uppercase">
               Resposta
             </p>
-            <div className="katex-left prose prose-sm dark:prose-invert text-foreground max-w-none">
+            <div className="katex-left prose prose-sm dark:prose-invert text-foreground max-w-none [&>p]:my-4">
               {children}
             </div>
           </div>
@@ -54,7 +54,7 @@ export function Exercise({
       </div>
 
       <div className="px-5 py-4">
-        <div className="prose prose-sm dark:prose-invert text-foreground max-w-none">
+        <div className="prose prose-sm dark:prose-invert text-foreground max-w-none [&>p]:my-4">
           {children}
         </div>
       </div>
