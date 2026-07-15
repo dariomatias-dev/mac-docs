@@ -102,7 +102,7 @@ const AnnotationItem = memo(function AnnotationItem({
 }: {
   annotation: Annotation;
   onUpdate: (id: string, note: string) => void;
-  onRemove: (id: string) => void;
+  onRemove: (annotation: Annotation) => void;
 }) {
   const [editing, setEditing] = useState(false);
 
@@ -142,7 +142,7 @@ const AnnotationItem = memo(function AnnotationItem({
           </button>
           <button
             type="button"
-            onClick={() => onRemove(annotation.id)}
+            onClick={() => onRemove(annotation)}
             aria-label="Remover anotação"
             className="text-muted-2 hover:bg-surface cursor-pointer rounded-md p-1.5 transition-colors hover:text-red-500"
           >
@@ -154,6 +154,8 @@ const AnnotationItem = memo(function AnnotationItem({
   );
 });
 
+const UNDO_TIMEOUT_MS = 5000;
+
 export function AnnotationsPanel({
   open,
   onClose,
@@ -161,6 +163,7 @@ export function AnnotationsPanel({
   onAdd,
   onUpdate,
   onRemove,
+  onRestore,
 }: {
   open: boolean;
   onClose: () => void;
@@ -168,7 +171,31 @@ export function AnnotationsPanel({
   onAdd: (note: string) => void;
   onUpdate: (id: string, note: string) => void;
   onRemove: (id: string) => void;
+  onRestore: (annotation: Annotation) => void;
 }) {
+  const [pendingUndo, setPendingUndo] = useState<Annotation | null>(null);
+  const undoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+    };
+  }, []);
+
+  function handleRemove(annotation: Annotation) {
+    onRemove(annotation.id);
+    setPendingUndo(annotation);
+    if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+    undoTimeoutRef.current = setTimeout(() => setPendingUndo(null), UNDO_TIMEOUT_MS);
+  }
+
+  function handleUndo() {
+    if (!pendingUndo) return;
+    onRestore(pendingUndo);
+    setPendingUndo(null);
+    if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+  }
+
   return (
     <>
       <aside
@@ -216,12 +243,25 @@ export function AnnotationsPanel({
                     key={a.id}
                     annotation={a}
                     onUpdate={onUpdate}
-                    onRemove={onRemove}
+                    onRemove={handleRemove}
                   />
                 ))}
             </ul>
           )}
         </div>
+
+        {pendingUndo && (
+          <div className="border-border bg-surface flex shrink-0 items-center justify-between gap-3 border-t px-5 py-3 text-sm">
+            <span className="text-muted-2">Anotação removida.</span>
+            <button
+              type="button"
+              onClick={handleUndo}
+              className="text-accent cursor-pointer font-medium hover:underline"
+            >
+              Desfazer
+            </button>
+          </div>
+        )}
       </aside>
 
       <div

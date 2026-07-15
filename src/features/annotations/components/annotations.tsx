@@ -8,7 +8,7 @@ import { useAnnotations } from "../lib/use-annotations";
 import { AnnotationsPanel } from "./annotations-panel";
 
 export function Annotations({ slug }: { slug: string }) {
-  const { annotations, add, update, remove } = useAnnotations(slug);
+  const { annotations, add, update, remove, restore } = useAnnotations(slug);
   const { isOpen: open, openSheet, close } = useMobileSheet("annotations");
 
   return (
@@ -37,6 +37,7 @@ export function Annotations({ slug }: { slug: string }) {
         onAdd={add}
         onUpdate={update}
         onRemove={remove}
+        onRestore={restore}
       />
     </>
   );

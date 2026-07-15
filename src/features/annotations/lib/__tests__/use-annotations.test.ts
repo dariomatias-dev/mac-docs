@@ -61,4 +61,24 @@ describe("useAnnotations", () => {
     act(() => result.current.add("  padded note  "));
     expect(result.current.annotations[0].note).toBe("padded note");
   });
+
+  it("restores a removed note", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    const removed = result.current.annotations[0];
+    act(() => result.current.remove(removed.id));
+    expect(result.current.annotations).toEqual([]);
+
+    act(() => result.current.restore(removed));
+    expect(result.current.annotations).toEqual([removed]);
+  });
+
+  it("does not duplicate a note that is restored twice", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    const annotation = result.current.annotations[0];
+
+    act(() => result.current.restore(annotation));
+    expect(result.current.annotations).toEqual([annotation]);
+  });
 });

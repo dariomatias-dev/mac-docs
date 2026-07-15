@@ -10,6 +10,7 @@ const baseProps = {
   onAdd: () => {},
   onUpdate: () => {},
   onRemove: () => {},
+  onRestore: () => {},
 };
 
 describe("AnnotationsPanel", () => {
@@ -75,5 +76,18 @@ describe("AnnotationsPanel", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /remover anotação/i }));
     expect(onRemove).toHaveBeenCalledWith("1");
+  });
+
+  it("offers to undo a removal and restores the annotation on click", async () => {
+    const onRestore = vi.fn();
+    const annotation = { id: "1", note: "nota original", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[annotation]} onRestore={onRestore} />);
+
+    await userEvent.click(screen.getByRole("button", { name: /remover anotação/i }));
+    expect(screen.getByText(/anotação removida/i)).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Desfazer" }));
+    expect(onRestore).toHaveBeenCalledWith(annotation);
+    expect(screen.queryByText(/anotação removida/i)).not.toBeInTheDocument();
   });
 });

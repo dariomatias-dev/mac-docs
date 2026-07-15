@@ -44,5 +44,14 @@ export function useAnnotations(slug: string) {
     [setAnnotations],
   );
 
-  return { annotations, add, update, remove } as const;
+  const restore = useCallback(
+    (annotation: Annotation) => {
+      setAnnotations((prev) =>
+        prev.some((a) => a.id === annotation.id) ? prev : [...prev, annotation],
+      );
+    },
+    [setAnnotations],
+  );
+
+  return { annotations, add, update, remove, restore } as const;
 }
