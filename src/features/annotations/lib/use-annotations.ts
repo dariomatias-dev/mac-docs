@@ -4,6 +4,8 @@ import { usePersistedState } from "@/shared/hooks/use-persisted-state";
 
 import type { Annotation } from "../annotations.types";
 
+export const MAX_NOTE_LENGTH = 500;
+
 function createId() {
   if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     try {
@@ -18,7 +20,7 @@ export function useAnnotations(slug: string) {
 
   const add = useCallback(
     (note: string) => {
-      const trimmed = note.trim();
+      const trimmed = note.trim().slice(0, MAX_NOTE_LENGTH);
       if (!trimmed) return;
       const entry: Annotation = { id: createId(), note: trimmed, createdAt: Date.now() };
       setAnnotations((prev) => [...prev, entry]);
@@ -28,7 +30,7 @@ export function useAnnotations(slug: string) {
 
   const update = useCallback(
     (id: string, note: string) => {
-      const trimmed = note.trim();
+      const trimmed = note.trim().slice(0, MAX_NOTE_LENGTH);
       if (!trimmed) return;
       setAnnotations((prev) => prev.map((a) => (a.id === id ? { ...a, note: trimmed } : a)));
     },

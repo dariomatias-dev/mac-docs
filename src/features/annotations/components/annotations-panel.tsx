@@ -3,6 +3,7 @@
 import { NotebookPen, Pencil, StickyNote, Trash2, X } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
 
+import { MAX_NOTE_LENGTH } from "../lib/use-annotations";
 import type { Annotation } from "../annotations.types";
 
 function formatDate(timestamp: number) {
@@ -56,33 +57,39 @@ function NoteForm({
       <textarea
         ref={textareaRef}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value.slice(0, MAX_NOTE_LENGTH))}
         onKeyDown={(e) => {
           if (e.key === "Escape") onCancel?.();
           if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) submit();
         }}
         placeholder={placeholder}
         rows={3}
+        maxLength={MAX_NOTE_LENGTH}
         className={NOTE_TEXTAREA_STYLES[variant]}
       />
-      <div className="mt-2 flex justify-end gap-3">
-        {onCancel && (
+      <div className="mt-2 flex items-center justify-between gap-3">
+        <span className="text-muted-2 text-[0.7rem] tabular-nums">
+          {value.length}/{MAX_NOTE_LENGTH}
+        </span>
+        <div className="flex justify-end gap-3">
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="text-muted-2 hover:text-foreground cursor-pointer text-xs"
+            >
+              Cancelar
+            </button>
+          )}
           <button
             type="button"
-            onClick={onCancel}
-            className="text-muted-2 hover:text-foreground cursor-pointer text-xs"
+            onClick={submit}
+            disabled={!value.trim()}
+            className="text-accent cursor-pointer text-xs font-medium hover:underline disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:no-underline"
           >
-            Cancelar
+            {submitLabel}
           </button>
-        )}
-        <button
-          type="button"
-          onClick={submit}
-          disabled={!value.trim()}
-          className="text-accent cursor-pointer text-xs font-medium hover:underline disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:no-underline"
-        >
-          {submitLabel}
-        </button>
+        </div>
       </div>
     </div>
   );

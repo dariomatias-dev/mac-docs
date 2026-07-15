@@ -43,4 +43,38 @@ describe("usePersistedState", () => {
     expect(JSON.parse(localStorage.getItem("page-b")!)).toEqual([]);
     expect(JSON.parse(localStorage.getItem("page-a")!)).toEqual(["noteA"]);
   });
+
+  it("syncs state when a storage event fires for the same key", () => {
+    const { result } = renderHook(() => usePersistedState("k", 0));
+
+    act(() => {
+      window.dispatchEvent(new StorageEvent("storage", { key: "k", newValue: JSON.stringify(9) }));
+    });
+
+    expect(result.current[0]).toBe(9);
+  });
+
+  it("ignores storage events for a different key", () => {
+    const { result } = renderHook(() => usePersistedState("k", 0));
+    act(() => result.current[1](5));
+
+    act(() => {
+      window.dispatchEvent(
+        new StorageEvent("storage", { key: "other", newValue: JSON.stringify(9) }),
+      );
+    });
+
+    expect(result.current[0]).toBe(5);
+  });
+
+  it("falls back to the initial value when a storage event clears the key", () => {
+    const { result } = renderHook(() => usePersistedState("k", 0));
+    act(() => result.current[1](5));
+
+    act(() => {
+      window.dispatchEvent(new StorageEvent("storage", { key: "k", newValue: null }));
+    });
+
+    expect(result.current[0]).toBe(0);
+  });
 });
