@@ -39,4 +39,14 @@ describe("Annotations", () => {
 
     expect(screen.getByText("1")).toBeInTheDocument();
   });
+
+  it("toggles the panel with Ctrl/Cmd+Shift+A", async () => {
+    renderAnnotations("page-c");
+
+    await userEvent.keyboard("{Control>}{Shift>}a{/Shift}{/Control}");
+    expect(screen.getByRole("button", { name: "Fechar anotações" })).toBeInTheDocument();
+
+    await userEvent.keyboard("{Control>}{Shift>}a{/Shift}{/Control}");
+    expect(screen.queryByRole("button", { name: "Fechar anotações" })).not.toBeInTheDocument();
+  });
 });

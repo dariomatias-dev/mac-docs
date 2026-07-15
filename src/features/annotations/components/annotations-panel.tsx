@@ -11,9 +11,11 @@ function formatDate(timestamp: number) {
 }
 
 const NOTE_TEXTAREA_STYLES = {
-  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none rounded-lg border p-3 text-sm transition-colors outline-none focus:ring-2",
-  edit: "text-foreground placeholder:text-muted-2 w-full resize-none bg-transparent text-sm outline-none",
+  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none overflow-y-auto rounded-lg border p-3 text-sm transition-colors outline-none focus:ring-2",
+  edit: "text-foreground placeholder:text-muted-2 w-full resize-none overflow-y-auto bg-transparent text-sm outline-none",
 };
+
+const TEXTAREA_MAX_HEIGHT_PX = 240;
 
 // Shared textarea + save/cancel behavior for both the "new note" form and an
 // annotation's edit mode, so keyboard shortcuts and submit logic live once.
@@ -44,6 +46,13 @@ function NoteForm({
     el.focus();
     el.setSelectionRange(el.value.length, el.value.length);
   }, [autoFocus]);
+
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, TEXTAREA_MAX_HEIGHT_PX)}px`;
+  }, [value]);
 
   const submit = () => {
     const trimmed = value.trim();

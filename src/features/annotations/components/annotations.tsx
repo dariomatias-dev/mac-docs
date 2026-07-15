@@ -11,11 +11,22 @@ import { AnnotationsPanel } from "./annotations-panel";
 
 export function Annotations({ slug }: { slug: string }) {
   const { annotations, add, update, remove, restore, importNotes } = useAnnotations(slug);
-  const { isOpen: open, openSheet, close } = useMobileSheet("annotations");
+  const { isOpen: open, openSheet, close, toggle } = useMobileSheet("annotations");
 
   useEffect(() => {
     void cleanupOrphanAnnotations(slug);
   }, [slug]);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        toggle();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [toggle]);
 
   return (
     <>
@@ -25,6 +36,7 @@ export function Annotations({ slug }: { slug: string }) {
           onClick={openSheet}
           aria-label="Abrir anotações"
           aria-expanded={open}
+          title="Abrir anotações (Ctrl/Cmd+Shift+A)"
           className="bg-accent text-accent-foreground hover:bg-accent-dark fixed right-6 bottom-6 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95"
         >
           <StickyNote className="h-5 w-5" />
