@@ -8,11 +8,11 @@ import Fuse, { type FuseResultMatch } from "fuse.js";
 import { Clock, CornerDownLeft, FileText, Search, X } from "lucide-react";
 
 import {
-  SEARCH_INDEX_URL,
   SEARCH_OPEN_EVENT,
   type RecentItem,
   type SearchItem,
   clearRecents,
+  fetchSearchIndex,
   loadRecents,
   pushRecent,
 } from "../lib/search-shared";
@@ -104,8 +104,7 @@ export function SearchDialog() {
     loadedRef.current = true;
     setLoading(true);
     try {
-      const res = await fetch(SEARCH_INDEX_URL);
-      setItems((await res.json()) as SearchItem[]);
+      setItems(await fetchSearchIndex());
     } catch {
       loadedRef.current = false; // allow a retry on next open
     } finally {

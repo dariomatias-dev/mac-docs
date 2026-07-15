@@ -12,6 +12,12 @@ export type SearchItem = {
 
 export type RecentItem = Pick<SearchItem, "title" | "href" | "section">;
 
+export async function fetchSearchIndex(): Promise<SearchItem[]> {
+  const res = await fetch(SEARCH_INDEX_URL);
+  if (!res.ok) throw new Error(`Failed to fetch search index: ${res.status}`);
+  return (await res.json()) as SearchItem[];
+}
+
 const RECENTS_KEY = "macdocs:recent-searches";
 const RECENTS_MAX = 6;
 

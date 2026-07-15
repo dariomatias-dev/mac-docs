@@ -1,10 +1,10 @@
-import { SEARCH_INDEX_URL, type SearchItem } from "@/features/search/lib/search-shared";
+import { fetchSearchIndex } from "@/features/search/lib/search-shared";
 
 const KEY_PREFIX = "annotations:";
 const SESSION_FLAG = "macdocs:annotations-cleanup-done";
 
 function slugFromHref(href: string): string {
-  return href.replace(/^\/docs\//, "").replace(/\/$/, "");
+  return href.replace(/^\/docs\/?/, "").replace(/\/$/, "");
 }
 
 /**
@@ -20,9 +20,7 @@ export async function cleanupOrphanAnnotations(currentSlug: string): Promise<voi
   window.sessionStorage.setItem(SESSION_FLAG, "1");
 
   try {
-    const res = await fetch(SEARCH_INDEX_URL);
-    if (!res.ok) return;
-    const index = (await res.json()) as SearchItem[];
+    const index = await fetchSearchIndex();
     if (index.length === 0) return;
     const validSlugs = new Set(index.map((item) => slugFromHref(item.href)));
 

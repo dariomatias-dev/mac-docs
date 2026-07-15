@@ -74,6 +74,18 @@ describe("cleanupOrphanAnnotations", () => {
     expect(localStorage.getItem("annotations:foo/bar")).not.toBeNull();
   });
 
+  it("keeps annotations for the root doc page (empty slug)", async () => {
+    localStorage.setItem("annotations:", JSON.stringify([]));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({ ok: true, json: async () => [{ href: "/docs" }] }),
+    );
+
+    await cleanupOrphanAnnotations("some/other-page");
+
+    expect(localStorage.getItem("annotations:")).not.toBeNull();
+  });
+
   it("does nothing when the index comes back empty (stale/broken fetch guard)", async () => {
     localStorage.setItem("annotations:foo/bar", JSON.stringify([]));
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [] }));
