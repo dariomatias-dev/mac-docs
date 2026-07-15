@@ -14,8 +14,8 @@ export function Annotations({ slug }: { slug: string }) {
   const { isOpen: open, openSheet, close } = useMobileSheet("annotations");
 
   useEffect(() => {
-    void cleanupOrphanAnnotations();
-  }, []);
+    void cleanupOrphanAnnotations(slug);
+  }, [slug]);
 
   return (
     <>

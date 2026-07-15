@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
-export function usePersistedState<T>(key: string, initial: T): [T, Dispatch<SetStateAction<T>>] {
+export function usePersistedState<T>(
+  key: string,
+  initial: T,
+  { syncAcrossTabs = false }: { syncAcrossTabs?: boolean } = {},
+): [T, Dispatch<SetStateAction<T>>] {
   const [state, setState] = useState<T>(initial);
   const initialRef = useRef(initial);
   useEffect(() => {
@@ -34,8 +38,10 @@ export function usePersistedState<T>(key: string, initial: T): [T, Dispatch<SetS
   }, [key, state, hydratedKey]);
 
   // Keeps other tabs/windows on the same key in sync (the "storage" event
-  // only fires in tabs other than the one that wrote the value).
+  // only fires in tabs other than the one that wrote the value). Opt-in so
+  // existing consumers don't silently gain cross-tab behavior.
   useEffect(() => {
+    if (!syncAcrossTabs) return;
     function onStorage(e: StorageEvent) {
       if (e.key !== key) return;
       try {
@@ -46,7 +52,7 @@ export function usePersistedState<T>(key: string, initial: T): [T, Dispatch<SetS
     }
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
-  }, [key]);
+  }, [key, syncAcrossTabs]);
 
   return [state, setState];
 }

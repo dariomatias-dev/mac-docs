@@ -16,7 +16,9 @@ function createId() {
 }
 
 export function useAnnotations(slug: string) {
-  const [annotations, setAnnotations] = usePersistedState<Annotation[]>(`annotations:${slug}`, []);
+  const [annotations, setAnnotations] = usePersistedState<Annotation[]>(`annotations:${slug}`, [], {
+    syncAcrossTabs: true,
+  });
 
   const add = useCallback(
     (note: string) => {
@@ -54,9 +56,15 @@ export function useAnnotations(slug: string) {
   );
 
   const importNotes = useCallback(
-    (notes: { note: string; createdAt?: number }[]) => {
+    (notes: unknown[]) => {
       const entries: Annotation[] = notes
-        .filter((n) => typeof n.note === "string" && n.note.trim())
+        .filter(
+          (n): n is { note: string; createdAt?: number } =>
+            typeof n === "object" &&
+            n !== null &&
+            typeof (n as { note?: unknown }).note === "string" &&
+            (n as { note: string }).note.trim().length > 0,
+        )
         .map((n) => ({
           id: createId(),
           note: n.note.trim().slice(0, MAX_NOTE_LENGTH),

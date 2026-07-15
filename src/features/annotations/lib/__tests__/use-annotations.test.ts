@@ -90,6 +90,16 @@ describe("useAnnotations", () => {
     expect(result.current.annotations.map((a) => a.note)).toEqual(["first", "second"]);
   });
 
+  it("imports notes, skipping malformed entries instead of throwing", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() =>
+      result.current.importNotes([{ note: "valid" }, null, "not an object", { other: 1 }, 42]),
+    );
+
+    expect(result.current.annotations).toHaveLength(1);
+    expect(result.current.annotations[0].note).toBe("valid");
+  });
+
   it("imports notes appended to existing ones", () => {
     const { result } = renderHook(() => useAnnotations("foo"));
     act(() => result.current.add("existing"));

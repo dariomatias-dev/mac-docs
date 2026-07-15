@@ -93,6 +93,26 @@ describe("AnnotationsPanel", () => {
     expect(screen.queryByText(/anotação removida/i)).not.toBeInTheDocument();
   });
 
+  it("keeps both pending undos when two annotations are removed within the undo window", async () => {
+    const onRestore = vi.fn();
+    const a = { id: "1", note: "nota A", createdAt: Date.now() };
+    const b = { id: "2", note: "nota B", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[a, b]} onRestore={onRestore} />);
+
+    const removeButtonFor = (note: string) =>
+      screen.getByText(note).closest("li")!.querySelector('[aria-label="Remover anotação"]')!;
+
+    await userEvent.click(removeButtonFor("nota A"));
+    await userEvent.click(removeButtonFor("nota B"));
+
+    const undoButtons = screen.getAllByRole("button", { name: "Desfazer" });
+    expect(undoButtons).toHaveLength(2);
+
+    await userEvent.click(undoButtons[0]);
+    expect(onRestore).toHaveBeenCalledTimes(1);
+    expect(screen.getAllByRole("button", { name: "Desfazer" })).toHaveLength(1);
+  });
+
   it("disables export when there are no annotations", () => {
     render(<AnnotationsPanel {...baseProps} annotations={[]} />);
     expect(screen.getByRole("button", { name: /exportar anotações/i })).toBeDisabled();

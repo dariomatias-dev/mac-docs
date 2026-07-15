@@ -175,30 +175,35 @@ export function AnnotationsPanel({
   onUpdate: (id: string, note: string) => void;
   onRemove: (id: string) => void;
   onRestore: (annotation: Annotation) => void;
-  onImport: (notes: { note: string; createdAt?: number }[]) => void;
+  onImport: (notes: unknown[]) => void;
 }) {
-  const [pendingUndo, setPendingUndo] = useState<Annotation | null>(null);
-  const undoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [pendingUndos, setPendingUndos] = useState<Annotation[]>([]);
+  const undoTimeoutsRef = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const timeouts = undoTimeoutsRef.current;
     return () => {
-      if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+      for (const timeout of timeouts.values()) clearTimeout(timeout);
     };
   }, []);
 
   function handleRemove(annotation: Annotation) {
     onRemove(annotation.id);
-    setPendingUndo(annotation);
-    if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
-    undoTimeoutRef.current = setTimeout(() => setPendingUndo(null), UNDO_TIMEOUT_MS);
+    setPendingUndos((prev) => [...prev, annotation]);
+    const timeout = setTimeout(() => {
+      setPendingUndos((prev) => prev.filter((a) => a.id !== annotation.id));
+      undoTimeoutsRef.current.delete(annotation.id);
+    }, UNDO_TIMEOUT_MS);
+    undoTimeoutsRef.current.set(annotation.id, timeout);
   }
 
-  function handleUndo() {
-    if (!pendingUndo) return;
-    onRestore(pendingUndo);
-    setPendingUndo(null);
-    if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
+  function handleUndo(annotation: Annotation) {
+    onRestore(annotation);
+    setPendingUndos((prev) => prev.filter((a) => a.id !== annotation.id));
+    const timeout = undoTimeoutsRef.current.get(annotation.id);
+    if (timeout) clearTimeout(timeout);
+    undoTimeoutsRef.current.delete(annotation.id);
   }
 
   function handleExport() {
@@ -308,16 +313,23 @@ export function AnnotationsPanel({
           )}
         </div>
 
-        {pendingUndo && (
-          <div className="border-border bg-surface flex shrink-0 items-center justify-between gap-3 border-t px-5 py-3 text-sm">
-            <span className="text-muted-2">Anotação removida.</span>
-            <button
-              type="button"
-              onClick={handleUndo}
-              className="text-accent cursor-pointer font-medium hover:underline"
-            >
-              Desfazer
-            </button>
+        {pendingUndos.length > 0 && (
+          <div className="border-border bg-surface divide-border flex shrink-0 flex-col divide-y border-t text-sm">
+            {pendingUndos.map((annotation) => (
+              <div
+                key={annotation.id}
+                className="flex items-center justify-between gap-3 px-5 py-3"
+              >
+                <span className="text-muted-2">Anotação removida.</span>
+                <button
+                  type="button"
+                  onClick={() => handleUndo(annotation)}
+                  className="text-accent cursor-pointer font-medium hover:underline"
+                >
+                  Desfazer
+                </button>
+              </div>
+            ))}
           </div>
         )}
       </aside>

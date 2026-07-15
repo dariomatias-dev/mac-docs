@@ -44,8 +44,18 @@ describe("usePersistedState", () => {
     expect(JSON.parse(localStorage.getItem("page-a")!)).toEqual(["noteA"]);
   });
 
-  it("syncs state when a storage event fires for the same key", () => {
+  it("does not sync across tabs by default", () => {
     const { result } = renderHook(() => usePersistedState("k", 0));
+
+    act(() => {
+      window.dispatchEvent(new StorageEvent("storage", { key: "k", newValue: JSON.stringify(9) }));
+    });
+
+    expect(result.current[0]).toBe(0);
+  });
+
+  it("syncs state when a storage event fires for the same key with syncAcrossTabs", () => {
+    const { result } = renderHook(() => usePersistedState("k", 0, { syncAcrossTabs: true }));
 
     act(() => {
       window.dispatchEvent(new StorageEvent("storage", { key: "k", newValue: JSON.stringify(9) }));
@@ -55,7 +65,7 @@ describe("usePersistedState", () => {
   });
 
   it("ignores storage events for a different key", () => {
-    const { result } = renderHook(() => usePersistedState("k", 0));
+    const { result } = renderHook(() => usePersistedState("k", 0, { syncAcrossTabs: true }));
     act(() => result.current[1](5));
 
     act(() => {
@@ -68,7 +78,7 @@ describe("usePersistedState", () => {
   });
 
   it("falls back to the initial value when a storage event clears the key", () => {
-    const { result } = renderHook(() => usePersistedState("k", 0));
+    const { result } = renderHook(() => usePersistedState("k", 0, { syncAcrossTabs: true }));
     act(() => result.current[1](5));
 
     act(() => {
