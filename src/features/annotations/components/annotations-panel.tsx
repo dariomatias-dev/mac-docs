@@ -1,6 +1,17 @@
 "use client";
 
-import { Download, NotebookPen, Pencil, StickyNote, Trash2, Upload, X } from "lucide-react";
+import {
+  ArrowDownWideNarrow,
+  ArrowUpWideNarrow,
+  Download,
+  NotebookPen,
+  Pencil,
+  Search,
+  StickyNote,
+  Trash2,
+  Upload,
+  X,
+} from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
 
 import { MAX_NOTE_LENGTH } from "../lib/use-annotations";
@@ -139,7 +150,11 @@ const AnnotationItem = memo(function AnnotationItem({
         {annotation.note}
       </p>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-muted-2 text-[0.7rem]">{formatDate(annotation.createdAt)}</span>
+        <span className="text-muted-2 text-[0.7rem]">
+          {annotation.updatedAt
+            ? `editado em ${formatDate(annotation.updatedAt)}`
+            : formatDate(annotation.createdAt)}
+        </span>
         <div className="flex gap-1 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
           <button
             type="button"
@@ -189,6 +204,14 @@ export function AnnotationsPanel({
   const [pendingUndos, setPendingUndos] = useState<Annotation[]>([]);
   const undoTimeoutsRef = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+
+  const visibleAnnotations = annotations
+    .filter((a) => a.note.toLowerCase().includes(query.trim().toLowerCase()))
+    .sort((a, b) =>
+      sortOrder === "newest" ? b.createdAt - a.createdAt : a.createdAt - b.createdAt,
+    );
 
   useEffect(() => {
     const timeouts = undoTimeoutsRef.current;
@@ -306,19 +329,56 @@ export function AnnotationsPanel({
               Nenhuma anotação ainda nesta página.
             </div>
           ) : (
-            <ul className="mt-4 space-y-2.5">
-              {annotations
-                .slice()
-                .reverse()
-                .map((a) => (
-                  <AnnotationItem
-                    key={a.id}
-                    annotation={a}
-                    onUpdate={onUpdate}
-                    onRemove={handleRemove}
+            <>
+              <div className="mt-4 flex items-center gap-2">
+                <div className="border-border bg-background focus-within:border-accent flex flex-1 items-center gap-2 rounded-lg border px-2.5 py-1.5 transition-colors">
+                  <Search className="text-muted-2 h-3.5 w-3.5 shrink-0" />
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Buscar anotações..."
+                    className="text-foreground placeholder:text-muted-2 w-full bg-transparent text-sm outline-none"
                   />
-                ))}
-            </ul>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSortOrder((o) => (o === "newest" ? "oldest" : "newest"))}
+                  aria-label={
+                    sortOrder === "newest"
+                      ? "Ordenar por mais antigas primeiro"
+                      : "Ordenar por mais recentes primeiro"
+                  }
+                  title={
+                    sortOrder === "newest" ? "Mais recentes primeiro" : "Mais antigas primeiro"
+                  }
+                  className="text-muted-2 hover:bg-surface hover:text-foreground border-border shrink-0 cursor-pointer rounded-lg border p-2 transition-colors"
+                >
+                  {sortOrder === "newest" ? (
+                    <ArrowDownWideNarrow className="h-3.5 w-3.5" />
+                  ) : (
+                    <ArrowUpWideNarrow className="h-3.5 w-3.5" />
+                  )}
+                </button>
+              </div>
+
+              {visibleAnnotations.length === 0 ? (
+                <div className="text-muted-2 mt-6 text-center text-sm">
+                  Nenhuma anotação corresponde à busca.
+                </div>
+              ) : (
+                <ul className="mt-4 space-y-2.5">
+                  {visibleAnnotations.map((a) => (
+                    <AnnotationItem
+                      key={a.id}
+                      annotation={a}
+                      onUpdate={onUpdate}
+                      onRemove={handleRemove}
+                    />
+                  ))}
+                </ul>
+              )}
+            </>
           )}
         </div>
 

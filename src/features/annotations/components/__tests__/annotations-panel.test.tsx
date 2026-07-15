@@ -113,6 +113,47 @@ describe("AnnotationsPanel", () => {
     expect(screen.getAllByRole("button", { name: "Desfazer" })).toHaveLength(1);
   });
 
+  it("shows an 'editado' label with the update date once an annotation has been edited", () => {
+    const annotation = { id: "1", note: "nota", createdAt: Date.now(), updatedAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[annotation]} />);
+    expect(screen.getByText(/editado em/i)).toBeInTheDocument();
+  });
+
+  it("filters annotations by note text", async () => {
+    const a = { id: "1", note: "sobre gatos", createdAt: Date.now() };
+    const b = { id: "2", note: "sobre cachorros", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[a, b]} />);
+
+    await userEvent.type(screen.getByPlaceholderText(/buscar anotações/i), "gatos");
+
+    expect(screen.getByText("sobre gatos")).toBeInTheDocument();
+    expect(screen.queryByText("sobre cachorros")).not.toBeInTheDocument();
+  });
+
+  it("shows a no-results message when the search matches nothing", async () => {
+    const annotation = { id: "1", note: "sobre gatos", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[annotation]} />);
+
+    await userEvent.type(screen.getByPlaceholderText(/buscar anotações/i), "elefantes");
+
+    expect(screen.getByText(/nenhuma anotação corresponde à busca/i)).toBeInTheDocument();
+  });
+
+  it("toggles sort order between newest and oldest first", async () => {
+    const older = { id: "1", note: "mais antiga", createdAt: 1000 };
+    const newer = { id: "2", note: "mais recente", createdAt: 2000 };
+    render(<AnnotationsPanel {...baseProps} annotations={[older, newer]} />);
+
+    const notesInOrder = () => screen.getAllByRole("listitem").map((li) => li.textContent);
+    expect(notesInOrder()[0]).toContain("mais recente");
+
+    await userEvent.click(
+      screen.getByRole("button", { name: /ordenar por mais antigas primeiro/i }),
+    );
+
+    expect(notesInOrder()[0]).toContain("mais antiga");
+  });
+
   it("disables export when there are no annotations", () => {
     render(<AnnotationsPanel {...baseProps} annotations={[]} />);
     expect(screen.getByRole("button", { name: /exportar anotações/i })).toBeDisabled();

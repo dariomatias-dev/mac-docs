@@ -26,6 +26,16 @@ describe("useAnnotations", () => {
     expect(result.current.annotations[0].note).toBe("edited");
   });
 
+  it("sets updatedAt when a note is edited, but not on creation", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("note"));
+    expect(result.current.annotations[0].updatedAt).toBeUndefined();
+
+    const id = result.current.annotations[0].id;
+    act(() => result.current.update(id, "edited"));
+    expect(result.current.annotations[0].updatedAt).toEqual(expect.any(Number));
+  });
+
   it("removes a note by id", () => {
     const { result } = renderHook(() => useAnnotations("foo"));
     act(() => result.current.add("note"));
@@ -98,6 +108,13 @@ describe("useAnnotations", () => {
 
     expect(result.current.annotations).toHaveLength(1);
     expect(result.current.annotations[0].note).toBe("valid");
+  });
+
+  it("preserves updatedAt when importing a note that carries one", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.importNotes([{ note: "imported", createdAt: 1, updatedAt: 2 }]));
+
+    expect(result.current.annotations[0]).toMatchObject({ createdAt: 1, updatedAt: 2 });
   });
 
   it("imports notes appended to existing ones", () => {

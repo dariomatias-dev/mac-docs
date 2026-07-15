@@ -34,7 +34,9 @@ export function useAnnotations(slug: string) {
     (id: string, note: string) => {
       const trimmed = note.trim().slice(0, MAX_NOTE_LENGTH);
       if (!trimmed) return;
-      setAnnotations((prev) => prev.map((a) => (a.id === id ? { ...a, note: trimmed } : a)));
+      setAnnotations((prev) =>
+        prev.map((a) => (a.id === id ? { ...a, note: trimmed, updatedAt: Date.now() } : a)),
+      );
     },
     [setAnnotations],
   );
@@ -59,7 +61,7 @@ export function useAnnotations(slug: string) {
     (notes: unknown[]) => {
       const entries: Annotation[] = notes
         .filter(
-          (n): n is { note: string; createdAt?: number } =>
+          (n): n is { note: string; createdAt?: number; updatedAt?: number } =>
             typeof n === "object" &&
             n !== null &&
             typeof (n as { note?: unknown }).note === "string" &&
@@ -69,6 +71,7 @@ export function useAnnotations(slug: string) {
           id: createId(),
           note: n.note.trim().slice(0, MAX_NOTE_LENGTH),
           createdAt: typeof n.createdAt === "number" ? n.createdAt : Date.now(),
+          ...(typeof n.updatedAt === "number" ? { updatedAt: n.updatedAt } : {}),
         }));
       if (entries.length === 0) return;
       setAnnotations((prev) => [...prev, ...entries]);
