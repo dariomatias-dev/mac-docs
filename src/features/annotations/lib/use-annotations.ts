@@ -53,5 +53,20 @@ export function useAnnotations(slug: string) {
     [setAnnotations],
   );
 
-  return { annotations, add, update, remove, restore } as const;
+  const importNotes = useCallback(
+    (notes: { note: string; createdAt?: number }[]) => {
+      const entries: Annotation[] = notes
+        .filter((n) => typeof n.note === "string" && n.note.trim())
+        .map((n) => ({
+          id: createId(),
+          note: n.note.trim().slice(0, MAX_NOTE_LENGTH),
+          createdAt: typeof n.createdAt === "number" ? n.createdAt : Date.now(),
+        }));
+      if (entries.length === 0) return;
+      setAnnotations((prev) => [...prev, ...entries]);
+    },
+    [setAnnotations],
+  );
+
+  return { annotations, add, update, remove, restore, importNotes } as const;
 }

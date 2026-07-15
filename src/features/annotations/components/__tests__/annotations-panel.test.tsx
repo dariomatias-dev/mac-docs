@@ -7,10 +7,12 @@ import { AnnotationsPanel } from "../annotations-panel";
 const baseProps = {
   open: true,
   onClose: () => {},
+  slug: "test-page",
   onAdd: () => {},
   onUpdate: () => {},
   onRemove: () => {},
   onRestore: () => {},
+  onImport: () => {},
 };
 
 describe("AnnotationsPanel", () => {
@@ -89,5 +91,37 @@ describe("AnnotationsPanel", () => {
     await userEvent.click(screen.getByRole("button", { name: "Desfazer" }));
     expect(onRestore).toHaveBeenCalledWith(annotation);
     expect(screen.queryByText(/anotação removida/i)).not.toBeInTheDocument();
+  });
+
+  it("disables export when there are no annotations", () => {
+    render(<AnnotationsPanel {...baseProps} annotations={[]} />);
+    expect(screen.getByRole("button", { name: /exportar anotações/i })).toBeDisabled();
+  });
+
+  it("downloads a JSON file of the annotations on export", async () => {
+    const annotation = { id: "1", note: "nota original", createdAt: Date.now() };
+    URL.createObjectURL = vi.fn(() => "blob:mock");
+    URL.revokeObjectURL = vi.fn();
+    const clickSpy = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+
+    render(<AnnotationsPanel {...baseProps} annotations={[annotation]} />);
+    await userEvent.click(screen.getByRole("button", { name: /exportar anotações/i }));
+
+    expect(clickSpy).toHaveBeenCalled();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:mock");
+    clickSpy.mockRestore();
+  });
+
+  it("imports notes from a selected JSON file", async () => {
+    const onImport = vi.fn();
+    render(<AnnotationsPanel {...baseProps} annotations={[]} onImport={onImport} />);
+
+    const file = new File([JSON.stringify([{ note: "imported note" }])], "notes.json", {
+      type: "application/json",
+    });
+    const input = screen.getByLabelText(/selecionar arquivo de anotações/i) as HTMLInputElement;
+    await userEvent.upload(input, file);
+
+    expect(onImport).toHaveBeenCalledWith([{ note: "imported note" }]);
   });
 });

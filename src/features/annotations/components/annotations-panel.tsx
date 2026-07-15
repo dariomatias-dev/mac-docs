@@ -1,6 +1,6 @@
 "use client";
 
-import { NotebookPen, Pencil, StickyNote, Trash2, X } from "lucide-react";
+import { Download, NotebookPen, Pencil, StickyNote, Trash2, Upload, X } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
 
 import { MAX_NOTE_LENGTH } from "../lib/use-annotations";
@@ -159,22 +159,27 @@ const UNDO_TIMEOUT_MS = 5000;
 export function AnnotationsPanel({
   open,
   onClose,
+  slug,
   annotations,
   onAdd,
   onUpdate,
   onRemove,
   onRestore,
+  onImport,
 }: {
   open: boolean;
   onClose: () => void;
+  slug: string;
   annotations: Annotation[];
   onAdd: (note: string) => void;
   onUpdate: (id: string, note: string) => void;
   onRemove: (id: string) => void;
   onRestore: (annotation: Annotation) => void;
+  onImport: (notes: { note: string; createdAt?: number }[]) => void;
 }) {
   const [pendingUndo, setPendingUndo] = useState<Annotation | null>(null);
   const undoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return () => {
@@ -196,6 +201,26 @@ export function AnnotationsPanel({
     if (undoTimeoutRef.current) clearTimeout(undoTimeoutRef.current);
   }
 
+  function handleExport() {
+    const blob = new Blob([JSON.stringify(annotations, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `annotations-${slug.replaceAll("/", "-")}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async function handleImportFile(file: File) {
+    try {
+      const parsed = JSON.parse(await file.text());
+      if (!Array.isArray(parsed)) throw new Error("expected an array");
+      onImport(parsed);
+    } catch (err) {
+      console.error("Failed to import annotations", err);
+    }
+  }
+
   return (
     <>
       <aside
@@ -210,14 +235,47 @@ export function AnnotationsPanel({
             <NotebookPen className="h-4 w-4" />
             Anotações da página
           </p>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Fechar anotações"
-            className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={handleExport}
+              disabled={annotations.length === 0}
+              aria-label="Exportar anotações"
+              title="Exportar anotações"
+              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Download className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              aria-label="Importar anotações"
+              title="Importar anotações"
+              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
+            >
+              <Upload className="h-4 w-4" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json"
+              aria-label="Selecionar arquivo de anotações"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void handleImportFile(file);
+                e.target.value = "";
+              }}
+            />
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Fechar anotações"
+              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-4">

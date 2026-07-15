@@ -81,4 +81,21 @@ describe("useAnnotations", () => {
     act(() => result.current.restore(annotation));
     expect(result.current.annotations).toEqual([annotation]);
   });
+
+  it("imports notes, skipping blank ones", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.importNotes([{ note: "first" }, { note: "  " }, { note: "second" }]));
+
+    expect(result.current.annotations).toHaveLength(2);
+    expect(result.current.annotations.map((a) => a.note)).toEqual(["first", "second"]);
+  });
+
+  it("imports notes appended to existing ones", () => {
+    const { result } = renderHook(() => useAnnotations("foo"));
+    act(() => result.current.add("existing"));
+    act(() => result.current.importNotes([{ note: "imported", createdAt: 123 }]));
+
+    expect(result.current.annotations).toHaveLength(2);
+    expect(result.current.annotations[1]).toMatchObject({ note: "imported", createdAt: 123 });
+  });
 });
