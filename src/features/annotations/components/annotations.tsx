@@ -1,15 +1,21 @@
 "use client";
 
 import { StickyNote } from "lucide-react";
+import { useEffect } from "react";
 
 import { useMobileSheet } from "@/shared/providers/active-mobile-sheet-provider";
 
+import { cleanupOrphanAnnotations } from "../lib/cleanup-orphan-annotations";
 import { useAnnotations } from "../lib/use-annotations";
 import { AnnotationsPanel } from "./annotations-panel";
 
 export function Annotations({ slug }: { slug: string }) {
   const { annotations, add, update, remove, restore, importNotes } = useAnnotations(slug);
   const { isOpen: open, openSheet, close } = useMobileSheet("annotations");
+
+  useEffect(() => {
+    void cleanupOrphanAnnotations();
+  }, []);
 
   return (
     <>
