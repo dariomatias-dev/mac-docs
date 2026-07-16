@@ -9,6 +9,7 @@ import {
   Search,
   StickyNote,
   Trash2,
+  Undo2,
   Upload,
   X,
 } from "lucide-react";
@@ -22,8 +23,8 @@ function formatDate(timestamp: number) {
 }
 
 const NOTE_TEXTAREA_STYLES = {
-  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none overflow-y-auto rounded-lg border p-3 text-sm transition-colors outline-none focus:ring-2",
-  edit: "text-foreground placeholder:text-muted-2 w-full resize-none overflow-y-auto bg-transparent text-sm outline-none",
+  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none overflow-y-auto rounded-[10px] border p-3 text-sm leading-relaxed transition-colors outline-none focus:ring-2",
+  edit: "text-foreground placeholder:text-muted-2 w-full resize-none overflow-y-auto bg-transparent text-sm leading-relaxed outline-none",
 };
 
 const TEXTAREA_MAX_HEIGHT_PX = 240;
@@ -128,7 +129,7 @@ const AnnotationItem = memo(function AnnotationItem({
 
   if (editing) {
     return (
-      <li className="border-accent/50 bg-accent-soft rounded-lg border p-3">
+      <li className="border-accent/50 bg-accent-soft rounded-[10px] border p-3">
         <NoteForm
           variant="edit"
           initialValue={annotation.note}
@@ -145,7 +146,7 @@ const AnnotationItem = memo(function AnnotationItem({
   }
 
   return (
-    <li className="border-border bg-surface/50 hover:border-accent/40 group rounded-lg border p-3 transition-colors">
+    <li className="border-border bg-surface/50 hover:border-accent/40 group rounded-[10px] border p-3 transition-[border-color,box-shadow] hover:shadow-[0_2px_12px_rgba(10,113,148,0.08)]">
       <p className="text-foreground text-sm wrap-break-word whitespace-pre-wrap">
         {annotation.note}
       </p>
@@ -267,12 +268,21 @@ export function AnnotationsPanel({
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="border-border flex shrink-0 items-center justify-between border-b px-5 py-3.5">
-          <p className="text-accent flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-            <NotebookPen className="h-4 w-4" />
-            Anotações da página
-          </p>
-          <div className="flex items-center gap-1">
+        <div className="border-border flex shrink-0 items-center justify-between gap-3 border-b px-5 py-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="bg-accent-soft text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-lg">
+              <NotebookPen className="h-4.5 w-4.5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-foreground truncate text-sm font-bold tracking-tight">Anotações</p>
+              <p className="text-muted-2 truncate text-xs">
+                {annotations.length === 0
+                  ? "Nenhuma anotação nesta página"
+                  : `${annotations.length} ${annotations.length === 1 ? "anotação" : "anotações"} nesta página`}
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
             <button
               type="button"
               onClick={handleExport}
@@ -324,22 +334,36 @@ export function AnnotationsPanel({
           />
 
           {annotations.length === 0 ? (
-            <div className="text-muted-2 mt-10 flex flex-col items-center gap-2 text-center text-sm">
-              <StickyNote className="h-8 w-8 opacity-40" />
-              Nenhuma anotação ainda nesta página.
+            <div className="text-muted-2 mt-10 flex flex-col items-center gap-3 text-center text-sm">
+              <span className="bg-accent-soft flex h-14 w-14 items-center justify-center rounded-full">
+                <StickyNote className="text-accent h-6 w-6" />
+              </span>
+              <p className="max-w-[22ch] leading-relaxed">
+                Nenhuma anotação ainda. Escreva a primeira acima.
+              </p>
             </div>
           ) : (
             <>
               <div className="mt-4 flex items-center gap-2">
-                <div className="border-border bg-background focus-within:border-accent flex flex-1 items-center gap-2 rounded-lg border px-2.5 py-1.5 transition-colors">
-                  <Search className="text-muted-2 h-3.5 w-3.5 shrink-0" />
+                <div className="bg-surface-2 text-muted-2 flex flex-1 items-center gap-2 rounded-full px-3.5 py-2">
+                  <Search className="h-3.5 w-3.5 shrink-0" />
                   <input
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Buscar anotações..."
-                    className="text-foreground placeholder:text-muted-2 w-full bg-transparent text-sm outline-none"
+                    className="text-foreground placeholder:text-muted-2 w-full bg-transparent text-sm font-medium outline-none"
                   />
+                  {query && (
+                    <button
+                      type="button"
+                      onClick={() => setQuery("")}
+                      aria-label="Limpar busca"
+                      className="hover:bg-background hover:text-foreground flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  )}
                 </div>
                 <button
                   type="button"
@@ -352,7 +376,7 @@ export function AnnotationsPanel({
                   title={
                     sortOrder === "newest" ? "Mais recentes primeiro" : "Mais antigas primeiro"
                   }
-                  className="text-muted-2 hover:bg-surface hover:text-foreground border-border shrink-0 cursor-pointer rounded-lg border p-2 transition-colors"
+                  className="bg-surface-2 text-muted-2 hover:bg-surface-2/70 hover:text-foreground shrink-0 cursor-pointer rounded-full p-2.5 transition-colors"
                 >
                   {sortOrder === "newest" ? (
                     <ArrowDownWideNarrow className="h-3.5 w-3.5" />
@@ -393,8 +417,9 @@ export function AnnotationsPanel({
                 <button
                   type="button"
                   onClick={() => handleUndo(annotation)}
-                  className="text-accent cursor-pointer font-medium hover:underline"
+                  className="text-accent flex cursor-pointer items-center gap-1.5 font-medium hover:underline"
                 >
+                  <Undo2 className="h-3.5 w-3.5" />
                   Desfazer
                 </button>
               </div>
