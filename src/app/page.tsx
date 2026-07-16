@@ -8,11 +8,13 @@ import {
   ListChecks,
   Search,
   Sparkles,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
 import { getSidebarTree } from "@/features/navigation";
 import { Callout, Option, Quiz } from "@/features/study";
+import { CtaLink } from "@/shared/components/cta-link";
 
 const FEATURES: { title: string; description: string; Icon: LucideIcon }[] = [
   {
@@ -66,24 +68,18 @@ export default function Home() {
           Documentação interativa de Matemática Aplicada à Computação
         </h1>
         <p className="text-muted mt-4 max-w-xl text-2xl leading-9">
-          Teoria rigorosa, exemplos resolvidos e componentes interativos, tudo que você precisa para
-          dominar os cálculos e fundamentos da disciplina.
+          Teoria rigorosa, exemplos resolvidos e componentes interativos, tudo para dominar os
+          cálculos e fundamentos da disciplina.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/docs/matematica-discreta/matrizes"
-            className="bg-accent text-accent-foreground flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-          >
+          <CtaLink href="/docs/matematica-discreta/matrizes">
             Começar agora
             <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/docs/matematica-discreta"
-            className="bg-surface-2 text-foreground hover:bg-border rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
-          >
+          </CtaLink>
+          <CtaLink href="/docs/matematica-discreta" variant="secondary">
             Ver todos os tópicos
-          </Link>
+          </CtaLink>
         </div>
       </section>
 
@@ -107,8 +103,8 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <h2 className="text-foreground mb-4 text-2xl font-bold tracking-tight">Veja em ação</h2>
         <p className="text-muted mb-8 max-w-2xl text-base leading-relaxed">
-          O conteúdo não é só texto: cada página combina teoria com componentes que você resolve na
-          hora.
+          O conteúdo não é só texto: cada página combina teoria com componentes interativos
+          resolvidos na hora.
         </p>
 
         <div className="max-w-2xl">
@@ -129,7 +125,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <h2 className="text-foreground mb-4 text-2xl font-bold tracking-tight">
-          O que você vai encontrar aqui
+          O que este material oferece
         </h2>
         <p className="text-muted mb-4 max-w-2xl text-base leading-relaxed">
           Este é o material de estudo da disciplina de{" "}
@@ -233,22 +229,26 @@ export default function Home() {
           busca.
         </p>
         <div className="flex flex-wrap gap-3">
-          <a
+          <CtaLink
             href="https://github.com/dariomatias-dev/mac-docs"
             target="_blank"
             rel="noreferrer"
-            className="bg-surface-2 text-foreground hover:bg-border rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
+            variant="secondary"
           >
             Repositório no GitHub
-          </a>
-          <a
+          </CtaLink>
+          <CtaLink
             href="https://github.com/dariomatias-dev/mac-docs/blob/main/docs/pt/authoring.md"
             target="_blank"
             rel="noreferrer"
-            className="bg-surface-2 text-foreground hover:bg-border rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
+            variant="secondary"
           >
             Guia de autoria
-          </a>
+          </CtaLink>
+          <CtaLink href="/contribuidores" variant="secondary">
+            <Users className="h-4 w-4" />
+            Ver contribuidores
+          </CtaLink>
         </div>
       </section>
     </main>

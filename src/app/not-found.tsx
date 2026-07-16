@@ -12,8 +12,7 @@ export default function NotFound() {
         Página não encontrada
       </h1>
       <p className="text-muted mt-2 max-w-md">
-        O conteúdo que você procura não existe ou foi movido. Use a busca (Ctrl K) ou volte ao
-        início.
+        O conteúdo buscado não existe ou foi movido. Use a busca (Ctrl K) ou volte ao início.
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
