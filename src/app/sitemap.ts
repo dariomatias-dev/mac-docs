@@ -8,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    {
+      url: `${SITE_URL}/contribuidores`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
   ];
 
   const docRoutes: MetadataRoute.Sitemap = getAllSlugs().map((slug) => ({
