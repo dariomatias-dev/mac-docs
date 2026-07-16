@@ -37,7 +37,7 @@ export function ActiveMobileSheetProvider({ children }: { children: ReactNode })
   );
 
   useEffect(() => {
-    if (!activeSheet) return;
+    if (activeSheet !== "nav") return;
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
