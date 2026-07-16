@@ -18,7 +18,9 @@ src/
 │       └── error.tsx  not-found.tsx  loading.tsx
 │
 ├── features/
+│   ├── annotations/      # per-page annotations (localStorage), export/import
 │   ├── content/          # read, parse and render MDX, reading time, copy
+│   ├── contributors/     # /contribuidores page: monitoring, material and code (GitHub API)
 │   ├── navigation/       # sidebar, breadcrumb, prev/next, header, providers
 │   ├── search/           # index and command menu dialog
 │   ├── study/            # interactive MDX components and registry
@@ -27,8 +29,9 @@ src/
 │
 ├── shared/
 │   ├── hooks/            # use-persisted-state, use-disclosure, use-copy, use-raf-scroll
-│   ├── lib/              # site, content-config, env
-│   └── components/       # cta-link (CtaLink/CtaButton)
+│   ├── lib/              # site, content-config, env, json-ld
+│   ├── components/       # cta-link (CtaLink/CtaButton)
+│   └── providers/        # active-mobile-sheet-provider (coordinates mobile sheets)
 │
 └── lib/
     └── utils.ts          # cn (clsx + tailwind-merge)
@@ -51,6 +54,9 @@ content/                  # content (.mdx) at the repository root
 - `search` aggregates `navigation` (the tree) and `content` (the text); it is a
   top level feature whose job is precisely to combine the two.
 - The `Header` (in `navigation`) uses the `ThemeToggle` from `theme`.
+- `navigation` (mobile sidebar) and `annotations` (annotations panel) coordinate
+  which mobile sheet is open through `ActiveMobileSheetProvider`, in `shared/`,
+  so at most one stays open at a time.
 
 ## Rendering and routes
 
@@ -59,4 +65,7 @@ content/                  # content (.mdx) at the repository root
   (title, description, canonical, Open Graph).
 - Content is read from the file system at build time; nothing runs on the client
   except the interactive islands (search, sidebar, study components, table of
-  contents, theme).
+  contents, theme, annotations).
+- `/contribuidores` fetches code contributors from the GitHub API at
+  build/revalidation time (streamed via `Suspense`); monitoring and material
+  contributors are hand-curated in `src/features/contributors/data/`.

@@ -58,6 +58,9 @@ busca.
   conjuntos/matrizes.
 - Índice do artigo com scroll spy no desktop e dropdown no mobile.
 - Tempo de leitura e chips de pré-requisitos por página.
+- Anotações por página, salvas localmente, com busca, ordenação,
+  exportar/importar e desfazer ao remover.
+- Página de contribuidores (monitoria, material e código via API do GitHub).
 - Tema claro e escuro que segue o sistema, sem flash.
 - SEO: sitemap, robots, Open Graph, URLs canônicas e 404 personalizado.
 - Cabeçalhos de segurança e Content Security Policy.

@@ -55,6 +55,9 @@ breadcrumb, previous/next navigation, and a search index entry.
   PixelGrid, RegionDiagram, and set/matrix calculators.
 - Table of contents with scroll spy on desktop and a dropdown on mobile.
 - Reading time and prerequisite chips per page.
+- Per-page annotations, stored locally, with search, sort, export/import, and
+  undo on delete.
+- A contributors page (monitoring, material, and code from the GitHub API).
 - Light and dark theme that follows the system, with no flash.
 - SEO: sitemap, robots, Open Graph, canonical URLs, and a custom 404.
 - Security headers and a Content Security Policy.
