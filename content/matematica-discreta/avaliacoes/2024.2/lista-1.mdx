@@ -1,0 +1,568 @@
+---
+title: Lista 1 — Matrizes e conjuntos
+description: Lista de exercícios 1 de Matemática Aplicada à Computação (2024.2), com resolução comentada.
+order: 1
+prerequisites:
+  - /docs/matematica-discreta/matrizes
+  - /docs/matematica-discreta/conjuntos
+---
+
+Lista de exercícios 1 de **Matemática Aplicada à Computação** — Instituto
+Federal da Paraíba, curso de Tecnologia em Análise e Desenvolvimento de
+Sistemas, 1º período, semestre **2024.2**, professor Suemilton Nunes
+Gervázio. Cobre matrizes, matrizes booleanas e teoria dos conjuntos. Tente
+cada questão sozinho antes de abrir a **resposta**.
+
+## Questão 1
+
+<Question>
+Se a matriz a seguir é simétrica, então determine o valor de $x^{2} - y^{2}$.
+
+$$
+\begin{bmatrix}
+1 & x & y-1 \\
+y-1 & 0 & x+5 \\
+x & 7 & -1
+\end{bmatrix}
+$$
+
+</Question>
+
+## Questão 2
+
+<Question>
+Se a matriz a seguir é simétrica, então resolva a equação $2x - 3y = z$.
+
+$$
+\begin{bmatrix}
+Y & 36 & -7 \\
+x^{2} & 0 & 5x \\
+4-y & -30 & 3
+\end{bmatrix}
+$$
+
+</Question>
+
+## Questão 3
+
+<Question>
+Determine o elemento $C_{22}$ da matriz $C = A \times B$, onde
+
+$$
+A =
+\begin{bmatrix} 2 & 3 & 1 \\ -1 & 0 & 2 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} 1 & -2 \\ 0 & 5 \\ 4 & 1 \end{bmatrix}
+$$
+
+</Question>
+
+## Questão 4
+
+<Question>
+Uma matriz quadrada $A$ de ordem $2$ possui lei de formação $b_{ij} = 2i +
+3j - 5$ e a matriz
+
+$$
+B =
+\begin{bmatrix} 10 & 2 \\ 3 & -1 \end{bmatrix}
+$$
+
+Assim, determine $A \times B$ e $B \times (-2A)$.
+
+</Question>
+
+## Questão 5 <Badge>SEEDUCRJ, adaptada</Badge>
+
+<Question>
+Sejam dadas as matrizes
+
+$$
+A =
+\begin{bmatrix} 2 & -1 \\ 1 & 0 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} 3 & 1 \\ 1 & 2 \end{bmatrix}
+$$
+
+onde se tem que $A \cdot X = A + B$. Assim, determine a matriz $X$.
+
+</Question>
+
+## Questão 6 <Badge>Anglo, adaptada</Badge>
+
+<Question>
+Sejam $A$, $B$ e $C$ matrizes onde
+
+$$
+A =
+\begin{bmatrix} x+3 & 11 \\ 9 & 2y-7 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} -4 & -5 \\ 2 & 9 \end{bmatrix}
+\qquad
+C =
+\begin{bmatrix} -1 & 16 \\ 7 & 4 \end{bmatrix}
+$$
+
+Sabendo que $A = B + C$, então qual é o valor de $x + y$?
+
+</Question>
+
+## Questão 7
+
+<Question>
+Se $A$ e $B$ são duas matrizes onde
+
+$$
+A =
+\begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} 1 & -2 & 5 \\ 0 & 1 & -4 \\ 0 & 0 & 1 \end{bmatrix}
+$$
+
+Então qual a matriz resultante de $[A \cdot B]^{2023}$?
+
+</Question>
+
+Seja a matriz $A = \begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ e a matriz
+$B = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$. Assim, determine:
+
+## Questão 8 <Badge>Anglo, adaptada</Badge>
+
+<Question>
+$A^{102}$
+
+<Alternatives>
+  <Alternative>$A$</Alternative>
+  <Alternative>$-1 \cdot A$</Alternative>
+  <Alternative>$I_{2}$</Alternative>
+  <Alternative>$-I_{2}$</Alternative>
+  <Alternative>$-2 \cdot A$</Alternative>
+</Alternatives>
+
+</Question>
+
+## Questão 9 <Badge>Anglo, adaptada</Badge>
+
+<Question>
+$B^{3}$
+
+<Alternatives>
+  <Alternative>$\begin{bmatrix} 1&0 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} -1&0 \\ 0&-1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 0&1 \\ 1&0 \end{bmatrix}$</Alternative>
+</Alternatives>
+
+</Question>
+
+## Questão 10 <Badge>Anglo, adaptada</Badge>
+
+<Question>
+$A^{102} \cdot B^{3}$
+
+<Alternatives>
+  <Alternative>$\begin{bmatrix} 1&0 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} -1&0 \\ 0&-1 \end{bmatrix}$</Alternative>
+  <Alternative>$\begin{bmatrix} 0&1 \\ 1&0 \end{bmatrix}$</Alternative>
+</Alternatives>
+
+</Question>
+
+## Questão 11 <Badge>Cefet MG</Badge>
+
+<Question>
+A matriz $A$ é inversa de $B$. Pode-se afirmar que a diferença $x - y$ é
+igual a:
+
+$$
+A =
+\begin{pmatrix} 2 & 5 \\ 1 & x \end{pmatrix}
+\qquad
+B =
+\begin{pmatrix} 3 & y \\ -1 & 2 \end{pmatrix}
+$$
+
+<Alternatives>
+  <Alternative>$-8$</Alternative>
+  <Alternative>$-2$</Alternative>
+  <Alternative>$2$</Alternative>
+  <Alternative>$6$</Alternative>
+  <Alternative>$8$</Alternative>
+</Alternatives>
+
+</Question>
+
+## Questão 12
+
+<Question>
+Sejam as matrizes booleanas a seguir:
+
+$$
+A =
+\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+\qquad
+B =
+\begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}
+\qquad
+C =
+\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}
+$$
+
+Assim, determine:
+
+a) $A \vee B$
+
+b) $A \vee C$
+
+c) $B \vee C$
+
+d) $A \wedge B$
+
+e) $A \wedge C$
+
+f) $B \wedge C$
+
+g) $A \times B$
+
+h) $B \times C$
+
+</Question>
+
+## Questão 13
+
+<Question>
+Sejam as matrizes booleanas $A$, $B$ e $C$ apresentadas a seguir:
+
+$$
+A =
+\begin{bmatrix} 1&0&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+\qquad
+B =
+\begin{bmatrix} 0&0&1 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+\qquad
+C =
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&1&0 \end{bmatrix}
+$$
+
+Assim, calcule:
+
+a) $(C \wedge B) \vee A$
+
+b) $A \times B$ (multiplicação booleana de matrizes)
+
+c) $B \times C$ (multiplicação booleana de matrizes)
+
+d) $A \times C$ (multiplicação booleana de matrizes)
+
+</Question>
+
+## Questão 14
+
+<Question>
+Escreva o seguinte conjunto, fornecendo-lhe uma propriedade característica
+que envolve todos os elementos.
+
+$$
+A = \{-4, -1, 8, 23, 44, 71, \ldots\}
+$$
+
+</Question>
+
+## Questão 15
+
+<Question>
+Escreva o seguinte conjunto, fornecendo-lhe uma propriedade característica
+que envolve todos os elementos.
+
+$$
+A = \{2, 7, 12, 17, 22, 27, 32, \ldots\}
+$$
+
+</Question>
+
+## Questão 16
+
+<Question>
+Escreva o seguinte conjunto, fornecendo-lhe uma propriedade característica
+que envolve todos os elementos.
+
+$$
+A = \{3, 4, 11, 30, 67, 128, \ldots\}
+$$
+
+</Question>
+
+## Questão 17
+
+<Question>
+Escreva o seguinte conjunto, fornecendo-lhe uma propriedade característica
+que envolve todos os elementos.
+
+$$
+A = \{-3, -1, 5, 15, 29, 47, 69, \ldots\}
+$$
+
+</Question>
+
+Sejam $A$, $B$, $C$ e $D$ conjuntos.
+
+## Questão 18
+
+<Question>
+Mostre que se $A = B$ e $B = C \Rightarrow A = C$.
+
+</Question>
+
+## Questão 19
+
+<Question>
+Mostre que $A \subseteq B$ e $B \subseteq C \Rightarrow A \subseteq C$.
+
+</Question>
+
+## Questão 20
+
+<Question>
+Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cup C) \subseteq
+(B \cup D)$.
+
+</Question>
+
+## Questão 21
+
+<Question>
+Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cap C) \subseteq
+(B \cap D)$.
+
+</Question>
+
+## Questão 22
+
+<Question>
+Mostre que $A = B$ e $C = D \Rightarrow (A \cup C) = (B \cup D)$.
+
+</Question>
+
+## Questão 23
+
+<Question>
+Mostre que $A = B$ e $C = D \Rightarrow (A \cap C) = (B \cap D)$.
+
+</Question>
+
+## Questão 24
+
+<Question>
+Mostre que $A - A = \{\,\}$.
+
+</Question>
+
+## Questão 25
+
+<Question>
+Prove que $(A \cap B) \subseteq A$, onde $A$ e $B$ são conjuntos
+arbitrários.
+
+</Question>
+
+## Questão 26
+
+<Question>
+Prove que $A \subseteq (A \cup B)$, onde $A$ e $B$ são conjuntos
+arbitrários.
+
+</Question>
+
+## Questão 27
+
+<Question>
+Prove que se $A \cup B = A - B$, então $B = \{\,\}$.
+
+</Question>
+
+## Questão 28
+
+<Question>
+Prove que se $(A - B) \cup (B - A) = A \cup B$, então $A \cap B = \{\,\}$.
+
+</Question>
+
+## Questão 29
+
+<Question>
+Seja $B$ um conjunto finito e $A \subset B$, então mostre que $\mathrm{Card}(A)
+< \mathrm{Card}(B)$.
+
+</Question>
+
+## Questão 30
+
+<Question>
+Seja $A = \{x / x \in \mathbb{R} \text{ e } x^{2} - 4x + 3 < 0\}$ e $B =
+\{x / x \in \mathbb{R} \text{ e } 0 < x < 6\}$. Mostre que $A \subset B$.
+
+</Question>
+
+## Questão 31
+
+<Question>
+Em relação ao conjunto $A = \{1, 2, 3, 4\}$, quantos subconjuntos ele
+possui? Quais são eles?
+
+</Question>
+
+## Questão 32
+
+<Question>
+Sejam os conjuntos $A = \{x \in \mathbb{N} / x \text{ é múltiplo de } 2\}$
+e $B = \{x \in \mathbb{N} / x \text{ é múltiplo de } 6\}$. Assim sendo,
+mostre que $B \subseteq A$.
+
+</Question>
+
+## Questão 33
+
+<Question>
+Sejam os conjuntos $A = \{x \in \mathbb{N} / x \text{ é múltiplo de } 5\}$
+e $B = \{x \in \mathbb{N} / x \text{ é múltiplo de } 10\}$. Assim sendo,
+mostre que $B \subseteq A$.
+
+</Question>
+
+## Questão 34
+
+<Question>
+Seja $A = \{x / x \in \mathbb{N} \text{ e } x^{2} < 15\}$ e $B = \{x /
+x \in \mathbb{N} \text{ e } 2x < 7\}$. Então mostre que $A = B$.
+
+</Question>
+
+## Questão 35
+
+<Question>
+Sejam $A = \{1, 2\}$ e $B = \{3, 4\}$.
+
+a) Encontre $A \times B$.
+
+b) Encontre $B \times A$.
+
+c) Encontre $A^{2}$.
+
+d) Encontre $B^{2}$.
+
+</Question>
+
+## Questão 36
+
+<Question>
+Descreva cada um dos conjuntos a seguir, listando seus elementos:
+
+a) $A = \{x / x \in \mathbb{N} \text{ e } x^{2} < 25\}$
+
+b) $B = \{x / x \in \mathbb{N},\ x \text{ é par e } 2 < x < 11\}$
+
+c) $C = \{x / x \in \mathbb{C} \text{ e } x^{2} = -9\}$
+
+d) $D = \{x / x \in \mathbb{Z} \text{ e } |x| < 4\}$
+
+</Question>
+
+## Questão 37
+
+<Question>
+Descreva cada um dos conjuntos a seguir:
+
+a) $A = \{x / x \in \mathbb{N},\ \exists q\, (q \in \{2, 3\} \text{ e } x =
+2q)\}$
+
+b) $B = \{x / \exists y\, \exists z\, (y \in \mathbb{N},\ y \in \{0, 1\},\
+z \in \{3, 4\} \text{ e } y < x < z)\}$
+
+</Question>
+
+## Questão 38
+
+<Question>
+Prove que se $A \subseteq B$, então $\mathcal{P}(A) \subseteq \mathcal{P}(B)$.
+
+</Question>
+
+## Questão 39
+
+<Question>
+Se $A$ é um conjunto tal que $n(A \times A) = 9$ e $\{(2,4), (4,5)\} \subset A
+\times A$, determinar $A \times A$.
+
+</Question>
+
+## Questão 40
+
+<Question>
+Dados os conjuntos $A = \{3, 4, 6\}$, $B = \{1, 2\}$ e $C = \{3, 6, 9, 12\}$,
+determine o conjunto $(C - A) \times B$.
+
+</Question>
+
+## Questão 41
+
+<Question>
+Dado o conjunto $A = \{0, 1\}$, calcule os valores numéricos que assume o
+trinômio $2x + xy - 5y$ para todos os pares ordenados $(x, y)$ que pertencem
+ao produto $A \times A$.
+
+</Question>
+
+## Questão 42 <Badge>FTD, adaptada</Badge>
+
+<Question>
+Considere dois conjuntos $A$ e $B$ não vazios. A união desses conjuntos
+possui $31$ elementos, e a intersecção $9$ elementos. Sabendo que há $21$
+elementos em $B$, determine a quantidade de elementos em $A$.
+
+</Question>
+
+## Questão 43 <Badge>FTD, adaptada</Badge>
+
+<Question>
+Considerando os conjuntos $A$ e $B$ em que
+
+$$
+A \cup B = \{-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\}
+$$
+
+$$
+A - B = \{1, 2, 6, 7\} \qquad B - A = \{-1, 0, 8, 9, 10\}
+$$
+
+então quais são todos os elementos do conjunto $A \cap B$?
+
+</Question>
+
+## Questão 44 <Badge>PUCC, adaptada</Badge>
+
+<Question>
+Sejam os conjuntos $A = \{x \in \mathbb{R} / 0 \le x \le 5\}$ e $B = \{x
+\in \mathbb{R} / 3 \le x \le 7\}$. Assim, o resultado do produto
+cartesiano entre os conjuntos, resultante de $(A - B) \times (B - A)$ é
+representado por qual das regiões a seguir?
+
+<div className="not-prose my-4 flex justify-center">
+  <RegionDiagram xMax="5" yMax="7" xSplit="3" ySplit="5" highlight="top-left" />
+</div>
+
+<Alternatives>
+  <Alternative>$R_1$</Alternative>
+  <Alternative>$R_2$</Alternative>
+  <Alternative>$R_3$</Alternative>
+  <Alternative>$R_4$</Alternative>
+  <Alternative>$R_1 \cup R_4$</Alternative>
+</Alternatives>
+
+</Question>
