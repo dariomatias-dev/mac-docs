@@ -10,6 +10,7 @@ import {
   CodeContributorsSkeleton,
   ContributorCard,
   ContributorSection,
+  getGithubAvatarUrl,
 } from "@/features/contributors";
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default function ContribuidoresPage() {
             name={contributor.name}
             subtitle={contributor.role}
             href={contributor.githubUrl}
-            avatarUrl={contributor.avatarUrl}
+            avatarUrl={getGithubAvatarUrl(contributor.githubUrl)}
           />
         ))}
       </ContributorSection>
@@ -61,7 +62,7 @@ export default function ContribuidoresPage() {
             name={contributor.name}
             subtitle={contributor.role}
             href={contributor.githubUrl}
-            avatarUrl={contributor.avatarUrl}
+            avatarUrl={getGithubAvatarUrl(contributor.githubUrl)}
           />
         ))}
       </ContributorSection>

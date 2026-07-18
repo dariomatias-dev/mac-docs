@@ -4,4 +4,5 @@ export { ContributorCard } from "./components/contributor-card";
 export { ContributorSection } from "./components/contributor-section";
 export { MONITORS } from "./data/monitors";
 export { MATERIAL_CONTRIBUTORS } from "./data/material-contributors";
+export { getGithubAvatarUrl } from "./lib/get-github-avatar-url";
 export type { MaterialContributor } from "./contributors.types";

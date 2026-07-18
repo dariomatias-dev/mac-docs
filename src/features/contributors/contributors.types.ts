@@ -11,5 +11,4 @@ export type MaterialContributor = {
   name: string;
   role: string;
   githubUrl?: string;
-  avatarUrl?: string;
 };
