@@ -26,6 +26,28 @@ x & 7 & -1
 \end{bmatrix}
 $$
 
+<Resolution>
+
+$A$ é simétrica quando $a_{ij} = a_{ji}$ para todo par $(i,j)$. Comparando as
+posições espelhadas:
+
+Posições $(1,2)$ e $(2,1)$: $x = y-1$
+
+Posições $(1,3)$ e $(3,1)$: $y-1 = x$ (mesma equação da anterior)
+
+Posições $(2,3)$ e $(3,2)$: $x+5 = 7 \;\Rightarrow\; x = 2$
+
+Substituindo $x=2$ em $x = y-1$: $2 = y-1 \;\Rightarrow\; y = 3$.
+
+$$
+x^{2} - y^{2} = 2^{2} - 3^{2} = 4 - 9 = -5
+$$
+
+</Resolution>
+
+<Answer>
+$x^{2} - y^{2} = -5$
+</Answer>
 </Question>
 
 ## Questão 2
@@ -41,6 +63,29 @@ x^{2} & 0 & 5x \\
 \end{bmatrix}
 $$
 
+<Resolution>
+
+$Y$ fica na diagonal principal, então não entra em nenhuma equação de
+simetria. Comparando as demais posições espelhadas:
+
+Posições $(1,2)$ e $(2,1)$: $36 = x^{2} \;\Rightarrow\; x = \pm 6$
+
+Posições $(1,3)$ e $(3,1)$: $-7 = 4-y \;\Rightarrow\; y = 11$
+
+Posições $(2,3)$ e $(3,2)$: $5x = -30 \;\Rightarrow\; x = -6$
+
+O valor de $x$ que satisfaz as duas equações é $x=-6$. Substituindo em
+$z = 2x - 3y$:
+
+$$
+z = 2(-6) - 3(11) = -12 - 33 = -45
+$$
+
+</Resolution>
+
+<Answer>
+$x = -6$, $y = 11$ e $z = -45$
+</Answer>
 </Question>
 
 ## Questão 3
@@ -56,6 +101,19 @@ B =
 \begin{bmatrix} 1 & -2 \\ 0 & 5 \\ 4 & 1 \end{bmatrix}
 $$
 
+<Resolution>
+
+$C_{22}$ é o produto da linha $2$ de $A$ pela coluna $2$ de $B$:
+
+$$
+C_{22} = (-1)(-2) + (0)(5) + (2)(1) = 2 + 0 + 2 = 4
+$$
+
+</Resolution>
+
+<Answer>
+$C_{22} = 4$
+</Answer>
 </Question>
 
 ## Questão 4
@@ -71,6 +129,58 @@ $$
 
 Assim, determine $A \times B$ e $B \times (-2A)$.
 
+<Resolution>
+
+Calculando cada termo de $A$ com $a_{ij} = 2i + 3j - 5$:
+
+$$
+a_{11}=2(1)+3(1)-5=0 \qquad a_{12}=2(1)+3(2)-5=3
+$$
+
+$$
+a_{21}=2(2)+3(1)-5=2 \qquad a_{22}=2(2)+3(2)-5=5
+$$
+
+$$
+A = \begin{bmatrix} 0 & 3 \\ 2 & 5 \end{bmatrix}
+$$
+
+$$
+A \times B =
+\begin{bmatrix}
+0(10)+3(3) & 0(2)+3(-1) \\
+2(10)+5(3) & 2(2)+5(-1)
+\end{bmatrix}
+=
+\begin{bmatrix} 9 & -3 \\ 35 & -1 \end{bmatrix}
+$$
+
+Para $B \times (-2A)$, primeiro invertemos o sinal de $A$ e multiplicamos por
+$2$:
+
+$$
+-2A = \begin{bmatrix} 0 & -6 \\ -4 & -10 \end{bmatrix}
+$$
+
+$$
+B \times (-2A) =
+\begin{bmatrix}
+10(0)+2(-4) & 10(-6)+2(-10) \\
+3(0)+(-1)(-4) & 3(-6)+(-1)(-10)
+\end{bmatrix}
+=
+\begin{bmatrix} -8 & -80 \\ 4 & -8 \end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A \times B = \begin{bmatrix} 9 & -3 \\ 35 & -1 \end{bmatrix}
+\qquad
+B \times (-2A) = \begin{bmatrix} -8 & -80 \\ 4 & -8 \end{bmatrix}
+$$
+</Answer>
 </Question>
 
 ## Questão 5 <Badge>SEEDUCRJ, adaptada</Badge>
@@ -88,6 +198,38 @@ $$
 
 onde se tem que $A \cdot X = A + B$. Assim, determine a matriz $X$.
 
+<Resolution>
+
+Primeiro calculamos $A + B$:
+
+$$
+A + B = \begin{bmatrix} 5 & 0 \\ 2 & 2 \end{bmatrix}
+$$
+
+Escrevendo $X = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, temos:
+
+$$
+A \cdot X =
+\begin{bmatrix} 2 & -1 \\ 1 & 0 \end{bmatrix}
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+=
+\begin{bmatrix} 2a-c & 2b-d \\ a & b \end{bmatrix}
+$$
+
+Igualando a $A+B$, posição por posição:
+
+- $(2,1)$: $a = 2$
+- $(2,2)$: $b = 2$
+- $(1,1)$: $2a - c = 5 \;\Rightarrow\; 4 - c = 5 \;\Rightarrow\; c = -1$
+- $(1,2)$: $2b - d = 0 \;\Rightarrow\; 4 - d = 0 \;\Rightarrow\; d = 4$
+
+</Resolution>
+
+<Answer>
+$$
+X = \begin{bmatrix} 2 & 2 \\ -1 & 4 \end{bmatrix}
+$$
+</Answer>
 </Question>
 
 ## Questão 6 <Badge>Anglo, adaptada</Badge>
@@ -108,6 +250,33 @@ $$
 
 Sabendo que $A = B + C$, então qual é o valor de $x + y$?
 
+<Resolution>
+
+Somando $B + C$ termo a termo:
+
+$$
+B + C = \begin{bmatrix} -5 & 11 \\ 9 & 13 \end{bmatrix}
+$$
+
+Igualando a $A$, posição por posição:
+
+$$
+x+3 = -5 \;\Rightarrow\; x = -8
+$$
+
+$$
+2y-7 = 13 \;\Rightarrow\; 2y = 20 \;\Rightarrow\; y = 10
+$$
+
+$$
+x + y = -8 + 10 = 2
+$$
+
+</Resolution>
+
+<Answer>
+$x + y = 2$
+</Answer>
 </Question>
 
 ## Questão 7
@@ -125,6 +294,34 @@ $$
 
 Então qual a matriz resultante de $[A \cdot B]^{2023}$?
 
+<Resolution>
+
+Calculando $A \cdot B$ termo a termo:
+
+$$
+A \cdot B =
+\begin{bmatrix}
+1(1)+2(0)+3(0) & 1(-2)+2(1)+3(0) & 1(5)+2(-4)+3(1) \\
+0(1)+1(0)+4(0) & 0(-2)+1(1)+4(0) & 0(5)+1(-4)+4(1) \\
+0(1)+0(0)+1(0) & 0(-2)+0(1)+1(0) & 0(5)+0(-4)+1(1)
+\end{bmatrix}
+=
+\begin{bmatrix} 1&0&0 \\ 0&1&0 \\ 0&0&1 \end{bmatrix} = I_{3}
+$$
+
+Como $A \cdot B = I_{3}$, qualquer potência da identidade é ela mesma:
+
+$$
+[A \cdot B]^{2023} = I_{3}^{2023} = I_{3}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+[A \cdot B]^{2023} = \begin{bmatrix} 1&0&0 \\ 0&1&0 \\ 0&0&1 \end{bmatrix}
+$$
+</Answer>
 </Question>
 
 Seja a matriz $A = \begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ e a matriz
@@ -143,6 +340,29 @@ $A^{102}$
   <Alternative>$-2 \cdot A$</Alternative>
 </Alternatives>
 
+<Resolution>
+
+O caminho mais direto é calcular $A^{2}$:
+
+$$
+A^{2} =
+\begin{bmatrix} 0&-1 \\ -1&0 \end{bmatrix}
+\begin{bmatrix} 0&-1 \\ -1&0 \end{bmatrix}
+=
+\begin{bmatrix} 1&0 \\ 0&1 \end{bmatrix} = I_{2}
+$$
+
+Como $A^{2} = I_{2}$, toda potência par de $A$ é $I_{2}$. Sendo $102$ par:
+
+$$
+A^{102} = (A^{2})^{51} = I_{2}^{51} = I_{2}
+$$
+
+</Resolution>
+
+<Answer>
+c) $I_{2}$
+</Answer>
 </Question>
 
 ## Questão 9 <Badge>Anglo, adaptada</Badge>
@@ -158,6 +378,29 @@ $B^{3}$
   <Alternative>$\begin{bmatrix} 0&1 \\ 1&0 \end{bmatrix}$</Alternative>
 </Alternatives>
 
+<Resolution>
+
+$$
+B^{2} = B \cdot B =
+\begin{bmatrix} 1&1 \\ 0&1 \end{bmatrix}
+\begin{bmatrix} 1&1 \\ 0&1 \end{bmatrix}
+=
+\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}
+$$
+
+$$
+B^{3} = B^{2} \cdot B =
+\begin{bmatrix} 1&2 \\ 0&1 \end{bmatrix}
+\begin{bmatrix} 1&1 \\ 0&1 \end{bmatrix}
+=
+\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+c) $\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}$
+</Answer>
 </Question>
 
 ## Questão 10 <Badge>Anglo, adaptada</Badge>
@@ -173,6 +416,22 @@ $A^{102} \cdot B^{3}$
   <Alternative>$\begin{bmatrix} 0&1 \\ 1&0 \end{bmatrix}$</Alternative>
 </Alternatives>
 
+<Resolution>
+
+Usando os resultados das questões 8 e 9, $A^{102} = I_{2}$ e $B^{3} =
+\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}$. Multiplicar por $I_{2}$ não altera
+a matriz:
+
+$$
+A^{102} \cdot B^{3} = I_{2} \cdot \begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix} =
+\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+c) $\begin{bmatrix} 1&3 \\ 0&1 \end{bmatrix}$
+</Answer>
 </Question>
 
 ## Questão 11 <Badge>Cefet MG</Badge>
@@ -197,6 +456,35 @@ $$
   <Alternative>$8$</Alternative>
 </Alternatives>
 
+<Resolution>
+
+Se $A$ é inversa de $B$, então $B \cdot A = I_{2}$:
+
+$$
+B \cdot A =
+\begin{pmatrix} 3 & y \\ -1 & 2 \end{pmatrix}
+\begin{pmatrix} 2 & 5 \\ 1 & x \end{pmatrix}
+=
+\begin{pmatrix} 6+y & 15+xy \\ -2+2 & -5+2x \end{pmatrix}
+=
+\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+$$
+
+Da posição $(1,1)$: $6+y=1 \;\Rightarrow\; y=-5$
+
+Da posição $(2,2)$: $-5+2x=1 \;\Rightarrow\; x=3$
+
+Conferindo na posição $(1,2)$: $15+xy = 15+3(-5) = 0$ ✓
+
+$$
+x - y = 3 - (-5) = 8
+$$
+
+</Resolution>
+
+<Answer>
+e) $8$
+</Answer>
 </Question>
 
 ## Questão 12
@@ -233,6 +521,68 @@ g) $A \times B$
 
 h) $B \times C$
 
+<Resolution>
+
+Em $\vee$ (OU, elemento a elemento) e $\wedge$ (E, elemento a elemento):
+
+$$
+A \vee B = \begin{pmatrix} 1&0 \\ 1&1 \end{pmatrix}
+\qquad
+A \vee C = \begin{pmatrix} 1&0 \\ 1&1 \end{pmatrix}
+\qquad
+B \vee C = \begin{pmatrix} 1&0 \\ 1&1 \end{pmatrix}
+$$
+
+$$
+A \wedge B = \begin{pmatrix} 0&0 \\ 0&1 \end{pmatrix}
+\qquad
+A \wedge C = \begin{pmatrix} 1&0 \\ 0&1 \end{pmatrix}
+\qquad
+B \wedge C = \begin{pmatrix} 0&0 \\ 1&1 \end{pmatrix}
+$$
+
+Na multiplicação booleana, cada posição $(i,j)$ é o OU dos E entre a linha de
+uma matriz e a coluna da outra:
+
+$$
+A \times B =
+\begin{pmatrix}
+(1\wedge0)\vee(0\wedge1) & (1\wedge0)\vee(0\wedge1) \\
+(0\wedge0)\vee(1\wedge1) & (0\wedge0)\vee(1\wedge1)
+\end{pmatrix}
+=
+\begin{pmatrix} 0&0 \\ 1&1 \end{pmatrix}
+$$
+
+$$
+B \times C =
+\begin{pmatrix}
+(0\wedge1)\vee(0\wedge1) & (0\wedge0)\vee(0\wedge1) \\
+(1\wedge1)\vee(1\wedge1) & (1\wedge0)\vee(1\wedge1)
+\end{pmatrix}
+=
+\begin{pmatrix} 0&0 \\ 1&1 \end{pmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A \vee B = A \vee C = B \vee C = \begin{pmatrix} 1&0 \\ 1&1 \end{pmatrix}
+$$
+
+$$
+A \wedge B = \begin{pmatrix} 0&0 \\ 0&1 \end{pmatrix}
+\qquad
+A \wedge C = \begin{pmatrix} 1&0 \\ 0&1 \end{pmatrix}
+\qquad
+B \wedge C = \begin{pmatrix} 0&0 \\ 1&1 \end{pmatrix}
+$$
+
+$$
+A \times B = B \times C = \begin{pmatrix} 0&0 \\ 1&1 \end{pmatrix}
+$$
+</Answer>
 </Question>
 
 ## Questão 13
@@ -261,6 +611,63 @@ c) $B \times C$ (multiplicação booleana de matrizes)
 
 d) $A \times C$ (multiplicação booleana de matrizes)
 
+<Resolution>
+
+a) Primeiro $C \wedge B$ (E lógico, elemento a elemento):
+
+$$
+C \wedge B =
+\begin{bmatrix} 0&0&1 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+$$
+
+Depois $(C \wedge B) \vee A$ (OU lógico, elemento a elemento):
+
+$$
+(C \wedge B) \vee A =
+\begin{bmatrix} 0&0&1 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+\vee
+\begin{bmatrix} 1&0&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+=
+\begin{bmatrix} 1&0&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+$$
+
+b) Na multiplicação booleana, cada posição $(i,j)$ é $\bigvee_k (a_{ik}
+\wedge b_{kj})$:
+
+$$
+A \times B =
+\begin{bmatrix} 0&1&1 \\ 0&0&0 \\ 0&1&1 \end{bmatrix}
+$$
+
+c) Repetindo o processo para $B \times C$:
+
+$$
+B \times C =
+\begin{bmatrix} 1&1&0 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+$$
+
+d) E para $A \times C$:
+
+$$
+A \times C =
+\begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+(C \wedge B) \vee A = \begin{bmatrix} 1&0&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+$$
+
+$$
+A \times B = \begin{bmatrix} 0&1&1 \\ 0&0&0 \\ 0&1&1 \end{bmatrix}
+\qquad
+B \times C = \begin{bmatrix} 1&1&0 \\ 0&0&0 \\ 0&1&0 \end{bmatrix}
+\qquad
+A \times C = \begin{bmatrix} 1&1&1 \\ 0&1&0 \\ 1&1&1 \end{bmatrix}
+$$
+</Answer>
 </Question>
 
 ## Questão 14
@@ -273,6 +680,37 @@ $$
 A = \{-4, -1, 8, 23, 44, 71, \ldots\}
 $$
 
+<Resolution>
+
+As diferenças sucessivas são $3, 9, 15, 21, 27$, e as segundas diferenças são
+constantes e iguais a $6$ — logo o termo geral é de $2°$ grau: $f(x) = ax^{2}
++ bx + c$, com $x = 0, 1, 2, \ldots$
+
+$$
+f(0) = c = -4
+$$
+
+$$
+f(1) = a+b+c = -1 \;\Rightarrow\; a+b = 3
+$$
+
+$$
+f(2) = 4a+2b+c = 8 \;\Rightarrow\; 4a+2b = 12 \;\Rightarrow\; 2a+b = 6
+$$
+
+Subtraindo $a+b=3$ de $2a+b=6$: $a = 3$, logo $b = 0$.
+
+$$
+f(x) = 3x^{2} - 4
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A = \{x \in \mathbb{Z} \mid x = 3n^{2}-4,\ n \in \mathbb{N}\}
+$$
+</Answer>
 </Question>
 
 ## Questão 15
@@ -285,6 +723,26 @@ $$
 A = \{2, 7, 12, 17, 22, 27, 32, \ldots\}
 $$
 
+<Resolution>
+
+As diferenças sucessivas são constantes e iguais a $5$ — logo o termo geral é
+de $1°$ grau: $f(x) = ax+b$, com $x = 0, 1, 2, \ldots$
+
+$$
+f(0) = b = 2 \qquad f(1) = a+b = 7 \;\Rightarrow\; a = 5
+$$
+
+$$
+f(x) = 5x + 2
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A = \{x \in \mathbb{N} \mid x = 5n+2,\ n \in \mathbb{N}\}
+$$
+</Answer>
 </Question>
 
 ## Questão 16
@@ -297,6 +755,48 @@ $$
 A = \{3, 4, 11, 30, 67, 128, \ldots\}
 $$
 
+<Resolution>
+
+As diferenças sucessivas são $1, 7, 19, 37, 61$; as segundas diferenças são
+$6, 12, 18, 24$; e as terceiras diferenças são constantes e iguais a $6$ —
+logo o termo geral é de $3°$ grau: $f(x) = ax^{3}+bx^{2}+cx+d$, com $x = 0,
+1, 2, 3, \ldots$
+
+$$
+f(0) = d = 3
+$$
+
+$$
+f(1) = a+b+c+d = 4 \;\Rightarrow\; a+b+c = 1
+$$
+
+$$
+f(2) = 8a+4b+2c+d = 11 \;\Rightarrow\; 4a+2b+c = 4
+$$
+
+$$
+f(3) = 27a+9b+3c+d = 30 \;\Rightarrow\; 9a+3b+c = 9
+$$
+
+Subtraindo cada equação da seguinte para eliminar $c$:
+
+$$
+3a+b = 3 \qquad 5a+b = 5
+$$
+
+Subtraindo novamente: $2a = 2 \;\Rightarrow\; a = 1$, logo $b = 0$ e $c = 0$.
+
+$$
+f(x) = x^{3} + 3
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A = \{x \in \mathbb{N} \mid x = n^{3}+3,\ n \in \mathbb{N}\}
+$$
+</Answer>
 </Question>
 
 ## Questão 17
@@ -309,6 +809,37 @@ $$
 A = \{-3, -1, 5, 15, 29, 47, 69, \ldots\}
 $$
 
+<Resolution>
+
+As diferenças sucessivas são $2, 6, 10, 14, 18, 22$; as segundas diferenças
+são constantes e iguais a $4$ — logo o termo geral é de $2°$ grau: $f(x) =
+ax^{2}+bx+c$, com $x = 0, 1, 2, \ldots$
+
+$$
+f(0) = c = -3
+$$
+
+$$
+f(1) = a+b+c = -1 \;\Rightarrow\; a+b = 2
+$$
+
+$$
+f(2) = 4a+2b+c = 5 \;\Rightarrow\; 4a+2b = 8 \;\Rightarrow\; 2a+b = 4
+$$
+
+Subtraindo $a+b=2$ de $2a+b=4$: $a = 2$, logo $b = 0$.
+
+$$
+f(x) = 2x^{2} - 3
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A = \{x \in \mathbb{Z} \mid x = 2n^{2}-3,\ n \in \mathbb{N}\}
+$$
+</Answer>
 </Question>
 
 Sejam $A$, $B$, $C$ e $D$ conjuntos.
@@ -318,6 +849,30 @@ Sejam $A$, $B$, $C$ e $D$ conjuntos.
 <Question>
 Mostre que se $A = B$ e $B = C \Rightarrow A = C$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $(\forall x)\ x \in A \iff x \in B$ e $(\forall y)\ y \in B \iff y
+\in C$.
+
+Logo, $x \in B \Rightarrow x \in C$.
+
+Assim, $x \in A \Rightarrow x \in C$.
+
+Então, $A \subseteq C$.
+
+Já que $y \in C \Rightarrow y \in B$.
+
+Logo, $y \in C \Rightarrow y \in A$.
+
+Assim, $C \subseteq A$.
+
+Logo, como $A \subseteq C$ e $C \subseteq A \Rightarrow A = C$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 19
@@ -325,6 +880,22 @@ Mostre que se $A = B$ e $B = C \Rightarrow A = C$.
 <Question>
 Mostre que $A \subseteq B$ e $B \subseteq C \Rightarrow A \subseteq C$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $(\forall x),\ x \in A \Rightarrow x \in B$ e $(\forall y),\ y \in
+B \Rightarrow y \in C$.
+
+Como $y \in C \Rightarrow y \in B$,
+
+Logo, $y \in C \Rightarrow y \in A$.
+
+Assim, $A \subseteq C$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 20
@@ -333,6 +904,34 @@ Mostre que $A \subseteq B$ e $B \subseteq C \Rightarrow A \subseteq C$.
 Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cup C) \subseteq
 (B \cup D)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(A \cup C) = \{x \mid x \in A \text{ ou } x \in C\}
+$$
+
+$$
+(B \cup D) = \{x \mid x \in B \text{ ou } x \in D\}
+$$
+
+Temos que $(\forall x),\ x \in A \Rightarrow x \in B$ e $(\forall y),\ y \in
+C \Rightarrow y \in D$.
+
+Por definição, $x \in (A \cup C) \Rightarrow x \in A$ ou $x \in C$.
+
+Se $x \in A$, temos que $x \in B \Rightarrow x \in (B \cup D)$,
+
+ou se $x \in C \Rightarrow x \in D$,
+
+Logo, $x \in (B \cup D)$.
+
+Assim, $(A \cup C) \subseteq (B \cup D)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 21
@@ -341,6 +940,33 @@ Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cup C) \subseteq
 Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cap C) \subseteq
 (B \cap D)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(A \cap C) = \{x \mid x \in A \text{ e } x \in C\}
+$$
+
+$$
+(B \cap D) = \{x \mid x \in B \text{ e } x \in D\}
+$$
+
+Temos que $(\forall x),\ x \in A \Rightarrow x \in B$ e $(\forall y),\ y \in
+C \Rightarrow y \in D$.
+
+Por definição, $(\forall z) \in (A \cap C) \Rightarrow z \in A$ e $z \in C$.
+
+No entanto, $(\forall z) \in A \Rightarrow z \in B$ e $(\forall z) \in C
+\Rightarrow z \in D$.
+
+Logo, $(\forall z) \in (A \cap C) \Rightarrow z \in B$ e $z \in D$.
+
+Assim, $(A \cap C) \subseteq (B \cap D)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 22
@@ -348,6 +974,42 @@ Mostre que $A \subseteq B$ e $C \subseteq D \Rightarrow (A \cap C) \subseteq
 <Question>
 Mostre que $A = B$ e $C = D \Rightarrow (A \cup C) = (B \cup D)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(A \cup C) = \{x \mid x \in A \text{ ou } x \in C\}
+$$
+
+$$
+(B \cup D) = \{x \mid x \in B \text{ ou } x \in D\}
+$$
+
+Temos que $(\forall x),\ x \in A \iff x \in B$ e $(\forall y),\ y \in C \iff
+y \in D$.
+
+Vamos provar que $(A \cup C) \subseteq (B \cup D)$.
+
+Para $z \in (A \cup C) \Rightarrow z \in A$ ou $z \in C$.
+
+Se $z \in A \Rightarrow z \in B$, ou se $z \in C \Rightarrow z \in D$.
+
+Logo, $z \in (B \cup D)$.
+
+Agora provaremos que $(B \cup D) \subseteq (A \cup C)$.
+
+Para $w \in (B \cup D) \Rightarrow w \in B$ ou $w \in D$.
+
+Se $w \in B \Rightarrow w \in A$, ou se $w \in D \Rightarrow w \in C$.
+
+Logo, $w \in (A \cup C)$.
+
+Assim, $(A \cup C) = (B \cup D)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 23
@@ -355,6 +1017,42 @@ Mostre que $A = B$ e $C = D \Rightarrow (A \cup C) = (B \cup D)$.
 <Question>
 Mostre que $A = B$ e $C = D \Rightarrow (A \cap C) = (B \cap D)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+(A \cap C) = \{x \mid x \in A \text{ e } x \in C\}
+$$
+
+$$
+(B \cap D) = \{x \mid x \in B \text{ e } x \in D\}
+$$
+
+Temos que $(\forall x),\ x \in A \iff x \in B$ e $(\forall y),\ y \in C \iff
+y \in D$.
+
+Primeiro provaremos que $(B \cap D) \subseteq (A \cap C)$.
+
+Para $z \in (B \cap D) \Rightarrow z \in B$ e $z \in D$.
+
+Logo, $z \in B \Rightarrow z \in A$ e $z \in D \Rightarrow z \in C$.
+
+Assim, $z \in (A \cap C)$.
+
+Agora provaremos que $(A \cap C) \subseteq (B \cap D)$.
+
+Para $w \in (A \cap C) \Rightarrow w \in A$ e $w \in C$.
+
+Logo, $w \in A \Rightarrow w \in B$ e $w \in C \Rightarrow w \in D$.
+
+Assim, $w \in (B \cap D)$.
+
+Portanto, $A=B$ e $C=D \Rightarrow (A \cap C) = (B \cap D)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 24
@@ -362,6 +1060,28 @@ Mostre que $A = B$ e $C = D \Rightarrow (A \cap C) = (B \cap D)$.
 <Question>
 Mostre que $A - A = \{\,\}$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $A - A = \{x \mid x \in A \text{ e } x \notin A\}$.
+
+Assim, $x \in \emptyset$.
+
+Ou seja, $A - A \subseteq \emptyset$.
+
+Agora temos que $\emptyset = \{x \mid x \in A \text{ e } x \notin A\}$.
+
+Ou seja, $x \in A - A$.
+
+Assim, $\emptyset \subseteq A - A$.
+
+Como $A - A \subseteq \emptyset$ e $\emptyset \subseteq A - A$, logo
+$A - A = \{\,\}$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 25
@@ -370,6 +1090,19 @@ Mostre que $A - A = \{\,\}$.
 Prove que $(A \cap B) \subseteq A$, onde $A$ e $B$ são conjuntos
 arbitrários.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $(\forall x) \in (A \cap B) \Rightarrow x \in A$ e $x \in B$.
+
+Logo, $x \in A$.
+
+Assim, $(A \cap B) \subseteq A$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 26
@@ -378,6 +1111,20 @@ arbitrários.
 Prove que $A \subseteq (A \cup B)$, onde $A$ e $B$ são conjuntos
 arbitrários.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $(\forall x) \in A \Rightarrow x \in A$ e $(A \cup B) = \{y
+\mid y \in A \text{ ou } y \in B\}$.
+
+Assim, $x \in (A \cup B)$.
+
+Logo, $A \subseteq (A \cup B)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 27
@@ -385,6 +1132,21 @@ arbitrários.
 <Question>
 Prove que se $A \cup B = A - B$, então $B = \{\,\}$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $(A \cup B) = A - B$.
+
+Logo, $(\forall x) \in (A \cup B) \iff x \in (A - B)$.
+
+Então, $x \in A$ ou $x \in B \iff x \in A$ e $x \notin B$.
+
+Assim, $B = \varnothing$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 28
@@ -392,6 +1154,26 @@ Prove que se $A \cup B = A - B$, então $B = \{\,\}$.
 <Question>
 Prove que se $(A - B) \cup (B - A) = A \cup B$, então $A \cap B = \{\,\}$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $(A-B) = \{x \mid x \in A \text{ e } x \notin B\}$ e $(B-A) =
+\{y \mid y \in B \text{ e } y \notin A\}$.
+
+Assim, $(A-B) \cup (B-A) = \{z \mid z \in (A-B) \text{ ou } z \in (B-A)\}$.
+
+Logo, $(A-B) \cup (B-A) = z \in (A \cup B)$.
+
+Assim, $(A-B) \cup (B-A) = (A \cup B)$.
+
+Logo, $z \notin A \cap B$.
+
+Assim, $A \cap B = \varnothing$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 29
@@ -400,6 +1182,25 @@ Prove que se $(A - B) \cup (B - A) = A \cup B$, então $A \cap B = \{\,\}$.
 Seja $B$ um conjunto finito e $A \subset B$, então mostre que $\mathrm{Card}(A)
 < \mathrm{Card}(B)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\mathrm{Card}(B) = n$, onde $n \in \mathbb{N}$ é a quantidade de
+elementos de $B$.
+
+Como $A \subset B$, então $\mathrm{Card}(A) = m$, onde $m \in \mathbb{N}$ é a
+quantidade de elementos de $A$.
+
+Assim, $\forall x,\ \text{se}\ x \in A \Rightarrow x \in B$.
+
+Ou seja, $m < n$.
+
+Assim, $\mathrm{Card}(A) < \mathrm{Card}(B)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 30
@@ -408,6 +1209,42 @@ Seja $B$ um conjunto finito e $A \subset B$, então mostre que $\mathrm{Card}(A)
 Seja $A = \{x / x \in \mathbb{R} \text{ e } x^{2} - 4x + 3 < 0\}$ e $B =
 \{x / x \in \mathbb{R} \text{ e } 0 < x < 6\}$. Mostre que $A \subset B$.
 
+<Resolution>
+
+Resolvendo a inequação $x^{2}-4x+3<0$ pela fórmula de Bhaskara:
+
+$$
+x = \frac{-(-4) \pm \sqrt{(-4)^{2}-4(1)(3)}}{2(1)} = \frac{4 \pm \sqrt{16-12}}{2}
+= \frac{4 \pm 2}{2}
+$$
+
+$$
+x_{1} = 3 \qquad x_{2} = 1
+$$
+
+Como a parábola tem concavidade para cima, a inequação é negativa entre as
+raízes:
+
+$$
+A = \{x \in \mathbb{R} \mid 1 < x < 3\}
+$$
+
+</Resolution>
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $A = \{x \in \mathbb{R} \mid 1 < x < 3\}$ e $B = \{x \in \mathbb{R}
+\mid 0 < x < 6\}$.
+
+Assim, $\forall x \in A \Rightarrow x \in B$.
+
+Logo, $A \subset B$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 31
@@ -416,6 +1253,29 @@ Seja $A = \{x / x \in \mathbb{R} \text{ e } x^{2} - 4x + 3 < 0\}$ e $B =
 Em relação ao conjunto $A = \{1, 2, 3, 4\}$, quantos subconjuntos ele
 possui? Quais são eles?
 
+<Resolution>
+
+Um conjunto com $n$ elementos possui $2^{n}$ subconjuntos. Como $A$ tem $4$
+elementos:
+
+$$
+2^{4} = 16 \text{ subconjuntos}
+$$
+
+</Resolution>
+
+<Answer>
+$16$ subconjuntos:
+
+$$
+\varnothing,\ \{1\},\ \{2\},\ \{3\},\ \{4\},\ \{1,2\},\ \{1,3\},\ \{1,4\},\
+\{2,3\},\ \{2,4\},\ \{3,4\},
+$$
+
+$$
+\{1,2,3\},\ \{1,2,4\},\ \{1,3,4\},\ \{2,3,4\},\ \{1,2,3,4\}
+$$
+</Answer>
 </Question>
 
 ## Questão 32
@@ -425,6 +1285,27 @@ Sejam os conjuntos $A = \{x \in \mathbb{N} / x \text{ é múltiplo de } 2\}$
 e $B = \{x \in \mathbb{N} / x \text{ é múltiplo de } 6\}$. Assim sendo,
 mostre que $B \subseteq A$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $A = \{x \in \mathbb{N} \mid x = 2k,\ \text{com}\ k \in
+\mathbb{Z}\}$ e $B = \{y \in \mathbb{N} \mid y = 6m,\ \text{com}\ m \in
+\mathbb{Z}\}$.
+
+Assim, $x = 2k \in A$.
+
+Agora, $y = 6m \in B \Rightarrow y = 3 \cdot 2m \in B$.
+
+Logo, $y = 3x$.
+
+Assim, $y \in A$.
+
+Logo, $B \subseteq A$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 33
@@ -434,6 +1315,27 @@ Sejam os conjuntos $A = \{x \in \mathbb{N} / x \text{ é múltiplo de } 5\}$
 e $B = \{x \in \mathbb{N} / x \text{ é múltiplo de } 10\}$. Assim sendo,
 mostre que $B \subseteq A$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Por definição, $A = \{x \in \mathbb{N} \mid x = 5k,\ \text{com}\ k \in
+\mathbb{Z}\}$ e $B = \{y \in \mathbb{N} \mid y = 10m,\ \text{com}\ m \in
+\mathbb{Z}\}$.
+
+Assim, $x = 5k \in A$.
+
+Agora, $y = 10m \in B \Rightarrow y = 2 \cdot 5m \in B$.
+
+Logo, $y = 2x$.
+
+Assim, $y \in A$.
+
+Logo, $B \subseteq A$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 34
@@ -442,6 +1344,40 @@ mostre que $B \subseteq A$.
 Seja $A = \{x / x \in \mathbb{N} \text{ e } x^{2} < 15\}$ e $B = \{x /
 x \in \mathbb{N} \text{ e } 2x < 7\}$. Então mostre que $A = B$.
 
+<Resolution>
+
+$A$: valores naturais com $x^{2}<15$ são $x = 0,1,2,3$ (pois $4^{2}=16 \geq
+15$).
+
+$$
+A = \{0,1,2,3\}
+$$
+
+$B$: valores naturais com $2x<7$, ou seja $x<3{,}5$, são $x = 0,1,2,3$.
+
+$$
+B = \{0,1,2,3\}
+$$
+
+</Resolution>
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\forall x \in B \Rightarrow x \in \mathbb{N}$ e $2x<7$.
+
+Logo, $x = 0,1,2,3$.
+
+Assim, $x^{2}<15$.
+
+Ou seja, $x \in A$.
+
+Consequentemente, $B \subseteq A$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 35
@@ -457,6 +1393,23 @@ c) Encontre $A^{2}$.
 
 d) Encontre $B^{2}$.
 
+<Answer>
+$$
+A \times B = \{(1,3), (1,4), (2,3), (2,4)\}
+$$
+
+$$
+B \times A = \{(3,1), (3,2), (4,1), (4,2)\}
+$$
+
+$$
+A^{2} = A \times A = \{(1,1), (1,2), (2,1), (2,2)\}
+$$
+
+$$
+B^{2} = B \times B = \{(3,3), (3,4), (4,3), (4,4)\}
+$$
+</Answer>
 </Question>
 
 ## Questão 36
@@ -472,6 +1425,23 @@ c) $C = \{x / x \in \mathbb{C} \text{ e } x^{2} = -9\}$
 
 d) $D = \{x / x \in \mathbb{Z} \text{ e } |x| < 4\}$
 
+<Answer>
+$$
+A = \{0, 1, 2, 3, 4\}
+$$
+
+$$
+B = \{4, 6, 8, 10\}
+$$
+
+$$
+C = \{-3i,\ 3i\}
+$$
+
+$$
+D = \{-3, -2, -1, 0, 1, 2, 3\}
+$$
+</Answer>
 </Question>
 
 ## Questão 37
@@ -485,6 +1455,34 @@ a) $A = \{x / x \in \mathbb{N},\ \exists q\, (q \in \{2, 3\} \text{ e } x =
 b) $B = \{x / \exists y\, \exists z\, (y \in \mathbb{N},\ y \in \{0, 1\},\
 z \in \{3, 4\} \text{ e } y < x < z)\}$
 
+<Resolution>
+
+a) Para $q=2$: $x=4$. Para $q=3$: $x=6$.
+
+$$
+A = \{4, 6\}
+$$
+
+b) Testando as combinações de $y \in \{0,1\}$ e $z \in \{3,4\}$:
+
+$$
+y=0,\ z=3 \Rightarrow x \in \{1,2\} \qquad y=0,\ z=4 \Rightarrow x \in
+\{1,2,3\}
+$$
+
+$$
+y=1,\ z=3 \Rightarrow x \in \{2\} \qquad y=1,\ z=4 \Rightarrow x \in \{2,3\}
+$$
+
+A união de todos os $x$ possíveis é $\{1,2,3\}$.
+
+</Resolution>
+
+<Answer>
+$$
+A = \{4, 6\} \qquad B = \{1, 2, 3\}
+$$
+</Answer>
 </Question>
 
 ## Questão 38
@@ -492,6 +1490,23 @@ z \in \{3, 4\} \text{ e } y < x < z)\}$
 <Question>
 Prove que se $A \subseteq B$, então $\mathcal{P}(A) \subseteq \mathcal{P}(B)$.
 
+<Answer>
+Dem.:
+
+<Proof>
+
+Seja $X \in \mathcal{P}(A)$, então $X \subseteq A$.
+
+Como $A \subseteq B$, todo elemento de $X$ também está em $A$ e,
+consequentemente, em $B$. Logo, $X \subseteq B$.
+
+Assim, $X \in \mathcal{P}(B)$.
+
+Como $X$ era um elemento arbitrário de $\mathcal{P}(A)$, então
+$\mathcal{P}(A) \subseteq \mathcal{P}(B)$. $\blacksquare$
+
+</Proof>
+</Answer>
 </Question>
 
 ## Questão 39
@@ -500,6 +1515,25 @@ Prove que se $A \subseteq B$, então $\mathcal{P}(A) \subseteq \mathcal{P}(B)$.
 Se $A$ é um conjunto tal que $n(A \times A) = 9$ e $\{(2,4), (4,5)\} \subset A
 \times A$, determinar $A \times A$.
 
+<Resolution>
+
+Como $n(A \times A) = n(A)^{2} = 9$, então $n(A) = 3$.
+
+Os pares $(2,4)$ e $(4,5)$ pertencem a $A \times A$, então $2, 4, 5 \in A$.
+Como $A$ tem exatamente $3$ elementos:
+
+$$
+A = \{2, 4, 5\}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A \times A = \{(2,2), (2,4), (2,5), (4,2), (4,4), (4,5), (5,2), (5,4),
+(5,5)\}
+$$
+</Answer>
 </Question>
 
 ## Questão 40
@@ -508,6 +1542,19 @@ Se $A$ é um conjunto tal que $n(A \times A) = 9$ e $\{(2,4), (4,5)\} \subset A
 Dados os conjuntos $A = \{3, 4, 6\}$, $B = \{1, 2\}$ e $C = \{3, 6, 9, 12\}$,
 determine o conjunto $(C - A) \times B$.
 
+<Resolution>
+
+$$
+C - A = \{9, 12\}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+(C - A) \times B = \{(9,1), (9,2), (12,1), (12,2)\}
+$$
+</Answer>
 </Question>
 
 ## Questão 41
@@ -517,6 +1564,35 @@ Dado o conjunto $A = \{0, 1\}$, calcule os valores numéricos que assume o
 trinômio $2x + xy - 5y$ para todos os pares ordenados $(x, y)$ que pertencem
 ao produto $A \times A$.
 
+<Resolution>
+
+$$
+A \times A = \{(0,0), (0,1), (1,0), (1,1)\}
+$$
+
+Substituindo cada par no trinômio $2x+xy-5y$:
+
+$$
+(0,0):\ 2(0)+0(0)-5(0) = 0
+$$
+
+$$
+(0,1):\ 2(0)+0(1)-5(1) = -5
+$$
+
+$$
+(1,0):\ 2(1)+1(0)-5(0) = 2
+$$
+
+$$
+(1,1):\ 2(1)+1(1)-5(1) = -2
+$$
+
+</Resolution>
+
+<Answer>
+$(0,0) \to 0$, $(0,1) \to -5$, $(1,0) \to 2$, $(1,1) \to -2$
+</Answer>
 </Question>
 
 ## Questão 42 <Badge>FTD, adaptada</Badge>
@@ -526,6 +1602,27 @@ Considere dois conjuntos $A$ e $B$ não vazios. A união desses conjuntos
 possui $31$ elementos, e a intersecção $9$ elementos. Sabendo que há $21$
 elementos em $B$, determine a quantidade de elementos em $A$.
 
+<Resolution>
+
+Pelo princípio da inclusão-exclusão:
+
+$$
+n(A \cup B) = n(A) + n(B) - n(A \cap B)
+$$
+
+$$
+31 = n(A) + 21 - 9
+$$
+
+$$
+n(A) = 31 - 21 + 9 = 19
+$$
+
+</Resolution>
+
+<Answer>
+$A$ possui $19$ elementos.
+</Answer>
 </Question>
 
 ## Questão 43 <Badge>FTD, adaptada</Badge>
@@ -543,6 +1640,25 @@ $$
 
 então quais são todos os elementos do conjunto $A \cap B$?
 
+<Resolution>
+
+$A \cap B$ é o que sobra de $A \cup B$ ao remover os elementos exclusivos de
+$A$ ($A-B$) e os exclusivos de $B$ ($B-A$):
+
+$$
+A \cap B = (A \cup B) - (A-B) - (B-A)
+$$
+
+Removendo $\{1,2,6,7\}$ e $\{-1,0,8,9,10\}$ de $\{-1,0,1,2,3,4,5,6,7,8,9,10,11,12\}$,
+sobram $\{3,4,5,11,12\}$.
+
+</Resolution>
+
+<Answer>
+$$
+A \cap B = \{3, 4, 5, 11, 12\}
+$$
+</Answer>
 </Question>
 
 ## Questão 44 <Badge>PUCC, adaptada</Badge>
@@ -565,4 +1681,18 @@ representado por qual das regiões a seguir?
   <Alternative>$R_1 \cup R_4$</Alternative>
 </Alternatives>
 
+<Resolution>
+
+$$
+A - B = [0, 3) \qquad B - A = (5, 7]
+$$
+
+O produto $(A-B) \times (B-A)$ é o retângulo com $x \in [0,3)$ e $y \in
+(5,7]$ — o quadrante superior esquerdo do diagrama.
+
+</Resolution>
+
+<Answer>
+d) $R_{4}$, pois $(A-B)\times(B-A) = [0,3) \times (5,7]$.
+</Answer>
 </Question>
