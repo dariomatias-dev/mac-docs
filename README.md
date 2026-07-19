@@ -8,7 +8,7 @@
 <br>
 
 <p align="center">
-<strong>Language:</strong> English | <a href="README.pt.md">Português</a>
+<strong>Language:</strong> English | <a href="README.pt-BR.md">Português (Brasil)</a> | <a href="README.es.md">Español</a>
 </p>
 
 <p align="center">
@@ -133,10 +133,10 @@ details.
 
 ## Author
 
-Developed by **Dário Matias**:
+Developed by **Dário Matias Sales**:
 
 - Portfolio: [https://dariomatias-dev.com](https://dariomatias-dev.com)
 - GitHub: [https://github.com/dariomatias-dev](https://github.com/dariomatias-dev)
-- Email: [matiasdario75@gmail.com](mailto:matiasdario75@gmail.com)
+- Email: [dariomatias.dev@gmail.com](mailto:dariomatias.dev@gmail.com)
 - Instagram: [https://instagram.com/dariomatias_dev](https://instagram.com/dariomatias_dev)
 - LinkedIn: [https://linkedin.com/in/dariomatias-dev](https://linkedin.com/in/dariomatias-dev)
