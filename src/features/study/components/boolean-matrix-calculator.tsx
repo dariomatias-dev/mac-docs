@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react";
 
+import { andMatrices, booleanProduct, orMatrices, type BitMatrix } from "../lib/boolean-matrix-ops";
 import { CalculatorCard, OperatorPicker } from "./calculator-shell";
-import { DimensionSelect, MatrixBox, resizeMatrix } from "./matrix-grid";
+import { BitMatrixGrid, DimensionSelect, resizeMatrix } from "./matrix-grid";
 
-type BitMatrix = (0 | 1)[][];
 type Operation = "or" | "and" | "multiply";
 
 const OPERATIONS: { id: Operation; label: string }[] = [
@@ -13,63 +13,6 @@ const OPERATIONS: { id: Operation; label: string }[] = [
   { id: "and", label: "Produto booleano (A ∧ B)" },
   { id: "multiply", label: "Produto de matrizes (A ⊙ B)" },
 ];
-
-function orMatrices(a: BitMatrix, b: BitMatrix): BitMatrix {
-  return a.map((row, i) => row.map((v, j) => (v === 1 || b[i][j] === 1 ? 1 : 0)));
-}
-
-function andMatrices(a: BitMatrix, b: BitMatrix): BitMatrix {
-  return a.map((row, i) => row.map((v, j) => (v === 1 && b[i][j] === 1 ? 1 : 0)));
-}
-
-function booleanProduct(a: BitMatrix, b: BitMatrix): BitMatrix {
-  const cols = b[0].length;
-  return a.map((row) =>
-    Array.from({ length: cols }, (_, j) => (row.some((v, k) => v === 1 && b[k][j] === 1) ? 1 : 0)),
-  );
-}
-
-function BitMatrixGrid({
-  matrix,
-  onToggle,
-  editable,
-}: {
-  matrix: BitMatrix;
-  onToggle?: (row: number, col: number) => void;
-  editable: boolean;
-}) {
-  return (
-    <MatrixBox>
-      <div
-        className="grid gap-1"
-        style={{ gridTemplateColumns: `repeat(${matrix[0]?.length ?? 1}, minmax(0, 1fr))` }}
-      >
-        {matrix.map((row, i) =>
-          row.map((value, j) =>
-            editable ? (
-              <button
-                key={`${i}-${j}`}
-                type="button"
-                onClick={() => onToggle?.(i, j)}
-                aria-label={`Alternar elemento linha ${i + 1}, coluna ${j + 1}, valor atual ${value}`}
-                className="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex h-8 w-8 cursor-pointer items-center justify-center rounded border text-sm font-semibold transition-colors"
-              >
-                {value}
-              </button>
-            ) : (
-              <div
-                key={`${i}-${j}`}
-                className="text-foreground flex h-8 w-8 items-center justify-center font-mono text-sm"
-              >
-                {value}
-              </div>
-            ),
-          ),
-        )}
-      </div>
-    </MatrixBox>
-  );
-}
 
 export function BooleanMatrixCalculator() {
   const [rowsA, setRowsA] = useState(2);

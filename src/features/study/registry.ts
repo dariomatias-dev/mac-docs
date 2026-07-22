@@ -1,11 +1,13 @@
 import { Alternative, Alternatives } from "./components/alternatives";
 import { Badge } from "./components/badge";
 import { BooleanMatrixCalculator } from "./components/boolean-matrix-calculator";
+import { BooleanMatrixExercise } from "./components/boolean-matrix-exercise";
 import { Callout } from "./components/callout";
 import { Collapsible } from "./components/collapsible";
 import { Answer, Exercise } from "./components/exercise";
 import { Marker } from "./components/marker";
 import { MatrixCalculator } from "./components/matrix-calculator";
+import { MatrixExercise } from "./components/matrix-exercise";
 import { PixelGrid } from "./components/pixel-grid";
 import { Proof } from "./components/proof";
 import { Question } from "./components/question";
@@ -38,4 +40,6 @@ export const mdxComponents = {
   SetCalculator,
   MatrixCalculator,
   BooleanMatrixCalculator,
+  MatrixExercise,
+  BooleanMatrixExercise,
 };

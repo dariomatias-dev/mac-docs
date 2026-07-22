@@ -6,7 +6,8 @@ import { Plus, Trash2 } from "lucide-react";
 
 import { CalculatorCard } from "./calculator-shell";
 import { Dropdown, TextField } from "./form-controls";
-import { DimensionSelect, MatrixBox, resizeMatrix } from "./matrix-grid";
+import { addMatrices, multiplyMatrices, scaleMatrix, subMatrices } from "../lib/matrix-ops";
+import { DimensionSelect, MatrixBox, NumberMatrixGrid, resizeMatrix } from "./matrix-grid";
 
 type Matrix = number[][];
 
@@ -26,29 +27,6 @@ const OPERATOR_OPTIONS = [
   { value: "multiply", label: "×" },
   { value: "scalar", label: "escalar ×" },
 ];
-
-function addMatrices(a: Matrix, b: Matrix): Matrix {
-  return a.map((row, i) => row.map((v, j) => v + b[i][j]));
-}
-
-function subMatrices(a: Matrix, b: Matrix): Matrix {
-  return a.map((row, i) => row.map((v, j) => v - b[i][j]));
-}
-
-function scaleMatrix(a: Matrix, k: number): Matrix {
-  return a.map((row) => row.map((v) => v * k));
-}
-
-function multiplyMatrices(a: Matrix, b: Matrix): Matrix {
-  const cols = b[0].length;
-  return a.map((row) =>
-    Array.from({ length: cols }, (_, j) => row.reduce((sum, v, k) => sum + v * b[k][j], 0)),
-  );
-}
-
-function formatCell(n: number): string {
-  return Number.isInteger(n) ? String(n) : n.toFixed(2);
-}
 
 function isZero(m: Matrix): boolean {
   return m.every((row) => row.every((v) => v === 0));
@@ -107,28 +85,6 @@ function MatrixInput({
               className="bg-surface h-9 w-9 rounded text-center text-xs"
               aria-label={`Elemento linha ${i + 1}, coluna ${j + 1}`}
             />
-          )),
-        )}
-      </div>
-    </MatrixBox>
-  );
-}
-
-function MatrixOutput({ matrix }: { matrix: Matrix }) {
-  return (
-    <MatrixBox>
-      <div
-        className="grid gap-1"
-        style={{ gridTemplateColumns: `repeat(${matrix[0]?.length ?? 1}, minmax(0, 1fr))` }}
-      >
-        {matrix.map((row, i) =>
-          row.map((value, j) => (
-            <div
-              key={`${i}-${j}`}
-              className="text-foreground flex h-9 w-9 items-center justify-center font-mono text-xs"
-            >
-              {formatCell(value)}
-            </div>
           )),
         )}
       </div>
@@ -451,7 +407,7 @@ export function MatrixCalculator() {
           {result.error ? (
             <p className="text-sm text-red-600 dark:text-red-400">{result.error}</p>
           ) : (
-            result.final && <MatrixOutput matrix={result.final} />
+            result.final && <NumberMatrixGrid matrix={result.final} />
           )}
         </div>
 
@@ -479,7 +435,7 @@ export function MatrixCalculator() {
                   Comparando com a ordem trocada
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <MatrixOutput matrix={commutativityCheck.reverse} />
+                  <NumberMatrixGrid matrix={commutativityCheck.reverse} />
                   <p
                     className={`text-sm ${
                       commutativityCheck.commutes
