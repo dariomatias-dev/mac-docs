@@ -1,0 +1,1491 @@
+---
+title: Lista 3 — Técnicas de demonstração, indução e recursão
+description: Lista de exercícios 3 de Matemática Aplicada à Computação (2024.2), com resolução comentada.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/direta
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/contraposicao
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/contradicao
+---
+
+Lista de exercícios 3 de **Matemática Aplicada à Computação** — Instituto
+Federal da Paraíba, curso de Tecnologia em Análise e Desenvolvimento de
+Sistemas, 1º período, semestre **2024.2**. Cobre demonstração direta,
+contrapositiva, contradição, indução matemática e recursão. Tente cada
+questão sozinho antes de abrir a **resposta**.
+
+## Questão 1
+
+<Question>
+Sejam $x$ e $y$ inteiros pares. Prove, de forma direta, que $x + y$ é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Como $x$ e $y$ são pares,
+
+$$
+x = 2a,\; y = 2b,\; \text{com } a, b \in \mathbb{Z}
+$$
+
+$$
+x + y = 2a + 2b = 2(a+b)
+$$
+
+Como $a, b \in \mathbb{Z} \Rightarrow a+b \in \mathbb{Z}$.
+
+$$
+\therefore x+y \text{ é par} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 2
+
+<Question>
+Seja $n$ um inteiro ímpar. Prove, de forma direta, que $n^{2}$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Como $n$ é ímpar, $n = 2a+1$, com $a \in \mathbb{Z}$.
+
+$$
+n^{2} = (2a+1)^{2} = 4a^{2}+2a+1 = 2(2a^{2}+a)+1
+$$
+
+Como $a \in \mathbb{Z} \Rightarrow 2a^{2}+a \in \mathbb{Z}$.
+
+$$
+\therefore n^{2} \text{ é ímpar} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 3
+
+<Question>
+Dê uma demonstração direta ao teorema "Se $x$ é divisível por $6$, então
+$2x$ é divisível por $4$".
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+x = 6a,\; \text{com } a \in \mathbb{Z} \Rightarrow
+$$
+
+$$
+2x = 2 \cdot 6a = 12a = 4(3a)
+$$
+
+Como $a \in \mathbb{Z} \Rightarrow 3a \in \mathbb{Z}$.
+
+$$
+\therefore 2x \text{ é divisível por } 4 \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4
+
+<Question>
+Prove pela contrapositiva que "Se $3n+2$ é ímpar, com $n \in \mathbb{Z}$,
+então $n$ é ímpar".
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, supomos que $n$ é par:
+
+$$
+n = 2a,\; \text{com } a \in \mathbb{Z}
+$$
+
+$$
+3n+2 = 3(2a)+2 = 6a+2 = 2(3a+1)
+$$
+
+Logo, $3n+2$ é par, ou seja $\lnot q \Rightarrow \lnot p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5
+
+<Question>
+Seja $n = a \cdot b$, com $a, b \in \mathbb{Z}_{+}$. Prove pela contrapositiva
+que $a \le \sqrt{n}$ ou $b \le \sqrt{n}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, supomos $a > \sqrt{n}$ e $b > \sqrt{n}$.
+
+$$
+a \cdot b > \sqrt{n} \cdot \sqrt{n} = n
+$$
+
+Logo, $n = a \cdot b > n$, contradizendo a hipótese, ou seja $\lnot q
+\Rightarrow \lnot p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 6
+
+<Question>
+Seja $x$ tal que $x + x = x$. Prove que $x = 0$.
+
+<Answer>
+Dem.: por álgebra direta
+
+<Proof>
+
+$$
+x+x = x \Rightarrow 2x = x \Rightarrow 2x - x = x - x \Rightarrow x = 0
+$$
+
+$$
+\therefore x = 0 \quad \blacksquare
+$$
+
+</Proof>
+
+Dem.: por contradição
+
+<Proof>
+
+Suponha, por contradição, que $x+x=x$ e $x \ne 0$.
+
+$$
+x+x=x \Rightarrow 2x = x
+$$
+
+Como $x \ne 0$, podemos dividir os dois lados por $x$:
+
+$$
+2 = \frac{x}{x} = 1 \quad (\rightarrow\leftarrow)
+$$
+
+Absurdo. Logo a suposição $x \ne 0$ é falsa.
+
+$$
+\therefore x = 0 \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 7
+
+<Question>
+Mostre que $\forall n \in \mathbb{N}$, se $n \le 5$, então $n^{2} \le 5n+10$.
+
+<Answer>
+Dem.: por exaustão (domínio finito $n \in \{0,1,2,3,4,5\}$)
+
+<Proof>
+
+$$
+n=0 \Rightarrow 0^{2} \le 5(0)+10 \Rightarrow 0 \le 10
+$$
+
+$$
+n=1 \Rightarrow 1^{2} \le 5(1)+10 \Rightarrow 1 \le 15
+$$
+
+$$
+n=2 \Rightarrow 2^{2} \le 5(2)+10 \Rightarrow 4 \le 20
+$$
+
+$$
+n=3 \Rightarrow 3^{2} \le 5(3)+10 \Rightarrow 9 \le 25
+$$
+
+$$
+n=4 \Rightarrow 4^{2} \le 5(4)+10 \Rightarrow 16 \le 30
+$$
+
+$$
+n=5 \Rightarrow 5^{2} \le 5(5)+10 \Rightarrow 25 \le 35 \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8
+
+<Question>
+Seja $n$ um inteiro par. Prove que $n^{2}$ é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+n = 2a,\; \text{com } a \in \mathbb{Z} \Rightarrow n^{2} = (2a)^{2} = 4a^{2} =
+2(2a^{2})
+$$
+
+Como $a \in \mathbb{Z} \Rightarrow 2a^{2} \in \mathbb{Z}$.
+
+$$
+\therefore n^{2} \text{ é par} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9
+
+<Question>
+Prove por contradição que $\sqrt{2}$ é um número irracional.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Suponha, por contradição, que $\sqrt{2}$ é racional:
+
+$$
+\sqrt{2} = \frac{a}{b}, \text{ com } a, b \text{ primos entre si e } b \ne 0
+$$
+
+$$
+2 = \frac{a^{2}}{b^{2}} \Rightarrow a^{2} = 2b^{2}
+$$
+
+Logo $a^{2}$ é par $\Rightarrow a$ é par (Questão 8). Então $a = 2k$, com $k
+\in \mathbb{Z}$:
+
+$$
+(2k)^{2} = 2b^{2} \Rightarrow 4k^{2} = 2b^{2} \Rightarrow b^{2} = 2k^{2}
+$$
+
+Logo $b^{2}$ é par $\Rightarrow b$ é par.
+
+Como $a$ e $b$ são pares, ambos têm o fator $2$ em comum, o que contradiz a
+hipótese de que são primos entre si $(\rightarrow\leftarrow)$.
+
+$$
+\therefore \sqrt{2} \text{ é irracional} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 10
+
+<Question>
+Sejam $m$ e $n$ inteiros ímpares. Prove que $m+n$ é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+m = 2k+1,\; n = 2q+1,\; \text{com } k, q \in \mathbb{Z}
+$$
+
+$$
+m+n = (2k+1)+(2q+1) = 2k+2q+2 = 2(k+q+1)
+$$
+
+Como $k, q \in \mathbb{Z} \Rightarrow k+q+1 \in \mathbb{Z}$.
+
+$$
+\therefore m+n \text{ é par} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 11
+
+<Question>
+Sejam $x$ e $y$ inteiros ímpares. Prove que $x \cdot y$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+x = 2k+1,\; y = 2q+1,\; \text{com } k, q \in \mathbb{Z}
+$$
+
+$$
+x \cdot y = (2k+1)(2q+1) = 4kq+2k+2q+1 = 2(2kq+k+q)+1
+$$
+
+Como $k, q \in \mathbb{Z} \Rightarrow 2kq+k+q \in \mathbb{Z}$.
+
+$$
+\therefore x \cdot y \text{ é ímpar} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 12
+
+<Question>
+Seja $x \cdot y$ ímpar, com $x, y \in \mathbb{Z}$. Prove por contradição que
+$x$ e $y$ são ímpares.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Suponha, por contradição, que $x \cdot y$ é ímpar mas $x$ e $y$ são pares.
+
+$$
+x = 2k,\; y = 2q,\; \text{com } k, q \in \mathbb{Z}
+$$
+
+$$
+x \cdot y = 2k \cdot 2q = 4kq = 2(2kq)
+$$
+
+Logo $x \cdot y$ é par, contradizendo a hipótese $(\rightarrow\leftarrow)$.
+
+$$
+\therefore x \text{ e } y \text{ são ímpares} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 13
+
+<Question>
+Seja $a \ge 0$ com $a^{2} \le 1$. Prove pela contrapositiva que $a \le 1$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, suponha $a > 1$.
+
+$$
+a > 1 \Rightarrow a^{2} > 1^{2} \Rightarrow a^{2} > 1
+$$
+
+Ou seja, $\lnot q \Rightarrow \lnot p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 14
+
+<Question>
+Sejam $a$, $b$ e $c$ três inteiros consecutivos. Prove que $a+b+c$ é
+divisível por $3$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $a = i$, $b = i+1$ e $c = i+2$, com $i \in \mathbb{Z}$.
+
+$$
+a+b+c = i+(i+1)+(i+2) = 3i+3 = 3(i+1)
+$$
+
+Como $i \in \mathbb{Z} \Rightarrow i+1 \in \mathbb{Z}$.
+
+$$
+\therefore a+b+c \text{ é divisível por } 3 \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 15
+
+<Question>
+Seja $a$ um inteiro ímpar. Prove que $a^{2}+3a+5$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+a = 2k+1,\; \text{com } k \in \mathbb{Z}
+$$
+
+$$
+a^{2}+3a+5 = (2k+1)^{2}+3(2k+1)+5 = 4k^{2}+4k+1+6k+3+5
+$$
+
+$$
+a^{2}+3a+5 = 4k^{2}+10k+9 = 2(2k^{2}+5k+4)+1
+$$
+
+Como $k \in \mathbb{Z} \Rightarrow 2k^{2}+5k+4 \in \mathbb{Z}$.
+
+$$
+\therefore a^{2}+3a+5 \text{ é ímpar} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 16
+
+<Question>
+Seja $n \in \mathbb{Z}$. Prove que $n^{2}+3n+4$ é par.
+
+<Answer>
+Dem.: por casos
+
+<Proof>
+
+**Caso $n$ par:** $n = 2k$, com $k \in \mathbb{Z}$.
+
+$$
+n^{2}+3n+4 = (2k)^{2}+3(2k)+4 = 4k^{2}+6k+4 = 2(2k^{2}+3k+2)
+$$
+
+**Caso $n$ ímpar:** $n = 2q+1$, com $q \in \mathbb{Z}$.
+
+$$
+n^{2}+3n+4 = (2q+1)^{2}+3(2q+1)+4 = 4q^{2}+4q+1+6q+3+4
+$$
+
+$$
+n^{2}+3n+4 = 4q^{2}+10q+8 = 2(2q^{2}+5q+4)
+$$
+
+Em ambos os casos, $n^{2}+3n+4 = 2(\text{inteiro})$.
+
+$$
+\therefore n^{2}+3n+4 \text{ é par, para todo } n \in \mathbb{Z} \quad
+\blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 17
+
+<Question>
+Seja $n \in \mathbb{Z}$. Prove que $5n^{2}+3n+1$ é ímpar.
+
+<Answer>
+Dem.: por casos
+
+<Proof>
+
+**Caso $n$ par:** $n = 2k$, com $k \in \mathbb{Z}$.
+
+$$
+5n^{2}+3n+1 = 5(2k)^{2}+3(2k)+1 = 20k^{2}+6k+1 = 2(10k^{2}+3k)+1
+$$
+
+**Caso $n$ ímpar:** $n = 2q+1$, com $q \in \mathbb{Z}$.
+
+$$
+5n^{2}+3n+1 = 5(2q+1)^{2}+3(2q+1)+1 = 5(4q^{2}+4q+1)+6q+3+1
+$$
+
+$$
+5n^{2}+3n+1 = 20q^{2}+20q+5+6q+4 = 20q^{2}+26q+9 = 2(10q^{2}+13q+4)+1
+$$
+
+Em ambos os casos, $5n^{2}+3n+1 = 2(\text{inteiro})+1$.
+
+$$
+\therefore 5n^{2}+3n+1 \text{ é ímpar, para todo } n \in \mathbb{Z} \quad
+\blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 18
+
+<Question>
+Seja $x \in \mathbb{Z}$ tal que $7x+9$ é par. Prove pela contrapositiva que
+$x$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, suponha $x$ par: $x = 2i$, com $i \in \mathbb{Z}$.
+
+$$
+7x+9 = 7(2i)+9 = 14i+9 = 2(7i+4)+1
+$$
+
+Logo $7x+9$ é ímpar, ou seja $\lnot q \Rightarrow \lnot p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 19
+
+<Question>
+Seja $x \in \mathbb{Z}$ tal que $x^{2}-6x+5$ é par. Prove pela contrapositiva
+que $x$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, suponha $x$ par: $x = 2k$, com $k \in \mathbb{Z}$.
+
+$$
+x^{2}-6x+5 = (2k)^{2}-6(2k)+5 = 4k^{2}-12k+5 = 2(2k^{2}-6k)+5
+$$
+
+Como $5$ é ímpar, essa expressão é ímpar, ou seja $\lnot q \Rightarrow \lnot
+p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 20
+
+<Question>
+Sejam $x, y \in \mathbb{R}$ tais que $y^{3}+yx^{2} \le x^{3}+xy^{2}$. Prove
+pela contrapositiva que $y \le x$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela contrapositiva, suponha $y > x$.
+
+$$
+y > x \Rightarrow y(x^{2}+y^{2}) > x(x^{2}+y^{2})
+$$
+
+$$
+y^{3}+yx^{2} > x^{3}+xy^{2}
+$$
+
+Ou seja, $\lnot q \Rightarrow \lnot p$.
+
+$$
+\therefore \text{ A conjectura está certa} \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 21
+
+<Question>
+Prove por contradição que, $\forall x \in \mathbb{R}$, $x^{2}+2x+3 \ne
+(x+1)^{2}-5$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Suponha, por contradição, que existe $x \in \mathbb{R}$ tal que
+
+$$
+x^{2}+2x+3 = (x+1)^{2}-5
+$$
+
+$$
+x^{2}+2x+3 = x^{2}+2x+1-5
+$$
+
+$$
+3 = -4 \quad (\rightarrow\leftarrow)
+$$
+
+Absurdo.
+
+$$
+\therefore x^{2}+2x+3 \ne (x+1)^{2}-5, \text{ para todo } x \in \mathbb{R}
+\quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 22
+
+<Question>
+Prove, por indução, que $1+3+5+\ldots+(2n-1) = n^{2}$ é verdadeira para
+todo $n \in \mathbb{Z}_{+}^{*}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 2(1)-1 = 1^{2} \Rightarrow 1=1$. A equação é
+verdadeira para $n=1$ (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k$. Assim,
+
+$$
+1+3+5+\ldots+(2k-1) = k^{2} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1+3+5+\ldots+(2k-1)+\big[2(k+1)-1\big]
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = k^{2}+2k+2-1 = k^{2}+2k+1 = (k+1)^{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 23
+
+<Question>
+Prove, por indução, que $2^{2n}-1$ é divisível por $3$, para todo inteiro
+positivo $n$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 2^{2(1)}-1 = 3m$, com $m \in \mathbb{Z}
+\Rightarrow 4-1=3 \Rightarrow 3=3$. A equação é verdadeira para $n=1$ (passo
+básico).
+
+**II)** Vamos supor, por indução, que a equação é válida para algum inteiro
+positivo $k$. Assim,
+
+$$
+2^{2k}-1 = 3m,\; \text{com } m \in \mathbb{Z} \quad \text{(hipótese de
+indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 2^{2(k+1)}-1 = 4 \cdot 2^{2k}-1 = 3 \cdot 2^{2k}+\big(2^{2k}-1\big)
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = 3 \cdot 2^{2k}+3m = 3\big(2^{2k}+m\big)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 24
+
+<Question>
+Prove, por indução, que $1+2+\ldots+n = \dfrac{n(n+1)}{2}$, para todo $n \in
+\mathbb{Z}_{+}^{*}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 1 = \dfrac{1(1+1)}{2} \Rightarrow 1=1$. A equação
+é verdadeira para $n=1$ (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k$. Assim,
+
+$$
+1+2+\ldots+k = \frac{k(k+1)}{2} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1+2+\ldots+k+(k+1) \overset{\text{H.I.}}{=} \frac{k(k+1)}{2}+(k+1)
+$$
+
+$$
+P(k+1) = \frac{k(k+1)+2(k+1)}{2} = \frac{(k+1)(k+2)}{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 25
+
+<Question>
+Prove por contradição que a equação $x^{2}-y^{2}=10$ não possui solução
+inteira, isto é, $S = \varnothing$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Suponha, por contradição, que existe solução inteira. Fatorando:
+
+$$
+(x+y)(x-y) = 10
+$$
+
+Como $x, y \in \mathbb{Z}$, os fatores $(x+y)$ e $(x-y)$ têm a mesma
+paridade (ambos pares ou ambos ímpares), pois sua soma $2x$ é sempre par.
+Testando as fatorações de $10$ em dois fatores da mesma paridade:
+
+$$
+x+y=10,\ x-y=1 \Rightarrow 2x=11 \Rightarrow x = \frac{11}{2} \notin
+\mathbb{Z} \quad (\rightarrow\leftarrow)
+$$
+
+$$
+x+y=1,\ x-y=10 \Rightarrow 2x=11 \Rightarrow x = \frac{11}{2} \notin
+\mathbb{Z} \quad (\rightarrow\leftarrow)
+$$
+
+$$
+x+y=2,\ x-y=5 \Rightarrow 2x=7 \Rightarrow x = \frac{7}{2} \notin \mathbb{Z}
+\quad (\rightarrow\leftarrow)
+$$
+
+$$
+x+y=5,\ x-y=2 \Rightarrow 2x=7 \Rightarrow x = \frac{7}{2} \notin \mathbb{Z}
+\quad (\rightarrow\leftarrow)
+$$
+
+Em todos os casos, $x$ não é inteiro — absurdo.
+
+$$
+\therefore S = \varnothing \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 26
+
+<Question>
+Prove, por indução, que $1^{3}+2^{3}+\ldots+n^{3} = (1+2+\ldots+n)^{2}$, para
+todo $n \ge 1$, $n \in \mathbb{Z}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 1^{3} = 1^{2} \Rightarrow 1=1$. A equação é
+verdadeira para $n=1$ (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k \ge 1$. Assim,
+
+$$
+1^{3}+2^{3}+\ldots+k^{3} = (1+2+\ldots+k)^{2} \quad \text{(hipótese de
+indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Usando o resultado
+da Questão 24, $1+2+\ldots+k = \dfrac{k(k+1)}{2}$:
+
+$$
+P(k+1) = 1^{3}+2^{3}+\ldots+k^{3}+(k+1)^{3} \overset{\text{H.I.}}{=}
+\left[\frac{k(k+1)}{2}\right]^{2}+(k+1)^{3}
+$$
+
+$$
+P(k+1) = (k+1)^{2}\left[\frac{k^{2}}{4}+(k+1)\right] = (k+1)^{2} \cdot
+\frac{k^{2}+4k+4}{4} = (k+1)^{2} \cdot \frac{(k+2)^{2}}{4}
+$$
+
+$$
+P(k+1) = \left[\frac{(k+1)(k+2)}{2}\right]^{2} = \big(1+2+\ldots+k+(k+1)\big)^{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 27
+
+<Question>
+Prove, por indução, que $2^{n} > n$, para todo $n \in \mathbb{Z}_{+}^{*}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 2^{1} > 1 \Rightarrow 2 > 1$. Verdadeiro (passo
+básico).
+
+**II)** Vamos supor, por indução, que a desigualdade seja verdadeira para
+algum inteiro $k$. Assim,
+
+$$
+2^{k} > k \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 2^{k+1} = 2^{k} \cdot 2 \overset{\text{H.I.}}{>} 2k
+$$
+
+Como $k \ge 1 \Rightarrow 2k \ge k+1$ (pois $2k-(k+1) = k-1 \ge 0$), então
+
+$$
+2^{k+1} > 2k \ge k+1
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 28
+
+<Question>
+Prove, por indução, que $1\cdot2+2\cdot3+\ldots+n(n+1) =
+\dfrac{n(n+1)(n+2)}{3}$, para todo $n \in \mathbb{Z}_{+}^{*}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 1\cdot2 = \dfrac{1(1+1)(1+2)}{3} \Rightarrow 2 =
+\dfrac{6}{3} \Rightarrow 2=2$. A equação é verdadeira para $n=1$ (passo
+básico).
+
+**II)** Vamos supor, por indução, que a equação valha para algum inteiro
+positivo $k$. Assim,
+
+$$
+1\cdot2+2\cdot3+\ldots+k(k+1) = \frac{k(k+1)(k+2)}{3} \quad \text{(hipótese
+de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1\cdot2+\ldots+k(k+1)+(k+1)(k+2) \overset{\text{H.I.}}{=}
+\frac{k(k+1)(k+2)}{3}+(k+1)(k+2)
+$$
+
+$$
+P(k+1) = \frac{k(k+1)(k+2)+3(k+1)(k+2)}{3} = \frac{(k+1)(k+2)(k+3)}{3}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 29
+
+<Question>
+Prove, por indução, que $n^{2} > n+1$, para todo $n \ge 2$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=2 \Rightarrow 2^{2} > 2+1 \Rightarrow 4 > 3$. Verdadeiro (passo
+básico).
+
+**II)** Vamos supor, por indução, que a desigualdade seja verdadeira para
+algum inteiro $k \ge 2$. Assim,
+
+$$
+k^{2} > k+1 \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+(k+1)^{2} = k^{2}+2k+1 \overset{\text{H.I.}}{>} (k+1)+2k+1 = 3k+2
+$$
+
+Como $k \ge 2 \Rightarrow 3k+2 \ge k+2$ (pois $3k+2-(k+2) = 2k \ge 0$),
+então
+
+$$
+(k+1)^{2} > 3k+2 \ge k+2 = (k+1)+1
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 30
+
+<Question>
+Prove, por indução, que $n^{2} > 3n$, para todo $n \ge 4$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=4 \Rightarrow 4^{2} > 3(4) \Rightarrow 16 > 12$. Verdadeiro
+(passo básico).
+
+**II)** Vamos supor, por indução, que a desigualdade seja verdadeira para
+algum inteiro $k \ge 4$. Assim,
+
+$$
+k^{2} > 3k \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+(k+1)^{2} = k^{2}+2k+1 \overset{\text{H.I.}}{>} 3k+2k+1 = 5k+1
+$$
+
+Como $k \ge 4 \Rightarrow 5k+1 > 3k+3 = 3(k+1)$ (pois $5k+1-(3k+3) = 2k-2 >
+0$), então
+
+$$
+(k+1)^{2} > 5k+1 > 3(k+1)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 31
+
+<Question>
+Seja a sequência recursiva $S(1) = 3$, $S(n) = 4S(n-1)+2$. Calcule
+$S(2), S(3), S(4)$ e $S(5)$.
+
+<Resolution>
+
+$$
+S(2) = 4S(1)+2 = 4(3)+2 = 14
+$$
+
+$$
+S(3) = 4S(2)+2 = 4(14)+2 = 58
+$$
+
+$$
+S(4) = 4S(3)+2 = 4(58)+2 = 234
+$$
+
+$$
+S(5) = 4S(4)+2 = 4(234)+2 = 938
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S(2)=14,\quad S(3)=58,\quad S(4)=234,\quad S(5)=938
+$$
+</Answer>
+</Question>
+
+## Questão 32
+
+<Question>
+Seja a sequência recursiva $S(1) = -4$, $S(2) = -2$, $S(n) = S(n-2)+S(n-1)-3$.
+Calcule $S(3), S(4)$ e $S(5)$.
+
+<Resolution>
+
+$$
+S(3) = S(1)+S(2)-3 = -4-2-3 = -9
+$$
+
+$$
+S(4) = S(2)+S(3)-3 = -2-9-3 = -14
+$$
+
+$$
+S(5) = S(3)+S(4)-3 = -9-14-3 = -26
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S(3)=-9,\quad S(4)=-14,\quad S(5)=-26
+$$
+</Answer>
+</Question>
+
+## Questão 33
+
+<Question>
+Observe a sequência $1, 2, 4, 7, 13, 24, 44, 81, 149, 274, \ldots$ e escreva
+uma definição recursiva para ela.
+
+<Resolution>
+
+Cada termo, a partir do quarto, é a soma dos três termos anteriores. Por
+exemplo:
+
+$$
+a_{4} = 7 = 1+2+4 = a_{1}+a_{2}+a_{3}
+$$
+
+$$
+a_{5} = 13 = 2+4+7 = a_{2}+a_{3}+a_{4}
+$$
+
+$$
+a_{6} = 24 = 4+7+13 = a_{3}+a_{4}+a_{5}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S(1)=1,\quad S(2)=2,\quad S(3)=4,\quad S(n) = S(n-3)+S(n-2)+S(n-1),\; n \ge 4
+$$
+</Answer>
+</Question>
+
+## Questão 34
+
+<Question>
+Prove por indução, usando recursão matemática, que na sequência de
+Fibonacci $F(n+4) = 3F(n+2)-F(n)$, com $n > 0$, $n \in \mathbb{N}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow F(5) = 3F(3)-F(1) \Rightarrow 5 = 3(2)-1
+\Rightarrow 5=5$. Verdadeiro (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro positivo $k$. Assim,
+
+$$
+F(k+4) = 3F(k+2)-F(k) \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$, ou seja, que
+$F(k+5) = 3F(k+3)-F(k+1)$. Assim,
+
+$$
+F(k+5) = F(k+4)+F(k+3) \overset{\text{H.I.}}{=} \big[3F(k+2)-F(k)\big]+F(k+3)
+$$
+
+Como $F(k+2) = F(k)+F(k+1) \Rightarrow -F(k) = F(k+1)-F(k+2)$:
+
+$$
+F(k+5) = 3F(k+2)+F(k+1)-F(k+2)+F(k+3) = 2F(k+2)+F(k+1)+F(k+3)
+$$
+
+Como $F(k+3) = F(k+2)+F(k+1) \Rightarrow F(k+2) = F(k+3)-F(k+1)$:
+
+$$
+F(k+5) = 2\big(F(k+3)-F(k+1)\big)+F(k+1)+F(k+3) = 3F(k+3)-F(k+1)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 35
+
+<Question>
+Escreva uma definição recursiva para a sequência das potências de $2$:
+$1, 2, 4, 8, 16, \ldots$
+
+<Answer>
+$$
+S(0) = 1, \qquad S(n) = 2 \cdot S(n-1),\; n \ge 1
+$$
+</Answer>
+</Question>
+
+## Questão 36
+
+<Question>
+Observe a sequência $1, 3, 7, 15, 31, 63, \ldots$ e escreva uma definição
+recursiva para ela.
+
+<Resolution>
+
+Cada termo é o dobro do anterior mais $1$: $3 = 2(1)+1$, $7 = 2(3)+1$, $15 =
+2(7)+1$, e assim por diante.
+
+</Resolution>
+
+<Answer>
+$$
+S(1) = 1, \qquad S(n) = 2 \cdot S(n-1)+1,\; n \ge 2
+$$
+</Answer>
+</Question>
+
+## Questão 37
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule o $n$-ésimo
+termo da sequência de Fibonacci.
+
+<Answer>
+```
+function FIB(n):
+begin
+  if n == 0:
+    return 0;
+  elif n == 1:
+    return 1;
+  else:
+    return FIB(n - 2) + FIB(n - 1);
+end;
+```
+</Answer>
+</Question>
+
+## Questão 38
+
+<Question>
+Trace a execução do algoritmo da Questão 37 para $n = 8$.
+
+<Resolution>
+
+$$
+FIB(2) = FIB(0)+FIB(1) = 0+1 = 1
+$$
+
+$$
+FIB(3) = FIB(1)+FIB(2) = 1+1 = 2
+$$
+
+$$
+FIB(4) = FIB(2)+FIB(3) = 1+2 = 3
+$$
+
+$$
+FIB(5) = FIB(3)+FIB(4) = 2+3 = 5
+$$
+
+$$
+FIB(6) = FIB(4)+FIB(5) = 3+5 = 8
+$$
+
+$$
+FIB(7) = FIB(5)+FIB(6) = 5+8 = 13
+$$
+
+$$
+FIB(8) = FIB(6)+FIB(7) = 8+13 = 21
+$$
+
+</Resolution>
+
+<Answer>
+$FIB(8) = 21$
+</Answer>
+</Question>
+
+## Questão 39
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule $P(n) = n!$,
+com $n \ge 0$.
+
+<Answer>
+```
+function P(n):
+begin
+  if n == 0:
+    return 1;
+  elif n == 1:
+    return n;
+  else:
+    return n * P(n - 1);
+end;
+```
+</Answer>
+</Question>
+
+## Questão 40
+
+<Question>
+Trace a execução do algoritmo da Questão 39 para $n = 6$.
+
+<Resolution>
+
+$$
+P(1) = 1
+$$
+
+$$
+P(2) = 2 \cdot P(1) = 2 \cdot 1 = 2
+$$
+
+$$
+P(3) = 3 \cdot P(2) = 3 \cdot 2 = 6
+$$
+
+$$
+P(4) = 4 \cdot P(3) = 4 \cdot 6 = 24
+$$
+
+$$
+P(5) = 5 \cdot P(4) = 5 \cdot 24 = 120
+$$
+
+$$
+P(6) = 6 \cdot P(5) = 6 \cdot 120 = 720
+$$
+
+</Resolution>
+
+<Answer>
+$P(6) = 720$
+</Answer>
+</Question>
+
+## Questão 41
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule $p(a, n) =
+a^{n}$, onde $a \in \mathbb{R}^{*}$ e $n \in \mathbb{Z}^{*}$.
+
+<Answer>
+```
+function p(a, n):
+begin
+  if n == 1:
+    return a;
+  else:
+    return a * p(a, n - 1);
+end;
+```
+</Answer>
+</Question>
+
+## Questão 42
+
+<Question>
+Trace a execução do algoritmo da Questão 41 para $p(2, 8)$.
+
+<Resolution>
+
+$$
+p(2,1) = 2
+$$
+
+$$
+p(2,2) = 2 \cdot p(2,1) = 2 \cdot 2 = 4
+$$
+
+$$
+p(2,3) = 2 \cdot p(2,2) = 2 \cdot 4 = 8
+$$
+
+$$
+p(2,4) = 2 \cdot p(2,3) = 2 \cdot 8 = 16
+$$
+
+$$
+p(2,5) = 2 \cdot p(2,4) = 2 \cdot 16 = 32
+$$
+
+$$
+p(2,6) = 2 \cdot p(2,5) = 2 \cdot 32 = 64
+$$
+
+$$
+p(2,7) = 2 \cdot p(2,6) = 2 \cdot 64 = 128
+$$
+
+$$
+p(2,8) = 2 \cdot p(2,7) = 2 \cdot 128 = 256
+$$
+
+</Resolution>
+
+<Answer>
+$p(2,8) = 256$
+</Answer>
+</Question>
+
+## Questão 43
+
+<Question>
+Sabendo que $-3$ é raiz de $p(x) = x^{4}+x^{3}-5x^{2}+x-6$, determine todas
+as raízes de $p(x)$.
+
+<Resolution>
+
+Dividindo $p(x)$ por $(x+3)$:
+
+$$
+x^{4}+x^{3}-5x^{2}+x-6 = (x+3)(x^{3}-2x^{2}+x-2)
+$$
+
+Fatorando o quociente por agrupamento:
+
+$$
+x^{3}-2x^{2}+x-2 = x^{2}(x-2)+1(x-2) = (x-2)(x^{2}+1)
+$$
+
+Assim, $p(x) = (x+3)(x-2)(x^{2}+1)$. As raízes vêm de $x+3=0$, $x-2=0$ e
+$x^{2}+1=0$:
+
+$$
+x = -3 \qquad x = 2 \qquad x^{2} = -1 \Rightarrow x = \pm i
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S = \{-3,\ 2,\ -i,\ i\}
+$$
+</Answer>
+</Question>
+
+## Questão 44
+
+<Question>
+Sabendo que $1$ é raiz de $p(x) = x^{4}-3x^{3}+3x^{2}-3x+2$, determine todas
+as raízes de $p(x)$.
+
+<Resolution>
+
+Dividindo $p(x)$ por $(x-1)$:
+
+$$
+x^{4}-3x^{3}+3x^{2}-3x+2 = (x-1)(x^{3}-2x^{2}+x-2)
+$$
+
+Fatorando o quociente por agrupamento (mesmo quociente da Questão 43):
+
+$$
+x^{3}-2x^{2}+x-2 = x^{2}(x-2)+1(x-2) = (x-2)(x^{2}+1)
+$$
+
+Assim, $p(x) = (x-1)(x-2)(x^{2}+1)$. As raízes vêm de $x-1=0$, $x-2=0$ e
+$x^{2}+1=0$:
+
+$$
+x = 1 \qquad x = 2 \qquad x^{2} = -1 \Rightarrow x = \pm i
+$$
+
+</Resolution>
+
+<Answer>
+$$
+S = \{1,\ 2,\ -i,\ i\}
+$$
+</Answer>
+</Question>
