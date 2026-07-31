@@ -1,0 +1,866 @@
+---
+title: Lista 2 — Relações e funções
+description: Lista de exercícios 2 de Matemática Aplicada à Computação (2025.2), com resolução comentada.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/relacoes
+  - /docs/matematica-discreta/funcoes
+---
+
+Lista de exercícios 2 de **Matemática Aplicada à Computação** — Instituto
+Federal da Paraíba, curso de Tecnologia em Análise e Desenvolvimento de
+Sistemas, 1º período, semestre **2025.2**. Cobre relações binárias e funções.
+Tente cada questão sozinho antes de abrir a **resposta**.
+
+## Questão 1
+
+<Question>
+Sejam $A = \{1, 2, 3\}$, $B = \{1, 3, 4, 5\}$ e
+$R = \{(x,y) \in A \times B \mid y = 2x - 1\}$. Determine $R$.
+
+<Resolution>
+
+$$
+y = 2(1)-1 = 1 \Rightarrow (1,1) \qquad y = 2(2)-1 = 3 \Rightarrow (2,3) \qquad
+y = 2(3)-1 = 5 \Rightarrow (3,5)
+$$
+
+</Resolution>
+
+<Answer>
+$$
+R = \{(1,1), (2,3), (3,5)\}
+$$
+</Answer>
+</Question>
+
+## Questão 2
+
+<Question>
+Seja $A = \{1, 3, 8\}$. Para cada relação a seguir, determine se ela é
+reflexiva.
+
+<Marker>a)</Marker> $R_{1} = \{(1,3), (3,1), (8,1)\}$
+
+<Marker>b)</Marker> $R_{2} = \{(1,8), (8,8), (1,3), (8,1)\}$
+
+<Marker>c)</Marker> $R_{3} = \{(3,3), (1,8), (8,8), (8,1)\}$
+
+<Marker>d)</Marker> $R_{4} = \{(8,8), (1,3), (8,1), (1,1)\}$
+
+<Answer>
+<Marker>a)</Marker> Não. Não há nenhum par $(x,x)$ em $R_{1}$.
+
+<Marker>b)</Marker> Sim. $(8,8) \in R_{2}$, mas como faltam $(1,1)$ e
+$(3,3)$, $R_2$ não é reflexiva em $A$ — apenas contém um par com $x=y$.
+
+<Marker>c)</Marker> Contém $(3,3)$ e $(8,8)$, mas falta $(1,1)$ — não é
+reflexiva em $A$.
+
+<Marker>d)</Marker> Contém $(8,8)$ e $(1,1)$, mas falta $(3,3)$ — não é
+reflexiva em $A$.
+</Answer>
+</Question>
+
+## Questão 3
+
+<Question>
+Sejam $A = \{1, 2, 3\}$ e
+$R = \{(1,1), (2,2), (3,3), (2,3), (3,2), (1,3), (1,2)\}$.
+
+<Marker>a)</Marker> $R$ é reflexiva?
+
+<Marker>b)</Marker> $R$ é transitiva?
+
+<Marker>c)</Marker> $R$ é simétrica?
+
+<Answer>
+<Marker>a)</Marker> Sim, pois todos os elementos de $A$ possuem pares
+reflexivos: $(1,1), (2,2), (3,3) \in R$.
+
+<Marker>b)</Marker> Sim. Para todos os pares $(x,y)$ e $(y,z)$ em $R$, o par
+$(x,z)$ também está em $R$: $(1,2)$ e $(2,3) \Rightarrow (1,3)$;
+$(2,3)$ e $(3,2) \Rightarrow (2,2)$; $(3,2)$ e $(2,3) \Rightarrow (3,3)$;
+$(1,3)$ e $(3,2) \Rightarrow (1,2)$.
+
+<Marker>c)</Marker> Não. Existem os pares $(1,3)$ e $(1,2)$ cujos inversos
+$(3,1)$ e $(2,1)$ não pertencem a $R$.
+</Answer>
+</Question>
+
+## Questão 4
+
+<Question>
+Seja $A = \{1, 2, 3\}$ e
+$R = \{(1,1), (2,2), (3,3), (1,2), (2,1)\}$. $R$ é uma relação de
+equivalência?
+
+<Answer>
+**Reflexiva:** sim, pois $(1,1), (2,2), (3,3) \in R$.
+
+**Simétrica:** sim, pois $(1,2) \in R$ e seu inverso $(2,1)$ também está.
+
+**Transitiva:** sim, pois $(1,2)$, $(2,1)$ e $(1,1)$ satisfazem a condição.
+
+Logo, $R$ é uma relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 5
+
+<Question>
+Seja $A = \{1, 2, 3\}$ e $S = \{(1,1), (2,2), (3,3), (1,2)\}$. $S$ é uma
+relação de equivalência?
+
+<Answer>
+**Reflexiva:**
+$(\forall x)(x \in A \Rightarrow (x,x) \in S)$: $(1,1), (2,2), (3,3) \in S$, é
+reflexiva.
+
+**Simétrica:**
+$(\forall x,y)(x, y \in A,\ (x,y) \in S \Rightarrow (y,x) \in S)$: $(1,2) \in
+S$, mas $(2,1) \notin S$ — não é simétrica.
+
+Logo, $S$ não é uma relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 6
+
+<Question>
+Seja $(x,y) \in \mathbb{Z}$, com $x\,p\,y \Leftrightarrow 2$ é divisor de
+$x - y$. Mostre que $p$ é uma relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $(\forall x)(x \in \mathbb{Z} \Rightarrow (x,x) \in R)$. Como
+$x \in \mathbb{Z} \Rightarrow \dfrac{x-x}{2} = 0$, então $x\,p\,x$, ou seja
+$(x,x) \in R$. Portanto $R$ é reflexiva.
+
+**Simétrica:** $(\forall x,y)(x, y \in \mathbb{Z},\ (x,y) \in R \Rightarrow
+(y,x) \in R)$. Como $(x,y) \in R \Rightarrow x - y = 2k$, com
+$k \in \mathbb{Z}$, então $y - x = -2k$. Assim $y\,p\,x \Rightarrow (y,x) \in
+R$. Portanto $R$ é simétrica.
+
+**Transitiva:** $(\forall x,y,z)(x,y,z \in \mathbb{Z},\ (x,y) \in R,\ (y,z)
+\in R \Rightarrow (x,z) \in R)$. Como $(x,y) \in R$ e $(y,z) \in R$, então
+$x - y = 2k$ e $y - z = 2m$, com $k, m \in \mathbb{Z}$. Assim
+$x - y + y - z = 2k + 2m \Rightarrow x - z = 2(k+m)$, com $k+m \in
+\mathbb{Z}$. Logo $x\,p\,z \Rightarrow (x,z) \in R$. Portanto $R$ é
+transitiva.
+
+Como $R$ é reflexiva, simétrica e transitiva, é uma relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 7
+
+<Question>
+Seja $(x,y) \in \mathbb{N}^{*}$, com $x\,p\,y \Leftrightarrow
+\operatorname{mdc}(x,y) = x$. Mostre que $p$ é uma relação de ordenação
+parcial.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $(\forall x)(x \in \mathbb{N}^{*} \Rightarrow (x,x) \in R)$.
+Como $x \in \mathbb{N}^{*} \Rightarrow \operatorname{mdc}(x,x) = x$, então
+$x\,p\,x \Rightarrow (x,x) \in R$. Portanto $R$ é reflexiva.
+
+**Antissimétrica:** $(\forall x,y)(x, y \in \mathbb{N}^{*},\ (x,y) \in R
+\Rightarrow x = y)$. Como $(x,y) \in R \Rightarrow \operatorname{mdc}(x,y) =
+x$, então $\operatorname{mdc}(y,x) = y \Rightarrow x = y$. Portanto $R$ é
+antissimétrica.
+
+**Transitiva:** $(\forall x,y,z)(x,y,z \in \mathbb{N}^{*},\ (x,y) \in R,\
+(y,z) \in R \Rightarrow (x,z) \in R)$. Como $(x,y) \in R$ e $(y,z) \in R$,
+então $\operatorname{mdc}(x,y) = x$ e $\operatorname{mdc}(y,z) = y$. Logo
+$\operatorname{mdc}(x,z) = x \Rightarrow x\,p\,z \Rightarrow (x,z) \in R$.
+Portanto $R$ é transitiva.
+
+Como $R$ é reflexiva, antissimétrica e transitiva, é uma relação de
+ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8
+
+<Question>
+Seja $(x,y) \in \mathbb{N}^{*}$, com $x\,p\,y \Leftrightarrow y = x + 1$. $p$
+é uma relação de ordenação parcial?
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$(\forall x)(x \in \mathbb{N}^{*} \Rightarrow (x,x) \in R)$. Como $x \in
+\mathbb{N}^{*} \Rightarrow x \ne x + 1$, então $R$ não é reflexiva. Portanto
+$R$ não é uma relação de ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9
+
+<Question>
+Seja $(x,y) \in \mathbb{N}$, com $x\,p\,y \Leftrightarrow x \cdot y$ é par.
+$p$ é uma relação de equivalência?
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$(\forall x)(x \in \mathbb{N} \Rightarrow (x,x) \in R)$. Como $x \cdot x =
+x^{2}$, e $x^{2}$ só é par quando $x$ é par, $R$ não é reflexiva (falha para
+$x$ ímpar). Portanto $R$ não é uma relação de equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 10
+
+<Question>
+Seja $(x,y) \in \mathbb{Z}$, com $x\,p\,y \Leftrightarrow x - y$ é múltiplo
+de $3$. $p$ é uma relação de ordenação parcial?
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** como $x - x = 0$, que é múltiplo de $3$, $x\,p\,x
+\Rightarrow (x,x) \in R$. Logo $R$ é reflexiva.
+
+**Simétrica:** se $(x,y) \in R \Rightarrow x - y = 3k$, com $k \in
+\mathbb{Z}$, então $y - x = -3k \Rightarrow y\,p\,x \Rightarrow (y,x) \in R$.
+Logo $R$ é simétrica — e portanto não pode ser antissimétrica (a menos que
+$x=y$ sempre).
+
+Como $R$ é simétrica, não é uma relação de ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 11
+
+<Question>
+Seja $(x,y) \in \mathbb{N}$, com $x\,p\,y \Leftrightarrow x$ é ímpar. $p$ é
+uma relação de ordenação parcial?
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$(\forall x)(x \in \mathbb{N} \Rightarrow (x,x) \in R)$. Como $x = 2k+1$, com
+$k \in \mathbb{Z}$, nem todo $x$ é ímpar, então $R$ não é reflexiva. Portanto
+$R$ não é uma relação de ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 12
+
+<Question>
+Seja $(x,y) \in \mathbb{R}$, com $x\,p\,y \Leftrightarrow y = x - 1$. $p$ é
+uma relação de equivalência?
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$(\forall x)(x \in \mathbb{R} \Rightarrow (x,x) \in R)$. Como
+$x \ne x - 1$, $R$ não é reflexiva. Portanto $R$ não é uma relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 13
+
+<Question>
+Seja $(x,y) \in \mathbb{N}$, com $x\,p\,y \Leftrightarrow 2x + 6y$ é par.
+Mostre que $p$ é uma relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** como $x \in \mathbb{N} \Rightarrow 2x + 6x = 8x = 2(4x)$, com
+$4x \in \mathbb{Z}$, então $x\,p\,x \Rightarrow (x,x) \in R$. Logo $R$ é
+reflexiva.
+
+**Simétrica:** se $(x,y) \in R \Rightarrow 2x+6y = 2k$, com $k \in
+\mathbb{Z}$; no entanto $2y+6x$ também é da forma $2m$, com $m \in
+\mathbb{Z}$. Assim $y\,p\,x \Rightarrow (y,x) \in R$. Logo $R$ é simétrica.
+
+**Transitiva:** se $(x,y) \in R$ e $(y,z) \in R \Rightarrow 2x+6y=2k$ e
+$2y+6z=2m$, com $k,m \in \mathbb{Z}$. Somando:
+$2x+8y+6z=2k+2m \Rightarrow 2x+6z = 2k+2m-8y = 2(k+m-4y)$, com $k+m-4y \in
+\mathbb{Z}$. Logo $x\,p\,z \Rightarrow (x,z) \in R$. Logo $R$ é transitiva.
+
+Como $R$ é reflexiva, simétrica e transitiva, é uma relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 14
+
+<Question>
+Seja $(x,y) \in \mathbb{N}$, com $x\,p\,y \Leftrightarrow 4x - 2y$ é par.
+Mostre que $p$ é uma relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** como $4x-2x = 2x = 2(x)$, com $x \in \mathbb{Z}$, então
+$x\,p\,x \Rightarrow (x,x) \in R$. Logo $R$ é reflexiva.
+
+**Simétrica:** se $(x,y) \in R \Rightarrow 4x-2y=2k$, com $k \in
+\mathbb{Z}$; então $4y-2x$ também é da forma $2m$, com $m \in \mathbb{Z}$.
+Logo $y\,p\,x \Rightarrow (y,x) \in R$. Logo $R$ é simétrica.
+
+**Transitiva:** se $(x,y) \in R$ e $(y,z) \in R \Rightarrow 4x-2y=2k$ e
+$4y-2z=2m$, com $k,m \in \mathbb{Z}$. Somando:
+$4x+2y-2z=2k+2m \Rightarrow 4x-2z=2k+2m-2y=2(k+m-y)$, com $k+m-y \in
+\mathbb{Z}$. Logo $x\,p\,z \Rightarrow (x,z) \in R$. Logo $R$ é transitiva.
+
+Como $R$ é reflexiva, simétrica e transitiva, é uma relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 15
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x^{2} - 9x + 7$.
+
+<Marker>a)</Marker> Qual a imagem de $-3$?
+
+<Marker>b)</Marker> Quais as pré-imagens de $0$?
+
+<Resolution>
+
+<Marker>a)</Marker>
+
+$$
+f(-3) = 2(-3)^{2} - 9(-3) + 7 = 18 + 27 + 7 = 52
+$$
+
+<Marker>b)</Marker> Resolvendo $2x^{2} - 9x + 7 = 0$ por Bhaskara:
+
+$$
+x = \frac{9 \pm \sqrt{(-9)^{2} - 4(2)(7)}}{2(2)} = \frac{9 \pm \sqrt{25}}{4} =
+\frac{9 \pm 5}{4}
+$$
+
+</Resolution>
+
+<Answer>
+<Marker>a)</Marker> $f(-3) = 52$
+
+<Marker>b)</Marker> $x_{1} = \dfrac{7}{2}$ e $x_{2} = 1$
+</Answer>
+</Question>
+
+## Questão 16
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x$. Mostre que $f$ é
+sobrejetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} \mid f(x) =
+y$. Assim, $f(x) = y \Rightarrow 2x = y \Rightarrow x = y/2$. Agora,
+$f(y/2) = 2 \cdot (y/2) = y$. Logo $f$ é uma função sobrejetora.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 17
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x - 1$. Mostre que $f$ é
+sobrejetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} \mid f(x) =
+y$. Assim, $f(x) = y \Rightarrow x - 1 = y \Rightarrow x = y + 1$. Agora,
+$f(y+1) = (y+1) - 1 = y$. Logo $f$ é uma função sobrejetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 18
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 3x$. Mostre que $f$ é injetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\forall x, y \in \mathbb{R}$, se $f(x) = f(y) \Rightarrow x = y$.
+Assim, $f(x)=f(y) \Rightarrow 3x = 3y \Rightarrow x = y$. Logo $f$ é uma
+função injetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 19
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 5x + 4$. Mostre que $f$ é
+injetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Temos que $\forall x, y \in \mathbb{R}$, se $f(x) = f(y) \Rightarrow x = y$.
+Assim, $f(x)=f(y) \Rightarrow 5x+4 = 5y+4 \Rightarrow 5x = 5y \Rightarrow x =
+y$. Logo $f$ é uma função injetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 20
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^{3}$. Mostre que $f$ é
+bijetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Sobrejetora:** $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} \mid
+f(x) = y$. Assim, $f(x) = y \Rightarrow x^{3} = y \Rightarrow x =
+\sqrt[3]{y}$. Agora, $f(\sqrt[3]{y}) = (\sqrt[3]{y})^{3} = y$. Logo $f$ é
+sobrejetora.
+
+**Injetora:** $\forall x,y \in \mathbb{R}$, se $f(x) = f(y) \Rightarrow x^{3}
+= y^{3} \Rightarrow x = y$. Logo $f$ é injetora.
+
+Como $f$ é sobrejetora e injetora, é bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 21
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 3x$. Mostre que $f$ é bijetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Sobrejetora:** $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} \mid
+f(x) = y$. Assim, $f(x) = y \Rightarrow 3x = y \Rightarrow x = y/3$. Agora,
+$f(y/3) = 3 \cdot (y/3) = y$. Logo $f$ é sobrejetora.
+
+**Injetora:** se $f(x) = f(y) \Rightarrow 3x = 3y \Rightarrow x = y$. Logo
+$f$ é injetora.
+
+Como $f$ é sobrejetora e injetora, é bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 22
+
+<Question>
+Seja $f(x) = ax + 2$, com $f(f(1)) = 1$. Determine $a$.
+
+<Resolution>
+
+$$
+f(f(x)) = a(ax+2) + 2 = a^{2}x + 2a + 2
+$$
+
+Para $x=1$:
+
+$$
+f(f(1)) = a^{2} + 2a + 2 = 1 \Rightarrow a^{2} + 2a + 1 = 0 \Rightarrow
+(a+1)^{2} = 0
+$$
+
+</Resolution>
+
+<Answer>
+$a = -1$
+</Answer>
+</Question>
+
+## Questão 23
+
+<Question>
+Sejam $f(x) = 3 - 4x$ e $g(x) = 3x + m$, com $f(g(x)) = g(f(x))$. Determine
+$m$.
+
+<Resolution>
+
+$$
+f(g(x)) = 3 - 4(3x+m) = 3 - 12x - 4m
+$$
+
+$$
+g(f(x)) = 3(3-4x) + m = 9 - 12x + m
+$$
+
+Igualando:
+
+$$
+3 - 4m = 9 + m \Rightarrow -5m = 6 \Rightarrow m = -\frac{6}{5}
+$$
+
+</Resolution>
+
+<Answer>
+$m = -\dfrac{6}{5}$
+</Answer>
+</Question>
+
+## Questão 24
+
+<Question>
+Seja $f: \mathbb{R} - \{-2\} \to \mathbb{R}$, $f(x) = \dfrac{2}{x+2}$.
+Determine $f^{-1}(x)$, caso exista.
+
+<Resolution>
+
+**Sobrejetora:** $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} -
+\{-2\} \mid f(x) = y$. Assim, $f(x) = y \Rightarrow \dfrac{2}{x+2} = y
+\Rightarrow x+2 = \dfrac{2}{y} \Rightarrow x = \dfrac{2}{y} - 2$. Agora,
+$f\!\left(\dfrac{2}{y}-2\right) = \dfrac{2}{2/y} = y$. Logo $f$ é sobrejetora.
+
+**Injetora:** se $f(x) = f(y) \Rightarrow \dfrac{2}{x+2} = \dfrac{2}{y+2}
+\Rightarrow x+2 = y+2 \Rightarrow x = y$. Logo $f$ é injetora.
+
+Como $f$ é sobrejetora e injetora, é bijetora, e portanto possui $f^{-1}(x)$.
+
+Isolando $x$ em $y = \dfrac{2}{x+2}$:
+
+$$
+y(x+2) = 2 \Rightarrow x+2 = \frac{2}{y} \Rightarrow x = \frac{2-2y}{y}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{2-2x}{x}
+$$
+</Answer>
+</Question>
+
+## Questão 25
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x + 1$. Determine $f^{-1}(x)$,
+caso exista.
+
+<Resolution>
+
+Como $f$ é bijetora (sobrejetora e injetora, pela mesma técnica das questões
+anteriores), possui inversa. Isolando $x$ em $y = 2x+1$:
+
+$$
+y = 2x + 1 \Rightarrow x = \frac{y-1}{2}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{x-1}{2}
+$$
+</Answer>
+</Question>
+
+## Questão 26
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x^{4} + x^{2} - 1$. Mostre que
+$f$ é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x \in \mathbb{R}$, $f(-x) = 2(-x)^{4} + (-x)^{2} - 1 = 2x^{4} + x^{2}
+- 1 = f(x)$. Logo $f$ é uma função par. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 27
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x + 6$. Mostre que $f$ não é
+par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x \in \mathbb{R}$, $f(-x) = 2(-x) + 6 = -2x + 6 \ne f(x)$. Logo $f$
+não é uma função par. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 28
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x + x^{3}$. Mostre que $f$ é
+ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x \in \mathbb{R}$, $f(-x) = -x - x^{3} = -(x + x^{3}) = -f(x)$.
+Logo $f$ é uma função ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 29
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 1 + x^{3}$. Mostre que $f$ não é
+ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x \in \mathbb{R}$, $f(-x) = 1 + (-x)^{3} = 1 - x^{3} \ne -f(x)$.
+Logo $f$ não é uma função ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 30
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = \dfrac{x^{2}-3}{x^{3}}$. Mostre
+que $f$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x \in \mathbb{R}$,
+
+$$
+f(-x) = \frac{(-x)^{2}-3}{(-x)^{3}} = \frac{x^{2}-3}{-x^{3}} =
+-\frac{x^{2}-3}{x^{3}} = -f(x)
+$$
+
+Logo $f$ é uma função ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 31
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 2x$. Mostre que $f$ é crescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, se $x < y \Rightarrow 2x < 2y \Rightarrow f(x)
+< f(y)$. Logo $f$ é uma função crescente. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 32
+
+<Question>
+Seja $f: \mathbb{R}_{+} \to \mathbb{R}_{+}$, $f(x) = x^{2}$. Mostre que $f$ é
+crescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}_{+}$, se $x < y$, então $x+y > 0$ e $y - x > 0$.
+Assim $(x+y)(y-x) > 0 \Rightarrow y^{2} - x^{2} > 0 \Rightarrow y^{2} > x^{2}
+\Rightarrow f(x) < f(y)$. Logo $f$ é uma função crescente. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 33
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = -x + 2$. Mostre que $f$ é
+decrescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, se $x < y \Rightarrow -x > -y \Rightarrow -x+2
+> -y+2 \Rightarrow f(x) > f(y)$. Logo $f$ é uma função decrescente.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 34
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = -3x + 1$. Mostre que $f$ é
+decrescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, se $x < y \Rightarrow -3x > -3y \Rightarrow
+-3x+1 > -3y+1 \Rightarrow f(x) > f(y)$. Logo $f$ é uma função decrescente.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 35
+
+<Question>
+Sejam $f, g: \mathbb{R} \to \mathbb{R}$, $f(x) = x^{2} - 2$ e $g(x) = x - 6$.
+Determine $f(x)/g(x)$ e seu domínio.
+
+<Answer>
+$$
+\frac{f(x)}{g(x)} = \frac{x^{2}-2}{x-6}, \qquad D = \mathbb{R} - \{6\}
+$$
+</Answer>
+</Question>
+
+## Questão 36
+
+<Question>
+Sejam $f, g: \mathbb{R} \to \mathbb{R}$, $f(x) = x - 6$ e $g(x) = 1/x$.
+Determine $f(x) + g(x)$ e seu domínio.
+
+<Answer>
+$$
+f(x) + g(x) = x - 6 + \frac{1}{x} = \frac{x^{2}-6x+1}{x}, \qquad D =
+\mathbb{R} - \{0\}
+$$
+</Answer>
+</Question>
+
+## Questão 37
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = \dfrac{x-2x}{x^{3}}$. $f$ é
+ímpar, par ou apenas uma função?
+
+<Resolution>
+
+Simplificando: $f(x) = \dfrac{-x}{x^{3}} = -\dfrac{1}{x^{2}}$.
+
+$$
+f(-2) = -\frac{1}{(-2)^{2}} = -\frac{1}{4} \qquad f(2) = -\frac{1}{2^{2}} =
+-\frac{1}{4}
+$$
+
+$$
+f(-x) = -\frac{1}{(-x)^{2}} = -\frac{1}{x^{2}} = f(x)
+$$
+
+</Resolution>
+
+<Answer>
+$f$ é uma função **par**, pois $f(-x) = f(x)$.
+</Answer>
+</Question>
+
+## Questão 38
+
+<Question>
+Seja $f: \mathbb{R} \to \mathbb{R}$, $f(x) = -7x + 2$. Mostre que $f$ é
+decrescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, se $x < y \Rightarrow -7x > -7y \Rightarrow
+-7x+2 > -7y+2 \Rightarrow f(x) > f(y)$. Logo $f$ é uma função decrescente.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
