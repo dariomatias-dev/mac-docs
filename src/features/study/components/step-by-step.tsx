@@ -42,7 +42,7 @@ export function StepByStep({
               </span>
               <div className="min-w-0 flex-1">
                 {step.title && <p className="text-foreground mb-1 font-semibold">{step.title}</p>}
-                <div className="prose prose-sm dark:prose-invert text-foreground max-w-none">
+                <div className="katex-left prose prose-sm dark:prose-invert text-foreground max-w-none">
                   {step.children}
                 </div>
               </div>
