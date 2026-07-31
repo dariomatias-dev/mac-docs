@@ -1,0 +1,138 @@
+---
+title: Matriz inversa
+description: Definição, condição de existência via determinante e cálculo pelo sistema linear.
+order: 4
+prerequisites:
+  - /docs/matematica-discreta/matrizes/determinantes
+---
+
+Seja $A$ uma matriz quadrada. A **matriz inversa** de $A$, denotada por
+$A^{-1}$, é a matriz que satisfaz:
+
+$$
+A \cdot A^{-1} = Id
+$$
+
+<Callout type="tip" title="Condição de existência">
+  Uma matriz $A$ possui inversa se, e somente se, $\det(A) \ne 0$. Nesse caso,
+  $A$ é dita **não singular** (ou **inversível**).
+</Callout>
+
+## Calculando a inversa pelo sistema linear
+
+Para uma matriz $2 \times 2$, escrevemos $A^{-1} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$
+com $a$, $b$, $c$, $d$ desconhecidos, resolvemos $A \cdot A^{-1} = Id$ e
+obtemos um sistema linear para cada coluna.
+
+<StepByStep title="Exemplo: determinar a inversa de A">
+  <Step title="Verificar se a inversa existe">
+    $$
+    A =
+    \begin{bmatrix}
+    2 & 1 \\
+    5 & 3
+    \end{bmatrix}
+    $$
+
+    $$
+    \det(A) = (2)(3) - (1)(5) = 1 \ne 0 \quad\Rightarrow\quad \text{possui inversa}
+    $$
+
+  </Step>
+  <Step title="Montar a equação A · A⁻¹ = Id">
+    $$
+    \begin{bmatrix}
+    2 & 1 \\
+    5 & 3
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix}
+    \quad\Rightarrow\quad
+    \begin{bmatrix}
+    2a + c & 2b + d \\
+    5a + 3c & 5b + 3d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix}
+    $$
+
+  </Step>
+  <Step title="Resolver o primeiro sistema (coluna de a e c)">
+    $$
+    \begin{cases}
+    2a + c = 1 \\
+    5a + 3c = 0
+    \end{cases}
+    $$
+
+    Da primeira equação, $c = 1 - 2a$. Substituindo na segunda:
+    $5a + 3(1 - 2a) = 0 \Rightarrow -a = -3 \Rightarrow a = 3$, logo $c = -5$.
+
+  </Step>
+  <Step title="Resolver o segundo sistema (coluna de b e d)">
+    $$
+    \begin{cases}
+    2b + d = 0 \\
+    5b + 3d = 1
+    \end{cases}
+    $$
+
+    Da primeira equação, $d = -2b$. Substituindo na segunda:
+    $5b - 6b = 1 \Rightarrow -b = 1 \Rightarrow b = -1$, logo $d = 2$.
+
+  </Step>
+  <Step title="Resultado">
+    $$
+    A^{-1} =
+    \begin{bmatrix}
+    3 & -1 \\
+    -5 & 2
+    \end{bmatrix}
+    $$
+
+    $\blacksquare$
+
+  </Step>
+</StepByStep>
+
+<Exercise>
+Determine, caso exista, a inversa de $B = \begin{bmatrix} 2 & 3 \\ 3 & 5 \end{bmatrix}$.
+
+<Answer>
+$\det(B) = (2)(5) - (3)(3) = 1 \ne 0$, logo $B$ possui inversa. Resolvendo
+$B \cdot B^{-1} = Id$:
+
+$$
+\begin{cases}
+2a + 3c = 1 \\
+3a + 5c = 0
+\end{cases}
+\quad\Rightarrow\quad a = 5,\ c = -3
+\qquad\qquad
+\begin{cases}
+2b + 3d = 0 \\
+3b + 5d = 1
+\end{cases}
+\quad\Rightarrow\quad b = -3,\ d = 2
+$$
+
+$$
+B^{-1} =
+\begin{bmatrix}
+5 & -3 \\
+-3 & 2
+\end{bmatrix}
+$$
+</Answer>
+</Exercise>

@@ -188,7 +188,11 @@ $$
 
 Então determine:
 
-<Marker>a)</Marker> $A \cdot B$ &nbsp;&nbsp; <Marker>b)</Marker> $B \cdot C$ &nbsp;&nbsp; <Marker>c)</Marker> $A \cdot C$
+<Marker>a)</Marker> $A \cdot B$
+
+<Marker>b)</Marker> $B \cdot C$
+
+<Marker>c)</Marker> $A \cdot C$
 
 <Answer>
 $$
@@ -210,6 +214,61 @@ A \cdot C =
 3 & -2
 \end{bmatrix}
 $$
+</Answer>
+</Exercise>
+
+## Potência de matrizes
+
+Para $n$ inteiro positivo, a potência $A^{n}$ de uma matriz quadrada $A$ é o
+produto de $A$ por ela mesma $n$ vezes: $A^{n} = A \cdot A \cdots A$
+($n$ fatores). Como a matriz identidade multiplicada por qualquer matriz
+quadrada de mesma ordem não a altera, temos:
+
+$$
+Id^{n} = Id
+$$
+
+<Exercise>
+Sejam
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 1 & 4 \\
+0 & 0 & 1
+\end{bmatrix}
+\qquad
+B =
+\begin{bmatrix}
+1 & -2 & 5 \\
+0 & 1 & -4 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+Determine $(A \cdot B)^{2023}$.
+
+<Answer>
+Calculando $A \cdot B$:
+
+$$
+A \cdot B =
+\begin{bmatrix}
+1+0+0 & -2+2+0 & 5-8+3 \\
+0+0+0 & 0+1+0 & 0-4+4 \\
+0+0+0 & 0+0+0 & 0+0+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+= Id_{3}
+$$
+
+Como $A \cdot B = Id_{3}$, então $(A \cdot B)^{2023} = (Id_{3})^{2023} = Id_{3}$.
 </Answer>
 </Exercise>
 
