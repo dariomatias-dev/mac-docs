@@ -22,7 +22,7 @@ $5 \in B$, $7 \notin A$, $B \supset C$ e $2 \notin C$.
 ## Subconjunto
 
 Um subconjunto é uma parte de um conjunto. $B$ é um subconjunto de $A$ (isto é,
-$A \supset B$) quando $(\forall x)(x \in B \Rightarrow x \in A)$.
+$A \supset B$) quando $(\forall x) (x \in B \Rightarrow x \in A)$.
 
 ## Conjunto das partes
 
@@ -49,21 +49,40 @@ $P(E) = 64$.
 
 <StepByStep title="Se A ⊆ B e B ⊆ C, então A ⊆ C">
   <Step title="Hipótese">
-    $A \subseteq B \Rightarrow (\forall x)(x \in A \Rightarrow x \in B)$ e
-    $B \subseteq C \Rightarrow (\forall x)(x \in B \Rightarrow x \in C)$.
+    $A \subseteq B \Rightarrow (\forall x) (x \in A \Rightarrow x \in B)$ e
+    $B \subseteq C \Rightarrow (\forall x) (x \in B \Rightarrow x \in C)$.
   </Step>
-  <Step title="Combinação">Assim $(\forall x)(x \in A \Rightarrow x \in C)$.</Step>
+  <Step title="Combinação">Assim $(\forall x) (x \in A \Rightarrow x \in C)$.</Step>
   <Step title="Tese">Logo $A \subseteq C$. $\blacksquare$</Step>
 </StepByStep>
 
 <Exercise>
 Seja $B = \{x \mid x \text{ é múltiplo de } 4\}$ e $A = \{y \mid y \text{ é múltiplo de } 8\}$.
+
 Mostre que $A \subseteq B$.
 
 <Answer>
-$(\forall y)\, y \in A \Rightarrow y = 8m$, com $m \in \mathbb{Z}_{+}$. Assim
-$y = 4 \cdot 2m$. Como $2m \in \mathbb{Z}_{+}$, temos $y = 4c$ com
-$c \in \mathbb{Z}_{+}$, logo $y \in B$. Portanto $A \subseteq B$. $\blacksquare$
+Dem.:
+
+<Proof>
+
+$$
+(\forall y)\, y \in A \Rightarrow y = 8m \text{, com } m \in \mathbb{Z}_{+}
+$$
+
+Assim
+
+$$
+y = 4 \cdot 2m
+$$
+
+Como $2m \in \mathbb{Z}_{+}$, temos $y = 4c$ com $c \in \mathbb{Z}_{+}$, logo $y \in B$
+
+$$
+\therefore A \subseteq B \quad \blacksquare
+$$
+
+</Proof>
 </Answer>
 </Exercise>
 
@@ -83,13 +102,35 @@ $B = \{y \mid y \in \mathbb{N} \text{ e } 2y < 7\}$. Mostre que $A = B$.
 <Answer>
 Para mostrar que $A = B$, vamos mostrar que $A \subseteq B$ e $B \subseteq A$.
 
-**($\Rightarrow$) $A \subseteq B$:** $(\forall x)\, x \in A$, com $x^{2} < 15$ e
-$x \in \mathbb{N}$, então $x \in \{0, 1, 2, 3\}$; logo $2x < 7$. Assim $x \in B$.
+**($\Rightarrow$) $A \subseteq B$:**
 
-**($\Leftarrow$) $B \subseteq A$:** $(\forall y)\, y \in B$, com $2y < 7$ e
-$y \in \mathbb{N}$, então $y \in \{0, 1, 2, 3\}$; logo $y^{2} < 15$. Assim $y \in A$.
+$$
+(\forall x)\, x \in A \Rightarrow x^{2} < 15 \text{ e } x \in \mathbb{N}
+$$
 
-Como $A \subseteq B$ e $B \subseteq A$, então $A = B$. $\blacksquare$
+Logo $x \in \{0, 1, 2, 3\}$, e para todos esses valores $2x < 7$. Assim,
+
+$$
+x \in B
+$$
+
+**($\Leftarrow$) $B \subseteq A$:**
+
+$$
+(\forall y)\, y \in B \Rightarrow 2y < 7 \text{ e } y \in \mathbb{N}
+$$
+
+Logo $y \in \{0, 1, 2, 3\}$, e para todos esses valores $y^{2} < 15$. Assim,
+
+$$
+y \in A
+$$
+
+Como $A \subseteq B$ e $B \subseteq A$, então
+
+$$
+A = B \quad \blacksquare
+$$
 
 </Answer>
 </Exercise>

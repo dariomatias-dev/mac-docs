@@ -45,8 +45,9 @@ determine a porcentagem contra as doenças A, B e C ao mesmo tempo.
 
 <Answer>
 Chamando de $x$ a porcentagem no centro (A, B e C), o somatório de todas as
-regiões do diagrama de Venn é $100\%$. Resolvendo, obtemos
-$x + 90 = 100 \Rightarrow x = 10\%$.
+regiões do diagrama de Venn é $100\%$.
+
+Resolvendo, obtemos $x + 90 = 100 \Rightarrow x = 10\%$.
 </Answer>
 </Exercise>
 
@@ -113,6 +114,137 @@ $A \cup B \subseteq B$ e $B \subseteq A \cup B$.
     Como $A \cup B \subseteq B$ e $B \subseteq A \cup B$, então $A \cup B = B$. $\blacksquare$
   </Step>
 </StepByStep>
+
+**VII.** $A - A = \varnothing$
+
+<Exercise>
+Mostre que $A - A = \varnothing$.
+
+<Answer>
+<Proof>
+
+Por definição,
+
+$$
+A - A = \{x \mid x \in A \text{ e } x \notin A\}
+$$
+
+Como nenhum $x$ satisfaz simultaneamente $x \in A$ e $x \notin A$, não há
+elemento nessa condição, ou seja,
+
+$$
+A - A \subseteq \varnothing
+$$
+
+Por outro lado, o conjunto vazio é subconjunto de qualquer conjunto, logo
+
+$$
+\varnothing \subseteq A - A
+$$
+
+Como $A - A \subseteq \varnothing$ e $\varnothing \subseteq A - A$, então
+
+$$
+A - A = \varnothing \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+**VIII.** $(A \cap B) \subseteq A$ e $A \subseteq (A \cup B)$
+
+<Exercise>
+Mostre que $(A \cap B) \subseteq A$ e que $A \subseteq (A \cup B)$.
+
+<Answer>
+<Proof>
+
+Mostrando $(A \cap B) \subseteq A$:
+
+$$
+(\forall x)\, x \in (A \cap B) \Rightarrow x \in A \text{ e } x \in B
+$$
+
+Em particular $x \in A$. Logo
+
+$$
+(A \cap B) \subseteq A
+$$
+
+Mostrando $A \subseteq (A \cup B)$:
+
+$$
+(\forall x)\, x \in A \Rightarrow x \in A \text{ ou } x \in B
+$$
+
+Ou seja, $x \in (A \cup B)$. Logo
+
+$$
+A \subseteq (A \cup B) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+**IX.** Se $A \subseteq B$ e $C \subseteq D$, então $(A \cup C) \subseteq (B \cup D)$
+
+<Exercise>
+Sejam $A$, $B$, $C$ e $D$ conjuntos com $A \subseteq B$ e $C \subseteq D$.
+Mostre que $(A \cup C) \subseteq (B \cup D)$.
+
+<Answer>
+<Proof>
+
+Por hipótese,
+
+$$
+A \subseteq B \Rightarrow (\forall x)\, x \in A \Rightarrow x \in B
+$$
+
+$$
+C \subseteq D \Rightarrow (\forall y)\, y \in C \Rightarrow y \in D
+$$
+
+Seja $m \in (A \cup C)$, então $m \in A$ ou $m \in C$.
+
+No primeiro caso $m \in B$; no segundo caso, $m \in D$. Em ambos os casos,
+
+$$
+m \in (B \cup D)
+$$
+
+Logo
+
+$$
+(A \cup C) \subseteq (B \cup D) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $A = \{x \in \mathbb{R} \mid 0 \le x \le 5\}$ e
+$B = \{x \in \mathbb{R} \mid 3 \le x \le 7\}$. Determine $A - B$ e $B - A$.
+
+<Answer>
+$A - B$ mantém os elementos de $A$ que não estão em $B$, isto é, os valores
+menores que $3$:
+
+$$
+A - B = [0, 3) = \{x \in \mathbb{R} \mid 0 \le x < 3\}
+$$
+
+$B - A$ mantém os elementos de $B$ que não estão em $A$, isto é, os valores
+maiores que $5$:
+
+$$
+B - A = (5, 7] = \{x \in \mathbb{R} \mid 5 < x \le 7\}
+$$
+</Answer>
+</Exercise>
 
 ## Vídeos
 
