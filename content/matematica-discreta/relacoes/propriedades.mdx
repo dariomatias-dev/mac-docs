@@ -81,6 +81,30 @@ Assim $x\,p\,z$, isto é $(x, z) \in p$. $\blacksquare$
 </Exercise>
 
 <Exercise>
+Mostre que a relação $\le$ no conjunto $\mathbb{N}$ é uma relação transitiva.
+
+<Answer>
+$(\forall x)(\forall y)(\forall z)(x, y, z \in \mathbb{N} \text{ e } (x, y) \in p \text{ e } (y, z) \in p)$.
+Como $(x, y) \in p \Rightarrow x < y$ e $(y, z) \in p \Rightarrow y < z$.
+Assim $x + y < y + z \Rightarrow x < z$. Logo $x\,p\,z$, ou seja
+$(x, z) \in p$. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Seja $S = \mathbb{N}$, $x\,p\,y \Leftrightarrow x$ divide $y$. Mostre que $p$ é
+uma relação reflexiva.
+
+<Answer>
+$(\forall x)(x \in \mathbb{N} \Rightarrow (x, x) \in p)$. Como
+$x\,p\,y \Leftrightarrow x$ divide $y$, então $k = y/x$, com $k \in \mathbb{N}$,
+ou seja $y = k \cdot x$. Logo $x = k \cdot x \Rightarrow x/x = k \Rightarrow
+k = 1 \in \mathbb{N}$. Assim $(x, x) \in p$. Logo $p$ é reflexiva.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
 Seja $S = \mathbb{N}$, $x\,p\,y \Leftrightarrow x$ divide $y$. Mostre que $p$ não
 é uma relação simétrica.
 

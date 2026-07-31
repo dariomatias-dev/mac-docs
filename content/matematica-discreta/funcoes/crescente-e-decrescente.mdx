@@ -1,0 +1,79 @@
+---
+title: Função crescente e decrescente
+description: Definição de função crescente e decrescente, com demonstrações.
+order: 9
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+---
+
+Uma função $f : A \to B$ é **crescente** se, e somente se,
+$\forall x, y \in A$, se $x < y$ então $f(x) < f(y)$: à medida que $x$ aumenta,
+$y$ também aumenta.
+
+Uma função $f : A \to B$ é **decrescente** se, e somente se,
+$\forall x, y \in A$, se $x < y$ então $f(x) > f(y)$: à medida que $x$ aumenta,
+$y$ diminui.
+
+## Função crescente
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = 2x$ é
+crescente.
+
+<Answer>
+$(\forall x, y) \in \mathbb{R}$, se $x < y \Rightarrow 2x < 2y \Rightarrow
+f(x) < f(y)$. Logo $f$ é uma função crescente. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R}_{+} \to \mathbb{R}_{+}$ definida por
+$f(x) = x^{2}$ é crescente.
+
+<Answer>
+$(\forall x, y) \in \mathbb{R}_{+}$, se $x < y$, então $x + y > 0$ e
+$y - x > 0$. Assim,
+
+$$
+(x+y)(y-x) > 0 \Rightarrow y^{2} - x^{2} > 0 \Rightarrow x^{2} < y^{2}
+\Rightarrow f(x) < f(y)
+$$
+
+Logo $f$ é uma função crescente. $\blacksquare$
+</Answer>
+</Exercise>
+
+## Função decrescente
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = -x + 2$ é decrescente.
+
+<Answer>
+$(\forall x, y) \in \mathbb{R}$, se $x < y \Rightarrow -x > -y \Rightarrow
+-x+2 > -y+2 \Rightarrow f(x) > f(y)$. Logo $f$ é uma função decrescente.
+$\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R}_{-} \to \mathbb{R}_{-}$ definida por
+$f(x) = x^{2}$ é decrescente.
+
+<Answer>
+$(\forall x, y) \in \mathbb{R}_{-}$, se $x < y$, então $x + y < 0$ e
+$x - y < 0$. Assim,
+
+$$
+(x+y)(x-y) > 0 \Rightarrow x^{2} - y^{2} > 0 \Rightarrow x^{2} > y^{2}
+\Rightarrow f(x) > f(y)
+$$
+
+Logo $f$ é uma função decrescente. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Callout type="tip" title="Sinal do coeficiente">
+  Para uma função afim $f(x) = ax + b$, o sinal de $a$ decide o comportamento:
+  $a > 0$ torna $f$ crescente, e $a < 0$ torna $f$ decrescente.
+</Callout>

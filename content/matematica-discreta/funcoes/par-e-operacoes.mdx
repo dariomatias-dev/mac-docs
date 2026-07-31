@@ -1,6 +1,6 @@
 ---
-title: Função par e operações com funções
-description: Função par, soma, diferença, produto e quociente de funções.
+title: Funções par e ímpar, operações com funções
+description: Função par, função ímpar, soma, diferença, produto e quociente de funções.
 order: 7
 prerequisites:
   - /docs/matematica-discreta/funcoes
@@ -31,6 +31,56 @@ Portanto $f$ é uma função par.
 $\blacksquare$
 </Answer>
 </Exercise>
+
+## Função ímpar
+
+Uma função $f : A \to B$ é ímpar se, e somente se,
+$\forall x \in A,\ f(-x) = -f(x)$.
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = x^{5} + x$ é ímpar.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos
+$f(-x) = (-x)^{5} + (-x) = -x^{5} - x = -(x^{5} + x) = -f(x)$. Logo $f$ é uma
+função ímpar. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = \dfrac{x^{2} - 3}{x^{3}}$ é ímpar.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos
+
+$$
+f(-x) = \frac{(-x)^{2} - 3}{(-x)^{3}} = \frac{x^{2} - 3}{-x^{3}} =
+-\frac{x^{2} - 3}{x^{3}} = -f(x)
+$$
+
+Logo $f$ é uma função ímpar. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = 1 + x^{3}$ **não** é ímpar.
+
+<Answer>
+$(\forall x) \in \mathbb{R}$. Temos $f(-x) = 1 + (-x)^{3} = 1 - x^{3}$. Como
+$-f(x) = -1 - x^{3}$, então $f(-x) \ne -f(x)$. Logo $f$ **não** é uma função
+ímpar. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Callout type="tip" title="Par, ímpar, ou nenhuma das duas">
+  Uma função pode ser par, ímpar, ou nenhuma das duas — não existe uma
+  terceira opção obrigatória. Por exemplo,
+  $f(x) = \dfrac{x - 2x}{x^{3}} = -\dfrac{1}{x^{2}}$ satisfaz $f(-x) = f(x)$,
+  logo é **par**, mesmo com uma fórmula que mistura sinais.
+</Callout>
 
 ## Operações com funções
 

@@ -1,0 +1,223 @@
+---
+title: Recursão matemática
+description: Sequências recursivas e algoritmos recursivos.
+order: 6
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/inducao
+---
+
+Recursão é uma ideia importante usada para definir sequências de objetos,
+coleções mais gerais de objetos e operações sobre objetos: um objeto é
+definido em termos de si mesmo, mas com valores anteriores ou menores.
+
+## Sequências recursivas
+
+Uma sequência $S$ é uma lista de objetos enumerados segundo alguma ordem: há
+um primeiro objeto, um segundo, e assim por diante. $S(k)$ denota o
+$k$-ésimo objeto da sequência. Uma definição recursiva de uma sequência
+possui duas partes: o(s) **termo(s) inicial(is)** e uma **fórmula de
+recorrência** que define $S(n)$ em função de termos anteriores.
+
+<StepByStep title="Exemplo: sequência S(1)=2, S(n)=2·S(n-1)">
+  <Step title="Definição">
+    $$
+    S(1) = 2 \qquad S(n) = 2 \cdot S(n-1),\; n \ge 2
+    $$
+
+    Determine $S(6)$.
+
+  </Step>
+  <Step title="Desenrolar a recursão até o caso base">
+    $$
+    S(6) = 2 \cdot S(5) \qquad S(5) = 2 \cdot S(4) \qquad S(4) = 2 \cdot S(3)
+    $$
+
+    $$
+    S(3) = 2 \cdot S(2) \qquad S(2) = 2 \cdot S(1) \qquad S(1) = 2
+    $$
+
+  </Step>
+  <Step title="Substituir de trás para a frente">
+    $$
+    S(2) = 2 \cdot 2 = 4 \qquad S(3) = 2 \cdot 4 = 8 \qquad S(4) = 2 \cdot 8 = 16
+    $$
+
+    $$
+    S(5) = 2 \cdot 16 = 32 \qquad S(6) = 2 \cdot 32 = 64
+    $$
+
+  </Step>
+</StepByStep>
+
+<Exercise>
+Determine os $5$ primeiros termos da sequência $f$, definida recursivamente
+por $f(1) = -6$, $f(2) = -4$ e $f(n) = f(n-2) + f(n-1)$, para $n > 2$.
+
+<Answer>
+$$
+f(3) = f(1)+f(2) = -6+(-4) = -10
+$$
+
+$$
+f(4) = f(2)+f(3) = -4+(-10) = -14
+$$
+
+$$
+f(5) = f(3)+f(4) = -10+(-14) = -24
+$$
+
+Logo: $-6,\ -4,\ -10,\ -14,\ -24$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Escreva recursivamente uma sequência para determinar a quantidade de
+movimentos necessários para resolver a Torre de Hanói, cujos primeiros
+termos são $1, 3, 7, 15, 31, 63, \ldots$
+
+<Answer>
+Cada termo é o dobro do anterior mais $1$:
+
+$$
+f(1) = 1, \qquad f(n) = 2 \cdot f(n-1) + 1,\; n \ge 2
+$$
+</Answer>
+</Exercise>
+
+<Exercise>
+Encontre uma forma recursiva para a sequência de Fibonacci
+$1, 1, 2, 3, 5, 8, 13, 21, \ldots$
+
+<Answer>
+$$
+f(1) = 1, \qquad f(2) = 1, \qquad f(n) = f(n-2) + f(n-1),\; n \ge 3
+$$
+</Answer>
+</Exercise>
+
+## Algoritmos recursivos
+
+Um algoritmo é um conjunto finito de instruções precisas para realizar uma
+operação computacional ou resolver um problema. Um algoritmo é **recursivo**
+se resolve um problema reduzindo-o ao mesmo problema com valores iniciais
+menores, até alcançar um **caso base** que é resolvido diretamente.
+
+<Exercise>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule o $n$-ésimo
+termo da sequência de Fibonacci.
+
+<Answer>
+```
+function FIB(n):
+begin
+  if n == 0:
+    return 0;
+  elif n == 1:
+    return 1;
+  else:
+    return FIB(n - 2) + FIB(n - 1);
+end;
+```
+</Answer>
+</Exercise>
+
+<Exercise>
+Trace a execução do algoritmo da questão anterior para $n = 8$.
+
+<Resolution>
+
+$$
+FIB(2) = FIB(0)+FIB(1) = 0+1 = 1
+$$
+
+$$
+FIB(3) = FIB(1)+FIB(2) = 1+1 = 2
+$$
+
+$$
+FIB(4) = FIB(2)+FIB(3) = 1+2 = 3
+$$
+
+$$
+FIB(5) = FIB(3)+FIB(4) = 2+3 = 5
+$$
+
+$$
+FIB(6) = FIB(4)+FIB(5) = 3+5 = 8
+$$
+
+$$
+FIB(7) = FIB(5)+FIB(6) = 5+8 = 13
+$$
+
+$$
+FIB(8) = FIB(6)+FIB(7) = 8+13 = 21
+$$
+
+</Resolution>
+
+<Answer>
+$FIB(8) = 21$
+</Answer>
+</Exercise>
+
+<Exercise>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule $p(a, n) =
+a^{n}$, onde $a \in \mathbb{R}^{*}$ e $n \in \mathbb{Z}^{*}$.
+
+<Answer>
+```
+function p(a, n):
+begin
+  if n == 1:
+    return a;
+  else:
+    return a * p(a, n - 1);
+end;
+```
+</Answer>
+</Exercise>
+
+<Exercise>
+Trace a execução do algoritmo da questão anterior para $p(2, 8)$.
+
+<Resolution>
+
+$$
+p(2,1) = 2
+$$
+
+$$
+p(2,2) = 2 \cdot p(2,1) = 2 \cdot 2 = 4
+$$
+
+$$
+p(2,3) = 2 \cdot p(2,2) = 2 \cdot 4 = 8
+$$
+
+$$
+p(2,4) = 2 \cdot p(2,3) = 2 \cdot 8 = 16
+$$
+
+$$
+p(2,5) = 2 \cdot p(2,4) = 2 \cdot 16 = 32
+$$
+
+$$
+p(2,6) = 2 \cdot p(2,5) = 2 \cdot 32 = 64
+$$
+
+$$
+p(2,7) = 2 \cdot p(2,6) = 2 \cdot 64 = 128
+$$
+
+$$
+p(2,8) = 2 \cdot p(2,7) = 2 \cdot 128 = 256
+$$
+
+</Resolution>
+
+<Answer>
+$p(2,8) = 256$
+</Answer>
+</Exercise>

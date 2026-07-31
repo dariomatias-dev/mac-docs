@@ -17,6 +17,35 @@ Observações:
 2. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x = y^{2}$ **não** é uma ordenação parcial.
 
 <Exercise>
+Mostre que a relação $x\,p\,y \Leftrightarrow x \le y$ é uma relação de
+ordenação parcial em $S = \mathbb{N}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $(\forall x)(x \in \mathbb{N} \Rightarrow (x,x) \in p)$. Como
+$x \in \mathbb{N} \Rightarrow x \le x$, então $x\,p\,x$. Logo $p$ é reflexiva.
+
+**Transitiva:** $(\forall x,y,z)(x,y,z \in \mathbb{N},\ (x,y) \in p,\ (y,z)
+\in p \Rightarrow (x,z) \in p)$. Como $(x,y) \in p$ e $(y,z) \in p
+\Rightarrow x \le y$ e $y \le z \Rightarrow x \le y \le z \Rightarrow x \le
+z$. Logo $x\,p\,z$.
+
+**Antissimétrica:** $(\forall x,y)(x,y \in \mathbb{N},\ (x,y) \in p
+\Rightarrow (y,x) \in p \Rightarrow x = y)$. Como $(x,y) \in p \Rightarrow x
+\le y$; no entanto $y \le x \Leftrightarrow y = x$. Portanto $p$ é
+antissimétrica.
+
+Como $p$ é reflexiva, transitiva e antissimétrica, é uma relação de
+ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
 Considere a relação $x\,p\,y \Leftrightarrow x$ divide $y$ em
 $\{1, 2, 3, 6, 12, 18\}$. Escreva todos os pares ordenados desta relação.
 

@@ -1,0 +1,215 @@
+---
+title: Demonstração por indução
+description: Princípio da Indução Finita — passo básico, hipótese de indução e passo indutivo.
+order: 5
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao/contradicao
+---
+
+A **demonstração por indução** (ou pelo **Princípio da Indução Finita**, PIF)
+é usada para provar afirmações do tipo "$P(n)$ é verdadeira para todo inteiro
+$n \ge n_{0}$". Ela é feita em três passos:
+
+1. **Passo básico:** mostra-se que $P(n_{0})$ é verdadeira (geralmente
+   $n_{0} = 0$ ou $n_{0} = 1$).
+2. **Hipótese de indução:** supõe-se que $P(k)$ é verdadeira para algum
+   inteiro $k \ge n_{0}$.
+3. **Passo indutivo:** demonstra-se que $P(k) \Rightarrow P(k+1)$, usando a
+   hipótese de indução.
+
+Se os três passos forem cumpridos, então, pelo PIF, $P(n)$ é verdadeira para
+todo $n \ge n_{0}$.
+
+## Exercícios
+
+<Exercise>
+Prove, por indução, que $1 + 3 + 5 + \ldots + (2n-1) = n^{2}$ é verdadeira
+para todo $n \in \mathbb{Z}_{+}^{*}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 2(1)-1 = 1^{2} \Rightarrow 1=1$. A equação é
+verdadeira para $n=1$ (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k$. Assim,
+
+$$
+1+3+5+\ldots+(2k-1) = k^{2} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1+3+5+\ldots+(2k-1)+\big[2(k+1)-1\big]
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = k^{2}+2k+2-1 = k^{2}+2k+1 = (k+1)^{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+Prove, por indução, que $1 + 2 + \ldots + n = \dfrac{n(n+1)}{2}$, para todo
+$n$ inteiro positivo.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 1 = \dfrac{1(1+1)}{2} \Rightarrow 1=1$. Verdadeiro
+(passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k$. Assim,
+
+$$
+1+2+\ldots+k = \frac{k(k+1)}{2} \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 1+2+\ldots+k+(k+1) \overset{\text{H.I.}}{=} \frac{k(k+1)}{2}+(k+1)
+= \frac{(k+1)(k+2)}{2}
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+Prove, por indução, que $1 + 2 + 2^{2} + 2^{3} + \ldots + 2^{n} = 2^{n+1} - 1$,
+para todo $n \ge 1$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 1+2 = 2^{2}-1 \Rightarrow 3 = 3$. Verdadeiro (passo
+básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro $k > 1$. Assim,
+
+$$
+1+2+2^{2}+\ldots+2^{k} = 2^{k+1}-1 \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+1+2+2^{2}+\ldots+2^{k}+2^{k+1} \overset{\text{H.I.}}{=} \big(2^{k+1}-1\big)+2^{k+1}
+$$
+
+$$
+= 2 \cdot 2^{k+1} - 1 = 2^{k+2} - 1
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+Prove, por indução, que $2^{2n} - 1$ é divisível por $3$, para todo inteiro
+positivo $n$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow 2^{2(1)}-1 = 3m$, com $m \in \mathbb{Z}
+\Rightarrow 4-1=3 \Rightarrow 3=3$. Verdadeiro (passo básico).
+
+**II)** Vamos supor, por indução, que a equação é válida para algum inteiro
+positivo $k$. Assim,
+
+$$
+2^{2k}-1 = 3m,\; \text{com } m \in \mathbb{Z} \quad \text{(hipótese de
+indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$. Assim,
+
+$$
+P(k+1) = 2^{2(k+1)}-1 = 4 \cdot 2^{2k}-1 = 3 \cdot 2^{2k}+\big(2^{2k}-1\big)
+$$
+
+$$
+\text{(pela H.I.)} \quad P(k+1) = 3 \cdot 2^{2k}+3m = 3\big(2^{2k}+m\big)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+Prove por indução que, na sequência de Fibonacci, $F(n+4) = 3F(n+2) - F(n)$,
+para todo $n \ge 1$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**I)** Se $n=1 \Rightarrow F(5) = 3F(3)-F(1) \Rightarrow 5 = 3(2)-1
+\Rightarrow 5=5$. Verdadeiro (passo básico).
+
+**II)** Vamos supor, por indução, que a equação seja verdadeira para algum
+inteiro positivo $k$. Assim,
+
+$$
+F(k+4) = 3F(k+2)-F(k) \quad \text{(hipótese de indução)}
+$$
+
+**III)** Vamos demonstrar que $P(k) \Rightarrow P(k+1)$, ou seja, que
+$F(k+5) = 3F(k+3)-F(k+1)$. Assim,
+
+$$
+F(k+5) = F(k+4)+F(k+3) \overset{\text{H.I.}}{=} \big[3F(k+2)-F(k)\big]+F(k+3)
+$$
+
+Como $F(k+2) = F(k)+F(k+1) \Rightarrow -F(k) = F(k+1)-F(k+2)$:
+
+$$
+F(k+5) = 3F(k+2)+F(k+1)-F(k+2)+F(k+3) = 2F(k+2)+F(k+1)+F(k+3)
+$$
+
+Como $F(k+3) = F(k+2)+F(k+1) \Rightarrow F(k+2) = F(k+3)-F(k+1)$:
+
+$$
+F(k+5) = 2\big(F(k+3)-F(k+1)\big)+F(k+1)+F(k+3) = 3F(k+3)-F(k+1)
+$$
+
+$$
+\therefore \text{ Pelo P.I.F, } P(k) \Rightarrow P(k+1) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
