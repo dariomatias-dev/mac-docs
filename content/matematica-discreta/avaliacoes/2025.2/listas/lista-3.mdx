@@ -811,31 +811,20 @@ $$
 (x+y)(x-y) = 10
 $$
 
-Como $x, y \in \mathbb{Z}$, os fatores $(x+y)$ e $(x-y)$ têm a mesma
-paridade (ambos pares ou ambos ímpares), pois sua soma $2x$ é sempre par.
-Testando as fatorações de $10$ em dois fatores da mesma paridade:
+Como $x, y \in \mathbb{Z}$, os fatores $(x+y)$ e $(x-y)$ têm sempre a mesma
+paridade entre si (ambos pares ou ambos ímpares), pois sua diferença
+$(x+y)-(x-y) = 2y$ é sempre par. Os divisores de $10$ são $\pm1, \pm2,
+\pm5, \pm10$, e qualquer par deles com produto $10$ mistura um fator par
+com um ímpar ($1 \times 10$, $2 \times 5$, e seus sinais), nunca dois da
+mesma paridade:
 
 $$
-x+y=10,\ x-y=1 \Rightarrow 2x=11 \Rightarrow x = \frac{11}{2} \notin
-\mathbb{Z} \quad (\rightarrow\leftarrow)
+10 = 1 \cdot 10 = 2 \cdot 5 = (-1)(-10) = (-2)(-5)
 $$
 
-$$
-x+y=1,\ x-y=10 \Rightarrow 2x=11 \Rightarrow x = \frac{11}{2} \notin
-\mathbb{Z} \quad (\rightarrow\leftarrow)
-$$
-
-$$
-x+y=2,\ x-y=5 \Rightarrow 2x=7 \Rightarrow x = \frac{7}{2} \notin \mathbb{Z}
-\quad (\rightarrow\leftarrow)
-$$
-
-$$
-x+y=5,\ x-y=2 \Rightarrow 2x=7 \Rightarrow x = \frac{7}{2} \notin \mathbb{Z}
-\quad (\rightarrow\leftarrow)
-$$
-
-Em todos os casos, $x$ não é inteiro — absurdo.
+Como $(x+y)$ e $(x-y)$ precisam ter a mesma paridade, mas nenhuma
+fatoração de $10$ oferece isso, não existem $x+y$ e $x-y$ inteiros cujo
+produto seja $10$ — absurdo.
 
 $$
 \therefore S = \varnothing \quad \blacksquare

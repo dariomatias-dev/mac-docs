@@ -74,14 +74,22 @@ $$
 \frac{f(x)}{g(x)} = \frac{(x-2)(x+2)}{x-2} = x + 2
 $$
 
+A simplificação algébrica vale para $x+2$, mas a expressão original
+$f(x)/g(x)$ só está definida onde $g(x) \ne 0$, ou seja, $x \ne 2$. Cancelar
+o fator $(x-2)$ não elimina essa restrição:
+
 $$
-\therefore D = \mathbb{R}
+\therefore D = \mathbb{R} - \{2\}
 $$
+
+Nenhuma das alternativas combina corretamente $f(x)/g(x) = x+2$ com
+$D = \mathbb{R} - \{2\}$ — há uma inconsistência no enunciado original.
 
 </Resolution>
 
 <Answer>
-d) $f(x)/g(x) = x + 2$ e $D = \mathbb{R}$
+$f(x)/g(x) = x + 2$ e $D = \mathbb{R} - \{2\}$ (nenhuma alternativa dada
+está totalmente correta).
 </Answer>
 </Question>
 
@@ -175,7 +183,7 @@ $$
 $$
 
 $$
-f(-x) = \frac{(-x)^{3} + 2(-x)}{(-x)^{5}} \;\Rightarrow\; f(-x) = \frac{-x^{3}+2x}{-x^{5}} = \frac{-(x^{3}-2x)}{-(x^{5})} = \frac{x^{3}-2x}{x^{5}} = f(x)
+f(-x) = \frac{(-x)^{3} - 2(-x)}{(-x)^{5}} \;\Rightarrow\; f(-x) = \frac{-x^{3}+2x}{-x^{5}} = \frac{-(x^{3}-2x)}{-(x^{5})} = \frac{x^{3}-2x}{x^{5}} = f(x)
 $$
 
 $$
@@ -211,8 +219,9 @@ $$
 ## Questão 5 <Badge>1,0 pt</Badge>
 
 <Question>
-Seja $f: \mathbb{R} \Rightarrow \mathbb{R}$ uma função definida por $f(x) =
-(2x + 4)/x$, então determine (caso exista) $f^{-1}(x)$.
+Seja $f: \mathbb{R} - \{0\} \Rightarrow \mathbb{R} - \{2\}$ uma função
+definida por $f(x) = (2x + 4)/x$, então determine (caso exista)
+$f^{-1}(x)$.
 
 <Resolution>
 
@@ -390,7 +399,7 @@ Dem.:
 <Proof>
 
 $$
-(\forall x) \in \mathbb{R},\; xpx \Leftrightarrow x-x = \beta, \text{ com } \beta \in \mathbb{R}
+(\forall x) \in \mathbb{R},\; xpx \Leftrightarrow x-x = \beta, \text{ com } \beta \in \mathbb{Z}
 $$
 
 Então $x - x = 0$, e $0$ pertence aos inteiros
@@ -403,14 +412,14 @@ $$
 (\forall x,y) \in \mathbb{R},\; xpy \Rightarrow ypx
 $$
 
-Assim, $x-y = \beta$, com $\beta \in \mathbb{R}$
+Assim, $x-y = \beta$, com $\beta \in \mathbb{Z}$
 
 $$
 -(x-y) = -\beta \;\Rightarrow\; -x+y = -\beta
 $$
 
 $$
-y-x = -\beta,\; -\beta \in \mathbb{R}
+y-x = -\beta,\; -\beta \in \mathbb{Z}
 $$
 
 $$
@@ -422,7 +431,7 @@ $$
 $$
 
 $$
-x-y = b \qquad y-z = k,\; \text{com } k \text{ e } b \in \mathbb{R}
+x-y = b \qquad y-z = k,\; \text{com } k \text{ e } b \in \mathbb{Z}
 $$
 
 $$
@@ -434,7 +443,7 @@ y = -b+x \qquad -b+x-z = k
 $$
 
 $$
-x-2 = k+b \Rightarrow xpz,\; \text{com } k+b \in \mathbb{R}
+x-z = k+b \Rightarrow xpz,\; \text{com } k+b \in \mathbb{Z}
 $$
 
 $$

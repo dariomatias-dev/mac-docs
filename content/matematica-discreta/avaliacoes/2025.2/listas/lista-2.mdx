@@ -619,14 +619,17 @@ $m = -\dfrac{6}{5}$
 ## Questão 24
 
 <Question>
-Seja $f: \mathbb{R} - \{-2\} \to \mathbb{R}$, $f(x) = \dfrac{2}{x+2}$.
+Seja $f: \mathbb{R} - \{-2\} \to \mathbb{R} - \{0\}$, $f(x) = \dfrac{2}{x+2}$.
 Determine $f^{-1}(x)$, caso exista.
 
 <Resolution>
 
-**Sobrejetora:** $\forall y \in \mathbb{R},\ \exists x \in \mathbb{R} -
-\{-2\} \mid f(x) = y$. Assim, $f(x) = y \Rightarrow \dfrac{2}{x+2} = y
-\Rightarrow x+2 = \dfrac{2}{y} \Rightarrow x = \dfrac{2}{y} - 2$. Agora,
+**Sobrejetora:** note que $f(x) = \dfrac{2}{x+2}$ nunca se anula (um
+quociente com numerador $2$ nunca é $0$), então o contradomínio precisa
+excluir $0$ para que $f$ possa ser sobrejetora. $\forall y \in \mathbb{R} -
+\{0\},\ \exists x \in \mathbb{R} - \{-2\} \mid f(x) = y$. Assim, $f(x) = y
+\Rightarrow \dfrac{2}{x+2} = y \Rightarrow x+2 = \dfrac{2}{y} \Rightarrow x =
+\dfrac{2}{y} - 2$ (divisão por $y$ válida pois $y \ne 0$). Agora,
 $f\!\left(\dfrac{2}{y}-2\right) = \dfrac{2}{2/y} = y$. Logo $f$ é sobrejetora.
 
 **Injetora:** se $f(x) = f(y) \Rightarrow \dfrac{2}{x+2} = \dfrac{2}{y+2}
