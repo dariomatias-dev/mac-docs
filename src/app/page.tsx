@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { getSidebarTree } from "@/features/navigation";
+import { NextClassCard } from "@/features/schedule/components/next-class-card";
 import { Callout, Option, Quiz } from "@/features/study";
 import { CtaLink } from "@/shared/components/cta-link";
 
@@ -80,6 +81,10 @@ export default function Home() {
           <CtaLink href="/docs/matematica-discreta" variant="secondary">
             Ver todos os tópicos
           </CtaLink>
+        </div>
+
+        <div className="mt-6">
+          <NextClassCard />
         </div>
       </section>
 
