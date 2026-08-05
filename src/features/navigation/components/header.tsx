@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { Users } from "lucide-react";
+import { NotebookPen, Users } from "lucide-react";
 
 import { ThemeToggle } from "@/features/theme";
 
@@ -61,6 +61,13 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
         )}
 
         <div className="ml-auto flex items-center gap-3">
+          <Link
+            href="/anotacoes"
+            className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors sm:flex"
+          >
+            <NotebookPen className="h-4 w-4" />
+            Anotações
+          </Link>
           <Link
             href="/contribuidores"
             className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors sm:flex"
