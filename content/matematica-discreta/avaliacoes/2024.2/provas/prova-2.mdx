@@ -1,0 +1,415 @@
+---
+title: Prova 2 — Funções e relações
+description: Avaliação 2 de Matemática Aplicada à Computação (2024.2), com resolução comentada.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/funcoes
+  - /docs/matematica-discreta/relacoes
+---
+
+Avaliação 2 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2024.2**, professor Suemilton Nunes Gervázio. Cobre
+divisão de polinômios, operações entre funções, funções pares e ímpares,
+função inversa, funções injetoras, sobrejetoras e bijetoras, e relações de
+equivalência e de ordem. Tente cada questão sozinho antes de abrir a
+**resposta**.
+
+## Questão 1 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Considere a função polinomial $p(x) = x^{4} - 2x^{3} - 45x^{2} - 34x + 80$ e
+o polinômio $q(x) = x + 2$. Assim, determine:
+
+a) O resto da divisão de $p(x)$ por $q(x)$
+
+b) O polinômio resultante da divisão de $p(x)$ por $q(x)$
+
+<Resolution>
+
+Como $q(x) = x+2$ tem raiz $x=-2$, é possível usar divisão sintética
+(Briot-Ruffini) com os coeficientes de $p(x)$: $1, -2, -45, -34, 80$.
+
+$$
+\begin{array}{c|ccccc}
+-2 & 1 & -2 & -45 & -34 & 80 \\
+\hline
+ & 1 & -4 & -37 & 40 & 0
+\end{array}
+$$
+
+Cada coeficiente do quociente é obtido somando o coeficiente de $p$ com o
+produto do coeficiente anterior do quociente por $-2$: $-2+1(-2)=-4$;
+$-45+(-4)(-2)=-37$; $-34+(-37)(-2)=40$; e o resto é $80+40(-2)=0$.
+
+</Resolution>
+
+<Answer>
+a) Resto $= 0$
+
+b) Polinômio resultante $= x^{3} - 4x^{2} - 37x + 40$
+</Answer>
+</Question>
+
+## Questão 2 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Seja $f: \mathbb{R} \Rightarrow \mathbb{R}$ e $g: \mathbb{R} \Rightarrow
+\mathbb{R}$, com $f(x) = 6x^{4} - 10x^{3} + 9x^{2} + 9x - 5$ e $g(x) = 2x^{2}
+- 4x + 5$. Assim, em relação à operação entre as funções $f(x)/g(x)$ e o
+seu domínio, teremos que:
+
+<Alternatives>
+  <Alternative>$f(x)/g(x) = 3x^{2}+x-1$ e $\mathbb{R} - \{-2,5\}$</Alternative>
+  <Alternative>$f(x)/g(x) = 3x^{2}+x-1$ e $D = \mathbb{R} - \{1,3\}$</Alternative>
+  <Alternative>
+    $f(x)/g(x) = \dfrac{6x^{4}-10x^{3}+9x^{2}-5}{2x^{2}-4x+5}$ e
+    $D = \mathbb{R} - \{1,3\}$
+  </Alternative>
+  <Alternative>$f(x)/g(x) = x^{2}-3x-10$ e $D = \mathbb{R}$</Alternative>
+  <Alternative correct>$f(x)/g(x) = 3x^{2}+x-1$ e $D = \mathbb{R}$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Dividindo $f(x)$ por $g(x)$:
+
+$$
+6x^{4}-10x^{3}+9x^{2}+9x-5 = (2x^{2}-4x+5)(3x^{2}+x-1) + 0
+$$
+
+O resto é $0$, então $f(x)/g(x) = 3x^{2}+x-1$ para todo $x$ em que
+$g(x) \ne 0$. Verificando as raízes de $g$: $\Delta = (-4)^{2}-4(2)(5) =
+16-40=-24 < 0$, ou seja, $g(x)$ nunca se anula para $x$ real. Logo não há
+restrição alguma no domínio: $D = \mathbb{R}$.
+
+</Resolution>
+
+<Answer>
+e) $f(x)/g(x) = 3x^{2}+x-1$ e $D = \mathbb{R}$
+</Answer>
+</Question>
+
+## Questão 3 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que:
+
+a) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = -6x - 11$, é decrescente em $\mathbb{R}$.
+
+b) A função $f: \mathbb{R}^{+} \Rightarrow \mathbb{R}^{+}$, definida por
+$f(x) = x^{2}$, é crescente em $\mathbb{R}^{+}$.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, se $x < y$, então:
+
+$$
+x < y \;\Rightarrow\; -6x > -6y \;\Rightarrow\; -6x-11 > -6y-11
+$$
+
+Assim $f(x) > f(y)$. Logo $f$ é decrescente. $\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}^{+}$, se $x < y$, então $x+y>0$ e $y-x>0$, logo
+$(x+y)(y-x) > 0$, isto é:
+
+$$
+y^{2} - x^{2} > 0 \;\Rightarrow\; x^{2} < y^{2}
+$$
+
+Assim $f(x) < f(y)$. Logo $f$ é crescente. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Responda aos questionamentos a seguir, fazendo sempre a demonstração
+condizente com a sua resposta.
+
+a) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+\dfrac{x^{5}-2x}{x^{9}}$, é uma função ímpar, par ou apenas uma função?
+
+b) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+x^{2}+2x$, é uma função ímpar, par ou apenas uma função?
+
+<Answer>
+a) $f$ é par.
+
+<Proof>
+
+$\forall x \in \mathbb{R}^{*}$:
+
+$$
+f(-x) = \frac{(-x)^{5}-2(-x)}{(-x)^{9}} = \frac{-x^{5}+2x}{-x^{9}} =
+\frac{-(x^{5}-2x)}{-x^{9}} = \frac{x^{5}-2x}{x^{9}} = f(x)
+$$
+
+Assim $f(-x) = f(x)$. Logo $f$ é par. $\blacksquare$
+
+</Proof>
+
+b) $f$ é apenas uma função (nem par, nem ímpar).
+
+<Proof>
+
+$\forall x \in \mathbb{R}$:
+
+$$
+f(-x) = (-x)^{2}+2(-x) = x^{2}-2x
+$$
+
+Comparando: $f(-x) \ne f(x)$ (pois $x^{2}-2x \ne x^{2}+2x$ para $x \ne 0$) e
+$f(-x) \ne -f(x)$ (pois $x^{2}-2x \ne -x^{2}-2x$ para $x \ne 0$). Logo $f$
+não é par nem ímpar; é apenas uma função. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Seja $f: \mathbb{R} - \{4\} \Rightarrow \mathbb{R} - \{5\}$ uma função
+definida por $f(x) = \dfrac{5x+8}{x-4}$, então determine (caso exista)
+$f^{-1}(x)$.
+
+<Resolution>
+
+Fazendo $y = f(x)$ e isolando $x$:
+
+$$
+y = \frac{5x+8}{x-4} \;\Rightarrow\; y(x-4) = 5x+8 \;\Rightarrow\; xy-4y =
+5x+8
+$$
+
+$$
+xy - 5x = 8+4y \;\Rightarrow\; x(y-5) = 4y+8 \;\Rightarrow\; x =
+\frac{4y+8}{y-5}
+$$
+
+Trocando $x$ por $f^{-1}(x)$ e $y$ por $x$:
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{4x+8}{x-5}
+$$
+</Answer>
+</Question>
+
+## Questão 6 <Badge>USP-SP, adaptada — 10,0 pts</Badge>
+
+<Question>
+Uma função $f$ satisfaz a identidade $f(a \cdot x) = a \cdot f(x)$ para
+todos os números reais $a$ e $x$. Além disso, sabe-se que $f(4) = 2$.
+Considere ainda a função $g(x) = f(x-1)+1$ para todo número real $x$. Assim,
+com base nessas informações, responda os itens a seguir:
+
+a) Qual é o valor de $g(5)$?
+
+b) Qual é o valor de $f(x)$, para todo $x$ real?
+
+c) Qual é o valor de $x$ na equação $g(x) = 11$?
+
+d) Qual é o valor de $f(g(x))$, para todo $x$ real?
+
+<Resolution>
+
+b) Fazendo $x=1$ na identidade $f(a \cdot x) = a \cdot f(x)$, obtemos
+$f(a) = a \cdot f(1)$ para todo $a$ real, ou seja, $f$ é da forma $f(x) =
+kx$ com $k = f(1)$. Como $f(4)=2$: $4k=2 \Rightarrow k = \tfrac{1}{2}$.
+Logo $f(x) = \tfrac{1}{2}x$.
+
+a) $g(5) = f(5-1)+1 = f(4)+1 = 2+1 = 3$.
+
+c) Com $f(x)=\tfrac12 x$: $g(x) = \tfrac12(x-1)+1 = \tfrac12 x + \tfrac12$.
+Igualando a $11$: $\tfrac12 x + \tfrac12 = 11 \Rightarrow \tfrac12 x = 10{,}5
+\Rightarrow x = 21$.
+
+d) $f(g(x)) = \tfrac12 \cdot g(x) = \tfrac12 \left(\tfrac12 x +
+\tfrac12\right) = \tfrac{x+1}{4}$.
+
+</Resolution>
+
+<Answer>
+a) $g(5) = 3$
+
+b) $f(x) = \dfrac{x}{2}$
+
+c) $x = 21$
+
+d) $f(g(x)) = \dfrac{x+1}{4}$
+</Answer>
+</Question>
+
+## Questão 7 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que:
+
+a) A função $f: (0,+\infty) \Rightarrow (-2,+\infty)$ definida por $f(x) =
+3x^{2}-2$ é sobrejetora.
+
+b) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por $f(x) = 2x-6$
+é injetora.
+
+c) A função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por $f(x) =
+x^{3}-7$ é bijetora.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+$\forall y \in (-2,+\infty)$, procuramos $x \in (0,+\infty)$ tal que
+$f(x)=y$:
+
+$$
+y = 3x^{2}-2 \;\Rightarrow\; x^{2} = \frac{y+2}{3} \;\Rightarrow\; x =
+\sqrt{\frac{y+2}{3}}
+$$
+
+Como $y>-2$, temos $\tfrac{y+2}{3}>0$, logo a raiz está bem definida e
+$x>0$, ou seja, $x \in (0,+\infty)$. Assim, para todo $y$ do contradomínio
+existe $x$ no domínio com $f(x)=y$. Logo $f$ é sobrejetora. $\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+$\forall x,y \in \mathbb{R}$, suponha $f(x)=f(y)$:
+
+$$
+2x-6 = 2y-6 \;\Rightarrow\; 2x=2y \;\Rightarrow\; x=y
+$$
+
+Logo $f$ é injetora. $\blacksquare$
+
+</Proof>
+
+Dem. c):
+
+<Proof>
+
+Sobrejetora: $\forall y \in \mathbb{R}$, tome $x = \sqrt[3]{y+7}$. Então
+$f(x) = (\sqrt[3]{y+7})^{3}-7 = (y+7)-7 = y$, logo existe $x$ para todo $y$.
+
+Injetora: se $f(x)=f(y)$, então $x^{3}-7=y^{3}-7 \Rightarrow x^{3}=y^{3}
+\Rightarrow x=y$ (a raiz cúbica real é única).
+
+Como $f$ é injetora e sobrejetora, $f$ é bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que no conjunto $\mathbb{Z}$ dos números inteiros a relação $R$
+definida por $x \mathrel{R} y \iff x+y$ é um número par, é uma relação de
+equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $(\forall x)(x \in \mathbb{Z} \Rightarrow (x,x) \in R)$. Como
+$x+x=2x$ é sempre par, $(x,x) \in R$. Logo $R$ é reflexiva.
+
+**Simétrica:** $(\forall x)(\forall y)(x,y \in \mathbb{Z}, (x,y) \in R
+\Rightarrow (y,x) \in R)$. Como $(x,y) \in R \iff x+y=2k$, $k \in
+\mathbb{Z}$, e $y+x=x+y=2k$, segue $(y,x) \in R$. Logo $R$ é simétrica.
+
+**Transitiva:** $(\forall x)(\forall y)(\forall z)(x,y,z \in \mathbb{Z},
+(x,y) \in R \text{ e } (y,z) \in R \Rightarrow (x,z) \in R)$. Como $x+y=2a$
+e $y+z=2b$, com $a,b \in \mathbb{Z}$, somando: $x+2y+z = 2a+2b \Rightarrow
+x+z = 2(a+b-y)$, e como $a+b-y \in \mathbb{Z}$, $x+z$ é par. Logo $(x,z) \in
+R$ e $R$ é transitiva.
+
+Como $R$ é reflexiva, simétrica e transitiva, $R$ é uma relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que no conjunto $\mathbb{Z}^{+}$ dos números inteiros positivos a
+relação $R$ definida por $x \mathrel{R} y \iff x \le y$ é uma relação de
+ordenação parcial.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $(\forall x)(x \in \mathbb{Z}^{+} \Rightarrow (x,x) \in R)$.
+Como $x \le x$ sempre, $(x,x) \in R$.
+
+**Antissimétrica:**
+$(\forall x)(\forall y)(x,y \in \mathbb{Z}^{+}, (x,y) \in R \text{ e } (y,x)
+\in R \Rightarrow x=y)$. Se $x \le y$ e $y \le x$, então necessariamente
+$x=y$.
+
+**Transitiva:**
+$(\forall x)(\forall y)(\forall z)(x,y,z \in \mathbb{Z}^{+}, (x,y) \in R
+\text{ e } (y,z) \in R \Rightarrow (x,z) \in R)$. Se $x \le y$ e $y \le z$,
+então $x \le z$, logo $(x,z) \in R$.
+
+Como $R$ é reflexiva, antissimétrica e transitiva, $R$ é uma relação de
+ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 10 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Para $f: \mathbb{R} \Rightarrow \mathbb{R}$ dada por $f(x) = -2x^{2}+3x+2$,
+determine:
+
+a) Qual é a imagem de $-5$?
+
+b) Quais são as pré-imagens de $0$?
+
+<Resolution>
+
+a) $f(-5) = -2(-5)^{2}+3(-5)+2 = -2(25)-15+2 = -50-15+2 = -63$.
+
+b) Resolvendo $-2x^{2}+3x+2=0$, ou seja, $2x^{2}-3x-2=0$:
+
+$$
+\Delta = (-3)^{2}-4(2)(-2) = 9+16=25 \qquad x = \frac{3 \pm 5}{4}
+$$
+
+Logo $x = 2$ ou $x = -\tfrac{1}{2}$.
+
+</Resolution>
+
+<Answer>
+a) $f(-5) = -63$
+
+b) Pré-imagens de $0$: $\left\{-\tfrac{1}{2},\, 2\right\}$
+</Answer>
+</Question>

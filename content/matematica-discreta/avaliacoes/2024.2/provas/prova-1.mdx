@@ -1,0 +1,514 @@
+---
+title: Prova 1 — Matrizes e conjuntos
+description: Avaliação 1 de Matemática Aplicada à Computação (2024.2), com resolução comentada.
+order: 1
+prerequisites:
+  - /docs/matematica-discreta/matrizes
+  - /docs/matematica-discreta/conjuntos
+---
+
+Avaliação 1 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2024.2**, professor Suemilton Nunes Gervázio. Cobre
+sequências e conjuntos, demonstrações de inclusão, matrizes e representação
+de imagens por matrizes booleanas. Tente cada questão sozinho antes de abrir
+a **resposta**.
+
+## Questão 1 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Escreva os seguintes conjuntos, fornecendo-lhes uma característica que
+envolve todos os elementos, isto é, escreva os números da sequência a
+seguir na forma da Teoria dos Conjuntos.
+
+a) $A = \{1, 0, 5, 22, 57, 116, 205, 330, \ldots\}$
+
+b) $B = \{-4, -2, 4, 14, 28, 46, 68, \ldots\}$
+
+c) $C = \{2, 5/2, 3, 7/2, 4, 9/2, 5, 11/2, \ldots\}$
+
+<Resolution>
+
+a) Numerando os termos a partir de $n=0$, as diferenças sucessivas são
+$-1, 5, 17, 35, 59, 89, 125, \ldots$, as segundas diferenças são
+$6, 12, 18, 24, 30, 36$ e as terceiras diferenças são constantes e iguais a
+$6$. Uma terceira diferença constante indica um polinômio de grau $3$ em
+$n$, com coeficiente líder $6/3! = 1$. Ajustando o polinômio
+$A(n) = n^{3} + bn^{2} + cn + d$ aos valores $A(0)=1$, $A(1)=0$ e $A(2)=5$,
+obtém-se $d=1$, $b=0$ e $c=-2$. Assim $A(n) = n^{3} - 2n + 1$, e a
+verificação com os demais termos confirma o padrão (por exemplo,
+$A(7) = 343 - 14 + 1 = 330$).
+
+b) As diferenças sucessivas são $2, 6, 10, 14, 18, 22$ e as segundas
+diferenças são constantes e iguais a $4$, indicando um polinômio quadrático
+com coeficiente líder $4/2 = 2$. Ajustando
+$B(n) = 2n^{2} + bn + c$ aos valores $B(0)=-4$ e $B(1)=-2$, obtém-se $c=-4$
+e $b=0$. Assim $B(n) = 2n^{2} - 4$.
+
+c) É uma progressão aritmética de razão $1/2$, começando em $2$ para
+$n = 0$. Assim $C(n) = \tfrac{1}{2}n + 2$.
+
+</Resolution>
+
+<Answer>
+$$
+A = \{x \in \mathbb{Z} \mid x = n^{3} - 2n + 1,\; n \in \mathbb{N}\}
+$$
+
+$$
+B = \{x \in \mathbb{Z} \mid x = 2n^{2} - 4,\; n \in \mathbb{N}\}
+$$
+
+$$
+C = \{x \in \mathbb{Q} \mid x = \tfrac{1}{2}n + 2,\; n \in \mathbb{N}\}
+$$
+</Answer>
+</Question>
+
+## Questão 2 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Se $M$, $N$, $O$ e $P$ são conjuntos, então mostre que se $M \subseteq N$ e
+$O \subseteq P \Rightarrow (M \cap O) \subseteq (N \cap P)$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+M \subseteq N \iff (\forall x)(x \in M \Rightarrow x \in N)
+$$
+
+da mesma forma,
+
+$$
+O \subseteq P \iff (\forall y)(y \in O \Rightarrow y \in P)
+$$
+
+Por definição, $M \cap O = \{z \mid z \in M \text{ e } z \in O\}$. Seja
+$z \in (M \cap O)$, ou seja, $z \in M$ e $z \in O$. Como $z \in M \Rightarrow
+z \in N$ e $z \in O \Rightarrow z \in P$, segue que $z \in (N \cap P)$.
+
+$$
+\therefore (M \cap O) \subseteq (N \cap P) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 3 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Se $A$, $B$, $C$ e $D$ são conjuntos, então mostre que se $A \subseteq B$ e
+$C \subseteq D \Rightarrow (A \cup C) \subseteq (B \cup D)$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+A \subseteq B \iff (\forall x)(x \in A \Rightarrow x \in B)
+$$
+
+da mesma forma,
+
+$$
+C \subseteq D \iff (\forall y)(y \in C \Rightarrow y \in D)
+$$
+
+Por definição, $A \cup C = \{z \mid z \in A \text{ ou } z \in C\}$. Seja
+$z \in (A \cup C)$. Se $z \in A$, então $z \in B$; se $z \in C$, então
+$z \in D$. Em ambos os casos $z \in (B \cup D)$.
+
+$$
+\therefore (A \cup C) \subseteq (B \cup D) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Sejam os conjuntos $A = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 3\}$
+e $B = \{x \in \mathbb{N} \mid x \text{ é múltiplo de } 6\}$. Assim sendo,
+mostre que $B \subseteq A$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+A = \{x \in \mathbb{N} \mid x = 3m,\; m \in \mathbb{Z}\}
+$$
+
+$$
+B = \{x \in \mathbb{N} \mid x = 6m,\; m \in \mathbb{Z}\}
+$$
+
+Seja $y \in B$. Então $y = 6m = 3(2m)$ para algum $m \in \mathbb{Z}$. Como
+$2m \in \mathbb{Z}$, segue que $y$ também é múltiplo de $3$, ou seja,
+$y \in A$.
+
+$$
+(\forall y)(y \in B \Rightarrow y \in A) \quad \therefore B \subseteq A
+\quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Seja $A = \{x \mid x \in \mathbb{R} \text{ e } x^{2} - 2x - 8 \le 0\}$ e
+$B = \{x \mid x \in \mathbb{R} \text{ e } -1 < x < 3\}$. Mostre que
+$A \subset B$.
+
+<Resolution>
+
+Resolvendo a inequação que define $A$:
+
+$$
+x^{2} - 2x - 8 \le 0 \iff (x-4)(x+2) \le 0 \iff -2 \le x \le 4
+$$
+
+Logo $A = [-2, 4]$. Comparando com $B = (-1, 3)$: o elemento $x = -2$
+pertence a $A$, mas não pertence a $B$ (pois $-2 < -1$). Da mesma forma,
+$x = 4 \in A$, mas $4 \notin B$.
+
+Como existe pelo menos um elemento de $A$ que não está em $B$, a afirmação
+$A \subset B$ **não é verdadeira** para os conjuntos como enunciados — há
+uma inconsistência no enunciado. O maior conjunto correto para o qual a
+inclusão vale é $B' = [-2, 4]$, ou qualquer intervalo que o contenha, como
+$(-3, 5)$.
+
+</Resolution>
+
+<Answer>
+$A = [-2, 4]$. Com $B = (-1,3)$, a inclusão $A \subset B$ é falsa, pois
+$-2 \in A$ e $-2 \notin B$ (contraexemplo).
+</Answer>
+</Question>
+
+## Questão 6 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Descreva cada um dos conjuntos a seguir, listando seus elementos:
+
+a) $A = \{x \mid x \in \mathbb{N} \text{ e } (\exists q)(q \in \{1,2,4,5\}
+\text{ e } x = 2q^{2}-3)\}$
+
+b) $B = \{x \mid x \in \mathbb{N} \text{ e } (\exists y)(\exists z)(y \in
+\{1,2,3\},\; z \in \{3,4,5\} \text{ e } y < x < z)\}$
+
+c) $C = \{x \mid x \in \mathbb{N} \text{ e } x \text{ é primo e } 2 < x <
+15\}$
+
+d) $D = \{x \mid x \in \mathbb{C} \text{ e } x^{2} + 117 = -4\}$
+
+e) $E = \{x \mid x \in \mathbb{Z} \text{ e } |x| < 6\}$
+
+<Resolution>
+
+a) Para cada $q \in \{1,2,4,5\}$: $q=1 \Rightarrow x=2(1)-3=-1$ (não
+pertence a $\mathbb{N}$, descartado); $q=2 \Rightarrow x=2(4)-3=5$;
+$q=4 \Rightarrow x=2(16)-3=29$; $q=5 \Rightarrow x=2(25)-3=47$.
+
+b) Com $y \ge 1$ e $z \le 5$, a condição $y<x<z$ só pode valer para
+$x \in \{2,3,4\}$: $x=2$ com $y=1,z=3$; $x=3$ com $y=1,z=4$; $x=4$ com
+$y=1,z=5$.
+
+c) Números primos estritamente entre $2$ e $15$: $3, 5, 7, 11, 13$ (o
+próprio $2$ fica de fora, pois a condição é $2 < x$).
+
+d) $x^{2} = -117-4 = -121 \Rightarrow x = \pm\sqrt{-121} = \pm 11i$.
+
+e) Inteiros com valor absoluto menor que $6$: de $-5$ a $5$.
+
+</Resolution>
+
+<Answer>
+$$
+A = \{5, 29, 47\} \qquad B = \{2, 3, 4\} \qquad C = \{3, 5, 7, 11, 13\}
+$$
+
+$$
+D = \{-11i,\; 11i\} \qquad E = \{-5,-4,-3,-2,-1,0,1,2,3,4,5\}
+$$
+</Answer>
+</Question>
+
+## Questão 7 <Badge>ITA, adaptada — 10,0 pts</Badge>
+
+<Question>
+Sabendo que uma matriz quadrada $A$ de ordem $3$ possui lei de formação
+$A = (a_{ij})_{3 \times 3}$, de tal modo que $a_{ij} = 2^{i-1} \cdot (3j-2)$,
+com $1 \le i, j \le 3$, e a matriz
+
+$$
+B =
+\begin{bmatrix} 3 & 0 \\ -1 & -2 \\ 1 & 2 \end{bmatrix}
+$$
+
+Assim, determine:
+
+a) A matriz $A$
+
+b) A matriz $A \times B$
+
+c) A matriz $B^{T} \times A$
+
+d) A matriz $A^{T} \times B$
+
+<Resolution>
+
+a) Calculando $a_{ij} = 2^{i-1}(3j-2)$ para cada posição:
+
+$$
+A =
+\begin{bmatrix} 1 & 4 & 7 \\ 2 & 8 & 14 \\ 4 & 16 & 28 \end{bmatrix}
+$$
+
+b) Multiplicando linha de $A$ por coluna de $B$:
+
+$$
+A \times B =
+\begin{bmatrix}
+1(3)+4(-1)+7(1) & 1(0)+4(-2)+7(2) \\
+2(3)+8(-1)+14(1) & 2(0)+8(-2)+14(2) \\
+4(3)+16(-1)+28(1) & 4(0)+16(-2)+28(2)
+\end{bmatrix}
+=
+\begin{bmatrix} 6 & 6 \\ 12 & 12 \\ 24 & 24 \end{bmatrix}
+$$
+
+c) $B^{T} = \begin{bmatrix} 3 & -1 & 1 \\ 0 & -2 & 2 \end{bmatrix}$.
+Multiplicando linha de $B^{T}$ por coluna de $A$:
+
+$$
+B^{T} \times A =
+\begin{bmatrix}
+3(1)-1(2)+1(4) & 3(4)-1(8)+1(16) & 3(7)-1(14)+1(28) \\
+0(1)-2(2)+2(4) & 0(4)-2(8)+2(16) & 0(7)-2(14)+2(28)
+\end{bmatrix}
+=
+\begin{bmatrix} 5 & 20 & 35 \\ 4 & 16 & 28 \end{bmatrix}
+$$
+
+d) $A^{T} = \begin{bmatrix} 1 & 2 & 4 \\ 4 & 8 & 16 \\ 7 & 14 & 28
+\end{bmatrix}$. Multiplicando linha de $A^{T}$ por coluna de $B$:
+
+$$
+A^{T} \times B =
+\begin{bmatrix}
+1(3)+2(-1)+4(1) & 1(0)+2(-2)+4(2) \\
+4(3)+8(-1)+16(1) & 4(0)+8(-2)+16(2) \\
+7(3)+14(-1)+28(1) & 7(0)+14(-2)+28(2)
+\end{bmatrix}
+=
+\begin{bmatrix} 5 & 4 \\ 20 & 16 \\ 35 & 28 \end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+A =
+\begin{bmatrix} 1 & 4 & 7 \\ 2 & 8 & 14 \\ 4 & 16 & 28 \end{bmatrix}
+\qquad
+A \times B =
+\begin{bmatrix} 6 & 6 \\ 12 & 12 \\ 24 & 24 \end{bmatrix}
+$$
+
+$$
+B^{T} \times A =
+\begin{bmatrix} 5 & 20 & 35 \\ 4 & 16 & 28 \end{bmatrix}
+\qquad
+A^{T} \times B =
+\begin{bmatrix} 5 & 4 \\ 20 & 16 \\ 35 & 28 \end{bmatrix}
+$$
+</Answer>
+</Question>
+
+## Questão 8 <Badge>UNIFACS, adaptada — 10,0 pts</Badge>
+
+<Question>
+As imagens vistas em uma página na internet, assim como fotos tiradas com
+máquinas digitais, podem ser representadas usando-se matrizes. Uma imagem em
+preto e branco pode ser representada por uma matriz cujos termos são os
+números $0$ e $1$, especificando a cor do pixel: $0$ indica a cor preta e
+$1$, a cor branca.
+
+Um programador, a partir de três imagens predeterminadas, nomeadas de $A$,
+$B$ e $C$, conforme ilustração a seguir, consegue construir outras imagens,
+usando estas primeiras e fazendo a multiplicação booleana de matrizes entre
+elas.
+
+<div className="not-prose my-4 flex flex-wrap items-end justify-center gap-8">
+  <div className="flex flex-col items-center gap-2">
+    <PixelGrid columns="4" pattern="1001 0110 0110 1001" />
+    <span className="text-muted text-sm">figura A</span>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <PixelGrid columns="4" pattern="1101 1010 0101 1011" />
+    <span className="text-muted text-sm">figura B</span>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <PixelGrid columns="4" pattern="0101 1000 0001 1010" />
+    <span className="text-muted text-sm">figura C</span>
+  </div>
+</div>
+
+Desenhe a imagem que será formada quando o programador juntar (fazendo a
+multiplicação booleana) das figuras:
+
+a) $A$ e $C$
+
+b) $B$ e $C$
+
+<Resolution>
+
+Na multiplicação booleana de matrizes, cada posição $(i,j)$ do resultado é
+$\bigvee_k (a_{ik} \wedge c_{kj})$: o E lógico entre os pares e depois o OU
+lógico entre os resultados.
+
+a) Calculando $A \times C$ posição a posição obtém-se uma imagem com toda a
+borda branca ($1$) e o miolo $2 \times 2$ preto ($0$):
+
+$$
+A \times C =
+\begin{bmatrix}
+1&1&1&1 \\ 1&0&0&1 \\ 1&0&0&1 \\ 1&1&1&1
+\end{bmatrix}
+$$
+
+b) Calculando $B \times C$ da mesma forma:
+
+$$
+B \times C =
+\begin{bmatrix}
+1&1&1&1 \\ 0&1&0&1 \\ 1&0&1&0 \\ 1&1&1&1
+\end{bmatrix}
+$$
+
+</Resolution>
+
+<Answer>
+<div className="not-prose my-4 flex flex-wrap items-end justify-center gap-8">
+  <div className="flex flex-col items-center gap-2">
+    <PixelGrid columns="4" pattern="1111 1001 1001 1111" />
+    <span className="text-muted text-sm">a) A e C</span>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <PixelGrid columns="4" pattern="1111 0101 1010 1111" />
+    <span className="text-muted text-sm">b) B e C</span>
+  </div>
+</div>
+</Answer>
+</Question>
+
+## Questão 9 <Badge>ENEM, adaptada — 10,0 pts</Badge>
+
+<Question>
+Um conceito muito importante da matemática avançada é o de autovalor de uma
+matriz quadrada. Os autovalores de uma matriz $A$ são os valores de $x$ que
+satisfazem a equação $\det(A - xI) = 0$, em que $I$ é a matriz identidade
+com a mesma ordem da matriz $A$. Sendo assim, quais são os autovalores da
+matriz
+
+$$
+A = \begin{bmatrix} 6 & -1 \\ 2 & 3 \end{bmatrix}
+$$
+
+<Alternatives>
+  <Alternative>$-4$ e $5$</Alternative>
+  <Alternative>$5$ e $-4$</Alternative>
+  <Alternative>$4$ e $-5$</Alternative>
+  <Alternative>$-4$ e $-5$</Alternative>
+  <Alternative correct>$4$ e $5$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+$$
+A - xI =
+\begin{bmatrix} 6-x & -1 \\ 2 & 3-x \end{bmatrix}
+$$
+
+$$
+\det(A-xI) = (6-x)(3-x) - (-1)(2) = x^{2} - 9x + 18 + 2 = x^{2} - 9x + 20
+$$
+
+Igualando a $0$: $x^{2} - 9x + 20 = 0$. Usando a fórmula de Bhaskara:
+
+$$
+\Delta = 81 - 80 = 1 \qquad x = \frac{9 \pm 1}{2}
+$$
+
+Logo $x = 5$ ou $x = 4$.
+
+</Resolution>
+
+<Answer>
+e) Os autovalores são $4$ e $5$.
+</Answer>
+</Question>
+
+## Questão 10 <Badge>Escola Naval, adaptada — 10,0 pts</Badge>
+
+<Question>
+Considere as seguintes matrizes
+
+$$
+R = \begin{bmatrix} 4 & 16^{y} & -1 \\ 9^{x} & a & 0 \end{bmatrix}
+\qquad
+S = \begin{bmatrix} 1 & 4 & 2 \\ 9 & b & 1 \end{bmatrix}
+\qquad
+T = \begin{bmatrix} b & 8 & c \\ 27 & 13 & -6 \end{bmatrix}
+$$
+
+Assim, quais são os valores de $x$, $y$, $a$, $b$, $c$ que satisfazem à
+equação matricial $R - 6S = T$?
+
+<Resolution>
+
+Igualando posição a posição em $R - 6S = T$:
+
+$$
+\begin{cases}
+4 - 6(1) = b \\
+16^{y} - 6(4) = 8 \\
+-1 - 6(2) = c \\
+9^{x} - 6(9) = 27 \\
+a - 6b = 13
+\end{cases}
+$$
+
+Da primeira equação: $b = 4 - 6 = -2$.
+
+Da segunda: $16^{y} = 8 + 24 = 32 \Rightarrow (2^{4})^{y} = 2^{5}
+\Rightarrow 2^{4y} = 2^{5} \Rightarrow 4y = 5 \Rightarrow y = \tfrac{5}{4}$.
+
+Da terceira: $c = -1 - 12 = -13$.
+
+Da quarta: $9^{x} = 27 + 54 = 81 \Rightarrow (3^{2})^{x} = 3^{4}
+\Rightarrow 2x = 4 \Rightarrow x = 2$.
+
+Da quinta, com $b=-2$: $a - 6(-2) = 13 \Rightarrow a + 12 = 13 \Rightarrow a
+= 1$.
+
+</Resolution>
+
+<Answer>
+$$
+a = 1 \qquad b = -2 \qquad c = -13 \qquad x = 2 \qquad y = \tfrac{5}{4}
+$$
+</Answer>
+</Question>

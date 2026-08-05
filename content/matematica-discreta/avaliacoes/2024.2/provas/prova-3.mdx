@@ -1,0 +1,442 @@
+---
+title: Prova 3 — Técnicas de demonstração, indução e recursão
+description: Avaliação 3 de Matemática Aplicada à Computação (2024.2), com resolução comentada.
+order: 3
+prerequisites:
+  - /docs/matematica-discreta/tecnicas-de-demonstracao
+---
+
+Avaliação 3 de **Matemática Aplicada à Computação** — Instituto Federal da
+Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2024.2**, professor Suemilton Nunes Gervázio. Cobre
+demonstração direta, contrapositiva, contradição, indução e recursão
+matemática. Tente cada questão sozinho antes de abrir a **resposta**.
+
+## Questão 1 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Dê uma demonstração direta ao teorema "Se $m$ é um número ímpar e $n$ é um
+número ímpar, com $n$ e $m$ inteiros, então $m+n$ resulta em um número
+par".
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Como $m$ e $n$ são ímpares, existem $k, j \in \mathbb{Z}$ tais que $m =
+2k+1$ e $n = 2j+1$. Assim:
+
+$$
+m+n = (2k+1)+(2j+1) = 2k+2j+2 = 2(k+j+1)
+$$
+
+Como $k+j+1 \in \mathbb{Z}$, $m+n$ é da forma $2 \cdot (\text{inteiro})$,
+logo é par. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 2 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Prove pela técnica de demonstração contrapositiva que "Se $3n+2$ é par, no
+qual $n$ é um número inteiro, então $n$ é par".
+
+<Resolution>
+
+A contrapositiva de "se $3n+2$ é par, então $n$ é par" é "se $n$ é ímpar,
+então $3n+2$ é ímpar". Basta provar a contrapositiva.
+
+</Resolution>
+
+<Answer>
+Dem.: (contrapositiva)
+
+<Proof>
+
+Suponha $n$ ímpar, isto é, $n = 2k+1$ para algum $k \in \mathbb{Z}$.
+Então:
+
+$$
+3n+2 = 3(2k+1)+2 = 6k+3+2 = 6k+5 = 2(3k+2)+1
+$$
+
+Como $3k+2 \in \mathbb{Z}$, $3n+2$ é da forma $2 \cdot (\text{inteiro})+1$,
+logo é ímpar. Pela contrapositiva, se $3n+2$ é par, então $n$ é par.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 3 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Prove por contradição que $\sqrt{6}$ é um número irracional.
+
+<Answer>
+Dem.: (contradição)
+
+<Proof>
+
+Suponha, por contradição, que $\sqrt{6}$ é racional. Então existem $p, q
+\in \mathbb{Z}$, $q \ne 0$, com $\gcd(p,q)=1$ (fração irredutível), tais que
+$\sqrt{6} = p/q$. Elevando ao quadrado:
+
+$$
+6 = \frac{p^{2}}{q^{2}} \;\Rightarrow\; p^{2} = 6q^{2} = 2(3q^{2})
+$$
+
+Logo $p^{2}$ é par, o que implica $p$ par (se $p$ fosse ímpar, $p^{2}$
+seria ímpar). Escreva $p = 2k$, $k \in \mathbb{Z}$. Substituindo:
+
+$$
+(2k)^{2} = 6q^{2} \;\Rightarrow\; 4k^{2} = 6q^{2} \;\Rightarrow\; 2k^{2} =
+3q^{2}
+$$
+
+Assim $3q^{2}$ é par, e como $3$ é ímpar, $q^{2}$ é par, o que implica $q$
+par. Mas se $p$ e $q$ são ambos pares, isso contradiz $\gcd(p,q)=1$. Essa
+contradição mostra que a suposição inicial é falsa, logo $\sqrt{6}$ é
+irracional. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Faça as demonstrações a seguir usando a técnica de demonstração por
+indução.
+
+a) Mostre que, para qualquer inteiro positivo $n$, $2^{2n}$ é divisível por
+$4$.
+
+b) Mostre que, para todo inteiro positivo $n$, $1+2+\ldots+n =
+\dfrac{n(n+1)}{2}$.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+**Base ($n=1$):** $2^{2(1)} = 4$, que é divisível por $4$. ✓
+
+**Passo indutivo:** suponha que $2^{2k}$ é divisível por $4$ para algum
+$k \ge 1$, isto é, $2^{2k} = 4m$ para algum $m \in \mathbb{Z}$. Mostremos
+para $k+1$:
+
+$$
+2^{2(k+1)} = 2^{2k+2} = 2^{2k} \cdot 4 = 4m \cdot 4 = 4(4m)
+$$
+
+Como $4m \in \mathbb{Z}$, $2^{2(k+1)}$ é divisível por $4$. Por indução,
+vale para todo $n \ge 1$. $\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+**Base ($n=1$):** $1 = \dfrac{1(1+1)}{2} = 1$. ✓
+
+**Passo indutivo:** suponha $1+2+\ldots+k = \dfrac{k(k+1)}{2}$ para algum
+$k \ge 1$. Mostremos para $k+1$:
+
+$$
+1+2+\ldots+k+(k+1) = \frac{k(k+1)}{2}+(k+1) = (k+1)\left(\frac{k}{2}+1
+\right) = \frac{(k+1)(k+2)}{2}
+$$
+
+Que é exatamente a fórmula para $n=k+1$. Por indução, vale para todo
+$n \ge 1$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que se $a$ é um inteiro ímpar, então $a^{2}+3a+7$ é ímpar.
+
+<Answer>
+Dem.: (direta)
+
+<Proof>
+
+Como $a$ é ímpar, $a = 2k+1$ para algum $k \in \mathbb{Z}$. Então:
+
+$$
+a^{2}+3a+7 = (2k+1)^{2}+3(2k+1)+7 = 4k^{2}+4k+1+6k+3+7
+$$
+
+$$
+= 4k^{2}+10k+11 = 2(2k^{2}+5k+5)+1
+$$
+
+Como $2k^{2}+5k+5 \in \mathbb{Z}$, $a^{2}+3a+7$ é da forma
+$2 \cdot (\text{inteiro})+1$, logo é ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 6 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Mostre que a equação $1+3+5+7+\ldots+(2n-1) = n^{2}$ é verdadeira para
+qualquer inteiro positivo $n$.
+
+<Answer>
+Dem.: (indução)
+
+<Proof>
+
+**Base ($n=1$):** $1 = 1^{2}$. ✓
+
+**Passo indutivo:** suponha $1+3+\ldots+(2k-1) = k^{2}$ para algum $k \ge
+1$. Mostremos para $k+1$:
+
+$$
+1+3+\ldots+(2k-1)+(2(k+1)-1) = k^{2}+(2k+1) = (k+1)^{2}
+$$
+
+Que é exatamente a fórmula para $n=k+1$. Por indução, a equação vale para
+todo inteiro positivo $n$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 7 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Uma sequência $S$ é definida recursivamente por:
+
+1. $S(1) = 9$
+2. $S(2) = -5$
+3. $S(n) = S(n-1)+S(n-2)-3$, para $n>2$ e $n \in \mathbb{N}$
+
+Assim, determine:
+
+a) Os $7$ primeiros elementos dessa sequência
+
+b) Projete um algoritmo recursivo, em pseudocódigo, que calcule o valor
+$S_{n}$ da sequência para o valor de $n$ informado.
+
+c) Desenhe um diagrama de árvore que ilustre as chamadas recursivas do
+algoritmo anterior para $n = 8$.
+
+<Resolution>
+
+a) Aplicando a recorrência $S(n) = S(n-1)+S(n-2)-3$:
+
+$$
+S(3) = S(2)+S(1)-3 = -5+9-3 = 1
+$$
+
+$$
+S(4) = S(3)+S(2)-3 = 1-5-3 = -7
+$$
+
+$$
+S(5) = S(4)+S(3)-3 = -7+1-3 = -9
+$$
+
+$$
+S(6) = S(5)+S(4)-3 = -9-7-3 = -19
+$$
+
+$$
+S(7) = S(6)+S(5)-3 = -19-9-3 = -31
+$$
+
+</Resolution>
+
+<Answer>
+a) $9,\ -5,\ 1,\ -7,\ -9,\ -19,\ -31$
+
+b)
+
+```
+function S(n):
+begin
+  if n == 1:
+    return 9;
+  elif n == 2:
+    return -5;
+  else:
+    return S(n - 1) + S(n - 2) - 3;
+end;
+```
+
+c)
+
+```
+S(8)
+├─ S(7)
+│   ├─ S(6)
+│   │   ├─ S(5)
+│   │   │   ├─ S(4)
+│   │   │   │   ├─ S(3)
+│   │   │   │   │   ├─ S(2) = -5
+│   │   │   │   │   └─ S(1) = 9
+│   │   │   │   └─ S(2) = -5
+│   │   │   └─ S(3)
+│   │   │       ├─ S(2) = -5
+│   │   │       └─ S(1) = 9
+│   │   └─ S(4)
+│   │       ├─ S(3)
+│   │       │   ├─ S(2) = -5
+│   │       │   └─ S(1) = 9
+│   │       └─ S(2) = -5
+│   └─ S(5)
+│       ├─ S(4)
+│       │   ├─ S(3)
+│       │   │   ├─ S(2) = -5
+│       │   │   └─ S(1) = 9
+│       │   └─ S(2) = -5
+│       └─ S(3)
+│           ├─ S(2) = -5
+│           └─ S(1) = 9
+└─ S(6)
+    ├─ S(5)
+    │   ├─ S(4)
+    │   │   ├─ S(3)
+    │   │   │   ├─ S(2) = -5
+    │   │   │   └─ S(1) = 9
+    │   │   └─ S(2) = -5
+    │   └─ S(3)
+    │       ├─ S(2) = -5
+    │       └─ S(1) = 9
+    └─ S(4)
+        ├─ S(3)
+        │   ├─ S(2) = -5
+        │   └─ S(1) = 9
+        └─ S(2) = -5
+```
+
+</Answer>
+</Question>
+
+## Questão 8 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, que calcule os elementos da
+sequência de Fibonacci, cujos elementos são $1, 1, 2, 3, 5, 8, \ldots$
+
+<Resolution>
+
+Como o primeiro e o segundo termos são ambos $1$ (casos base), e cada termo
+seguinte é a soma dos dois anteriores, a recorrência é $F(n) = F(n-1) +
+F(n-2)$ para $n>2$.
+
+</Resolution>
+
+<Answer>
+```
+function F(n):
+begin
+  if n == 1 or n == 2:
+    return 1;
+  else:
+    return F(n - 1) + F(n - 2);
+end;
+```
+</Answer>
+</Question>
+
+## Questão 9 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Projete um algoritmo recursivo, em pseudocódigo, e desenhe um diagrama de
+árvore que ilustre as chamadas recursivas de um algoritmo recursivo que
+calcule $P(n) = n!$, com $n \ge 0$, para o valor de $n=6$.
+
+<Resolution>
+
+O fatorial é definido recursivamente por $P(0)=1$ (caso base) e $P(n) = n
+\cdot P(n-1)$ para $n>0$. Diferente da sequência de Fibonacci, cada chamada
+gera apenas **uma** nova chamada recursiva, então a árvore é uma cadeia
+linear (sem ramificação) até o caso base, e os valores são resolvidos de
+trás para frente: $P(1)=1$, $P(2)=2$, $P(3)=6$, $P(4)=24$, $P(5)=120$,
+$P(6)=720$.
+
+</Resolution>
+
+<Answer>
+```
+function P(n):
+begin
+  if n == 0:
+    return 1;
+  else:
+    return n * P(n - 1);
+end;
+```
+
+```
+P(6)
+└─ P(5)
+    └─ P(4)
+        └─ P(3)
+            └─ P(2)
+                └─ P(1)
+                    └─ P(0) = 1
+```
+
+$P(6) = 720$
+</Answer>
+</Question>
+
+## Questão 10 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
+
+<Question>
+Prove por indução, usando recursão matemática, que na sequência de
+Fibonacci teremos que $F(n+4) = 3 \cdot F(n+2) - F(n)$, com $n>0$ e $n \in
+\mathbb{N}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Pela definição recursiva da sequência de Fibonacci, $F(k) = F(k-1)+F(k-2)$
+para todo $k>2$. Aplicando essa recorrência duas vezes a partir de
+$F(n+4)$:
+
+$$
+F(n+4) = F(n+3)+F(n+2)
+$$
+
+Aplicando a recorrência novamente em $F(n+3)$:
+
+$$
+F(n+3) = F(n+2)+F(n+1)
+$$
+
+Substituindo:
+
+$$
+F(n+4) = \big(F(n+2)+F(n+1)\big)+F(n+2) = 2F(n+2)+F(n+1)
+$$
+
+Da recorrência em $F(n+2) = F(n+1)+F(n)$, isolamos $F(n+1) = F(n+2)-F(n)$.
+Substituindo:
+
+$$
+F(n+4) = 2F(n+2) + \big(F(n+2)-F(n)\big) = 3F(n+2) - F(n)
+$$
+
+Como a igualdade decorre diretamente da fórmula de recorrência de
+Fibonacci, aplicada a cada $n>0$, ela vale para todo $n \in \mathbb{N}$,
+$n>0$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
