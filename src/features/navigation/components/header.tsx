@@ -5,6 +5,7 @@ import { NotebookPen, Users } from "lucide-react";
 
 import { ThemeToggle } from "@/features/theme";
 
+import { HeaderOverflowMenu } from "./header-overflow-menu";
 import { MobileMenuButton } from "./mobile-menu-button";
 
 export function Header({ search, searchMobile }: { search?: ReactNode; searchMobile?: ReactNode }) {
@@ -75,7 +76,8 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
             <Users className="h-4 w-4" />
             Contribuidores
           </Link>
-          <span className="bg-border hidden h-5 w-px sm:block" aria-hidden="true" />
+          <HeaderOverflowMenu />
+          <span className="bg-border h-5 w-px" aria-hidden="true" />
           <ThemeToggle />
           <span className="bg-border h-5 w-px" aria-hidden="true" />
           <a
