@@ -13,7 +13,7 @@ Para os exemplos abaixo, considere $A = \{1, 2, 3, 4\}$ e $B = \{3, 4, 5, 6\}$.
 Sejam $A$ e $B$ conjuntos. A união $A \cup B$ é dada por:
 
 $$
-A \cup B = \{x \mid x \in A \text{ ou } x \in B\}
+A \cup B = \{x / x \in A \text{ ou } x \in B\}
 $$
 
 O "ou" aqui é inclusivo: um elemento entra na união se está em $A$, em $B$, ou
@@ -28,7 +28,7 @@ $$
 ## Interseção (∩)
 
 $$
-A \cap B = \{x \mid x \in A \text{ e } x \in B\}
+A \cap B = \{x / x \in A \text{ e } x \in B\}
 $$
 
 A interseção guarda só o que é **comum** aos dois conjuntos.
@@ -42,7 +42,7 @@ $$
 $A - B$ é o conjunto de todos os elementos de $A$ que não pertencem a $B$:
 
 $$
-A - B = \{x \mid x \in A \text{ e } x \notin B\}
+A - B = \{x / x \in A \text{ e } x \notin B\}
 $$
 
 Diferente da união e da interseção, a diferença **não é comutativa**: em
@@ -91,7 +91,7 @@ relação a $B$, representado por $\complement_{A}^{B}$, é o conjunto de todos 
 elementos de $B$ que não pertencem a $A$:
 
 $$
-\complement_{A}^{B} = B - A = \{x \mid x \in B \text{ e } x \notin A\}
+\complement_{A}^{B} = B - A = \{x / x \in B \text{ e } x \notin A\}
 $$
 
 O complementar só faz sentido em relação a um "universo" $B$: ele responde
@@ -158,7 +158,7 @@ Mostre que $A - A = \varnothing$.
 Por definição,
 
 $$
-A - A = \{x \mid x \in A \text{ e } x \notin A\}
+A - A = \{x / x \in A \text{ e } x \notin A\}
 $$
 
 Como nenhum $x$ satisfaz simultaneamente $x \in A$ e $x \notin A$, não há
@@ -258,22 +258,22 @@ $$
 </Exercise>
 
 <Exercise>
-Sejam $A = \{x \in \mathbb{R} \mid 0 \le x \le 5\}$ e
-$B = \{x \in \mathbb{R} \mid 3 \le x \le 7\}$. Determine $A - B$ e $B - A$.
+Sejam $A = \{x \in \mathbb{R} / 0 \le x \le 5\}$ e
+$B = \{x \in \mathbb{R} / 3 \le x \le 7\}$. Determine $A - B$ e $B - A$.
 
 <Answer>
 $A - B$ mantém os elementos de $A$ que não estão em $B$, isto é, os valores
 menores que $3$:
 
 $$
-A - B = [0, 3) = \{x \in \mathbb{R} \mid 0 \le x < 3\}
+A - B = [0, 3) = \{x \in \mathbb{R} / 0 \le x < 3\}
 $$
 
 $B - A$ mantém os elementos de $B$ que não estão em $A$, isto é, os valores
 maiores que $5$:
 
 $$
-B - A = (5, 7] = \{x \in \mathbb{R} \mid 5 < x \le 7\}
+B - A = (5, 7] = \{x \in \mathbb{R} / 5 < x \le 7\}
 $$
 </Answer>
 </Exercise>
