@@ -14,6 +14,25 @@ $$
 \forall y \in B,\ \exists x \in A \mid f(x) = y \qquad \text{e} \qquad \forall x \in A,\ f(x) = f(y) \Rightarrow x = y
 $$
 
+Juntas, injetora (sem colisões) e sobrejetora (sem sobras em $B$) dizem que
+$f$ estabelece uma **correspondência um a um** entre $A$ e $B$: cada elemento
+de $A$ tem exatamente um parceiro em $B$, e vice-versa. É essa mesma ideia
+que aparece como "relação biunívoca" na página de
+[cardinalidade](/docs/matematica-discreta/conjuntos/cardinalidade) — dois
+conjuntos têm a mesma cardinalidade exatamente quando existe uma bijeção
+entre eles.
+
+<Callout type="tip" title="Como provar">
+  Provar que $f$ é bijetora é provar as duas coisas separadamente: a parte
+  **injetora** (de $f(x) = f(y)$, concluir $x = y$) e a parte **sobrejetora**
+  (dado $y \in B$, exibir $x \in A$ com $f(x) = y$). Não existe atalho que
+  prove as duas de uma vez — é por isso que as demonstrações abaixo têm duas
+  partes.
+</Callout>
+
+Só faz sentido falar em **função inversa** $f^{-1}$ quando $f$ é bijetora —
+veja [função inversa](/docs/matematica-discreta/funcoes/inversa).
+
 ## Exercícios
 
 <Exercise>

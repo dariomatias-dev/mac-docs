@@ -11,10 +11,23 @@ prerequisites:
 Uma relação binária em um conjunto $S$ que seja **reflexiva**, **anti-simétrica**
 e **transitiva** é chamada de ordenação parcial em $S$.
 
+O nome "parcial" existe porque a relação não precisa comparar **todo** par de
+elementos: pode existir $x, y \in S$ tais que nem $x\,p\,y$ nem $y\,p\,x$
+valem, e ainda assim $p$ é uma ordenação parcial (basta que, *quando* dois
+elementos são comparáveis, a comparação se comporte como uma ordem). É o que
+diferencia uma ordem **parcial** de uma ordem **total**, na qual todo par de
+elementos é comparável.
+
 Observações:
 
 1. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x \le y$ é uma ordenação parcial.
+   Nesse caso ela é, na verdade, uma ordem **total**: dois naturais quaisquer
+   sempre são comparáveis.
 2. Em $\mathbb{N}$, $x\,p\,y \Leftrightarrow x = y^{2}$ **não** é uma ordenação parcial.
+3. Em $\{1, 2, 3, 6, 12, 18\}$, $x\,p\,y \Leftrightarrow x$ divide $y$ é uma
+   ordenação parcial que **não** é total: $2$ e $3$ não se relacionam em
+   nenhuma das duas direções ($2 \nmid 3$ e $3 \nmid 2$), ou seja, são
+   **incomparáveis**. Isso fica claro no exercício abaixo, ao listar os pares.
 
 <Exercise>
 Mostre que a relação $x\,p\,y \Leftrightarrow x \le y$ é uma relação de
@@ -76,6 +89,33 @@ Observações:
    equivalência em $\mathbb{N}$.
 2. Em qualquer conjunto $S$, $x\,p\,y \Leftrightarrow x = y$ é uma relação de
    equivalência em $S$.
+
+### Classes de equivalência
+
+Dada uma relação de equivalência $p$ em $S$ e um elemento $x \in S$, a
+**classe de equivalência** de $x$ é o conjunto de todos os elementos
+relacionados a $x$:
+
+$$
+[x] = \{y \in S \mid x\,p\,y\}
+$$
+
+As três propriedades da equivalência garantem que as classes se comportam
+"bem": todo elemento de $S$ está em alguma classe (reflexividade), e duas
+classes quaisquer ou são **idênticas**, ou são **disjuntas** — nunca se
+sobrepõem parcialmente. Isso significa que uma relação de equivalência sempre
+**particiona** $S$ em blocos que não se cruzam.
+
+Para $x\,p\,y \Leftrightarrow x + y$ é par em $\mathbb{N}$, existem exatamente
+duas classes de equivalência:
+
+$$
+[0] = \{0, 2, 4, 6, \ldots\} \qquad [1] = \{1, 3, 5, 7, \ldots\}
+$$
+
+ou seja, a relação divide $\mathbb{N}$ em pares e ímpares — qualquer natural
+par está em $[0]$ (que é igual a $[2], [4], \ldots$) e qualquer natural ímpar
+está em $[1]$ (igual a $[3], [5], \ldots$).
 
 ## Vídeos
 

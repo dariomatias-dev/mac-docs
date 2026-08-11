@@ -9,6 +9,13 @@ prerequisites:
 ## Função par
 
 Uma função $f : A \to B$ é par se, e somente se, $\forall x \in A,\ f(-x) = f(x)$.
+Geometricamente, o gráfico de uma função par é **simétrico em relação ao eixo
+$y$** — o lado esquerdo é o espelho do lado direito.
+
+Como consequência, uma função par com mais de um valor no domínio (além de
+$x = 0$) nunca é [injetora](/docs/matematica-discreta/funcoes/injetora): por
+definição $f(-x) = f(x)$ para $x \ne -x$, ou seja, dois elementos distintos
+do domínio sempre compartilham a mesma imagem.
 
 <Exercise>
 Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{2} - 2$
@@ -35,7 +42,9 @@ $\blacksquare$
 ## Função ímpar
 
 Uma função $f : A \to B$ é ímpar se, e somente se,
-$\forall x \in A,\ f(-x) = -f(x)$.
+$\forall x \in A,\ f(-x) = -f(x)$. Geometricamente, o gráfico de uma função
+ímpar é **simétrico em relação à origem**: girar o gráfico $180°$ em torno de
+$(0,0)$ devolve o mesmo gráfico.
 
 <Exercise>
 Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por

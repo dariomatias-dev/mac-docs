@@ -19,10 +19,52 @@ Em suma, demonstrar por contradição uma afirmação do tipo $P \Rightarrow Q$
 consiste em supor a hipótese $P$, supor a negação da tese $\lnot Q$ e chegar a
 uma contradição.
 
+<Callout type="caution" title="Contradição não é contraposição">
+  As duas técnicas se parecem (ambas partem de negar algo), mas são
+  diferentes:
+
+  - **Contraposição**: prova **diretamente** $\lnot Q \Rightarrow \lnot P$, sem
+    nunca supor $P$. É uma prova direta disfarçada.
+  - **Contradição**: supõe $P$ **e** $\lnot Q$ **ao mesmo tempo**, e busca
+    qualquer absurdo lógico (não necessariamente relacionado a $P$) — como
+    $2 = 1$ no segundo exercício abaixo, algo que nem menciona a hipótese
+    original diretamente.
+
+  Todos os exercícios desta página usam contradição: supõem $P$ junto com
+  $\lnot Q$ e derivam um absurdo.
+</Callout>
+
+O exemplo clássico de demonstração por contradição é a irracionalidade de
+$\sqrt{2}$:
+
+<StepByStep title="√2 é irracional">
+  <Step title="Negação da tese (por absurdo)">
+    Suponha que $\sqrt{2}$ é racional, ou seja, $\sqrt{2} = \dfrac{p}{q}$ com
+    $p, q \in \mathbb{Z}$, $q \ne 0$, e $\dfrac{p}{q}$ já na forma
+    irredutível ($p$ e $q$ sem fatores comuns).
+  </Step>
+  <Step title="Isolando p²">
+    Elevando ao quadrado: $2 = \dfrac{p^{2}}{q^{2}} \Rightarrow p^{2} = 2q^{2}$.
+    Logo $p^{2}$ é par, e pelo exercício 3 abaixo, $p$ também é par: $p = 2k$.
+  </Step>
+  <Step title="Consequência para q">
+    Substituindo: $(2k)^{2} = 2q^{2} \Rightarrow 4k^{2} = 2q^{2} \Rightarrow
+    q^{2} = 2k^{2}$. Logo $q^{2}$ também é par, e portanto $q$ também é par.
+  </Step>
+  <Step title="Contradição">
+    Mas então $p$ e $q$ são ambos pares, ou seja, têm o fator comum $2$ —
+    contradizendo a hipótese de que $\dfrac{p}{q}$ era irredutível.
+  </Step>
+  <Step title="Conclusão">
+    Logo a suposição inicial é falsa: $\sqrt{2}$ não pode ser escrito como
+    fração, isto é, $\sqrt{2}$ é irracional. $\blacksquare$
+  </Step>
+</StepByStep>
+
 ## Exercícios
 
 <Exercise>
-Mostre por contraposição/contradição que, se $3m + 2$ é ímpar, então $m$ é ímpar.
+Mostre por contradição que, se $3m + 2$ é ímpar, então $m$ é ímpar.
 
 <Answer>
 **Hipótese:** $3m + 2 = 2k + 1$, $k \in \mathbb{Z}$. &nbsp; **Tese:** $m = 2k + 1$.

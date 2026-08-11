@@ -45,6 +45,39 @@ $P(E) = 64$.
   A quantidade de partes de um conjunto com $n$ elementos é $2^{n}$.
 </Callout>
 
+### Por que a fórmula é 2ⁿ?
+
+A ideia é que, para formar um subconjunto de $A$, decidimos, elemento por
+elemento, se ele **entra ou não** no subconjunto — duas escolhas
+independentes para cada um dos $n$ elementos, o que dá $2 \times 2 \times
+\cdots \times 2 = 2^{n}$ subconjuntos possíveis. A demonstração formal usa
+indução sobre $n$.
+
+<StepByStep title="Demonstração: |P(A)| = 2ⁿ, por indução em n">
+  <Step title="Caso base (n = 0)">
+    Se $A = \varnothing$, o único subconjunto de $A$ é o próprio $\varnothing$.
+    Logo $P(A) = \{\varnothing\}$ e $|P(A)| = 1 = 2^{0}$.
+  </Step>
+  <Step title="Hipótese de indução">
+    Suponha que, para todo conjunto $A'$ com $|A'| = k$, vale
+    $|P(A')| = 2^{k}$.
+  </Step>
+  <Step title="Passo indutivo">
+    Seja $A$ com $|A| = k + 1$. Fixe um elemento $a \in A$ e escreva
+    $A = A' \cup \{a\}$, com $A' = A - \{a\}$ e $|A'| = k$. Todo subconjunto de
+    $A$ ou não contém $a$ (nesse caso é um subconjunto de $A'$, e há $2^{k}$
+    deles, pela hipótese de indução) ou contém $a$ (nesse caso é da forma
+    $S \cup \{a\}$ com $S$ subconjunto de $A'$, também $2^{k}$ possibilidades).
+    Como esses dois casos não se sobrepõem,
+    $$
+    |P(A)| = 2^{k} + 2^{k} = 2^{k+1}
+    $$
+  </Step>
+  <Step title="Conclusão">
+    Por indução, $|P(A)| = 2^{n}$ para todo $n \ge 0$. $\blacksquare$
+  </Step>
+</StepByStep>
+
 ## Demonstração matemática
 
 <StepByStep title="Se A ⊆ B e B ⊆ C, então A ⊆ C">

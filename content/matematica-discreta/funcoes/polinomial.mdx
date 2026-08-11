@@ -36,15 +36,81 @@ Exemplos:
 1. $x^{4} - 3x^{3} - 1 = (x^{3} + x - 3)(x^{2} - x + 1) + (-3x + 2)$
 2. $x^{4} - 3x^{3} + 2x^{2} - 2 = (x^{3} - 4x^{2} + 6x - 6)(x + 1) + 4$
 
-## Exercício
+## Teorema do resto e teorema do fator
+
+Quando dividimos $p(x)$ por $(x - a)$, o divisor tem grau $1$, então o resto
+$r(x)$ tem grau $0$, ou seja, é uma constante $r$.
+
+<StepByStep title="Teorema do resto: r = p(a)">
+  <Step title="Ponto de partida">
+    Pelo algoritmo de Euclides, $p(x) = q(x) \cdot (x - a) + r$, com $r$
+    constante.
+  </Step>
+  <Step title="Avaliando em x = a">
+    Substituindo $x = a$: $p(a) = q(a) \cdot (a - a) + r = q(a) \cdot 0 + r = r$.
+  </Step>
+  <Step title="Conclusão">
+    Logo o resto da divisão de $p(x)$ por $(x - a)$ é exatamente $p(a)$.
+    $\blacksquare$
+  </Step>
+</StepByStep>
+
+Uma consequência imediata: como $\alpha$ é raiz de $p$ quando $p(\alpha) = 0$,
+o **teorema do fator** diz que
+
+$$
+p(\alpha) = 0 \Longleftrightarrow (x - \alpha) \text{ divide } p(x) \text{ exatamente (resto } 0\text{)}
+$$
+
+É por isso que, para achar raízes de um polinômio, procuramos valores $a$ para
+os quais a divisão por $(x - a)$ tem resto $0$: cada um desses $a$ é uma raiz.
+
+## Como dividir na prática: dispositivo de Briot-Ruffini
+
+Quando o divisor é $(x - a)$, não precisamos fazer a divisão longa completa —
+o dispositivo de Briot-Ruffini calcula quociente e resto usando só os
+coeficientes de $p$.
+
+<StepByStep title="Briot-Ruffini: dividir 9x³ − 36x² + 29x − 6 por (x − 3)">
+  <Step title="Coeficientes e raiz">
+    Escrevemos os coeficientes de $p$ em ordem decrescente de grau:
+    $9,\ -36,\ 29,\ -6$. A raiz do divisor $(x - 3)$ é $a = 3$.
+  </Step>
+  <Step title="Primeiro coeficiente desce">
+    O primeiro coeficiente é repetido diretamente: $9$.
+  </Step>
+  <Step title="Multiplica e soma, repetidamente">
+    Cada novo número é (número anterior $\times\ a$) somado ao próximo
+    coeficiente de $p$:
+    $$
+    9 \times 3 = 27, \quad -36 + 27 = -9
+    $$
+    $$
+    -9 \times 3 = -27, \quad 29 + (-27) = 2
+    $$
+    $$
+    2 \times 3 = 6, \quad -6 + 6 = 0
+    $$
+  </Step>
+  <Step title="Leitura do resultado">
+    Os números obtidos, exceto o último, são os coeficientes do quociente (um
+    grau a menos que $p$); o último número é o resto:
+    $$
+    q(x) = 9x^{2} - 9x + 2, \qquad r = 0
+    $$
+    Como $r = 0$, confirma-se que $3$ é raiz de $p$ (teorema do fator).
+  </Step>
+</StepByStep>
+
+## Exercícios
 
 <Exercise>
 Quais são as raízes do polinômio $p(x) = 9x^{3} - 36x^{2} + 29x - 6$, sabendo que
 ele é divisível por $x - 3$?
 
 <Answer>
-Dividindo por $x - 3$ (dispositivo de Briot-Ruffini), obtemos o quociente
-$9x^{2} - 9x + 2$, logo:
+Dividindo por $x - 3$ (dispositivo de Briot-Ruffini, como acima), obtemos o
+quociente $9x^{2} - 9x + 2$, logo:
 
 $$
 p(x) = (9x^{2} - 9x + 2)(x - 3) = 0
@@ -56,5 +122,46 @@ $x'' = \dfrac{6}{18} = \dfrac{1}{3}$.
 
 As raízes são $3$, $\dfrac{2}{3}$ e $\dfrac{1}{3}$.
 
+</Answer>
+</Exercise>
+
+<Exercise>
+Use o teorema do resto (sem fazer a divisão completa) para encontrar o resto da
+divisão de $p(x) = 2x^{3} - 5x^{2} + 3x - 7$ por $(x - 2)$.
+
+<Answer>
+Pelo teorema do resto, o resto é $p(2)$:
+
+$$
+p(2) = 2(2)^{3} - 5(2)^{2} + 3(2) - 7 = 16 - 20 + 6 - 7 = -5
+$$
+
+O resto é $-5$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Verifique, usando o dispositivo de Briot-Ruffini, se $x = -1$ é raiz de
+$p(x) = x^{3} + 2x^{2} - x - 2$. Em caso afirmativo, encontre as demais raízes.
+
+<Answer>
+Coeficientes: $1, 2, -1, -2$; raiz testada $a = -1$.
+
+$$
+1 \quad\Rightarrow\quad 1 \times (-1) = -1,\ \ 2 + (-1) = 1
+$$
+$$
+1 \times (-1) = -1,\ \ -1 + (-1) = -2
+$$
+$$
+-2 \times (-1) = 2,\ \ -2 + 2 = 0
+$$
+
+Resto $0$, logo $x = -1$ **é raiz**, e o quociente é $q(x) = x^{2} + x - 2$.
+
+Resolvendo $x^{2} + x - 2 = 0$: $\Delta = 1 + 8 = 9$; $x = \dfrac{-1 \pm 3}{2}$,
+logo $x' = 1$ e $x'' = -2$.
+
+As raízes de $p$ são $-1$, $1$ e $-2$.
 </Answer>
 </Exercise>

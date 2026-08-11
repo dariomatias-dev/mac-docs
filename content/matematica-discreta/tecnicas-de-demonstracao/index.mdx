@@ -39,6 +39,36 @@ Para tanto, pode-se elaborar a prova de que $P \Rightarrow Q$ (construindo um
 teorema) ou então encontrar um exemplo que contrarie sua conjectura
 (**contra-exemplo**).
 
+## Da conjectura à demonstração formal
+
+Retomando o exemplo acima: a conjectura "se um número é divisível por $6$,
+então é divisível por $3$" nasceu do raciocínio indutivo (observação de vários
+casos). O raciocínio dedutivo transforma essa conjectura em teorema,
+mostrando-a a partir da hipótese, com uma sequência lógica de passos —
+exatamente a estrutura que veremos em detalhe em
+[Demonstração direta](/docs/matematica-discreta/tecnicas-de-demonstracao/direta).
+
+<StepByStep title='"Se P, então Q" — hipótese e tese em ação'>
+  <Step title="Hipótese (P)">
+    Seja $x$ um número inteiro divisível por $6$, ou seja,
+    $x = 6k$, com $k \in \mathbb{Z}$.
+  </Step>
+  <Step title="Passos dedutivos">
+    $x = 6k = 3(2k)$. Como $2k \in \mathbb{Z}$, podemos escrever $x = 3m$, com
+    $m = 2k \in \mathbb{Z}$.
+  </Step>
+  <Step title="Tese (Q)">
+    Logo $x$ é divisível por $3$. Como $x$ era um inteiro arbitrário divisível
+    por $6$, isso vale para todo $x$ nessas condições: $P \Rightarrow Q$.
+    $\blacksquare$
+  </Step>
+</StepByStep>
+
+Note a diferença: o raciocínio indutivo nos deu a **confiança** de que a
+conjectura era razoável; o raciocínio dedutivo, acima, nos deu a **certeza**,
+porque parte de uma hipótese geral (qualquer $x$ divisível por $6$) e não de
+casos particulares.
+
 ## Exercícios
 
 <Exercise>
@@ -58,5 +88,39 @@ também é divisível por $3$.
 $(\forall x) \in \mathbb{Z}$, $15 < x < 20$ e $x = 6k$, com $k \in \mathbb{Z}$.
 Assim $x$ pode ser representado por $x = 18$. Logo $x = 3m$, com
 $m \in \mathbb{Z}$. Assim $x$ é divisível por $3$. $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Você observa que $4$ é divisível por $2$, $9$ é divisível por $3$ e $16$ é
+divisível por $4$, e conjectura: "todo quadrado perfeito $n^{2}$ é divisível
+por $n$". Essa conjectura é obtida por raciocínio indutivo ou dedutivo? Ela é
+verdadeira?
+
+<Answer>
+Foi obtida por **raciocínio indutivo**: generalizamos a partir de casos
+observados. E é de fato verdadeira — dedutivamente, para qualquer
+$n \in \mathbb{Z}$, $n^{2} = n \cdot n$, logo $n^{2}$ é múltiplo de $n$ (tomando
+$k = n$ na definição de divisibilidade). $\blacksquare$
+</Answer>
+</Exercise>
+
+<Exercise>
+Um estudante observa que $1$, $4$, $9$ e $16$ são todos quadrados perfeitos e
+conjectura: "todo número da forma $n^{2} + n + 1$, com $n \in \mathbb{N}$, é
+primo" (testando $n = 1$: $1 + 1 + 1 = 3$, primo; $n = 2$: $4 + 2 + 1 = 7$,
+primo; $n = 3$: $9 + 3 + 1 = 13$, primo). Essa conjectura resiste ao raciocínio
+dedutivo?
+
+<Answer>
+Não. Basta um contra-exemplo para refutar a conjectura: para $n = 4$,
+
+$$
+n^{2} + n + 1 = 16 + 4 + 1 = 21 = 3 \times 7
+$$
+
+que não é primo. Logo a conjectura é falsa, apesar de ter "resistido" aos
+primeiros casos observados — isso ilustra por que o raciocínio indutivo, por si
+só, nunca prova um teorema.
 </Answer>
 </Exercise>

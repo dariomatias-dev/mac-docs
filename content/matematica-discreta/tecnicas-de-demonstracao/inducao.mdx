@@ -20,6 +20,29 @@ $n \ge n_{0}$". Ela é feita em três passos:
 Se os três passos forem cumpridos, então, pelo PIF, $P(n)$ é verdadeira para
 todo $n \ge n_{0}$.
 
+A analogia clássica é a de uma fileira infinita de dominós: o **passo
+básico** derruba o primeiro dominó; o **passo indutivo** garante que, se um
+dominó qualquer cai, o próximo também cai. Juntas, essas duas garantias
+bastam para concluir que **todos** os dominós caem — sem precisar empurrar
+cada um manualmente.
+
+<Callout type="connection" title="Por que a hipótese de indução não é circular">
+  Pode parecer estranho "supor" $P(k)$ para provar $P(k+1)$ — não seria supor
+  o que se quer provar? Não: não estamos provando $P(k)$ nem $P(n)$ para um
+  $n$ fixo isoladamente. Estamos provando a **implicação**
+  $P(k) \Rightarrow P(k+1)$, que é verdadeira mesmo se não soubéssemos ainda
+  se $P(k)$ é verdadeira. O PIF é o que costura o passo básico com essa
+  cadeia de implicações e conclui $P(n)$ para todo $n$.
+</Callout>
+
+<Callout type="tip" title="Indução forte">
+  Uma variante, a **indução forte**, permite usar como hipótese não só
+  $P(k)$, mas $P(n_0), P(n_0+1), \ldots, P(k)$ — todos os casos anteriores,
+  não apenas o imediatamente anterior. Isso é necessário, por exemplo, no
+  último exercício desta página, onde o passo indutivo de $F(k+5)$ usa
+  simultaneamente $F(k+4)$ e $F(k+3)$, não só o "último" termo.
+</Callout>
+
 ## Exercícios
 
 <Exercise>

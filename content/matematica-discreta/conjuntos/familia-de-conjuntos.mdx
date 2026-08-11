@@ -33,3 +33,47 @@ $$
 - $\{2, 3\} \in F$, mas $3 \notin F$
 - $\{2\} \notin F$, mas $2 \in F$
 - $\{5\} \in F$, mas $5 \notin F$
+
+Note que $2 \in F$ diretamente (como elemento), mesmo $F$ sendo, em geral, uma
+família de conjuntos — nada impede que uma família também contenha elementos
+que não são conjuntos.
+
+## Cardinalidade de uma família
+
+A cardinalidade de uma família é a quantidade de conjuntos (elementos) que ela
+possui, exatamente como para qualquer outro conjunto.
+
+$$
+F = \big\{ \{1\}, \{1, 2\}, \{1, 2, 3\} \big\} \quad\Rightarrow\quad \operatorname{Card}(F) = 3
+$$
+
+## Subfamília
+
+Uma **subfamília** de $F$ é qualquer subconjunto de $F$, isto é, uma família
+$G$ tal que $G \subseteq F$. Segue-se exatamente a mesma definição de
+subconjunto vista em [Relação entre conjuntos](/docs/matematica-discreta/conjuntos/relacao-entre-conjuntos).
+
+Sejam $F = \big\{ \{2, 3\}, \{2\}, \{5, 6, 7\} \big\}$. Então
+$G = \big\{ \{2\}, \{5, 6, 7\} \big\}$ é uma subfamília de $F$, pois todo
+elemento de $G$ também é elemento de $F$.
+
+<Exercise>
+Seja $F = \big\{ \{a\}, \{a, b\}, \{b, c\}, c \big\}$. Determine:
+
+<Marker>a)</Marker> $\operatorname{Card}(F)$
+
+<Marker>b)</Marker> se $\{a, b\} \in F$
+
+<Marker>c)</Marker> se $c \in F$ e se $\{c\} \in F$
+
+<Answer>
+<Marker>a)</Marker> $\operatorname{Card}(F) = 4$, pois $F$ tem quatro elementos:
+$\{a\}$, $\{a,b\}$, $\{b,c\}$ e $c$.
+
+<Marker>b)</Marker> Sim, $\{a, b\} \in F$, pois esse conjunto é um dos elementos
+listados em $F$.
+
+<Marker>c)</Marker> $c \in F$ (pois $c$ aparece diretamente como elemento de
+$F$), mas $\{c\} \notin F$, pois $\{c\}$ não é um dos quatro elementos de $F$.
+</Answer>
+</Exercise>

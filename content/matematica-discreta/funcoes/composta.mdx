@@ -16,6 +16,17 @@ $$
 Assim, a função $(g \circ f)$ pode ser entendida como a função única que
 representa o mesmo resultado que as aplicações sucessivas de $f$ e $g$.
 
+Note a ordem: em $(g \circ f)(x) = g(f(x))$, aplicamos **primeiro $f$, depois
+$g$** — mesmo que $g$ apareça escrita à esquerda. Para $g \circ f$ fazer
+sentido, o contradomínio de $f$ precisa ser (ou estar contido em) o domínio
+de $g$, já que a saída de $f$ vira a entrada de $g$.
+
+<Callout type="caution" title="A ordem importa">
+  Em geral $g \circ f \neq f \circ g$ — compor não é comutativo. O item (a) e
+  (b) do primeiro exercício mostram isso na prática: $f(g(x)) = 5x + 13$ mas
+  $g(f(x)) = 5x + 1$, resultados diferentes para a mesma dupla de funções.
+</Callout>
+
 ## Exercícios
 
 <Exercise>
@@ -49,7 +60,7 @@ Sejam $f(x) = x^{2} + 4x - 5$ e $g(x) = 2x - 3$. Então calcule:
 <Answer>
 <Marker>a)</Marker> $f(g(x)) = (2x - 3)^{2} + 4(2x - 3) - 5 = 4x^{2} - 12x + 9 + 8x - 12 - 5 = 4x^{2} - 4x - 8$
 
-<Marker>b)</Marker> $f \circ f(x) = (x^{2}+4x-5)^{2} + 4(x^{2}+4x-5) - 5$
+<Marker>b)</Marker> $f \circ f(x) = (x^{2}+4x-5)^{2} + 4(x^{2}+4x-5) - 5 = x^{4} + 8x^{3} + 10x^{2} - 24x$
 
 <Marker>c)</Marker> $g \circ f(x) = 2(x^{2}+4x-5) - 3 = 2x^{2}+8x-13$
 

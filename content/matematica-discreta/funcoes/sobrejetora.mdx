@@ -13,6 +13,27 @@ $$
 f \text{ é sobrejetora} \Leftrightarrow \forall y \in B,\ \exists x \in A \mid y = f(x)
 $$
 
+Em palavras: **nenhum elemento do contradomínio $B$ fica de fora** — todo
+$y \in B$ é atingido por pelo menos um $x \in A$ (pode até ser atingido por
+mais de um; sobrejetora não exige unicidade, só existência).
+
+<Callout type="tip" title="Como provar ou refutar">
+  **Para provar** que $f$ é sobrejetora: parta de um $y \in B$ arbitrário,
+  isole $x$ na equação $y = f(x)$ e mostre que esse $x$ existe **e pertence
+  a $A$**. É a estratégia usada em todos os exercícios abaixo — encontrar
+  $x = f^{-1}(y)$ e conferir se ele está no domínio.
+
+  **Para refutar**: basta **um** contraexemplo — um $y \in B$ para o qual a
+  equação $y = f(x)$ não tem solução em $A$.
+</Callout>
+
+O contradomínio $B$ faz parte da definição da função, então trocar $B$ pode
+trocar a resposta mesmo mantendo a mesma fórmula. É o que os dois últimos
+exercícios desta página mostram: $f(x) = 2x - 3$ é sobrejetora quando
+$f : \mathbb{R} \to \mathbb{R}$, mas deixa de ser quando o contradomínio é
+restrito a $f : \mathbb{Z} \to \mathbb{Z}$, pois nem todo inteiro $y$ tem
+$\frac{y+3}{2}$ inteiro.
+
 ## Exercícios
 
 <Exercise>

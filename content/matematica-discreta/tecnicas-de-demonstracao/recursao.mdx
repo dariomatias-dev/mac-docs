@@ -10,6 +10,16 @@ Recursão é uma ideia importante usada para definir sequências de objetos,
 coleções mais gerais de objetos e operações sobre objetos: um objeto é
 definido em termos de si mesmo, mas com valores anteriores ou menores.
 
+<Callout type="connection" title="Recursão é o espelho da indução">
+  Uma definição recursiva e uma prova por
+  [indução](/docs/matematica-discreta/tecnicas-de-demonstracao/inducao)
+  seguem exatamente a mesma estrutura de duas partes: o **termo inicial**
+  corresponde ao **passo básico**, e a **fórmula de recorrência** corresponde
+  ao **passo indutivo**. Não é coincidência: provar propriedades de
+  sequências recursivas (como as fórmulas fechadas do exercício sobre a
+  Torre de Hanói) é, tipicamente, feito por indução.
+</Callout>
+
 ## Sequências recursivas
 
 Uma sequência $S$ é uma lista de objetos enumerados segundo alguma ordem: há
@@ -120,6 +130,17 @@ end;
 ```
 </Answer>
 </Exercise>
+
+<Callout type="caution" title="A árvore de chamadas real é bem maior que o rastro abaixo">
+  O rastro a seguir mostra os valores em ordem crescente de $n$, de baixo
+  para cima — útil para ver o resultado final, mas não é como `FIB` de fato
+  executa. Na chamada real, `FIB(8)` dispara `FIB(7)` e `FIB(6)`; `FIB(7)`
+  dispara `FIB(6)` e `FIB(5)`; e assim por diante — o mesmo valor (como
+  `FIB(6)`) acaba sendo recalculado do zero **várias vezes**, em uma árvore
+  que cresce exponencialmente com $n$. Por isso essa versão recursiva
+  "ingênua" de Fibonacci é lenta para $n$ grande, mesmo sendo curta de
+  escrever.
+</Callout>
 
 <Exercise>
 Trace a execução do algoritmo da questão anterior para $n = 8$.

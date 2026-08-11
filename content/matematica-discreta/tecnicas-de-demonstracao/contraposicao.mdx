@@ -28,6 +28,22 @@ $P \Rightarrow Q$.
 A técnica para demonstrar que $P \Rightarrow Q$ construindo uma prova direta de
 $\lnot Q \Rightarrow \lnot P$ é chamada de **demonstração por contraposição**.
 
+<Callout type="tip" title="Quando usar contraposição">
+  É útil quando a hipótese $P$ é "fácil de negar mas difícil de usar
+  diretamente", enquanto a tese negada $\lnot Q$ dá algo concreto para
+  manipular algebricamente. É o caso do exercício 2 abaixo: partir de "$x^2$
+  é ímpar" não dá um ponto de partida algébrico óbvio, mas partir de "$x$ é
+  par" ($\lnot Q$) dá direto $x = 2m$.
+</Callout>
+
+O roteiro é o mesmo da [demonstração direta](/docs/matematica-discreta/tecnicas-de-demonstracao/direta),
+só que aplicado a $\lnot Q \Rightarrow \lnot P$ em vez de $P \Rightarrow Q$:
+
+1. Escreva $\lnot Q$ algebricamente (negando a tese original).
+2. Deduza, passo a passo, a forma algébrica de $\lnot P$.
+3. Conclua $\lnot Q \Rightarrow \lnot P$ e invoque a tautologia acima para
+   obter $P \Rightarrow Q$.
+
 ## Exercícios
 
 <Exercise>
@@ -35,12 +51,16 @@ Mostre por contraposição que, se um número inteiro é divisível por $6$, ent
 também é divisível por $3$.
 
 <Answer>
-**Hipótese:** $x = 6m$, $m \in \mathbb{Z}$. &nbsp; **Tese:** $x = 3m$,
-$m \in \mathbb{Z}$.
+$P$: "$x$ é divisível por $6$" &nbsp; $Q$: "$x$ é divisível por $3$".
 
-Por contraposição, temos que $x \ne 3m$, com $m \in \mathbb{Z}$. Logo
-$x \ne 3 \cdot 2m$, ou seja, $x \ne 6m$. Assim $\lnot Q \Rightarrow \lnot P$.
-Logo a afirmação é verdadeira. $\blacksquare$
+**Contrapositiva ($\lnot Q \Rightarrow \lnot P$):** se $x$ **não** é
+divisível por $3$, então $x$ **não** é divisível por $6$.
+
+Provamos essa versão diretamente: se $x$ não é divisível por $3$, então em
+particular $x$ não pode ser escrito como $x = 6m = 3(2m)$ para nenhum
+$m \in \mathbb{Z}$ (pois isso o tornaria divisível por $3$). Logo $x$ não é
+divisível por $6$, ou seja, $\lnot Q \Rightarrow \lnot P$. Pela tautologia,
+$P \Rightarrow Q$. $\blacksquare$
 
 </Answer>
 </Exercise>
@@ -79,6 +99,13 @@ Mostre que a soma de um número par com um número ímpar é um número ímpar.
 **Hipótese:** $x = 2k$ e $y = 2m + 1$, com $k, m \in \mathbb{Z}$.
 
 $x + y = 2k + (2m + 1) = 2(k + m) + 1$, que é ímpar. $\blacksquare$
+
+Note que esta prova é **direta**, não por contraposição: aqui a hipótese
+$P$ é composta ("$x$ par **e** $y$ ímpar"), e negar uma conjunção produz uma
+disjunção ($x$ ímpar **ou** $y$ par) que não simplifica a álgebra — a prova
+direta já é natural. Contraposição vale a pena quando negar a *tese* dá algo
+mais fácil de manipular do que a hipótese original, como nos exercícios
+anteriores.
 
 </Answer>
 </Exercise>

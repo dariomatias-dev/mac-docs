@@ -17,6 +17,31 @@ $$
 Ou seja, é o conjunto de todos os pares ordenados cujos primeiros elementos
 pertencem a $A$ e os segundos pertencem a $B$.
 
+**Par ordenado** significa que a posição importa: $(x, y) = (a, b)$ se, e
+somente se, $x = a$ e $y = b$. Por isso $(1, 3)$ e $(3, 1)$ são pares
+diferentes, ainda que envolvam os mesmos números — diferente de um conjunto
+$\{1, 3\}$, onde a ordem não importa.
+
+Essa assimetria se reflete direto no produto cartesiano: como o primeiro
+elemento do par vem de $A$ e o segundo vem de $B$, em geral
+
+$$
+A \times B \neq B \times A
+$$
+
+(a não ser que $A = B$ ou que algum dos dois seja vazio). O exemplo abaixo
+mostra isso na prática.
+
+<Callout type="tip" title="Cardinalidade">
+  Se $A$ e $B$ são finitos, $\operatorname{Card}(A \times B) = \operatorname{Card}(A) \cdot \operatorname{Card}(B)$ —
+  cada elemento de $A$ pode ser combinado com cada elemento de $B$.
+</Callout>
+
+Um caso particular importante é $A \times A$, também escrito $A^{2}$: o
+produto de um conjunto por ele mesmo. Quando $A = \mathbb{R}$, $\mathbb{R}^2$
+é exatamente o plano cartesiano — cada ponto $(x, y)$ é um par ordenado de
+números reais.
+
 ## Exemplo
 
 Sejam $A = \{1, 2\}$ e $B = \{3, 4\}$.

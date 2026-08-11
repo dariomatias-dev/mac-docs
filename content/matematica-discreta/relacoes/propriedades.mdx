@@ -12,11 +12,40 @@ Seja $p$ uma relação binária em $S$. Então:
 - **$p$ é simétrica:** $(\forall x)(\forall y)(x \in S \text{ e } y \in S \text{ e } (x, y) \in p \Rightarrow (y, x) \in p)$
 - **$p$ é transitiva:** $(\forall x)(\forall y)(\forall z)(x, y, z \in S \text{ e } (x, y) \in p \text{ e } (y, z) \in p \Rightarrow (x, z) \in p)$
 
+Em palavras:
+
+- **Reflexiva**: todo elemento se relaciona **consigo mesmo**. Falha se
+  existir algum $x \in S$ com $(x, x) \notin p$ — basta **um** contraexemplo
+  para derrubar a propriedade.
+- **Simétrica**: a relação "não tem direção" — se $x$ se relaciona com $y$,
+  o caminho inverso também vale. Falha se existir **um único** par $(x, y)$
+  com $(x, y) \in p$ mas $(y, x) \notin p$.
+- **Transitiva**: relações "encadeiam". Se $x$ chega em $y$ e $y$ chega em
+  $z$, então $x$ chega direto em $z$, pulando o intermediário.
+
 <Callout type="connection" title="Observação">
   Se
   $(\forall x)(\forall y)(x, y \in S,\ (x, y) \in p \text{ e } (y, x) \in p \Rightarrow x = y)$,
   então chamaremos essa relação de **anti-simétrica**.
 </Callout>
+
+Repare que **anti-simétrica não é o oposto de simétrica**: anti-simétrica
+*permite* que $(x, x) \in p$ (o caso $x = y$ é justamente o que a definição
+excetua), ela só proíbe que $x \ne y$ se relacionem nos dois sentidos ao
+mesmo tempo. Por isso uma relação pode ser simétrica **e** anti-simétrica ao
+mesmo tempo — é o que acontece com a igualdade $=$, onde o único par que
+"vai e volta" é $(x, x)$.
+
+A tabela abaixo resume como algumas relações comuns em $\mathbb{N}$ se
+comportam:
+
+| Relação          | Reflexiva | Simétrica | Anti-simétrica | Transitiva |
+| ---------------- | :-------: | :-------: | :-------------: | :--------: |
+| $x \le y$         | ✔️        | ❌         | ✔️               | ✔️         |
+| $x < y$           | ❌         | ❌         | ✔️               | ✔️         |
+| $x = y$           | ✔️        | ✔️         | ✔️               | ✔️         |
+| $x$ divide $y$    | ✔️        | ❌         | ✔️               | ✔️         |
+| $x + y$ é par     | ✔️        | ✔️         | ❌               | ✔️         |
 
 ## Exercícios
 
@@ -81,13 +110,13 @@ Assim $x\,p\,z$, isto é $(x, z) \in p$. $\blacksquare$
 </Exercise>
 
 <Exercise>
-Mostre que a relação $\le$ no conjunto $\mathbb{N}$ é uma relação transitiva.
+Mostre que a relação $<$ no conjunto $\mathbb{N}$ é uma relação transitiva.
 
 <Answer>
 $(\forall x)(\forall y)(\forall z)(x, y, z \in \mathbb{N} \text{ e } (x, y) \in p \text{ e } (y, z) \in p)$.
-Como $(x, y) \in p \Rightarrow x < y$ e $(y, z) \in p \Rightarrow y < z$.
-Assim $x + y < y + z \Rightarrow x < z$. Logo $x\,p\,z$, ou seja
-$(x, z) \in p$. $\blacksquare$
+Como $(x, y) \in p \Rightarrow x < y$ e $(y, z) \in p \Rightarrow y < z$, a
+transitividade da ordem em $\mathbb{N}$ dá diretamente $x < z$. Logo
+$x\,p\,z$, ou seja $(x, z) \in p$. $\blacksquare$
 </Answer>
 </Exercise>
 

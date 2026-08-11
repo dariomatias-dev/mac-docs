@@ -20,6 +20,32 @@ $f : A \to B$ associa cada elemento $x \in A$ a um elemento correspondente
 $y \in B$; já a função $f^{-1}$ associa cada elemento $y \in B$ ao elemento
 correspondente $x \in A$.
 
+Por que $f$ precisa ser [bijetora](/docs/matematica-discreta/funcoes/bijetora)
+para ter inversa? Ao inverter os pares ordenados de $f$, o resultado só é uma
+**função** de $B$ em $A$ se valerem F1 e F2 para essa relação invertida:
+
+- $f$ **sobrejetora** garante F1 da inversa: todo $y \in B$ tinha alguma
+  pré-imagem em $f$, então todo $y$ vira um "domínio válido" para $f^{-1}$.
+- $f$ **injetora** garante F2 da inversa: se dois $x$ diferentes mandassem
+  para o mesmo $y$, a relação invertida associaria esse $y$ a dois valores
+  distintos, violando unicidade.
+
+Uma consequência direta da definição é que aplicar $f$ e $f^{-1}$ em
+sequência (em qualquer ordem) devolve o valor original:
+
+$$
+f^{-1}(f(x)) = x, \quad \forall x \in A \qquad\qquad f(f^{-1}(y)) = y, \quad \forall y \in B
+$$
+
+<Callout type="tip" title="Como calcular f⁻¹(x) na prática">
+  1. Escreva $y = f(x)$.
+  2. Isole $x$ em função de $y$.
+  3. Troque os nomes das variáveis: o resultado, escrito como função de $x$, é
+     $f^{-1}(x)$.
+
+  É exatamente o procedimento usado em cada exercício abaixo.
+</Callout>
+
 ## Exercícios
 
 <Exercise>

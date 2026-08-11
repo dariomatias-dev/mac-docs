@@ -8,11 +8,26 @@ prerequisites:
 
 Uma função $f : A \to B$ é **crescente** se, e somente se,
 $\forall x, y \in A$, se $x < y$ então $f(x) < f(y)$: à medida que $x$ aumenta,
-$y$ também aumenta.
+$f(x)$ também aumenta.
 
 Uma função $f : A \to B$ é **decrescente** se, e somente se,
 $\forall x, y \in A$, se $x < y$ então $f(x) > f(y)$: à medida que $x$ aumenta,
-$y$ diminui.
+$f(x)$ diminui.
+
+Repare que os dois exercícios com $f(x) = x^2$ abaixo restringem o domínio a
+$\mathbb{R}_+$ ou $\mathbb{R}_-$ — nunca a $\mathbb{R}$ inteiro. Isso não é
+acaso: em $\mathbb{R}$, $x^2$ não é nem crescente nem decrescente (por
+exemplo $-2 < 1$, mas $f(-2) = 4 > 1 = f(1)$), já que a parábola desce até o
+vértice e depois sobe. Restringindo o domínio a apenas um dos "ramos" da
+parábola, a monotonicidade volta a valer.
+
+<Callout type="connection" title="Monotonicidade implica injetividade">
+  Se $f$ é estritamente crescente ou decrescente, então $f$ é
+  [injetora](/docs/matematica-discreta/funcoes/injetora): $x \ne y$ força
+  $x < y$ ou $y < x$, e em qualquer um dos casos a definição garante
+  $f(x) \ne f(y)$. A recíproca não vale — existem funções injetoras que não
+  são monótonas.
+</Callout>
 
 ## Função crescente
 

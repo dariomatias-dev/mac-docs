@@ -7,7 +7,9 @@ prerequisites:
 ---
 
 Um conjunto por si só não é objeto de muito interesse até que se faça "algo" com
-seus elementos.
+seus elementos. Operações binárias e unárias são exatamente esse "algo": regras
+que combinam ou transformam elementos de um conjunto, produzindo sempre um
+resultado dentro do próprio conjunto.
 
 ## Operação binária
 
@@ -15,9 +17,40 @@ $\circ$ é uma operação binária sobre um conjunto $S$ se, para qualquer par
 ordenado $(x, y)$ de elementos de $S$, $x \circ y$ existe, é único e é elemento
 de $S$.
 
+Em outras palavras, uma operação binária pega **dois** elementos de $S$ (na
+ordem em que aparecem) e devolve **um** resultado, e esse resultado precisa
+satisfazer três condições ao mesmo tempo:
+
+- **Existência**: $x \circ y$ está definido para todo par $(x, y)$ de $S$ — não
+  pode haver um caso em que a operação simplesmente não faça sentido.
+- **Unicidade**: $x \circ y$ tem um único valor — não pode haver ambiguidade
+  sobre o resultado.
+- **Fechamento**: $x \circ y \in S$ — o resultado não pode "escapar" do
+  conjunto.
+
+Quando essas três condições valem para todo par de $S$, dizemos que $S$ é
+**fechado** em relação a $\circ$. Essa ideia de fechamento é o ponto que mais
+costuma falhar nos exemplos abaixo: a operação pode até existir e ser única,
+mas se o resultado cai fora do conjunto, ela deixa de ser uma operação binária
+sobre esse conjunto.
+
 A adição, a subtração e a multiplicação são todas operações binárias em
 $\mathbb{Z}$. Por exemplo, quando realizamos a adição no par ordenado $(x, y)$ de
 $\mathbb{Z}$, $x + y$ existe, é único e é inteiro.
+
+<Callout type="tip" title="O conjunto importa tanto quanto a operação">
+  A mesma operação pode ser binária em um conjunto e não ser em outro. Por
+  isso a pergunta nunca é apenas "$\circ$ é uma operação binária?", e sim
+  "$\circ$ é uma operação binária **em $S$**?". Trocar o conjunto $S$ pode
+  mudar completamente a resposta, como mostram os exercícios 1 e 2 abaixo.
+</Callout>
+
+| Operação    | Em $\mathbb{Z}$ | Em $\mathbb{N}$          | Motivo quando falha                        |
+| ----------- | :-------------: | :-----------------------: | ------------------------------------------- |
+| Adição      | ✔️              | ✔️                        | —                                            |
+| Subtração   | ✔️              | ❌                         | $2 - 5 = -3 \notin \mathbb{N}$               |
+| Multiplicação | ✔️            | ✔️                        | —                                            |
+| Divisão     | ❌               | ❌                         | $7 / 2 = 3{,}5$ não é inteiro nem natural    |
 
 <Exercise>
 **1.** A operação de divisão é uma operação binária em $\mathbb{Z}$?
@@ -61,6 +94,19 @@ $(3, 3),\ (3, 4),\ (4, 3),\ (4, 4)$.
 Uma operação unária atua em um único número de um conjunto. Assim, para $\#$ ser
 uma operação unária no conjunto $S$, é preciso que, para qualquer $x \in S$,
 $x^{\#}$ exista, seja único e seja um elemento de $S$.
+
+É a mesma ideia da operação binária, só que com **um** elemento de entrada em
+vez de dois: as três condições (existência, unicidade e fechamento) continuam
+valendo, só muda a aridade — quantos elementos a operação recebe. Por isso o
+$\#$ na notação $x^{\#}$ é só um símbolo genérico para "aplique alguma
+transformação a $x$"; na prática essa transformação pode ser qualquer regra,
+como $-x$, $x^2$, $|x|$ ou $\sqrt{x}$.
+
+<Callout type="tip" title="Definição">
+  Operação binária: recebe **2** elementos de $S$. Operação unária: recebe
+  **1** elemento de $S$. Em ambos os casos, o resultado precisa existir, ser
+  único e pertencer a $S$.
+</Callout>
 
 <Exercise>
 **1.** Seja $x^{\#}$ definido por $x^{\#} = -x$. $\#$ é uma operação unária em

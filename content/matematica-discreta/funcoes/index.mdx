@@ -23,6 +23,29 @@ $$
 \forall x \in A,\ \exists!\, y \in B \mid (x, y) \in f
 $$
 
+Em palavras, as duas condições garantem coisas diferentes:
+
+- **F1 (totalidade)**: ninguém em $A$ fica de fora — todo elemento do
+  domínio precisa ter uma imagem definida em $B$. Falha quando a fórmula
+  "quebra" para algum $x \in A$ (por exemplo, resulta em algo fora de $B$).
+- **F2 (unicidade)**: ninguém em $A$ aponta para dois lugares ao mesmo tempo
+  — cada $x$ tem **no máximo** uma imagem. Falha quando o mesmo $x$ aparece
+  associado a dois valores diferentes de $y$.
+
+Toda função é, portanto, uma relação binária especial: uma relação em que
+cada elemento do domínio "escolhe" exatamente um elemento do contradomínio.
+Uma relação binária qualquer pode violar F1 (deixar algum $x$ sem par) ou F2
+(dar a um mesmo $x$ mais de um par) — é exatamente o que os itens (a) e (c)
+do primeiro exercício mostram.
+
+<Callout type="tip" title="Domínio, contradomínio e imagem">
+  Não confunda **contradomínio** (o conjunto $B$ inteiro, declarado na
+  definição de $f : A \to B$) com **imagem** de $f$ (o subconjunto de $B$
+  formado pelos valores efetivamente atingidos, $\operatorname{Im}(f) = \{f(x) \mid x \in A\}$).
+  Essa distinção é essencial para entender [função sobrejetora](/docs/matematica-discreta/funcoes/sobrejetora),
+  que exige justamente $\operatorname{Im}(f) = B$.
+</Callout>
+
 ## Exercícios
 
 <Exercise>
@@ -47,9 +70,13 @@ $f = \{(1,1), (2,3), (3,1), (2,1)\}$
 <Marker>c)</Marker> Por F1, $h$ **não** é uma função: $x = 3 \in \mathbb{N}$, no entanto
 $h(3) = 3 - 4 = -1 \notin \mathbb{N}$.
 
-<Marker>d)</Marker> **É** uma função.
+<Marker>d)</Marker> **É** uma função: para todo $x \in \mathbb{R}$, $4x - 1$
+existe, é único e pertence a $\mathbb{R}$ — satisfaz F1 e F2.
 
-<Marker>e)</Marker> **Não** é uma função.
+<Marker>e)</Marker> **É** uma função: as duas condições da definição por
+partes ($x \ge 5$ e $x < 5$) cobrem todo $\mathbb{N}$ sem sobreposição, e
+para $x \ge 5$ temos $x + 3 \in \mathbb{N}$, enquanto para $x < 5$ temos
+$x \in \mathbb{N}$. Logo F1 e F2 valem em ambos os trechos.
 
 </Answer>
 </Exercise>

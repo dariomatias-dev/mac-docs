@@ -47,8 +47,116 @@ Alguns conjuntos infinitos não conseguimos fazer uma relação biunívoca deles
 os números naturais: são os chamados **não enumeráveis**, por exemplo, os
 números reais.
 
-Tais demonstrações das cardinalidades de conjuntos infinitos terminam aqui por
-não ser o objetivo do curso.
+## Um conjunto enumerável: ℤ × ℤ
+
+Nem todo produto de conjuntos infinitos "parece" enumerável à primeira vista,
+mas $\mathbb{Z} \times \mathbb{Z}$ é enumerável: basta percorrer o plano em
+diagonais, o que dá uma relação biunívoca com $\mathbb{N}$.
+
+<StepByStep title="ℤ × ℤ é enumerável">
+  <Step title="Ideia">
+    Organizamos os pares $(x, y)$ por diagonais de soma constante
+    $|x| + |y| = k$, para $k = 0, 1, 2, \ldots$
+  </Step>
+  <Step title="Cada diagonal é finita">
+    Para cada $k$ fixo existe apenas uma quantidade finita de pares
+    $(x, y) \in \mathbb{Z} \times \mathbb{Z}$ com $|x| + |y| = k$.
+  </Step>
+  <Step title="Enumeração">
+    Percorrendo as diagonais $k = 0, 1, 2, \ldots$ em ordem, e dentro de cada
+    diagonal listando os pares em ordem fixa (por exemplo, por $x$ crescente),
+    associamos a cada par $(x, y)$ uma única posição $n \in \mathbb{N}$.
+  </Step>
+  <Step title="Conclusão">
+    Como todo par aparece em exatamente uma posição da lista, essa
+    correspondência é biunívoca, logo
+    $\operatorname{Card}(\mathbb{Z} \times \mathbb{Z}) = \operatorname{Card}(\mathbb{N})$.
+    $\blacksquare$
+  </Step>
+</StepByStep>
+
+## O intervalo (0, 1) não é enumerável
+
+Diferente de $\mathbb{Z} \times \mathbb{Z}$, o intervalo $(0, 1) \subset \mathbb{R}$
+não admite relação biunívoca com $\mathbb{N}$. O argumento clássico para provar
+isso é a **diagonal de Cantor**.
+
+<StepByStep title="Diagonal de Cantor: (0, 1) não é enumerável">
+  <Step title="Hipótese (por absurdo)">
+    Suponha que $(0, 1)$ seja enumerável. Então existe uma lista
+    $x_{1}, x_{2}, x_{3}, \ldots$ que contém **todos** os números reais de
+    $(0, 1)$, cada um escrito em sua expansão decimal:
+    $x_{n} = 0,\, d_{n1}\, d_{n2}\, d_{n3} \ldots$
+  </Step>
+  <Step title="Construção da diagonal">
+    Construímos um novo número $y = 0,\, e_{1}\, e_{2}\, e_{3} \ldots$ definindo
+    o $n$-ésimo dígito como $e_{n} = 5$ se $d_{nn} \ne 5$, e $e_{n} = 6$ se
+    $d_{nn} = 5$ (evitando $0$ e $9$, que geram ambiguidade de representação
+    decimal).
+  </Step>
+  <Step title="y difere de todo xₙ">
+    Por construção, $y$ difere de $x_{n}$ pelo menos no $n$-ésimo dígito, para
+    todo $n \in \mathbb{N}$. Logo $y \ne x_{n}$ para todo $n$, ou seja,
+    $y \notin \{x_{1}, x_{2}, x_{3}, \ldots\}$.
+  </Step>
+  <Step title="Contradição">
+    Mas $y \in (0, 1)$, e a lista deveria conter todos os elementos de
+    $(0, 1)$. Isso contradiz a hipótese de que a lista era completa.
+  </Step>
+  <Step title="Conclusão">
+    Logo não existe tal lista, isto é, $(0, 1)$ não é enumerável. Como
+    $(0, 1) \subset \mathbb{R}$ e um subconjunto de um conjunto enumerável é
+    enumerável (ou finito), $\mathbb{R}$ também não é enumerável. $\blacksquare$
+  </Step>
+</StepByStep>
+
+Demonstrações mais gerais sobre cardinalidades de conjuntos infinitos (como
+comparar $\operatorname{Card}(\mathbb{R})$ com $\operatorname{Card}(P(\mathbb{R}))$)
+ficam fora do escopo deste curso.
+
+## Exercícios
+
+<Exercise>
+Mostre que o conjunto dos números pares $P = \{\ldots, -4, -2, 0, 2, 4, \ldots\}$
+tem a mesma cardinalidade de $\mathbb{N}$.
+
+<Answer>
+<Proof>
+
+Basta exibir uma relação biunívoca entre $\mathbb{N}$ e $P$. Defina
+$f : \mathbb{N} \to P$ alternando entre os pares não negativos e negativos, de
+forma análoga ao que foi feito entre $\mathbb{N}$ e $\mathbb{Z}$:
+
+$$
+0 \to 0, \quad 1 \to 2, \quad 2 \to -2, \quad 3 \to 4, \quad 4 \to -4, \quad \ldots
+$$
+
+Todo natural é enviado a um único par, e todo par é atingido por exatamente um
+natural. Logo $f$ é biunívoca e
+
+$$
+\operatorname{Card}(\mathbb{N}) = \operatorname{Card}(P) \quad \blacksquare
+$$
+
+</Proof>
+</Answer>
+</Exercise>
+
+<Exercise>
+$\mathbb{N} \times \{0, 1\}$ é enumerável ou não enumerável? Justifique.
+
+<Answer>
+É enumerável. Podemos listar os pares alternando o segundo componente:
+
+$$
+(0,0), (0,1), (1,0), (1,1), (2,0), (2,1), \ldots
+$$
+
+Cada par $(n, b)$, com $n \in \mathbb{N}$ e $b \in \{0,1\}$, ocupa a posição
+$2n + b$ dessa lista, o que dá uma relação biunívoca com $\mathbb{N}$. Logo
+$\operatorname{Card}(\mathbb{N} \times \{0,1\}) = \operatorname{Card}(\mathbb{N})$.
+</Answer>
+</Exercise>
 
 ## Vídeos
 

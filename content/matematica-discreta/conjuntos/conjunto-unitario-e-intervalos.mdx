@@ -16,6 +16,16 @@ P = \{x \in \mathbb{N} \mid x + 1 = 3\} = \{2\}
 Q = \{x \in \mathbb{R} \mid x^{2} = 0\} = \{0\}
 $$
 
+<Exercise>
+Determine, por extenso, o conjunto $R = \{x \in \mathbb{Z} \mid x^{2} = 9 \text{ e } x > 0\}$
+e diga se é um conjunto unitário.
+
+<Answer>
+$x^{2} = 9 \Rightarrow x = 3$ ou $x = -3$. Como exigimos $x > 0$, apenas $x = 3$
+satisfaz as duas condições. Logo $R = \{3\}$, que é um conjunto unitário.
+</Answer>
+</Exercise>
+
 ## Representação de um conjunto por intervalos reais
 
 Sejam $a$ e $b$ dois números reais com $a < b$. Chamamos de **intervalo fechado**
@@ -37,3 +47,41 @@ $$
 (a, +\infty) \text{ ou } {]a, +\infty[} &= \{x \in \mathbb{R} \mid x > a\}
 \end{aligned}
 $$
+
+## Operações com intervalos
+
+Intervalos são conjuntos, então as operações de união, interseção e diferença
+vistas em [Operações com conjuntos](/docs/matematica-discreta/conjuntos/operacoes-com-conjuntos)
+se aplicam normalmente — a única diferença prática é que, por serem conjuntos
+de números reais, é mais fácil visualizá-las na reta numérica.
+
+<Exercise>
+Sejam $A = [1, 5)$ e $B = (3, 8]$. Determine $A \cup B$, $A \cap B$ e $A - B$.
+
+<Answer>
+Marcando os dois intervalos na reta numérica:
+
+- $A$ cobre de $1$ (incluso) até $5$ (excluso).
+- $B$ cobre de $3$ (excluso) até $8$ (incluso).
+
+Eles se sobrepõem entre $3$ e $5$. Logo:
+
+$$
+A \cup B = [1, 8] \qquad A \cap B = (3, 5) \qquad A - B = [1, 3]
+$$
+
+Note que os extremos de $A \cup B$ vêm de intervalos diferentes: o início,
+$1$ (incluso), vem de $A$, e o fim, $8$ (incluso), vem de $B$. A união forma
+um intervalo fechado contínuo porque $A$ e $B$ se sobrepõem, sem deixar
+lacunas entre $1$ e $8$.
+</Answer>
+</Exercise>
+
+<Exercise>
+Sejam $C = (-\infty, 4]$ e $D = [4, +\infty)$. Determine $C \cap D$ e $C \cup D$.
+
+<Answer>
+O único ponto comum aos dois é $x = 4$, logo $C \cap D = \{4\}$ (um conjunto
+unitário). Como juntos cobrem toda a reta, $C \cup D = \mathbb{R}$.
+</Answer>
+</Exercise>
