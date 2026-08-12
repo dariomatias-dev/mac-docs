@@ -4,7 +4,7 @@
 
 ## Checklist
 
-- [ ] `npm run typecheck`, `npm run lint` and `npm run format:check` pass.
-- [ ] Tests added or updated; `npm run test:run` passes.
+- [ ] `pnpm run typecheck`, `pnpm run lint` and `pnpm run format:check` pass.
+- [ ] Tests added or updated; `pnpm run test:run` passes.
 - [ ] Accessibility considered (keyboard, focus, `aria-*`, contrast).
 - [ ] Screenshots attached for visual changes.

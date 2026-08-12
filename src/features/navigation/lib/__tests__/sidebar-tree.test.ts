@@ -17,6 +17,8 @@ describe("getSidebarTree", () => {
       ?.groups.find((g) => g.slug.join("/") === "matematica-discreta/matrizes");
     expect(matrizes?.pages.map((p) => p.title)).toEqual([
       "Operações com matrizes",
+      "Determinantes",
+      "Matriz inversa",
       "Matrizes booleanas",
     ]);
   });

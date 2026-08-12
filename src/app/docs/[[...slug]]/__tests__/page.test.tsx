@@ -51,7 +51,7 @@ describe("DocPage", () => {
 
     const nav = nodes.find((n) => "prev" in n.props && "next" in n.props);
     const next = nav?.props.next as { href: string } | null;
-    expect(next?.href).toBe("/docs/matematica-discreta/matrizes/matrizes-booleanas");
+    expect(next?.href).toBe("/docs/matematica-discreta/matrizes/determinantes");
   });
 
   it("calls notFound for an unknown slug", async () => {

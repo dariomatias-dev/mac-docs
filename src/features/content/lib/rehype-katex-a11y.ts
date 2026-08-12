@@ -11,8 +11,7 @@ import { visit } from "unist-util-visit";
 export function rehypeKatexA11y() {
   return (tree: Root) => {
     visit(tree, "element", (node: Element) => {
-      const className = node.properties?.className;
-      const classes = Array.isArray(className) ? className : [className];
+      const classes = node.properties?.className ?? [];
       if (!classes.includes("katex-display")) return;
 
       node.properties = node.properties ?? {};

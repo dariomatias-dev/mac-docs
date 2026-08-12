@@ -11,13 +11,13 @@ describe("buildDocView", () => {
 
     expect(view.breadcrumb[0].title).toBe("Matemática Discreta");
     expect(view.toc.length).toBeGreaterThan(0);
-    expect(view.next?.href).toBe("/docs/matematica-discreta/matrizes/matrizes-booleanas");
+    expect(view.next?.href).toBe("/docs/matematica-discreta/matrizes/determinantes");
     expect(view.minutes).toBeGreaterThanOrEqual(1);
     expect(view.pageText).toContain(doc.frontmatter.title);
   });
 
   it("resolves prerequisite titles from their href", () => {
-    const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "prova-1"])!;
+    const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "provas", "prova-1"])!;
     const view = buildDocView(doc);
 
     expect(view.prerequisites.length).toBeGreaterThan(0);
@@ -27,14 +27,20 @@ describe("buildDocView", () => {
   });
 
   it("has no next page for the last page in the flat list", () => {
-    const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "prova-1"])!;
+    const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "provas", "prova-1"])!;
     // The last content page in the site; adjust if new content is added after it.
     const view = buildDocView(doc);
     expect(view.prev).not.toBeNull();
   });
 
   it("only sets a custom toc label for avaliações pages", () => {
-    const examDoc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "prova-1"])!;
+    const examDoc = getDocBySlug([
+      "matematica-discreta",
+      "avaliacoes",
+      "2023.1",
+      "provas",
+      "prova-1",
+    ])!;
     const regularDoc = getDocBySlug(["matematica-discreta", "matrizes", "operacoes"])!;
 
     expect(buildDocView(examDoc).tocLabel).toBe("Nesta prova");

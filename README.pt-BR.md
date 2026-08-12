@@ -78,24 +78,24 @@ busca.
 ## Começando
 
 ```bash
-npm install
+pnpm install
 cp .env.example .env.local   # defina NEXT_PUBLIC_SITE_URL
-npm run dev                  # http://localhost:3000
+pnpm run dev                  # http://localhost:3000
 ```
 
 ## Scripts
 
-| Comando             | Descrição                   |
-| ------------------- | --------------------------- |
-| `npm run dev`       | Servidor de desenvolvimento |
-| `npm run build`     | Build de produção (SSG)     |
-| `npm run start`     | Serve o build de produção   |
-| `npm run lint`      | ESLint                      |
-| `npm run typecheck` | `tsc --noEmit`              |
-| `npm run format`    | Prettier (escrita)          |
-| `npm run test`      | Vitest (watch)              |
-| `npm run test:run`  | Vitest (uma vez)            |
-| `npm run test:e2e`  | Playwright (smoke e axe)    |
+| Comando              | Descrição                   |
+| -------------------- | --------------------------- |
+| `pnpm run dev`       | Servidor de desenvolvimento |
+| `pnpm run build`     | Build de produção (SSG)     |
+| `pnpm run start`     | Serve o build de produção   |
+| `pnpm run lint`      | ESLint                      |
+| `pnpm run typecheck` | `tsc --noEmit`              |
+| `pnpm run format`    | Prettier (escrita)          |
+| `pnpm run test`      | Vitest (watch)              |
+| `pnpm run test:run`  | Vitest (uma vez)            |
+| `pnpm run test:e2e`  | Playwright (smoke e axe)    |
 
 ## Conteúdo
 
@@ -118,8 +118,8 @@ genuinamente compartilhado em `src/shared/*`. Veja
 ## Testes
 
 - Testes de unidade e componente com Vitest e Testing Library
-  (`npm run test:run`).
-- Testes de smoke e acessibilidade com Playwright e axe (`npm run test:e2e`).
+  (`pnpm run test:run`).
+- Testes de smoke e acessibilidade com Playwright e axe (`pnpm run test:e2e`).
 
 ## Deploy
 
