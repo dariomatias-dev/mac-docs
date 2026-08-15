@@ -1,27 +1,30 @@
 import type { MetadataRoute } from "next";
 
-import { getAllSlugs } from "@/features/content";
+import { getAllDocs } from "@/features/content";
+import { getGitDates, getLatestContentDate } from "@/shared/lib/git-dates";
 import { SITE_URL } from "@/shared/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    {
+      url: `${SITE_URL}/`,
+      lastModified: getLatestContentDate(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
     {
       url: `${SITE_URL}/contribuidores`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
   ];
 
-  const docRoutes: MetadataRoute.Sitemap = getAllSlugs().map((slug) => ({
-    url: `${SITE_URL}/docs/${slug.join("/")}`,
-    lastModified: now,
+  const docRoutes: MetadataRoute.Sitemap = getAllDocs().map((doc) => ({
+    url: `${SITE_URL}${doc.url}`,
+    lastModified: getGitDates(doc.filePath)?.modified,
     changeFrequency: "monthly",
     // Section landing pages (course/topic index) rank slightly above leaf pages.
-    priority: slug.length <= 2 ? 0.8 : 0.6,
+    priority: doc.slug.length <= 2 ? 0.8 : 0.6,
   }));
 
   return [...staticRoutes, ...docRoutes];

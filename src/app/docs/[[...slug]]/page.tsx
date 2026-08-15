@@ -14,8 +14,9 @@ import {
 import { Breadcrumbs, EditPageLink, PrevNextNav } from "@/features/navigation";
 import { mdxComponents } from "@/features/study";
 import { MobileToc, TableOfContents } from "@/features/toc";
+import { getGitDates } from "@/shared/lib/git-dates";
 import { jsonLd } from "@/shared/lib/json-ld";
-import { SITE_URL } from "@/shared/lib/site";
+import { SITE_NAME, SITE_URL } from "@/shared/lib/site";
 
 import { buildDocView } from "./build-doc-view";
 
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
     title: doc.frontmatter.title,
     description: doc.frontmatter.description ?? "",
   }).toString()}`;
+  const dates = getGitDates(doc.filePath);
 
   return {
     title: doc.frontmatter.title,
@@ -46,9 +48,13 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
     alternates: { canonical: url },
     openGraph: {
       type: "article",
+      siteName: SITE_NAME,
+      locale: "pt_BR",
       url,
       title: doc.frontmatter.title,
       description: doc.frontmatter.description,
+      publishedTime: dates?.created.toISOString(),
+      modifiedTime: dates?.modified.toISOString(),
       images: [{ url: ogImage, width: 1200, height: 630, alt: doc.frontmatter.title }],
     },
     twitter: {
