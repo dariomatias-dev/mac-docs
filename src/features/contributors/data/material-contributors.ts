@@ -13,4 +13,9 @@ export const MATERIAL_CONTRIBUTORS: MaterialContributor[] = [
     role: "Contribuição de material",
     githubUrl: "https://github.com/devpaulomenezes",
   },
+  {
+    name: "Matheus Kevyn",
+    role: "Contribuição de material",
+    githubUrl: "https://github.com/Voltex888",
+  },
 ];

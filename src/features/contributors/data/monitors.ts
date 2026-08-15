@@ -7,4 +7,9 @@ export const MONITORS: MaterialContributor[] = [
     role: "Monitor(a) de MAC",
     githubUrl: "https://github.com/eduardoksm13-beep",
   },
+  {
+    name: "Matheus Kevyn",
+    role: "Monitor(a) de MAC",
+    githubUrl: "https://github.com/Voltex888",
+  },
 ];
