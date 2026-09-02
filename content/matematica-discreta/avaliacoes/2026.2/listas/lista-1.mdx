@@ -1113,16 +1113,18 @@ Dem.:
 
 Por definição, $A - A = \{x / x \in A \text{ e } x \notin A\}$.
 
-Suponha, por absurdo, que exista $x \in A - A$. Então $x \in A$ e $x \notin
-A$ ao mesmo tempo — contradição.
+Assim, $x \in \emptyset$.
 
-Logo, nenhum elemento pertence a $A - A$, ou seja, $A - A \subseteq
-\varnothing$.
+Ou seja, $A - A \subseteq \emptyset$.
 
-Como $\varnothing \subseteq X$ para qualquer conjunto $X$, vale também
-$\varnothing \subseteq A - A$.
+Agora temos que $\emptyset = \{x / x \in A \text{ e } x \notin A\}$.
 
-Assim, $A - A = \{\,\}$. $\blacksquare$
+Ou seja, $x \in A - A$.
+
+Assim, $\emptyset \subseteq A - A$.
+
+Como $A - A \subseteq \emptyset$ e $\emptyset \subseteq A - A$, logo
+$A - A = \{\,\}$. $\blacksquare$
 
 </Proof>
 </Answer>
@@ -1181,16 +1183,13 @@ Dem.:
 
 <Proof>
 
-Suponha, por absurdo, que exista $b \in B$.
+Por definição, $(A \cup B) = A - B$.
 
-Por definição de união, $b \in (A \cup B)$.
+Logo, $(\forall x) \in (A \cup B) \iff x \in (A - B)$.
 
-Como $A \cup B = A - B$, então $b \in (A - B)$.
+Então, $x \in A$ ou $x \in B \iff x \in A$ e $x \notin B$.
 
-Mas $(A - B) = \{x / x \in A \text{ e } x \notin B\}$, ou seja, $b \notin B$
-— contradição com $b \in B$.
-
-Logo, não existe elemento em $B$. Assim, $B = \{\,\}$. $\blacksquare$
+Assim, $B = \varnothing$. $\blacksquare$
 
 </Proof>
 </Answer>
@@ -1209,17 +1208,15 @@ Dem.:
 Por definição, $(A-B) = \{x / x \in A \text{ e } x \notin B\}$ e $(B-A) =
 \{y / y \in B \text{ e } y \notin A\}$.
 
-Suponha, por absurdo, que exista $z \in (A \cap B)$, isto é, $z \in A$ e
-$z \in B$.
+Assim, $(A-B) \cup (B-A) = \{z / z \in (A-B) \text{ ou } z \in (B-A)\}$.
 
-Então $z \in (A \cup B)$ e, pela hipótese, $z \in (A-B) \cup (B-A)$.
+Logo, $(A-B) \cup (B-A) = z \in (A \cup B)$.
 
-Se $z \in (A-B)$, então $z \notin B$ — contradição.
+Assim, $(A-B) \cup (B-A) = (A \cup B)$.
 
-Se $z \in (B-A)$, então $z \notin A$ — contradição.
+Logo, $z \notin A \cap B$.
 
-Logo, nenhum elemento está em $A \cap B$. Assim, $A \cap B = \{\,\}$.
-$\blacksquare$
+Assim, $A \cap B = \varnothing$. $\blacksquare$
 
 </Proof>
 </Answer>
