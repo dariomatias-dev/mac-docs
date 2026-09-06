@@ -17,9 +17,9 @@ cada questão sozinho antes de abrir a **resposta**.
 ## Questão 1 <Badge>Judith L. Gersting, adaptada — 10,0 pts</Badge>
 
 <Question>
-Escreva os seguintes conjuntos, fornecendo-lhes uma característica que
-envolve todos os elementos, isto é, escreva os números da sequência a
-seguir na forma da Teoria dos Conjuntos.
+Escreva os seguintes conjuntos, fornecendo-lhes uma propriedade
+característica que envolve todos os elementos, isto é, escreva os números da
+sequência a seguir na forma da Teoria dos Conjuntos.
 
 a) $A = \{1, 0, 5, 22, 57, 116, 205, 330, \ldots\}$
 
@@ -29,30 +29,130 @@ c) $C = \{2, 5/2, 3, 7/2, 4, 9/2, 5, 11/2, \ldots\}$
 
 <Resolution>
 
-a) Numerando os termos a partir de $n=0$, as diferenças sucessivas são
-$-1, 5, 17, 35, 59, 89, 125, \ldots$, as segundas diferenças são
-$6, 12, 18, 24, 30, 36$ e as terceiras diferenças são constantes e iguais a
-$6$. Uma terceira diferença constante indica um polinômio de grau $3$ em
-$n$, com coeficiente líder $6/3! = 1$. Ajustando o polinômio
-$A(n) = n^{3} + bn^{2} + cn + d$ aos valores $A(0)=1$, $A(1)=0$ e $A(2)=5$,
-obtém-se $d=1$, $b=0$ e $c=-2$. Assim $A(n) = n^{3} - 2n + 1$, e a
-verificação com os demais termos confirma o padrão (por exemplo,
-$A(7) = 343 - 14 + 1 = 330$).
+Nos três itens numeramos os termos a partir de $n = 0$ e procuramos o termo
+geral $f(n)$. A ferramenta é a tabela de diferenças: a linha $\Delta$ traz a
+diferença entre cada termo e o **anterior**, a linha $\Delta^{2}$ faz o mesmo
+sobre a linha $\Delta$, e assim por diante.
 
-b) As diferenças sucessivas são $2, 6, 10, 14, 18, 22$ e as segundas
-diferenças são constantes e iguais a $4$, indicando um polinômio quadrático
-com coeficiente líder $4/2 = 2$. Ajustando $B(n) = 2n^{2} + bn + c$ aos
-valores $B(0)=-4$ e $B(1)=-2$, obtém-se $c=-4$ e $b=0$. Assim
-$B(n) = 2n^{2} - 4$.
+<Callout type="caution" title="As linhas Δ não são os elementos do conjunto">
+  São as diferenças entre eles, por isso podem ter sinal diferente dos termos
+  e não coincidem com a lista do enunciado.
+</Callout>
 
-c) É uma progressão aritmética de razão $1/2$, começando em $2$ para
-$n = 0$. Assim $C(n) = \tfrac{1}{2}n + 2$.
+O grau do polinômio é o nível em que as diferenças ficam constantes, e essa
+constante vale $k!\,a$, onde $k$ é o grau e $a$ é o coeficiente líder.
+
+a) Diferenças de $A = \{1, 0, 5, 22, 57, 116, 205, 330, \ldots\}$:
+
+$$
+\begin{array}{r|rrrrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+f(n) & 1 & 0 & 5 & 22 & 57 & 116 & 205 & 330 \\
+\Delta & & -1 & 5 & 17 & 35 & 59 & 89 & 125 \\
+\Delta^{2} & & & 6 & 12 & 18 & 24 & 30 & 36 \\
+\Delta^{3} & & & & 6 & 6 & 6 & 6 & 6
+\end{array}
+$$
+
+Os elementos estão listados na ordem em que $n$ os gera ($n = 0, 1, 2,
+\ldots$), e **não** em ordem crescente. A função $f$ decresce de $f(0) = 1$
+para $f(1) = 0$ e só a partir daí passa a crescer, por isso o $1$ aparece
+antes do $0$ — e por isso a primeira diferença, $0 - 1$, é negativa. Nos
+itens b) e c) isso não acontece porque lá $f$ cresce desde $n = 0$.
+
+As terceiras diferenças são constantes e iguais a $6$ — logo o termo geral é
+de $3°$ grau, com coeficiente líder $6/3! = 1$:
+
+$$
+f(n) = n^{3} + bn^{2} + cn + d
+$$
+
+$$
+f(0) = d = 1
+$$
+
+$$
+f(1) = 1+b+c+d = 0 \;\Rightarrow\; b+c = -2
+$$
+
+$$
+f(2) = 8+4b+2c+d = 5 \;\Rightarrow\; 4b+2c = -4 \;\Rightarrow\; 2b+c = -2
+$$
+
+Subtraindo $b+c=-2$ de $2b+c=-2$: $b = 0$, logo $c = -2$.
+
+$$
+f(n) = n^{3} - 2n + 1
+$$
+
+Conferindo com o último termo listado: $f(7) = 343 - 14 + 1 = 330$ ✓
+
+b) Diferenças de $B = \{-4, -2, 4, 14, 28, 46, 68, \ldots\}$:
+
+$$
+\begin{array}{r|rrrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+f(n) & -4 & -2 & 4 & 14 & 28 & 46 & 68 \\
+\Delta & & 2 & 6 & 10 & 14 & 18 & 22 \\
+\Delta^{2} & & & 4 & 4 & 4 & 4 & 4
+\end{array}
+$$
+
+As segundas diferenças são constantes e iguais a $4$ — logo o termo geral é
+de $2°$ grau, com coeficiente líder $4/2! = 2$:
+
+$$
+f(n) = 2n^{2} + bn + c
+$$
+
+$$
+f(0) = c = -4
+$$
+
+$$
+f(1) = 2+b+c = -2 \;\Rightarrow\; b = 0
+$$
+
+$$
+f(n) = 2n^{2} - 4
+$$
+
+c) Diferenças de $C = \{2, 5/2, 3, 7/2, 4, 9/2, 5, 11/2, \ldots\}$:
+
+$$
+\begin{array}{r|rrrrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+f(n) & 2 & \tfrac{5}{2} & 3 & \tfrac{7}{2} & 4 & \tfrac{9}{2} & 5 &
+\tfrac{11}{2} \\
+\Delta & & \tfrac{1}{2} & \tfrac{1}{2} & \tfrac{1}{2} & \tfrac{1}{2} &
+\tfrac{1}{2} & \tfrac{1}{2} & \tfrac{1}{2}
+\end{array}
+$$
+
+As primeiras diferenças já são constantes e iguais a $\tfrac{1}{2}$ — logo o
+termo geral é de $1°$ grau, com coeficiente líder $\tfrac{1}{2}/1! =
+\tfrac{1}{2}$:
+
+$$
+f(n) = \tfrac{1}{2}n + b
+$$
+
+$$
+f(0) = b = 2
+$$
+
+$$
+f(n) = \tfrac{1}{2}n + 2
+$$
 
 </Resolution>
 
 <Answer>
 $$
-A = \{x \in \mathbb{Z} / x = n^{3} - 2n + 1,\; n \in \mathbb{N}\}
+A = \{x \in \mathbb{N} / x = n^{3} - 2n + 1,\; n \in \mathbb{N}\}
 $$
 
 $$

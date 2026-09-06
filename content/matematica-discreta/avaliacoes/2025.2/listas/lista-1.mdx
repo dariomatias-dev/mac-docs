@@ -688,9 +688,22 @@ $$
 
 <Resolution>
 
-As diferenças sucessivas são $3, 9, 15, 21, 27$, e as segundas diferenças são
-constantes e iguais a $6$ — logo o termo geral é de $2°$ grau: $f(x) = ax^{2}
-+ bx + c$, com $x = 0, 1, 2, \ldots$
+Numerando os termos a partir de $n = 0$, montamos a tabela de diferenças: a
+linha $\Delta$ traz a diferença entre cada termo e o **anterior** (não são os
+elementos do conjunto), e $\Delta^{2}$ faz o mesmo sobre a linha $\Delta$.
+
+$$
+\begin{array}{r|rrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+f(n) & -4 & -1 & 8 & 23 & 44 & 71 \\
+\Delta & & 3 & 9 & 15 & 21 & 27 \\
+\Delta^{2} & & & 6 & 6 & 6 & 6
+\end{array}
+$$
+
+As segundas diferenças são constantes e iguais a $6$ — logo o termo geral é
+de $2°$ grau: $f(n) = an^{2} + bn + c$.
 
 $$
 f(0) = c = -4
@@ -707,7 +720,7 @@ $$
 Subtraindo $a+b=3$ de $2a+b=6$: $a = 3$, logo $b = 0$.
 
 $$
-f(x) = 3x^{2} - 4
+f(n) = 3n^{2} - 4
 $$
 
 </Resolution>
@@ -731,15 +744,27 @@ $$
 
 <Resolution>
 
-As diferenças sucessivas são constantes e iguais a $5$ — logo o termo geral é
-de $1°$ grau: $f(x) = ax+b$, com $x = 0, 1, 2, \ldots$
+Numerando os termos a partir de $n = 0$, a linha $\Delta$ traz a diferença
+entre cada termo e o **anterior** (não são os elementos do conjunto):
+
+$$
+\begin{array}{r|rrrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+f(n) & 2 & 7 & 12 & 17 & 22 & 27 & 32 \\
+\Delta & & 5 & 5 & 5 & 5 & 5 & 5
+\end{array}
+$$
+
+As primeiras diferenças já são constantes e iguais a $5$ — logo o termo geral
+é de $1°$ grau: $f(n) = an+b$.
 
 $$
 f(0) = b = 2 \qquad f(1) = a+b = 7 \;\Rightarrow\; a = 5
 $$
 
 $$
-f(x) = 5x + 2
+f(n) = 5n + 2
 $$
 
 </Resolution>
@@ -763,10 +788,24 @@ $$
 
 <Resolution>
 
-As diferenças sucessivas são $1, 7, 19, 37, 61$; as segundas diferenças são
-$6, 12, 18, 24$; e as terceiras diferenças são constantes e iguais a $6$ —
-logo o termo geral é de $3°$ grau: $f(x) = ax^{3}+bx^{2}+cx+d$, com $x = 0,
-1, 2, 3, \ldots$
+Numerando os termos a partir de $n = 0$, montamos a tabela de diferenças: a
+linha $\Delta$ traz a diferença entre cada termo e o **anterior** (não são os
+elementos do conjunto), e cada linha seguinte repete o processo sobre a
+anterior.
+
+$$
+\begin{array}{r|rrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+f(n) & 3 & 4 & 11 & 30 & 67 & 128 \\
+\Delta & & 1 & 7 & 19 & 37 & 61 \\
+\Delta^{2} & & & 6 & 12 & 18 & 24 \\
+\Delta^{3} & & & & 6 & 6 & 6
+\end{array}
+$$
+
+As terceiras diferenças são constantes e iguais a $6$ — logo o termo geral é
+de $3°$ grau: $f(n) = an^{3}+bn^{2}+cn+d$.
 
 $$
 f(0) = d = 3
@@ -793,7 +832,7 @@ $$
 Subtraindo novamente: $2a = 2 \;\Rightarrow\; a = 1$, logo $b = 0$ e $c = 0$.
 
 $$
-f(x) = x^{3} + 3
+f(n) = n^{3} + 3
 $$
 
 </Resolution>
@@ -817,9 +856,22 @@ $$
 
 <Resolution>
 
-As diferenças sucessivas são $2, 6, 10, 14, 18, 22$; as segundas diferenças
-são constantes e iguais a $4$ — logo o termo geral é de $2°$ grau: $f(x) =
-ax^{2}+bx+c$, com $x = 0, 1, 2, \ldots$
+Numerando os termos a partir de $n = 0$, montamos a tabela de diferenças: a
+linha $\Delta$ traz a diferença entre cada termo e o **anterior** (não são os
+elementos do conjunto), e $\Delta^{2}$ faz o mesmo sobre a linha $\Delta$.
+
+$$
+\begin{array}{r|rrrrrrr}
+n & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+f(n) & -3 & -1 & 5 & 15 & 29 & 47 & 69 \\
+\Delta & & 2 & 6 & 10 & 14 & 18 & 22 \\
+\Delta^{2} & & & 4 & 4 & 4 & 4 & 4
+\end{array}
+$$
+
+As segundas diferenças são constantes e iguais a $4$ — logo o termo geral é
+de $2°$ grau: $f(n) = an^{2}+bn+c$.
 
 $$
 f(0) = c = -3
@@ -836,7 +888,7 @@ $$
 Subtraindo $a+b=2$ de $2a+b=4$: $a = 2$, logo $b = 0$.
 
 $$
-f(x) = 2x^{2} - 3
+f(n) = 2n^{2} - 3
 $$
 
 </Resolution>
