@@ -1,0 +1,34 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # Patch/minor bumps land as one PR to triage instead of a dozen; a
+      # major bump gets its own PR since it's the one that actually needs a
+      # human to read a changelog.
+      patch-and-minor:
+        update-types:
+          - "minor"
+          - "patch"
+    # These three are pinned exactly for reasons documented in
+    # docs/en/dependencies.md (a breaking-changes-prone Next major line, a
+    # lint config tied to Next's exact version, and an a11y rule regression
+    # in a later patch). Bump them by hand, deliberately, not through the
+    # automatic group.
+    ignore:
+      - dependency-name: "next"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "eslint-plugin-jsx-a11y"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      patch-and-minor:
+        update-types:
+          - "minor"
+          - "patch"
