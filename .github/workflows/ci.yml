@@ -67,6 +67,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Check bundle size
+        run: pnpm run check:bundle-size
+
       # include-hidden-files is required: upload-artifact excludes any path
       # under a dot-prefixed directory by default, and .next qualifies.
       # Without it this step silently uploads an empty artifact.
@@ -154,3 +157,31 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lighthouse:
+    name: Lighthouse (report only)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/setup
+
+      - name: Download build output
+        uses: actions/download-artifact@v8.0.1
+        with:
+          name: next-build
+          path: .next
+
+      # ubuntu-latest ships Google Chrome preinstalled; lighthouserc.json's
+      # assertions are all "warn", so this reports scores without gating the
+      # pipeline — see docs/en/performance.md for the plan to tighten that
+      # once a couple of weeks of runs show the numbers are stable.
+      - name: Run Lighthouse CI
+        run: pnpm run lighthouse
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        # Belt and suspenders on top of lighthouserc.json's all-"warn"
+        # assertions: a flaky report upload or a slow server start shouldn't
+        # fail a PR over a job whose whole point is not gating one.
+        continue-on-error: true
