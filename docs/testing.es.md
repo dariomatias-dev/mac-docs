@@ -4,14 +4,14 @@
 
 ## Qué realmente merece un test aquí
 
-La cobertura es un piso, no una meta — ver los umbrales y su
+La cobertura es un piso, no una meta. Ver los umbrales y su
 justificación en `vitest.config.ts`. La decisión de criterio que importa
 más que el número es _qué_ probar:
 
 - **Lógica real**: un cálculo, una rama, un fragmento de estado que
   puede estar mal. Operaciones de matrices, la lógica de ordenar/filtrar
   en el panel de anotaciones, el camino de recuperación de errores de un
-  hook (`localStorage` malformado, una escritura que falla) — todo
+  hook (`localStorage` malformado, una escritura que falla), todo
   amerita un test.
 - **Interacción real de usuario**: hacer clic en un botón, esperar un
   resultado específico. Los tests de componentes aquí renderizan el
@@ -26,21 +26,21 @@ más que el número es _qué_ probar:
 Lo que deliberadamente **no** se persigue:
 
 - **Componentes marcadores que retornan `null`** (`Option`, `Step`,
-  `Alternative` en los componentes de estudio) — existen solo para que
+  `Alternative` en los componentes de estudio): existen solo para que
   `Children.toArray` lea sus props; llamarlos directamente no afirma
   nada real.
-- **`mdx-renderer.tsx`** — el `MDXRemote` de `next-mdx-remote/rsc` es un
+- **`mdx-renderer.tsx`**: el `MDXRemote` de `next-mdx-remote/rsc` es un
   Server Component asíncrono; el renderizador cliente de Testing Library
   no puede montarlo (`<MDXRemote> is an async Client Component` es el
   error que obtendrás). En cambio, se ejercita de verdad en cada página
   durante `next build` y por la suite e2e de a11y contra contenido real.
 - **Wrappers de paso trivial** (`theme-provider.tsx` reexportando el
-  provider de `next-themes`) — no hay lógica que pueda estar mal.
+  provider de `next-themes`): no hay lógica que pueda estar mal.
 
 ## Test doubles
 
 - **`vi.hoisted()` + `vi.mock()`** para hooks y módulos de los que un
-  componente depende pero que no son lo que está bajo test — el
+  componente depende pero que no son lo que está bajo test: el
   `usePathname` de `next/navigation`, el `useTheme` de `next-themes`,
   una función de obtención de datos.
 - **Providers de contexto reales en vez de mocks profundos, cuando son
@@ -55,7 +55,7 @@ Lo que deliberadamente **no** se persigue:
 - **Timers falsos (`vi.useFakeTimers()`)** para todo lo que haga
   debounce o expire solo (la ventana de deshacer de las anotaciones, el
   reseteo del "copiado" de un botón de copiar). Prefiere `fireEvent`
-  sobre `userEvent` cuando los timers están falseados — los delays
+  sobre `userEvent` cuando los timers están falseados: los delays
   internos de `userEvent` pelean con `vi.useFakeTimers()` y pueden
   colgar un test.
 - **Las brechas de jsdom son reales y merecen un comentario, no un
@@ -79,7 +79,7 @@ pnpm run test:e2e       # Playwright, contra una app ya compilada
 Los propios archivos de test de los scripts
 (`scripts/__tests__/check-content.test.mjs`,
 `scripts/__tests__/check-bundle-size.test.mjs`) corren por los mismos
-comandos `test:*` — el patrón `include` de Vitest en `vitest.config.ts`
+comandos `test:*`: el patrón `include` de Vitest en `vitest.config.ts`
 cubre también `scripts/**/*.{test,spec}.mjs`, no solo `src/`.
 
 ## Depurando un test que falla

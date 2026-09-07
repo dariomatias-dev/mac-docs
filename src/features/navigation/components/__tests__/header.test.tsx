@@ -24,7 +24,7 @@ describe("Header", () => {
   it("renders the logo, nav links, and controls", () => {
     renderHeader();
 
-    expect(screen.getByRole("link", { name: /macdocs — página inicial/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /macdocs: página inicial/i })).toHaveAttribute(
       "href",
       "/",
     );

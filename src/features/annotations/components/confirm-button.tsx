@@ -5,7 +5,7 @@ import { useState } from "react";
 import type { ComponentType } from "react";
 
 // Click once to arm, click "Remover" to confirm or anywhere else (icon again,
-// Cancelar) to back out — avoids native window.confirm() popups.
+// Cancelar) to back out, avoiding native window.confirm() popups.
 export function ConfirmButton({
   icon: Icon,
   label,

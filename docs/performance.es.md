@@ -18,7 +18,7 @@ parte de `pnpm run verify` y del job `build` del CI, justo después de
 
 Esto mide la salida estática por ruta directamente, en vez de interpretar
 el formato interno de client-reference-manifest de Next, que no es un
-contrato lo suficientemente estable para depender de él — la versión de
+contrato lo suficientemente estable para depender de él: la versión de
 Next de este proyecto ya renombró internos una vez (ver
 [dependencies.es.md](dependencies.es.md)).
 
@@ -30,7 +30,7 @@ Next de este proyecto ya renombró internos una vez (ver
 | `/docs/[[...slug]]` (contenido simple) | 1050 KB     | ~978 KB                      |
 
 Estos números son un **piso contra regresar más allá del baseline
-medido**, no una meta — misma filosofía que los umbrales de cobertura de
+medido**, no una meta: misma filosofía que los umbrales de cobertura de
 Vitest en `vitest.config.ts`. Bajar un presupuesto es una decisión
 deliberada que necesita una medición detrás, igual que subir uno.
 
@@ -44,18 +44,18 @@ el paso a paso, el diagrama de región, la grilla de píxeles) en un único
 objeto pasado a `MdxRenderer` en **cada** página de documentación. Como
 las 73 páginas comparten un único archivo de ruta
 (`app/docs/[[...slug]]/page.tsx`), el bundler no tenía forma de saber qué
-página realmente renderiza qué tag MDX, así que enviaba todos —medido
+página realmente renderiza qué tag MDX, así que enviaba todos: medido
 antes de la corrección como un único chunk de ~324 KB (calculadoras +
 KaTeX) cargado incluso por una página sin ningún contenido interactivo.
 Envolver cada uno en `next/dynamic()` le da a cada uno su propio chunk,
-buscado solo cuando una página realmente lo renderiza — confirmado
+buscado solo cuando una página realmente lo renderiza: confirmado
 comparando la lista de chunks que referencia una página cargada de
 calculadoras contra una de prosa simple, después del cambio.
 
 Lo que queda en los ~957-978 KB es mayormente baseline de framework
 (React, React DOM, el runtime de Next.js) más KaTeX (~260 KB), que
 todavía se carga de forma anticipada en **cada** página sin importar si
-esa página contiene matemática o no — confirmado en
+esa página contiene matemática o no: confirmado en
 `plano-de-disciplina`, que no tiene ningún `$...$` en su código fuente y
 aun así envía el chunk de KaTeX. Ese es el próximo recorte real
 disponible aquí: o detectar la presencia de matemática en tiempo de
@@ -64,7 +64,7 @@ build (a partir del AST del MDX compilado) y solo registrar
 aceptar la carga anticipada como una contrapartida razonable para un
 sitio de documentación repleto de matemática, donde la mayoría de las
 páginas de hecho tienen al menos una fórmula. Nadie tomó esa decisión
-todavía — está señalada aquí, no resuelta aquí.
+todavía: está señalada aquí, no resuelta aquí.
 
 ## Lighthouse CI
 

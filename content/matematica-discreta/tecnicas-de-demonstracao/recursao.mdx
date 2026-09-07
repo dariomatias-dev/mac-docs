@@ -133,9 +133,9 @@ end;
 
 <Callout type="caution" title="A árvore de chamadas real é bem maior que o rastro abaixo">
   O rastro a seguir mostra os valores em ordem crescente de $n$, de baixo
-  para cima — útil para ver o resultado final, mas não é como `FIB` de fato
+  para cima, útil para ver o resultado final, mas não é como `FIB` de fato
   executa. Na chamada real, `FIB(8)` dispara `FIB(7)` e `FIB(6)`; `FIB(7)`
-  dispara `FIB(6)` e `FIB(5)`; e assim por diante — o mesmo valor (como
+  dispara `FIB(6)` e `FIB(5)`; e assim por diante: o mesmo valor (como
   `FIB(6)`) acaba sendo recalculado do zero **várias vezes**, em uma árvore
   que cresce exponencialmente com $n$. Por isso essa versão recursiva
   "ingênua" de Fibonacci é lenta para $n$ grande, mesmo sendo curta de

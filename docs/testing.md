@@ -4,14 +4,14 @@
 
 ## What actually merits a test here
 
-Coverage is a floor, not a goal — see the thresholds and their rationale
+Coverage is a floor, not a goal. See the thresholds and their rationale
 in `vitest.config.ts`. The judgment call that matters more than the
 number is _what_ to test:
 
 - **Real logic**: a computation, a branch, a piece of state that can be
   wrong. Matrix operations, the sort/filter logic in the annotations
   panel, a hook's error-recovery path (malformed `localStorage`, a failed
-  write) — all worth a test.
+  write), all worth a test.
 - **Real user interaction**: click a button, expect a specific outcome.
   Component tests here render the real component and interact with it
   through Testing Library queries (`getByRole`, `getByText`), not by
@@ -24,21 +24,21 @@ number is _what_ to test:
 What's deliberately **not** chased:
 
 - **Marker components that return `null`** (`Option`, `Step`,
-  `Alternative` in the study components) — they exist only so
+  `Alternative` in the study components): they exist only so
   `Children.toArray` can read their props; calling them directly asserts
   nothing real.
-- **`mdx-renderer.tsx`** — `next-mdx-remote/rsc`'s `MDXRemote` is an async
+- **`mdx-renderer.tsx`**: `next-mdx-remote/rsc`'s `MDXRemote` is an async
   Server Component; Testing Library's client renderer can't mount it
   (`<MDXRemote> is an async Client Component` is the error you'll get).
   It's exercised for real by every page in `next build` and by the e2e
   a11y suite against real content instead.
 - **Trivial pass-through wrappers** (`theme-provider.tsx` re-exporting
-  `next-themes`'s provider) — there's no logic to get wrong.
+  `next-themes`'s provider): there's no logic to get wrong.
 
 ## Test doubles
 
 - **`vi.hoisted()` + `vi.mock()`** for hooks and modules a component
-  depends on but isn't the thing under test — `next/navigation`'s
+  depends on but isn't the thing under test: `next/navigation`'s
   `usePathname`, `next-themes`'s `useTheme`, a data-fetching function.
 - **Real context providers over deep mocking, when they're cheap.**
   `ActiveMobileSheetProvider`, `SidebarCollapseProvider`, and
@@ -51,7 +51,7 @@ What's deliberately **not** chased:
   state into each other.
 - **Fake timers (`vi.useFakeTimers()`)** for anything that debounces or
   auto-expires (the annotations undo window, a copy-button's "copied"
-  reset). Prefer `fireEvent` over `userEvent` when timers are faked —
+  reset). Prefer `fireEvent` over `userEvent` when timers are faked:
   `userEvent`'s internal delays fight `vi.useFakeTimers()` and can hang a
   test.
 - **jsdom gaps are real and worth a comment, not a workaround.**
@@ -73,7 +73,7 @@ pnpm run test:e2e       # Playwright, against a built app
 The scripts' own test file
 (`scripts/__tests__/check-content.test.mjs`,
 `scripts/__tests__/check-bundle-size.test.mjs`) run through the same
-`test:*` commands — Vitest's `include` pattern in `vitest.config.ts`
+`test:*` commands: Vitest's `include` pattern in `vitest.config.ts`
 covers `scripts/**/*.{test,spec}.mjs` too, not just `src/`.
 
 ## Debugging a failing test

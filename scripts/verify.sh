@@ -6,7 +6,7 @@
 #   pnpm run verify          # full gate: everything CI runs, including e2e
 #   pnpm run verify --fast   # skip build and e2e (for pre-push, not a full gate)
 #   pnpm run verify --e2e    # force-include e2e even with --fast
-#                            # (still builds — e2e needs a build to run against)
+#                            # (still builds: e2e needs a build to run against)
 
 set -euo pipefail
 
@@ -49,7 +49,7 @@ run_step "Check docs locale parity" pnpm run check:docs-locales
 run_step "Unit tests with coverage" pnpm run test:coverage
 
 if [ "$fast" = true ] && [ "$force_e2e" = false ]; then
-  echo "⚠ --fast: skipping build and e2e — this is NOT the full gate."
+  echo "⚠ --fast: skipping build and e2e; this is NOT the full gate."
   echo "  Run 'pnpm run verify' before opening a PR."
   exit 0
 fi
@@ -59,9 +59,9 @@ run_step "Check bundle size" pnpm run check:bundle-size
 
 # --with-deps installs OS packages via sudo, which prompts for a password on
 # most dev machines. CI (a disposable, root-capable runner) uses --with-deps;
-# locally we assume system dependencies were installed once already — see
+# locally we assume system dependencies were installed once already. See
 # https://playwright.dev/docs/browsers#install-system-dependencies.
 run_step "Install Playwright browsers" pnpm exec playwright install chromium
 run_step "End-to-end tests" pnpm run test:e2e
 
-echo "✓ All checks passed — this run mirrors CI."
+echo "✓ All checks passed: this run mirrors CI."

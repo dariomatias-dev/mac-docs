@@ -38,11 +38,11 @@ export function NextClassCard() {
       <CalendarClock className="text-accent h-4 w-4 shrink-0" />
       {nextClass ? (
         <span className="text-foreground">
-          Próxima aula: <strong>{formatDate(nextClass.date)}</strong> —{" "}
+          Próxima aula: <strong>{formatDate(nextClass.date)}</strong>,{" "}
           <span className="text-muted">{nextClass.topic}</span>
         </span>
       ) : (
-        <span className="text-muted">Semestre encerrado — sem próximas aulas.</span>
+        <span className="text-muted">Semestre encerrado, sem próximas aulas.</span>
       )}
     </Link>
   );

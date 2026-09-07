@@ -89,7 +89,7 @@ diretamente:
 
 1. **A página.** `content/lib/mdx.ts` percorre `content/`, valida o
    frontmatter de cada arquivo contra `frontmatter-schema.ts` (o mesmo
-   schema que `scripts/check-content.mjs` usa no CI — uma única fonte de
+   schema que `scripts/check-content.mjs` usa no CI, uma única fonte de
    verdade, não duas), e transforma um caminho de arquivo num `Doc` (slug,
    URL, frontmatter, código-fonte MDX cru). `app/docs/[[...slug]]/page.tsx`
    chama `getDocBySlug`, compõe com a árvore da sidebar e o índice do
@@ -101,9 +101,9 @@ diretamente:
 2. **A entrada de busca.** `search/lib/search-index.ts` percorre a mesma
    árvore de documentos (`getSidebarTree`, ela mesma construída a partir de
    `getAllDocs()`) de forma completamente separada, e para cada página
-   chama `getPagePlainText`, que reduz o MDX a texto puro — removendo
+   chama `getPagePlainText`, que reduz o MDX a texto puro (removendo
    sintaxe Markdown e tags JSX, achatando LaTeX pra texto legível via
-   `latex-to-text.ts` — e limita a 2000 caracteres. Isso produz o
+   `latex-to-text.ts`) e limita a 2000 caracteres. Isso produz o
    `SearchItem[]` plano servido estaticamente em `/search-index.json`,
    buscado sob demanda pelo `SearchDialog` e casado no cliente com o
    Fuse.js. A página renderizada e o índice de busca podem, em princípio,
@@ -114,8 +114,8 @@ diretamente:
 
 ## Decisões
 
-- **Por que SSG.** Toda página aqui é igual pra todo visitante — notas de
-  curso, não conteúdo por usuário — e o único pedaço de estado real por
+- **Por que SSG.** Toda página aqui é igual pra todo visitante (notas de
+  curso, não conteúdo por usuário), e o único pedaço de estado real por
   usuário (anotações) já vive inteiramente no cliente. Não há requisição
   pra renderizar contra, então pagar por uma renderização no servidor a
   cada visita não compraria nada; o `generateStaticParams` pré-renderizando
@@ -132,7 +132,7 @@ diretamente:
   mapa de componentes arbitrário (`study/registry.ts`) contra ela num
   Server Component, que é exatamente esse formato.
 - **Por que `localStorage` pras anotações.** Este site não tem contas nem
-  backend (ver o escopo declarado em [security.pt-BR.md](security.pt-BR.md)) — uma
+  backend (ver o escopo declarado em [security.pt-BR.md](security.pt-BR.md)): uma
   nota pessoal por página é exatamente o tipo de estado que não justifica
   erguer nenhum dos dois. O `localStorage` mantém as anotações funcionando
   offline, não precisa de nenhum tratamento de privacidade pra conteúdo de

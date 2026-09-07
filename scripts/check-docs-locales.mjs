@@ -2,7 +2,7 @@
 // parity: the same set of base documents, each with the same section
 // structure (heading levels, in order), so a doc added or restructured in
 // one language can't silently drift out of sync in the others. Doesn't
-// compare heading *text* — the languages are supposed to differ there —
+// compare heading *text* (the languages are supposed to differ there),
 // only the shape (an H1 followed by three H2s followed by an H3, say). Run
 // as a CLI or import checkDocsLocales() to test it against a fixture
 // directory.

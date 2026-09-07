@@ -9,7 +9,7 @@ backend, no database). There is no login, no user data, and nothing to
 exfiltrate beyond the site's own public content. Realistic concerns here are
 things like: a dependency with a known vulnerability, a Content Security
 Policy bypass, a cross-site scripting vector through rendered MDX content, or
-a build/CI supply-chain issue — not account takeover or data breach, since
+a build/CI supply-chain issue: not account takeover or data breach, since
 neither accounts nor stored user data exist.
 
 ## Supported versions
@@ -23,7 +23,7 @@ Please don't open a public issue for a security report. Instead:
 
 1. Prefer GitHub's private vulnerability reporting: **Security** tab →
    **Report a vulnerability**. If that option isn't visible on this
-   repository, it hasn't been enabled yet — use the email fallback below.
+   repository, it hasn't been enabled yet. Use the email fallback below.
 2. Fallback: email
    [dariomatias.dev@gmail.com](mailto:dariomatias.dev@gmail.com) with
    "SECURITY" in the subject line.
@@ -37,7 +37,7 @@ Include, as far as you can:
 ## Response expectations
 
 This is a personal project maintained by one person, not a company with a
-security team — there's no guaranteed response-time SLA. Reports are taken
+security team: there's no guaranteed response-time SLA. Reports are taken
 seriously and acknowledged as soon as reasonably possible, typically within a
 few days.
 

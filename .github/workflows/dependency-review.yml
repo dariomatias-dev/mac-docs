@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
 
       # Fails the check only on a newly introduced high-or-above severity
-      # advisory or a license outside the allow-list — an existing
+      # advisory or a license outside the allow-list; an existing
       # vulnerability already on main doesn't retroactively block unrelated
       # PRs (that's what the "vulnerabilities" job in ci.yml reports on).
       - name: Dependency review

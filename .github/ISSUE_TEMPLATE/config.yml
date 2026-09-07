@@ -5,4 +5,4 @@ contact_links:
     about: General questions that aren't a bug or a content error.
   - name: Report a security vulnerability
     url: https://github.com/dariomatias-dev/mac-docs/security/policy
-    about: Please don't open a public issue for security reports — see SECURITY.md instead.
+    about: Please don't open a public issue for security reports. See SECURITY.md instead.

@@ -1,7 +1,7 @@
 name: Setup
 description: >
   Installs pnpm, Node (pinned via .nvmrc) and project dependencies. Assumes
-  the caller job has already run actions/checkout — a local composite action
+  the caller job has already run actions/checkout: a local composite action
   can only be resolved once the repository is on disk.
 
 runs:

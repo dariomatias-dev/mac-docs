@@ -10,7 +10,7 @@ usuário, e nada para exfiltrar além do próprio conteúdo público do site.
 Preocupações realistas aqui são coisas como: uma dependência com
 vulnerabilidade conhecida, um bypass da Content Security Policy, um vetor de
 cross-site scripting através de conteúdo MDX renderizado, ou um problema de
-supply-chain no build/CI — não tomada de conta ou vazamento de dados, já que
+supply-chain no build/CI: não tomada de conta ou vazamento de dados, já que
 nem contas nem dados de usuário armazenados existem.
 
 ## Versões suportadas
@@ -26,7 +26,7 @@ disso:
 
 1. Prefira o relato privado de vulnerabilidades do GitHub: aba **Security** →
    **Report a vulnerability**. Se essa opção não aparecer neste repositório,
-   é porque ainda não foi habilitada — use o e-mail de contingência abaixo.
+   é porque ainda não foi habilitada. Use o e-mail de contingência abaixo.
 2. Contingência: e-mail para
    [dariomatias.dev@gmail.com](mailto:dariomatias.dev@gmail.com) com
    "SECURITY" no assunto.
@@ -40,7 +40,7 @@ Inclua, na medida do possível:
 ## Expectativa de resposta
 
 Este é um projeto pessoal mantido por uma pessoa, não uma empresa com equipe
-de segurança — não há SLA de tempo de resposta garantido. Relatos são levados
+de segurança: não há SLA de tempo de resposta garantido. Relatos são levados
 a sério e confirmados assim que razoavelmente possível, tipicamente em
 poucos dias.
 
