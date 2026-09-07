@@ -45,6 +45,17 @@ jobs:
       - name: Unit tests with coverage
         run: pnpm run test:coverage
 
+      # Reporting only, same split as the rest of this pipeline: the Vitest
+      # thresholds above are what actually fails a PR. A fork PR with no
+      # access to CODECOV_TOKEN gets a skipped upload here, never a failed
+      # check — that's what fail_ci_if_error: false is for.
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7.0.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -143,17 +154,15 @@ jobs:
       # Same report-only rationale as the audit step above, scanning the
       # lockfile against the OSV database instead of the npm advisory feed
       # (different sources, some overlap, neither is a superset of the other).
-      # Pinned by major version, like the CodeQL actions: Dependabot proposes
-      # the tightened exact pin as releases land.
       - name: Scan the lockfile with osv-scanner
-        uses: google/osv-scanner-action/osv-scanner-action@v2
+        uses: google/osv-scanner-action/osv-scanner-action@v2.5.1
         with:
           scan-args: |-
             --lockfile=pnpm-lock.yaml
         continue-on-error: true
 
       - name: Scan for committed secrets
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3.0.0
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

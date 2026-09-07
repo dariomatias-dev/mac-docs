@@ -18,22 +18,21 @@ export default defineConfig({
         "**/*.types.ts",
         "**/index.ts",
       ],
-      // Floor, not a target: measured against all of src (not just the
-      // handful of files this changeset added tests for), so it's set to
-      // the actual coverage this changeset leaves behind, minus a small
-      // margin. Its job is to catch a broad regression, not to reward
-      // already-good code. Untested areas that pull the aggregate down
-      // (toc, the navigation shell, search dialog, contributors,
-      // several app/ routes) are a known, separate backlog, not a
-      // reason to accept a *lower* floor here. Raise this whenever a
-      // change measurably improves the aggregate; the eventual target
-      // is 85/85/85/75. Lowering it requires a reason in the commit
-      // message, not just a failing run.
+      // Floor, not a target: measured against all of src, set to the actual
+      // coverage this changeset leaves behind minus a small margin. Its job
+      // is to catch a broad regression, not to reward already-good code.
+      // Remaining gaps (a few app/ routes, mdx-renderer.tsx's async Server
+      // Component that Testing Library can't mount, marker components that
+      // return null by design) are a known, separate backlog, not a reason
+      // to accept a *lower* floor. Raise this whenever a change measurably
+      // improves the aggregate — last raised at 92.27/87.96/89.03/93.74
+      // actual. Lowering it requires a reason in the commit message, not
+      // just a failing run.
       thresholds: {
-        statements: 65,
-        branches: 50,
-        functions: 60,
-        lines: 65,
+        statements: 89,
+        branches: 85,
+        functions: 86,
+        lines: 91,
       },
     },
   },

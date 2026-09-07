@@ -29,15 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
 
-      # Official GitHub actions, tracked by major version rather than the
-      # exact-patch pin the rest of this workflow set uses: Dependabot
-      # (.github/dependabot.yml) opens PRs to tighten this as new releases
-      # land, but a stale exact SHA here would silently miss CodeQL query
-      # pack updates between releases.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v4.37.9
         with:
           languages: javascript-typescript
 
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v4.37.9
