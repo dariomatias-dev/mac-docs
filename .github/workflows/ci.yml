@@ -34,6 +34,9 @@ jobs:
       - name: Check content
         run: pnpm run content:check
 
+      - name: Check docs locale parity
+        run: pnpm run check:docs-locales
+
   unit:
     name: Unit tests
     runs-on: ubuntu-latest
@@ -184,7 +187,7 @@ jobs:
 
       # ubuntu-latest ships Google Chrome preinstalled; lighthouserc.json's
       # assertions are all "warn", so this reports scores without gating the
-      # pipeline — see docs/en/performance.md for the plan to tighten that
+      # pipeline — see docs/performance.md for the plan to tighten that
       # once a couple of weeks of runs show the numbers are stable.
       - name: Run Lighthouse CI
         run: pnpm run lighthouse

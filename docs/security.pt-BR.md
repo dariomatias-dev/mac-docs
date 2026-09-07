@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="../en/security.md">English</a> | Português
+<strong>Idioma:</strong> <a href="security.md">English</a> | Português | <a href="security.es.md">Español</a>
 
 # Política de Segurança
 

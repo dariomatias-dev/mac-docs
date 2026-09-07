@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="../en/performance.md">English</a> | Português
+<strong>Idioma:</strong> <a href="performance.md">English</a> | Português | <a href="performance.es.md">Español</a>
 
 # Performance
 
@@ -18,7 +18,7 @@ orçamento da rota. Rode com `pnpm run check:bundle-size` (faz parte do
 Isso mede a saída estática por rota diretamente, em vez de interpretar o
 formato interno de client-reference-manifest do Next, que não é um contrato
 estável pra depender — a versão do Next deste projeto já renomeou internos
-uma vez (ver [dependencies.md](dependencies.md)).
+uma vez (ver [dependencies.pt-BR.md](dependencies.pt-BR.md)).
 
 ### Orçamentos atuais
 
