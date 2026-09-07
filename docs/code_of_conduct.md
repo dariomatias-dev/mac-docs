@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="../pt/code_of_conduct.md">Português</a>
+<strong>Language:</strong> English | <a href="code_of_conduct.pt-BR.md">Português</a> | <a href="code_of_conduct.es.md">Español</a>
 
 # Contributor Covenant Code of Conduct
 

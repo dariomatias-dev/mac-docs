@@ -31,6 +31,7 @@ Documentação interativa de Matemática Aplicada à Computação, renderizada a
 ## Índice
 
 - [Sobre o Projeto](#sobre-o-projeto)
+- [Preview](#preview)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Começando](#começando)
@@ -53,6 +54,16 @@ react.dev. Ele transforma uma árvore de arquivos MDX em um site navegável,
 buscável e interativo. Basta adicionar um arquivo `.mdx` para gerar uma rota,
 um item na sidebar, breadcrumb, navegação anterior/próximo e uma entrada na
 busca.
+
+## Preview
+
+<p align="center">
+<img src="public/screenshots/home.png" alt="Página inicial do MacDocs" width="800">
+<br><em>Página inicial</em>
+<br><br>
+<img src="public/screenshots/docs-page.png" alt="Uma página de documentação do MacDocs, com a sidebar, o índice do artigo e uma fórmula KaTeX renderizada" width="800">
+<br><em>Uma página de documentação, com a sidebar, o índice do artigo e uma fórmula renderizada</em>
+</p>
 
 ## Funcionalidades
 
@@ -116,13 +127,13 @@ content/<curso>/<grupo>/<página>.mdx
 
 Criar um arquivo `.mdx` gera automaticamente rota, item na sidebar, breadcrumb,
 navegação anterior/próximo e entrada na busca. Veja
-[docs/pt/authoring.md](docs/pt/authoring.md).
+[docs/authoring.pt-BR.md](docs/authoring.pt-BR.md).
 
 ## Arquitetura
 
 O código é organizado feature first em `src/features/*`, com apenas o
 genuinamente compartilhado em `src/shared/*`. Veja
-[docs/pt/architecture.md](docs/pt/architecture.md).
+[docs/architecture.pt-BR.md](docs/architecture.pt-BR.md).
 
 ## Testes
 
@@ -147,22 +158,20 @@ mergeado.
 ## Como contribuir
 
 Correções de conteúdo, relatos de bug e ajustes pequenos são bem-vindos —
-veja [docs/pt/contributing.md](docs/pt/contributing.md) para o setup, o gate
+veja [docs/contributing.pt-BR.md](docs/contributing.pt-BR.md) para o setup, o gate
 local (`pnpm run verify`) e as convenções de commit. Este projeto segue o
-[Contributor Covenant](docs/pt/code_of_conduct.md).
+[Contributor Covenant](docs/code_of_conduct.pt-BR.md).
 
 ## Segurança
 
 Encontrou uma vulnerabilidade? Por favor não abra uma issue pública — veja
-[docs/pt/security.md](docs/pt/security.md) para como relatar de forma
+[docs/security.pt-BR.md](docs/security.pt-BR.md) para como relatar de forma
 privada.
 
 ## Licença
 
 Distribuído sob a **Licença MIT**. Veja o arquivo [LICENSE](LICENSE) para
 detalhes.
-
-</br>
 
 ## Autor
 

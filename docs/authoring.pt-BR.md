@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="../en/authoring.md">English</a> | Português
+<strong>Idioma:</strong> <a href="authoring.md">English</a> | Português | <a href="authoring.es.md">Español</a>
 
 # Autoria de conteúdo (MDX)
 
@@ -55,4 +55,4 @@ Para a sintaxe das fórmulas, veja:
 ## Componentes de estudo
 
 Disponíveis dentro de qualquer arquivo `.mdx`, recebendo conteúdo via children.
-Veja a referência em [components.pt.md](components.md).
+Veja a referência em [components.pt-BR.md](components.pt-BR.md).

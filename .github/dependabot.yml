@@ -13,7 +13,7 @@ updates:
           - "minor"
           - "patch"
     # These three are pinned exactly for reasons documented in
-    # docs/en/dependencies.md (a breaking-changes-prone Next major line, a
+    # docs/dependencies.md (a breaking-changes-prone Next major line, a
     # lint config tied to Next's exact version, and an a11y rule regression
     # in a later patch). Bump them by hand, deliberately, not through the
     # automatic group.

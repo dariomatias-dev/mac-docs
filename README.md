@@ -31,6 +31,7 @@ Interactive documentation for Applied Mathematics for Computing, rendered from M
 ## Table of Contents
 
 - [About the Project](#about-the-project)
+- [Preview](#preview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
@@ -52,6 +53,16 @@ MacDocs is a fully static (SSG) documentation site in the style of react.dev. It
 turns a tree of MDX files into a navigable, searchable, and interactive study
 site. Adding a `.mdx` file is enough to generate a route, a sidebar entry, a
 breadcrumb, previous/next navigation, and a search index entry.
+
+## Preview
+
+<p align="center">
+<img src="public/screenshots/home.png" alt="MacDocs home page" width="800">
+<br><em>Home page</em>
+<br><br>
+<img src="public/screenshots/docs-page.png" alt="A MacDocs documentation page, with the sidebar, table of contents, and a rendered KaTeX formula" width="800">
+<br><em>A documentation page, with the sidebar, table of contents, and a rendered formula</em>
+</p>
 
 ## Features
 
@@ -113,13 +124,13 @@ content/<course>/<group>/<page>.mdx
 
 Creating a `.mdx` file automatically generates its route, sidebar item,
 breadcrumb, previous/next navigation, and search entry. See
-[docs/en/authoring.md](docs/en/authoring.md).
+[docs/authoring.md](docs/authoring.md).
 
 ## Architecture
 
 The codebase is organized feature first under `src/features/*`, with only the
 genuinely shared code in `src/shared/*`. See
-[docs/en/architecture.md](docs/en/architecture.md).
+[docs/architecture.md](docs/architecture.md).
 
 ## Testing
 
@@ -142,21 +153,19 @@ merged.
 ## Contributing
 
 Content corrections, bug reports, and small fixes are welcome — see
-[docs/en/contributing.md](docs/en/contributing.md) for setup, the local
+[docs/contributing.md](docs/contributing.md) for setup, the local
 gate (`pnpm run verify`), and commit conventions. This project follows the
-[Contributor Covenant](docs/en/code_of_conduct.md).
+[Contributor Covenant](docs/code_of_conduct.md).
 
 ## Security
 
 Found a vulnerability? Please don't open a public issue — see
-[docs/en/security.md](docs/en/security.md) for how to report it privately.
+[docs/security.md](docs/security.md) for how to report it privately.
 
 ## License
 
 Distributed under the **MIT License**. See the [LICENSE](LICENSE) file for
 details.
-
-</br>
 
 ## Author
 

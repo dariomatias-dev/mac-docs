@@ -31,6 +31,7 @@ Documentación interactiva de Matemática Aplicada a la Computación, generada a
 ## Índice
 
 - [Sobre el Proyecto](#sobre-el-proyecto)
+- [Preview](#preview)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologías](#tecnologías)
 - [Primeros Pasos](#primeros-pasos)
@@ -53,6 +54,16 @@ react.dev. Convierte un árbol de archivos MDX en un sitio navegable,
 buscable e interactivo. Basta con agregar un archivo `.mdx` para generar una
 ruta, un elemento en la barra lateral, breadcrumb, navegación
 anterior/siguiente y una entrada en el buscador.
+
+## Preview
+
+<p align="center">
+<img src="public/screenshots/home.png" alt="Página de inicio de MacDocs" width="800">
+<br><em>Página de inicio</em>
+<br><br>
+<img src="public/screenshots/docs-page.png" alt="Una página de documentación de MacDocs, con la barra lateral, el índice del artículo y una fórmula KaTeX renderizada" width="800">
+<br><em>Una página de documentación, con la barra lateral, el índice del artículo y una fórmula renderizada</em>
+</p>
 
 ## Funcionalidades
 
@@ -117,13 +128,13 @@ content/<curso>/<grupo>/<página>.mdx
 
 Crear un archivo `.mdx` genera automáticamente ruta, elemento en la barra
 lateral, breadcrumb, navegación anterior/siguiente y entrada en el buscador.
-Ver [docs/en/authoring.md](docs/en/authoring.md).
+Ver [docs/authoring.es.md](docs/authoring.es.md).
 
 ## Arquitectura
 
 El código está organizado feature first en `src/features/*`, con solo lo
 genuinamente compartido en `src/shared/*`. Ver
-[docs/en/architecture.md](docs/en/architecture.md).
+[docs/architecture.es.md](docs/architecture.es.md).
 
 ## Pruebas
 
@@ -147,25 +158,20 @@ se hace merge.
 ## Contribuir
 
 Correcciones de contenido, reportes de errores y ajustes pequeños son
-bienvenidos. La guía de contribución todavía no está traducida al español —
-ver [docs/en/contributing.md](docs/en/contributing.md) (inglés) o
-[docs/pt/contributing.md](docs/pt/contributing.md) (portugués) para el setup,
-el gate local (`pnpm run verify`) y las convenciones de commit. Este proyecto
-sigue el [Contributor Covenant](docs/en/code_of_conduct.md).
+bienvenidos — ver [docs/contributing.es.md](docs/contributing.es.md) para el
+setup, el gate local (`pnpm run verify`) y las convenciones de commit. Este
+proyecto sigue el [Contributor Covenant](docs/code_of_conduct.es.md).
 
 ## Seguridad
 
 ¿Encontraste una vulnerabilidad? Por favor no abras un issue público — ver
-[docs/en/security.md](docs/en/security.md) (inglés) o
-[docs/pt/security.md](docs/pt/security.md) (portugués) para cómo reportarla
-de forma privada.
+[docs/security.es.md](docs/security.es.md) para cómo reportarla de forma
+privada.
 
 ## Licencia
 
 Distribuido bajo la **Licencia MIT**. Ver el archivo [LICENSE](LICENSE) para
 más detalles.
-
-</br>
 
 ## Autor
 

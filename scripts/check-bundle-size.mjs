@@ -4,7 +4,7 @@
 // the real static output rather than a manifest, since App Router's
 // per-route client-reference manifest format isn't a stable, documented
 // contract to parse against (and this project's Next version already has a
-// history of renaming internals — see docs/en/dependencies.md). Run as a
+// history of renaming internals — see docs/dependencies.md). Run as a
 // CLI against a real `.next` build, or import checkBundleSize() to test the
 // parsing/summing logic against a fixture directory.
 
@@ -58,7 +58,7 @@ export function checkBundleSize({ buildDir, routes }) {
     if (!ok) {
       errors.push(
         `${route.name}: ${(totalBytes / 1024).toFixed(1)}KB of initial JS exceeds the ` +
-          `${route.budgetKB}KB budget (${chunkCount} chunks). See docs/en/performance.md.`,
+          `${route.budgetKB}KB budget (${chunkCount} chunks). See docs/performance.md.`,
       );
     }
   }
@@ -72,7 +72,7 @@ if (isMain) {
   const buildDir = path.join(process.cwd(), ".next");
   // Budgets are a floor against regressing back past the measured baseline
   // (~957-978KB as of the calculator code-splitting in this same change),
-  // not a target — see docs/en/performance.md for what's actually in that
+  // not a target — see docs/performance.md for what's actually in that
   // weight and where the next real cut would come from.
   const routes = [
     {
