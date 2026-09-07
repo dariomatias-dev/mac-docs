@@ -69,6 +69,23 @@ describe("NoteForm", () => {
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
+  it("focuses the textarea and places the cursor at the end when focusOnMount is set", () => {
+    render(
+      <NoteForm
+        variant="edit"
+        initialValue="nota existente"
+        submitLabel="Salvar"
+        onSubmit={vi.fn()}
+        focusOnMount
+      />,
+    );
+
+    const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
+    expect(textarea).toHaveFocus();
+    expect(textarea.selectionStart).toBe("nota existente".length);
+    expect(textarea.selectionEnd).toBe("nota existente".length);
+  });
+
   it("only renders a Cancelar button when onCancel is provided", () => {
     const { rerender } = render(
       <NoteForm variant="new" submitLabel="Adicionar" onSubmit={vi.fn()} />,

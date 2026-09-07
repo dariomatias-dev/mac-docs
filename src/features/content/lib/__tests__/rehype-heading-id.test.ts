@@ -46,6 +46,32 @@ describe("rehypeHeadingId", () => {
     expect(ids).toEqual(["símbolos-usados"]);
   });
 
+  it("leaves non-heading elements untouched", async () => {
+    const processor = unified()
+      .use(remarkParse)
+      .use(remarkMdx)
+      .use(remarkRehype, { passThrough: ["mdxJsxTextElement", "mdxJsxFlowElement"] })
+      .use(rehypeHeadingId);
+
+    const hast = (await processor.run(processor.parse("Apenas um parágrafo."))) as Root;
+
+    let sawParagraph = false;
+    visit(hast, "element", (node: Element) => {
+      if (node.tagName === "p") {
+        sawParagraph = true;
+        expect(node.properties?.id).toBeUndefined();
+      }
+    });
+    expect(sawParagraph).toBe(true);
+  });
+
+  it("leaves the id assignment to rehype-slug when there is no text content", async () => {
+    // rehypeHeadingId itself bails out on empty text (nothing to slug), so
+    // whatever id ends up here came from rehype-slug running afterwards.
+    const ids = await headingIds("## <Icon />");
+    expect(ids).toEqual([""]);
+  });
+
   it("assigns unique ids to repeated headings, matching rehype-slug", async () => {
     const ids = await headingIds(
       "## Questão 1 <Badge>1,0 pt</Badge>\n\n## Questão 1 <Badge>2,0 pt</Badge>\n",
