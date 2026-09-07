@@ -17,7 +17,7 @@ orçamento da rota. Rode com `pnpm run check:bundle-size` (faz parte do
 
 Isso mede a saída estática por rota diretamente, em vez de interpretar o
 formato interno de client-reference-manifest do Next, que não é um contrato
-estável pra depender — a versão do Next deste projeto já renomeou internos
+estável pra depender: a versão do Next deste projeto já renomeou internos
 uma vez (ver [dependencies.pt-BR.md](dependencies.pt-BR.md)).
 
 ### Orçamentos atuais
@@ -28,7 +28,7 @@ uma vez (ver [dependencies.pt-BR.md](dependencies.pt-BR.md)).
 | `/docs/[[...slug]]` (conteúdo simples) | 1050 KB   | ~978 KB                  |
 
 Esses números são um **piso contra regredir além do baseline medido**, não
-uma meta — mesma filosofia dos thresholds de cobertura do Vitest em
+uma meta: mesma filosofia dos thresholds de cobertura do Vitest em
 `vitest.config.ts`. Baixar um orçamento é uma decisão deliberada que
 precisa de uma medição por trás, assim como subir um.
 
@@ -42,24 +42,24 @@ diagrama de região, a grade de pixels) num único objeto passado ao
 `MdxRenderer` em **toda** página de documentação. Como as 73 páginas
 compartilham um único arquivo de rota (`app/docs/[[...slug]]/page.tsx`), o
 bundler não tinha como saber qual página de fato renderiza qual tag MDX,
-então enviava todos eles — medido antes da correção como um único chunk de
+então enviava todos eles: medido antes da correção como um único chunk de
 ~324 KB (calculadoras + KaTeX) carregado até por uma página sem nenhum
 conteúdo interativo. Envolver cada um em `next/dynamic()` dá a cada um seu
-próprio chunk, buscado só quando uma página de fato o renderiza — confirmado
+próprio chunk, buscado só quando uma página de fato o renderiza: confirmado
 comparando a lista de chunks referenciada por uma página cheia de
 calculadoras contra uma de prosa simples, depois da mudança.
 
 O que sobra nos ~957-978 KB é majoritariamente baseline de framework (React,
 React DOM, o runtime do Next.js) mais o KaTeX (~260 KB), que ainda é
 carregado de forma antecipada em **toda** página independente de ela conter
-matemática ou não — confirmado em `plano-de-disciplina`, que não tem nenhum
+matemática ou não: confirmado em `plano-de-disciplina`, que não tem nenhum
 `$...$` no código-fonte e mesmo assim envia o chunk do KaTeX. Esse é o
 próximo corte real disponível aqui: ou detectar a presença de matemática em
 tempo de build (a partir da AST do MDX compilado) e só registrar o
 `rehype-katex` / carregar o `katex.css` nas páginas que precisam, ou aceitar
 o carregamento antecipado como uma troca razoável para um site de
 documentação repleto de matemática, onde a maioria das páginas de fato tem
-pelo menos uma fórmula. Ninguém tomou essa decisão ainda — está sinalizada
+pelo menos uma fórmula. Ninguém tomou essa decisão ainda: está sinalizada
 aqui, não resolvida aqui.
 
 ## Lighthouse CI

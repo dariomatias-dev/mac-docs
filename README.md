@@ -143,7 +143,7 @@ Deployment runs on Vercel, with an automatic preview per pull request and
 production on merge to `main`. Vercel runs `next build`, while the
 [GitHub Actions CI](.github/workflows/ci.yml) runs the quality gates (format,
 lint, types, internal links, tests, and e2e) that block the merge.
-Dependency auditing runs too, but only as a non-blocking report — see
+Dependency auditing runs too, but only as a non-blocking report. See
 [Contributing](#contributing). Releases are versioned automatically:
 [release-please](https://github.com/googleapis/release-please) keeps a
 standing pull request with [`CHANGELOG.md`](CHANGELOG.md) and the
@@ -152,14 +152,14 @@ merged.
 
 ## Contributing
 
-Content corrections, bug reports, and small fixes are welcome — see
+Content corrections, bug reports, and small fixes are welcome. See
 [docs/contributing.md](docs/contributing.md) for setup, the local
 gate (`pnpm run verify`), and commit conventions. This project follows the
 [Contributor Covenant](docs/code_of_conduct.md).
 
 ## Security
 
-Found a vulnerability? Please don't open a public issue — see
+Found a vulnerability? Please don't open a public issue. See
 [docs/security.md](docs/security.md) for how to report it privately.
 
 ## License

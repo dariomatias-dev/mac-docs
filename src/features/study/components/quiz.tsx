@@ -95,7 +95,7 @@ export function Quiz({
                 isRight ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
               }`}
             >
-              {isRight ? "Correto!" : "Não é essa — tente entender o porquê."}
+              {isRight ? "Correto!" : "Não é essa. Tente entender o porquê."}
             </p>
             {explanation && (
               <div className="prose prose-sm dark:prose-invert text-muted mt-1.5 max-w-none">

@@ -51,7 +51,7 @@ jobs:
       # Reporting only, same split as the rest of this pipeline: the Vitest
       # thresholds above are what actually fails a PR. A fork PR with no
       # access to CODECOV_TOKEN gets a skipped upload here, never a failed
-      # check — that's what fail_ci_if_error: false is for.
+      # check. That's what fail_ci_if_error: false is for.
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v7.0.0
         with:
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
       - uses: ./.github/actions/setup
 
-      # Speeds up `next build` on repeat runs. Never affects correctness —
+      # Speeds up `next build` on repeat runs. Never affects correctness:
       # .next/cache is an accelerator, the .next output itself is always
       # produced fresh by this build.
       - name: Cache Next.js build cache
@@ -113,7 +113,7 @@ jobs:
 
       # Caches the downloaded browser binaries by the pinned @playwright/test
       # version (captured in the lockfile hash). System dependencies still
-      # install every run — apt packages aren't meaningfully cacheable here.
+      # install every run: apt packages aren't meaningfully cacheable here.
       - name: Cache Playwright browsers
         uses: actions/cache@v6.1.0
         with:
@@ -187,7 +187,7 @@ jobs:
 
       # ubuntu-latest ships Google Chrome preinstalled; lighthouserc.json's
       # assertions are all "warn", so this reports scores without gating the
-      # pipeline — see docs/performance.md for the plan to tighten that
+      # pipeline. See docs/performance.md for the plan to tighten that
       # once a couple of weeks of runs show the numbers are stable.
       - name: Run Lighthouse CI
         run: pnpm run lighthouse

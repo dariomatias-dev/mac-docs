@@ -121,7 +121,7 @@ export function BooleanMatrixCalculator() {
 
         <div aria-live="polite" className="border-border bg-surface rounded-lg border px-4 py-3">
           <p className="text-muted mb-2 text-xs font-medium tracking-wide uppercase">
-            Resultado — {OPERATIONS.find((o) => o.id === op)?.label}
+            Resultado: {OPERATIONS.find((o) => o.id === op)?.label}
           </p>
           {"error" in result ? (
             <p className="text-sm text-red-600 dark:text-red-400">{result.error}</p>

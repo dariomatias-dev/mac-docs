@@ -22,7 +22,7 @@ export default function DocsError({ error, unstable_retry }: DocsErrorProps) {
           Não foi possível carregar esta página
         </h1>
         <p className="text-muted mt-2">
-          Ocorreu um erro ao renderizar este conteúdo. Pode ser um problema temporário — tente
+          Ocorreu um erro ao renderizar este conteúdo. Pode ser um problema temporário. Tente
           novamente.
         </p>
         {error.digest && (

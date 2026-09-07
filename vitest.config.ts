@@ -25,8 +25,8 @@ export default defineConfig({
       // Component that Testing Library can't mount, marker components that
       // return null by design) are a known, separate backlog, not a reason
       // to accept a *lower* floor. Raise this whenever a change measurably
-      // improves the aggregate — last raised at 92.27/87.96/89.03/93.74
-      // actual. Lowering it requires a reason in the commit message, not
+      // improves the aggregate (last raised at 92.27/87.96/89.03/93.74
+      // actual). Lowering it requires a reason in the commit message, not
       // just a failing run.
       thresholds: {
         statements: 89,

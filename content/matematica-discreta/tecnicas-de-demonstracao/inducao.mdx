@@ -1,6 +1,6 @@
 ---
 title: Demonstração por indução
-description: Princípio da Indução Finita — passo básico, hipótese de indução e passo indutivo.
+description: Princípio da Indução Finita, cobrindo passo básico, hipótese de indução e passo indutivo.
 order: 5
 prerequisites:
   - /docs/matematica-discreta/tecnicas-de-demonstracao/contradicao
@@ -23,11 +23,11 @@ todo $n \ge n_{0}$.
 A analogia clássica é a de uma fileira infinita de dominós: o **passo
 básico** derruba o primeiro dominó; o **passo indutivo** garante que, se um
 dominó qualquer cai, o próximo também cai. Juntas, essas duas garantias
-bastam para concluir que **todos** os dominós caem — sem precisar empurrar
+bastam para concluir que **todos** os dominós caem, sem precisar empurrar
 cada um manualmente.
 
 <Callout type="connection" title="Por que a hipótese de indução não é circular">
-  Pode parecer estranho "supor" $P(k)$ para provar $P(k+1)$ — não seria supor
+  Pode parecer estranho "supor" $P(k)$ para provar $P(k+1)$. Não seria supor
   o que se quer provar? Não: não estamos provando $P(k)$ nem $P(n)$ para um
   $n$ fixo isoladamente. Estamos provando a **implicação**
   $P(k) \Rightarrow P(k+1)$, que é verdadeira mesmo se não soubéssemos ainda
@@ -37,7 +37,7 @@ cada um manualmente.
 
 <Callout type="tip" title="Indução forte">
   Uma variante, a **indução forte**, permite usar como hipótese não só
-  $P(k)$, mas $P(n_0), P(n_0+1), \ldots, P(k)$ — todos os casos anteriores,
+  $P(k)$, mas $P(n_0), P(n_0+1), \ldots, P(k)$: todos os casos anteriores,
   não apenas o imediatamente anterior. Isso é necessário, por exemplo, no
   último exercício desta página, onde o passo indutivo de $F(k+5)$ usa
   simultaneamente $F(k+4)$ e $F(k+3)$, não só o "último" termo.

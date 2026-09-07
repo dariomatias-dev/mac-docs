@@ -444,7 +444,7 @@ export function MatrixCalculator() {
                   >
                     {commutativityCheck.commutes
                       ? "As matrizes comutam neste caso (exceção)."
-                      : "Ordem trocada dá um resultado diferente — a multiplicação de matrizes não é comutativa."}
+                      : "Ordem trocada dá um resultado diferente: a multiplicação de matrizes não é comutativa."}
                   </p>
                 </div>
               </div>

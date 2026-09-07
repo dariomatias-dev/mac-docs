@@ -10,7 +10,7 @@ bumps the version in `package.json` to match. See
 [docs/dependencies.md](docs/dependencies.md) for how dependency
 updates flow through this same commit convention.
 
-The project's actual history predates this file — 194 commits' worth,
+The project's actual history predates this file: 194 commits' worth,
 already following Conventional Commits, but never rolled up into dated
 release entries. Retrofitting that into accurate `## vX.Y.Z` sections isn't
 something worth fabricating after the fact; `git log` is the honest source

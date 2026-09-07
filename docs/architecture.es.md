@@ -92,7 +92,7 @@ comunicarse nunca directamente:
 
 1. **La página.** `content/lib/mdx.ts` recorre `content/`, valida el
    frontmatter de cada archivo contra `frontmatter-schema.ts` (el mismo
-   schema que `scripts/check-content.mjs` usa en CI — una única fuente de
+   schema que `scripts/check-content.mjs` usa en CI, una única fuente de
    verdad, no dos), y transforma una ruta de archivo en un `Doc` (slug,
    URL, frontmatter, código fuente MDX crudo). `app/docs/[[...slug]]/page.tsx`
    llama a `getDocBySlug`, lo compone con el árbol de la sidebar y el
@@ -105,9 +105,9 @@ comunicarse nunca directamente:
 2. **La entrada de búsqueda.** `search/lib/search-index.ts` recorre el
    mismo árbol de documentos (`getSidebarTree`, a su vez construido a
    partir de `getAllDocs()`) de forma completamente separada, y para cada
-   página llama a `getPagePlainText`, que reduce el MDX a texto plano —
-   quitando la sintaxis Markdown y las tags JSX, aplanando LaTeX a texto
-   legible vía `latex-to-text.ts` — y lo limita a 2000 caracteres. Eso
+   página llama a `getPagePlainText`, que reduce el MDX a texto plano
+   (quitando la sintaxis Markdown y las tags JSX, aplanando LaTeX a texto
+   legible vía `latex-to-text.ts`) y lo limita a 2000 caracteres. Eso
    produce el `SearchItem[]` plano servido estáticamente en
    `/search-index.json`, buscado bajo demanda por `SearchDialog` y
    comparado en el cliente con Fuse.js. La página renderizada y el índice
@@ -119,8 +119,8 @@ comunicarse nunca directamente:
 
 ## Decisiones
 
-- **Por qué SSG.** Cada página aquí es igual para cada visitante — notas
-  de curso, no contenido por usuario — y el único fragmento de estado real
+- **Por qué SSG.** Cada página aquí es igual para cada visitante (notas
+  de curso, no contenido por usuario), y el único fragmento de estado real
   por usuario (anotaciones) ya vive enteramente en el cliente. No hay una
   solicitud contra la cual renderizar, así que pagar por un renderizado en
   servidor en cada visita no compraría nada; `generateStaticParams`
@@ -139,7 +139,7 @@ comunicarse nunca directamente:
   exactamente ese formato.
 - **Por qué `localStorage` para las anotaciones.** Este sitio no tiene
   cuentas ni backend (ver el alcance declarado en
-  [security.es.md](security.es.md)) — una nota personal por página es
+  [security.es.md](security.es.md)): una nota personal por página es
   exactamente el tipo de estado que no justifica levantar ninguno de los
   dos. `localStorage` mantiene las anotaciones funcionando sin conexión,
   no necesita ningún tratamiento de privacidad para contenido de usuario

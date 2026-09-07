@@ -136,7 +136,7 @@ export function MatrixExercise({ operations = ALL_OPS }: { operations?: Op[] }) 
     <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
       <div className="border-border bg-surface flex items-center justify-between border-b px-5 py-3">
         <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          Questão gerada — matrizes
+          Questão gerada: matrizes
         </p>
         <button
           type="button"

@@ -5,7 +5,7 @@
 Dois princípios atravessam todo workflow aqui:
 
 1. **Gate e relatório são coisas diferentes.** O que de fato barra um pull
-   request mora neste repositório (um script, um threshold) — nunca só
+   request mora neste repositório (um script, um threshold): nunca só
    num serviço externo, então um PR de fork sem um secret configurado
    nunca fica bloqueado por falta de token.
 2. **O gate local espelha o CI.** `pnpm run verify` (veja
@@ -15,14 +15,14 @@ Dois princípios atravessam todo workflow aqui:
 
 ## `.github/workflows/ci.yml`
 
-| Job               | Verifica                                                                                                     | Gate ou relatório?                                                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `quality`         | format, lint, tipos, conteúdo, paridade de idiomas dos docs                                                  | Gate, barra o merge                                                                        |
-| `unit`            | Vitest com thresholds de cobertura, depois upload pro Codecov                                                | Os testes são gate; o upload é só relatório                                                |
-| `build`           | `next build`, depois o orçamento de tamanho de bundle                                                        | Ambos gate; veja [performance.pt-BR.md](performance.pt-BR.md)                              |
-| `e2e`             | Playwright (smoke, navegação, busca, anotações, estudo, seo, segurança, a11y — desktop e um viewport mobile) | Gate, barra o merge                                                                        |
-| `vulnerabilities` | `pnpm audit`, `osv-scanner` contra o lockfile, `gitleaks` pra segredos commitados                            | Só relatório, nunca barra um PR                                                            |
-| `lighthouse`      | Lighthouse (performance, acessibilidade, SEO, boas práticas) contra três páginas                             | Só relatório — toda asserção é `"warn"`, veja [performance.pt-BR.md](performance.pt-BR.md) |
+| Job               | Verifica                                                                                                    | Gate ou relatório?                                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `quality`         | format, lint, tipos, conteúdo, paridade de idiomas dos docs                                                 | Gate, barra o merge                                                                       |
+| `unit`            | Vitest com thresholds de cobertura, depois upload pro Codecov                                               | Os testes são gate; o upload é só relatório                                               |
+| `build`           | `next build`, depois o orçamento de tamanho de bundle                                                       | Ambos gate; veja [performance.pt-BR.md](performance.pt-BR.md)                             |
+| `e2e`             | Playwright (smoke, navegação, busca, anotações, estudo, seo, segurança, a11y; desktop e um viewport mobile) | Gate, barra o merge                                                                       |
+| `vulnerabilities` | `pnpm audit`, `osv-scanner` contra o lockfile, `gitleaks` pra segredos commitados                           | Só relatório, nunca barra um PR                                                           |
+| `lighthouse`      | Lighthouse (performance, acessibilidade, SEO, boas práticas) contra três páginas                            | Só relatório: toda asserção é `"warn"`, veja [performance.pt-BR.md](performance.pt-BR.md) |
 
 O `build` sobe o `.next` como artefato; `e2e` e `lighthouse` baixam esse
 artefato em vez de reconstruir, então o app é buildado exatamente uma vez
@@ -38,16 +38,16 @@ falharia PRs sem nenhuma regressão real.
 
 ## Outros workflows
 
-- **`codeql.yml`** — análise estática (JavaScript/TypeScript), em todo
+- **`codeql.yml`**: análise estática (JavaScript/TypeScript), em todo
   PR, todo push pra `main`, e um schedule semanal pra um update do
   query-pack aparecer até numa semana quieta. Barra via o check de code
   scanning do GitHub.
-- **`dependency-review.yml`** — em todo PR, falha só num advisory de
+- **`dependency-review.yml`**: em todo PR, falha só num advisory de
   severidade alta ou acima _recém-introduzido_ ou numa licença não
   permitida; um advisory já presente na `main` não barra retroativamente
   um PR sem relação (é o que o job `vulnerabilities` reporta em vez
   disso).
-- **`release-please.yml`** — no push pra `main`, mantém um pull request
+- **`release-please.yml`**: no push pra `main`, mantém um pull request
   de release permanente com o `CHANGELOG.md` e o bump de versão do
   `package.json`. Veja o [README](../README.pt-BR.md#deploy) pra como
   o merge dele corta uma release.
@@ -87,5 +87,5 @@ npx playwright show-trace caminho/do/trace.zip
 ```
 
 Isso abre uma timeline com screenshot, o DOM e a atividade de rede no
-momento da falha — geralmente mais rápido do que tentar reproduzir uma
+momento da falha, geralmente mais rápido do que tentar reproduzir uma
 falha exclusiva do CI relendo a asserção.

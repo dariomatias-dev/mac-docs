@@ -147,8 +147,8 @@ O deploy roda na Vercel, com preview automático por pull request e produção n
 merge para `main`. A Vercel roda `next build`, enquanto o
 [CI do GitHub Actions](.github/workflows/ci.yml) roda os gates de qualidade
 (format, lint, tipos, links internos, testes e e2e) que barram o merge. A
-auditoria de dependências também roda, mas só como relatório não-bloqueante —
-veja [Como contribuir](#como-contribuir). Releases são versionados
+auditoria de dependências também roda, mas só como relatório não-bloqueante.
+Veja [Como contribuir](#como-contribuir). Releases são versionados
 automaticamente: o
 [release-please](https://github.com/googleapis/release-please) mantém um PR
 permanente com o [`CHANGELOG.md`](CHANGELOG.md) e o bump de versão do
@@ -157,14 +157,14 @@ mergeado.
 
 ## Como contribuir
 
-Correções de conteúdo, relatos de bug e ajustes pequenos são bem-vindos —
-veja [docs/contributing.pt-BR.md](docs/contributing.pt-BR.md) para o setup, o gate
+Correções de conteúdo, relatos de bug e ajustes pequenos são bem-vindos.
+Veja [docs/contributing.pt-BR.md](docs/contributing.pt-BR.md) para o setup, o gate
 local (`pnpm run verify`) e as convenções de commit. Este projeto segue o
 [Contributor Covenant](docs/code_of_conduct.pt-BR.md).
 
 ## Segurança
 
-Encontrou uma vulnerabilidade? Por favor não abra uma issue pública — veja
+Encontrou uma vulnerabilidade? Por favor não abra uma issue pública. Veja
 [docs/security.pt-BR.md](docs/security.pt-BR.md) para como relatar de forma
 privada.
 

@@ -88,7 +88,7 @@ same file system at build time and never talking to each other directly:
 
 1. **The page.** `content/lib/mdx.ts` walks `content/`, validates each file's
    frontmatter against `frontmatter-schema.ts` (the same schema
-   `scripts/check-content.mjs` uses in CI — one source of truth, not two),
+   `scripts/check-content.mjs` uses in CI, one source of truth, not two),
    and turns a file path into a `Doc` (slug, URL, frontmatter, raw MDX
    source). `app/docs/[[...slug]]/page.tsx` calls `getDocBySlug`, composes it
    with the sidebar tree and table of contents in `build-doc-view.ts`, and
@@ -100,8 +100,8 @@ same file system at build time and never talking to each other directly:
 2. **The search entry.** `search/lib/search-index.ts` walks the same doc
    tree (`getSidebarTree`, itself built from `getAllDocs()`) completely
    separately, and for each page calls `getPagePlainText`, which strips the
-   MDX down to plain text — stripping Markdown syntax and JSX tags,
-   flattening LaTeX to readable text via `latex-to-text.ts` — and caps it at
+   MDX down to plain text (stripping Markdown syntax and JSX tags,
+   flattening LaTeX to readable text via `latex-to-text.ts`) and caps it at
    2000 characters. That produces the flat `SearchItem[]` served statically
    at `/search-index.json`, fetched lazily by `SearchDialog` and matched
    client side with Fuse.js. The rendered page and the search index can
@@ -112,8 +112,8 @@ same file system at build time and never talking to each other directly:
 
 ## Decisions
 
-- **Why SSG.** Every page here is the same for every visitor — course notes,
-  not per-user content — and the one piece of real per-user state
+- **Why SSG.** Every page here is the same for every visitor (course notes,
+  not per-user content), and the one piece of real per-user state
   (annotations) already lives entirely client side. There's no request to
   render against, so paying for a server render on every visit would buy
   nothing; `generateStaticParams` prerendering every page at build time makes
@@ -128,7 +128,7 @@ same file system at build time and never talking to each other directly:
   components map (`study/registry.ts`) against it in a Server Component,
   which is exactly that shape.
 - **Why `localStorage` for annotations.** This site has no accounts and no
-  backend (see [security.md](security.md)'s stated scope) — a personal
+  backend (see [security.md](security.md)'s stated scope): a personal
   per-page note is exactly the kind of state that doesn't justify standing
   up either. `localStorage` keeps annotations working offline, needs no
   privacy handling for server-stored user content, and costs nothing to

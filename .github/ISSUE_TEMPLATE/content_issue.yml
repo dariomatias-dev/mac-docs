@@ -45,6 +45,6 @@ body:
     id: correction
     attributes:
       label: Suggested correction
-      description: Optional — if you already worked out the right answer or proof.
+      description: "Optional: if you already worked out the right answer or proof."
     validations:
       required: false

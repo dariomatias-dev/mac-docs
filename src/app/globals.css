@@ -97,7 +97,7 @@ html {
 }
 
 /* Shiki injects its own <span style="--shiki-light/--shiki-dark"> tokens
-   outside React's control — can only be targeted with plain CSS. */
+   outside React's control, so it can only be targeted with plain CSS. */
 .prose :where(pre code) span {
   color: var(--shiki-light);
 }
@@ -129,7 +129,7 @@ html {
 }
 
 /* KaTeX's own CSS is unlayered, so it always wins over Tailwind's
-   @layer utilities regardless of selector specificity — these need
+   @layer utilities regardless of selector specificity; these need
    to be plain (unlayered) CSS to take effect. */
 .katex-left .katex-display,
 .katex-left .katex-display > .katex {

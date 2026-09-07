@@ -113,7 +113,7 @@ export function SetCalculator() {
 
           <div aria-live="polite" className="border-border bg-surface rounded-lg border px-4 py-3">
             <p className="text-muted text-xs font-medium tracking-wide uppercase">
-              Resultado — {OPERATIONS.find((o) => o.id === op)?.symbol}
+              Resultado: {OPERATIONS.find((o) => o.id === op)?.symbol}
             </p>
             <p className="text-foreground mt-1 font-mono text-sm wrap-break-word">{resultLabel}</p>
           </div>

@@ -149,7 +149,7 @@ producción al hacer merge a `main`. Vercel ejecuta `next build`, mientras que
 el [CI de GitHub Actions](.github/workflows/ci.yml) ejecuta los gates de
 calidad (formato, lint, tipos, enlaces internos, tests y e2e) que bloquean el
 merge. La auditoría de dependencias también corre, pero solo como reporte no
-bloqueante — ver [Contribuir](#contribuir). Los releases se versionan
+bloqueante. Ver [Contribuir](#contribuir). Los releases se versionan
 automáticamente: [release-please](https://github.com/googleapis/release-please)
 mantiene un PR permanente con el [`CHANGELOG.md`](CHANGELOG.md) y el bump de
 versión de `package.json`, cortando un release etiquetado en GitHub cuando
@@ -158,13 +158,13 @@ se hace merge.
 ## Contribuir
 
 Correcciones de contenido, reportes de errores y ajustes pequeños son
-bienvenidos — ver [docs/contributing.es.md](docs/contributing.es.md) para el
+bienvenidos. Ver [docs/contributing.es.md](docs/contributing.es.md) para el
 setup, el gate local (`pnpm run verify`) y las convenciones de commit. Este
 proyecto sigue el [Contributor Covenant](docs/code_of_conduct.es.md).
 
 ## Seguridad
 
-¿Encontraste una vulnerabilidad? Por favor no abras un issue público — ver
+¿Encontraste una vulnerabilidad? Por favor no abras un issue público. Ver
 [docs/security.es.md](docs/security.es.md) para cómo reportarla de forma
 privada.
 

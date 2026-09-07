@@ -14,7 +14,7 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
       <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
         <MobileMenuButton />
 
-        <Link href="/" aria-label="MACDocs — página inicial" className="text-foreground shrink-0">
+        <Link href="/" aria-label="MACDocs: página inicial" className="text-foreground shrink-0">
           <svg viewBox="20 22 400 74" className="h-7 w-auto" role="img" aria-label="MACDocs">
             <defs>
               <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="0%">

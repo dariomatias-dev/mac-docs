@@ -1,5 +1,5 @@
 name: Bug report
-description: Something in the site is broken (not a math/content error — use "Content error" for that).
+description: Something in the site is broken (not a math/content error; use "Content error" for that).
 labels: ["bug"]
 body:
   - type: textarea
