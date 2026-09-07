@@ -43,7 +43,7 @@ run_step() {
 run_step "Typecheck" pnpm run typecheck
 run_step "Lint" pnpm run lint
 run_step "Format check" pnpm run format:check
-run_step "Check internal links" pnpm run check:links
+run_step "Check content" pnpm run content:check
 
 run_step "Unit tests with coverage" pnpm run test:coverage
 

@@ -31,8 +31,8 @@ jobs:
       - name: Typecheck
         run: pnpm run typecheck
 
-      - name: Check internal links
-        run: pnpm run check:links
+      - name: Check content
+        run: pnpm run content:check
 
   unit:
     name: Unit tests
