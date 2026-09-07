@@ -11,8 +11,9 @@ const links = [
 ];
 
 /**
- * Header dropdown rendered only below the `sm` breakpoint, where there is no
- * room for the Anotações and Contribuidores links.
+ * Header dropdown rendered only below the `lg` breakpoint, where there is no
+ * room for the Anotações and Contribuidores links (they need `lg`, alongside
+ * the search bar, to avoid overlapping it).
  */
 export function HeaderOverflowMenu() {
   const [open, setOpen] = useState(false);
@@ -38,7 +39,7 @@ export function HeaderOverflowMenu() {
   }, [open]);
 
   return (
-    <div ref={containerRef} className="relative sm:hidden">
+    <div ref={containerRef} className="relative lg:hidden">
       <button
         type="button"
         aria-label="Mais opções"
