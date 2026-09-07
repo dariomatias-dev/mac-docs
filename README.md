@@ -32,6 +32,8 @@ Interactive documentation for Applied Mathematics for Computing, rendered from M
 - [Architecture](#architecture)
 - [Testing](#testing)
 - [Deployment](#deployment)
+- [Contributing](#contributing)
+- [Security](#security)
 - [License](#license)
 - [Author](#author)
 
@@ -121,8 +123,22 @@ genuinely shared code in `src/shared/*`. See
 
 Deployment runs on Vercel, with an automatic preview per pull request and
 production on merge to `main`. Vercel runs `next build`, while the
-[GitHub Actions CI](.github/workflows/ci.yml) runs the quality gates (types,
-lint, tests, e2e, and audit) that block the merge.
+[GitHub Actions CI](.github/workflows/ci.yml) runs the quality gates (format,
+lint, types, internal links, tests, and e2e) that block the merge.
+Dependency auditing runs too, but only as a non-blocking report — see
+[Contributing](#contributing).
+
+## Contributing
+
+Content corrections, bug reports, and small fixes are welcome — see
+[docs/en/contributing.md](docs/en/contributing.md) for setup, the local
+gate (`pnpm run verify`), and commit conventions. This project follows the
+[Contributor Covenant](docs/en/code_of_conduct.md).
+
+## Security
+
+Found a vulnerability? Please don't open a public issue — see
+[docs/en/security.md](docs/en/security.md) for how to report it privately.
 
 ## License
 

@@ -32,6 +32,8 @@ Documentación interactiva de Matemática Aplicada a la Computación, generada a
 - [Arquitectura](#arquitectura)
 - [Pruebas](#pruebas)
 - [Despliegue](#despliegue)
+- [Contribuir](#contribuir)
+- [Seguridad](#seguridad)
 - [Licencia](#licencia)
 - [Autor](#autor)
 
@@ -127,7 +129,25 @@ genuinamente compartido en `src/shared/*`. Ver
 El despliegue corre en Vercel, con preview automático por pull request y
 producción al hacer merge a `main`. Vercel ejecuta `next build`, mientras que
 el [CI de GitHub Actions](.github/workflows/ci.yml) ejecuta los gates de
-calidad (tipos, lint, tests, e2e y auditoría) que bloquean el merge.
+calidad (formato, lint, tipos, enlaces internos, tests y e2e) que bloquean el
+merge. La auditoría de dependencias también corre, pero solo como reporte no
+bloqueante — ver [Contribuir](#contribuir).
+
+## Contribuir
+
+Correcciones de contenido, reportes de errores y ajustes pequeños son
+bienvenidos. La guía de contribución todavía no está traducida al español —
+ver [docs/en/contributing.md](docs/en/contributing.md) (inglés) o
+[docs/pt/contributing.md](docs/pt/contributing.md) (portugués) para el setup,
+el gate local (`pnpm run verify`) y las convenciones de commit. Este proyecto
+sigue el [Contributor Covenant](docs/en/code_of_conduct.md).
+
+## Seguridad
+
+¿Encontraste una vulnerabilidad? Por favor no abras un issue público — ver
+[docs/en/security.md](docs/en/security.md) (inglés) o
+[docs/pt/security.md](docs/pt/security.md) (portugués) para cómo reportarla
+de forma privada.
 
 ## Licencia
 

@@ -32,6 +32,8 @@ Documentação interativa de Matemática Aplicada à Computação, renderizada a
 - [Arquitetura](#arquitetura)
 - [Testes](#testes)
 - [Deploy](#deploy)
+- [Como contribuir](#como-contribuir)
+- [Segurança](#segurança)
 - [Licença](#licença)
 - [Autor](#autor)
 
@@ -126,7 +128,22 @@ genuinamente compartilhado em `src/shared/*`. Veja
 O deploy roda na Vercel, com preview automático por pull request e produção no
 merge para `main`. A Vercel roda `next build`, enquanto o
 [CI do GitHub Actions](.github/workflows/ci.yml) roda os gates de qualidade
-(tipos, lint, testes, e2e e auditoria) que barram o merge.
+(format, lint, tipos, links internos, testes e e2e) que barram o merge. A
+auditoria de dependências também roda, mas só como relatório não-bloqueante —
+veja [Como contribuir](#como-contribuir).
+
+## Como contribuir
+
+Correções de conteúdo, relatos de bug e ajustes pequenos são bem-vindos —
+veja [docs/pt/contributing.md](docs/pt/contributing.md) para o setup, o gate
+local (`pnpm run verify`) e as convenções de commit. Este projeto segue o
+[Contributor Covenant](docs/pt/code_of_conduct.md).
+
+## Segurança
+
+Encontrou uma vulnerabilidade? Por favor não abra uma issue pública — veja
+[docs/pt/security.md](docs/pt/security.md) para como relatar de forma
+privada.
 
 ## Licença
 
