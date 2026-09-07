@@ -19,6 +19,8 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "content:check": "node scripts/check-content.mjs",
+    "lighthouse": "lhci autorun",
+    "check:bundle-size": "node scripts/check-bundle-size.mjs",
     "verify": "bash scripts/verify.sh",
     "prepare": "husky"
   },
@@ -57,6 +59,7 @@
     "@axe-core/playwright": "^4.12.1",
     "@commitlint/cli": "^21.2.0",
     "@commitlint/config-conventional": "^21.2.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.20",

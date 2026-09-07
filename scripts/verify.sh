@@ -54,6 +54,7 @@ if [ "$fast" = true ] && [ "$force_e2e" = false ]; then
 fi
 
 run_step "Build" pnpm run build
+run_step "Check bundle size" pnpm run check:bundle-size
 
 # --with-deps installs OS packages via sudo, which prompts for a password on
 # most dev machines. CI (a disposable, root-capable runner) uses --with-deps;
