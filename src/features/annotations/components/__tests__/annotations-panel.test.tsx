@@ -202,11 +202,15 @@ describe("AnnotationsPanel", () => {
     const notesInOrder = () => screen.getAllByRole("listitem").map((li) => li.textContent);
     expect(notesInOrder()[0]).toContain("mais recente");
 
-    await userEvent.click(
-      screen.getByRole("button", { name: /ordenar por mais antigas primeiro/i }),
-    );
+    const sortButton = screen.getByRole("button", { name: /ordenar por mais antigas primeiro/i });
+    await userEvent.click(sortButton);
 
     expect(notesInOrder()[0]).toContain("mais antiga");
+
+    await userEvent.click(
+      screen.getByRole("button", { name: /ordenar por mais recentes primeiro/i }),
+    );
+    expect(notesInOrder()[0]).toContain("mais recente");
   });
 
   it("disables export when there are no annotations", () => {
