@@ -48,3 +48,6 @@ next-env.d.ts
 
 # lighthouse ci
 /.lighthouseci/
+
+# Claude Code runtime state
+/.claude/scheduled_tasks.lock

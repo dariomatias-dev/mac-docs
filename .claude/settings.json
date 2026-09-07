@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/format-touched-file.mjs 2>/dev/null || true",
+            "statusMessage": "Formatting touched file with Prettier..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm run verify --fast",
+            "timeout": 300,
+            "statusMessage": "Running fast local gate (verify --fast)..."
+          }
+        ]
+      }
+    ]
+  }
+}
