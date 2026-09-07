@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 
-import { andMatrices, booleanProduct, orMatrices, type BitMatrix } from "../lib/boolean-matrix-ops";
 import { CalculatorCard, OperatorPicker } from "./calculator-shell";
 import { BitMatrixGrid, DimensionSelect, resizeMatrix } from "./matrix-grid";
+import { andMatrices, booleanProduct, orMatrices, type BitMatrix } from "../lib/boolean-matrix-ops";
 
 type Operation = "or" | "and" | "multiply";
 

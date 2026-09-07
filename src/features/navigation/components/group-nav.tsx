@@ -1,14 +1,14 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-import { ChevronRight } from "lucide-react";
-
-import type { SidebarGroup } from "../navigation.types";
 import { useSidebarGroups } from "../providers/sidebar-groups-provider";
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
+
+import type { SidebarGroup } from "../navigation.types";
 
 export function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: number }) {
   const pathname = usePathname();

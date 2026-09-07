@@ -1,10 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { ChevronRight } from "lucide-react";
 
 import { useDisclosure } from "@/shared/hooks/use-disclosure";
+
+import type { ReactNode } from "react";
 
 export function Collapsible({
   title,

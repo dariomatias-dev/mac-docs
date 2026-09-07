@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { checkContent } from "../check-content.mjs";
 
@@ -172,13 +173,26 @@ describe("checkContent", () => {
   it("never fails the run for external links, only reports them as warnings", async () => {
     write(
       "content/course/bad.mdx",
-      "---\ntitle: Página\ndescription: ok\n---\n\n[link morto](https://this-domain-should-not-exist-mac-docs.example/404)\n",
+      "---\ntitle: Página\ndescription: ok\n---\n\n[link morto](https://example.invalid/404)\n[link ok](https://example.com/)\n",
     );
 
-    const { errors, warnings } = await run(true);
+    // Real DNS/network calls here would make this test flaky (timing, CI
+    // network policy). Stub fetch so the test only exercises this script's
+    // own report-not-fail logic, not the network stack.
+    const fetchMock = vi.fn(async (url) => {
+      if (String(url).includes("example.invalid")) throw new Error("getaddrinfo ENOTFOUND");
+      return { ok: true, status: 200 };
+    });
+    vi.stubGlobal("fetch", fetchMock);
 
-    expect(errors).toEqual([]);
-    expect(warnings).toHaveLength(1);
-    expect(warnings[0]).toMatch(/this-domain-should-not-exist-mac-docs\.example/);
+    try {
+      const { errors, warnings } = await run(true);
+
+      expect(errors).toEqual([]);
+      expect(warnings).toHaveLength(1);
+      expect(warnings[0]).toMatch(/example\.invalid/);
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });

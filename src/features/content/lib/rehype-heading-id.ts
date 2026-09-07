@@ -1,7 +1,8 @@
 import GithubSlugger from "github-slugger";
 import { toString } from "hast-util-to-string";
-import type { Element, Root, RootContent } from "hast";
 import { visit } from "unist-util-visit";
+
+import type { Element, Root, RootContent } from "hast";
 
 const HEADING_TAGS = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
 

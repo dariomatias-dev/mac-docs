@@ -5,8 +5,8 @@ import { useEffect } from "react";
 
 import { useMobileSheet } from "@/shared/providers/active-mobile-sheet-provider";
 
-import { useAnnotations } from "../lib/use-annotations";
 import { AnnotationsPanel } from "./annotations-panel";
+import { useAnnotations } from "../lib/use-annotations";
 
 export function Annotations({ slug }: { slug: string }) {
   const { annotations, add, update, remove, restore, importNotes } = useAnnotations(slug);

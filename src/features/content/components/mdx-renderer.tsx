@@ -37,16 +37,24 @@ const baseComponents: MDXRemoteProps["components"] = {
   h2: (props) => <HeadingAnchor level={2} {...props} />,
   h3: (props) => <HeadingAnchor level={3} {...props} />,
   h4: (props) => <HeadingAnchor level={4} {...props} />,
-  a: (props) => (
+  a: ({ children, ...props }) => (
     <a
       className="text-accent decoration-transparent underline-offset-2 transition-colors hover:decoration-current"
       {...props}
-    />
+    >
+      {children}
+    </a>
   ),
   code: (props) => <code className="text-accent-dark dark:text-accent font-medium" {...props} />,
   pre: (props) => (
+    // tabIndex is required here: axe's scrollable-region-focusable check
+    // demands it so keyboard users can scroll a code block that overflows.
+    // eslint.config.mjs allows tabIndex on <pre> in
+    // jsx-a11y/no-noninteractive-tabindex's `tags` option for this reason.
     <pre
       tabIndex={0}
+      role="region"
+      aria-label="Bloco de código"
       className="bg-surface text-foreground border-border rounded-xl border [&>code]:bg-transparent [&>code]:font-normal [&>code]:text-inherit"
       {...props}
     />

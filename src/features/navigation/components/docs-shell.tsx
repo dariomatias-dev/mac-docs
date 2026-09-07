@@ -1,10 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Sidebar } from "./sidebar";
+import { useSidebarCollapse } from "../providers/sidebar-collapse-provider";
 
 import type { SidebarCourse } from "../navigation.types";
-import { useSidebarCollapse } from "../providers/sidebar-collapse-provider";
-import { Sidebar } from "./sidebar";
+import type { ReactNode } from "react";
 
 export function DocsShell({ tree, children }: { tree: SidebarCourse[]; children: ReactNode }) {
   const { collapsed } = useSidebarCollapse();

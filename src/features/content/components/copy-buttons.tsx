@@ -20,7 +20,7 @@ function CopyButton({
   return (
     <button
       type="button"
-      onClick={() => copy(text)}
+      onClick={() => void copy(text)}
       className="border-border hover:border-accent hover:bg-surface hover:text-accent flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-2 text-[0.8rem] font-medium transition-colors"
     >
       {copied ? <Check className="h-3.5 w-3.5" /> : icon}

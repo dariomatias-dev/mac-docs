@@ -1,5 +1,6 @@
-import type { Element, Root } from "hast";
 import { visit } from "unist-util-visit";
+
+import type { Element, Root } from "hast";
 
 // rehype-katex's .katex-display markup isn't a component we render; it's
 // raw HTML from KaTeX, so tabIndex can't be set via JSX props like <pre>'s.

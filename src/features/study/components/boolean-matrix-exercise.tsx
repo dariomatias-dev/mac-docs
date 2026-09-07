@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { Eye, EyeOff, RefreshCw } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { useDisclosure } from "@/shared/hooks/use-disclosure";
 
+import { Katex } from "./katex-inline";
 import { andMatrices, booleanProduct, orMatrices, type BitMatrix } from "../lib/boolean-matrix-ops";
 import { matrixToLatex } from "../lib/matrix-latex";
 import { randomBitMatrix, randomInt } from "../lib/random";
-import { Katex } from "./katex-inline";
 
 type Op = "or" | "and" | "multiply";
 

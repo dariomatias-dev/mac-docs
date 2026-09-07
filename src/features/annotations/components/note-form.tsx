@@ -15,7 +15,7 @@ export function NoteForm({
   variant,
   initialValue = "",
   placeholder,
-  autoFocus,
+  focusOnMount,
   submitLabel,
   onSubmit,
   onCancel,
@@ -23,7 +23,7 @@ export function NoteForm({
   variant: keyof typeof NOTE_TEXTAREA_STYLES;
   initialValue?: string;
   placeholder?: string;
-  autoFocus?: boolean;
+  focusOnMount?: boolean;
   submitLabel: string;
   onSubmit: (note: string) => void;
   onCancel?: () => void;
@@ -32,12 +32,12 @@ export function NoteForm({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (!autoFocus) return;
+    if (!focusOnMount) return;
     const el = textareaRef.current;
     if (!el) return;
     el.focus();
     el.setSelectionRange(el.value.length, el.value.length);
-  }, [autoFocus]);
+  }, [focusOnMount]);
 
   useEffect(() => {
     const el = textareaRef.current;

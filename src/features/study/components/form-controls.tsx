@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, ChevronDown } from "lucide-react";
 import {
   useEffect,
   useId,
@@ -9,9 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { Check, ChevronDown } from "lucide-react";
-
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/cn";
 
 // Only theme/behavior classes live here (colors, border, focus state); every
 // call site fully owns sizing (padding, text size, rounding, width) via

@@ -1,4 +1,3 @@
-import type { Element, Root } from "hast";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
@@ -8,6 +7,8 @@ import { visit } from "unist-util-visit";
 import { describe, expect, it } from "vitest";
 
 import { rehypeKatexA11y } from "../rehype-katex-a11y";
+
+import type { Element, Root } from "hast";
 
 async function katexDisplayTabIndexes(source: string): Promise<unknown[]> {
   const processor = unified()

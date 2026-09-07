@@ -1,6 +1,4 @@
 import { cache } from "react";
-
-import type { Root } from "mdast";
 import readingTime from "reading-time";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -10,9 +8,11 @@ import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
 
-import type { Doc } from "../content.types";
-import { getAllDocs } from "./mdx";
 import { latexToPlainText } from "./latex-to-text";
+import { getAllDocs } from "./mdx";
+
+import type { Doc } from "../content.types";
+import type { Root } from "mdast";
 
 // remark-math parses `$..$`/`$$..$$` into "math"/"inlineMath" nodes instead
 // of plain text; without this, stripMarkdown has no markdown syntax to

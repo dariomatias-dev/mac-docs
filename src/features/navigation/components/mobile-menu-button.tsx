@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
 

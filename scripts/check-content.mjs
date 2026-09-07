@@ -6,8 +6,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
 import GithubSlugger from "github-slugger";
+import matter from "gray-matter";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";

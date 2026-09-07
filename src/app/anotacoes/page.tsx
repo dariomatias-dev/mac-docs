@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-
 import { AnnotationsListPage } from "@/features/annotations";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Anotações",

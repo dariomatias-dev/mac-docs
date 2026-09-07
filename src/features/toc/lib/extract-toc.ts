@@ -1,8 +1,9 @@
 import GithubSlugger from "github-slugger";
-import type { Heading, InlineCode, Text } from "mdast";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
+
+import type { Heading, InlineCode, Text } from "mdast";
 
 export type TocItem = {
   id: string;

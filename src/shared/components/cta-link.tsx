@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import type { ComponentProps, ReactNode } from "react";
 
 const VARIANT_CLASS = {

@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-
 import { GraduationCap, PenLine } from "lucide-react";
+import { Suspense } from "react";
 
 import {
   MATERIAL_CONTRIBUTORS,
@@ -12,6 +10,8 @@ import {
   ContributorSection,
   getGithubAvatarUrl,
 } from "@/features/contributors";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contribuidores",

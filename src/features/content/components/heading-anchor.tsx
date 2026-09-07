@@ -1,8 +1,8 @@
 "use client";
 
+import { Check, Pilcrow } from "lucide-react";
 import { type ComponentPropsWithoutRef, createElement, useState } from "react";
 
-import { Check, Pilcrow } from "lucide-react";
 
 type HeadingLevel = 2 | 3 | 4;
 

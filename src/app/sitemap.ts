@@ -1,8 +1,8 @@
-import type { MetadataRoute } from "next";
-
 import { getAllDocs } from "@/features/content";
 import { getGitDates, getLatestContentDate } from "@/shared/lib/git-dates";
 import { SITE_URL } from "@/shared/lib/site";
+
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

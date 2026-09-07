@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Annotations } from "@/features/annotations";
@@ -19,6 +18,8 @@ import { jsonLd } from "@/shared/lib/json-ld";
 import { SITE_NAME, SITE_URL } from "@/shared/lib/site";
 
 import { buildDocView } from "./build-doc-view";
+
+import type { Metadata } from "next";
 
 export const dynamicParams = false;
 

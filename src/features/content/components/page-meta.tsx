@@ -1,6 +1,6 @@
+import { Clock } from "lucide-react";
 import Link from "next/link";
 
-import { Clock } from "lucide-react";
 
 export type Prereq = { href: string; title: string };
 

@@ -1,12 +1,12 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
-
 import { NotebookPen, Users } from "lucide-react";
+import Link from "next/link";
 
 import { ThemeToggle } from "@/features/theme";
 
 import { HeaderOverflowMenu } from "./header-overflow-menu";
 import { MobileMenuButton } from "./mobile-menu-button";
+
+import type { ReactNode } from "react";
 
 export function Header({ search, searchMobile }: { search?: ReactNode; searchMobile?: ReactNode }) {
   return (

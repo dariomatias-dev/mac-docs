@@ -1,13 +1,12 @@
 "use client";
 
-import { useMemo, useRef, useState, type ReactNode } from "react";
-
 import { Plus, Trash2 } from "lucide-react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 
 import { CalculatorCard } from "./calculator-shell";
 import { Dropdown, TextField } from "./form-controls";
-import { addMatrices, multiplyMatrices, scaleMatrix, subMatrices } from "../lib/matrix-ops";
 import { DimensionSelect, MatrixBox, NumberMatrixGrid, resizeMatrix } from "./matrix-grid";
+import { addMatrices, multiplyMatrices, scaleMatrix, subMatrices } from "../lib/matrix-ops";
 
 type Matrix = number[][];
 

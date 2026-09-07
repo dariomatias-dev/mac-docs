@@ -1,10 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { CircleHelp, Eye, EyeOff } from "lucide-react";
 
 import { useDisclosure } from "@/shared/hooks/use-disclosure";
+
+import type { ReactNode } from "react";
 
 export function Answer({ children }: { children: ReactNode }) {
   const { open, toggle } = useDisclosure();

@@ -15,8 +15,9 @@ import {
 } from "lucide-react";
 import { memo, useEffect, useRef, useState } from "react";
 
-import type { Annotation } from "../annotations.types";
 import { NoteForm } from "./note-form";
+
+import type { Annotation } from "../annotations.types";
 
 function formatDate(timestamp: number) {
   return new Date(timestamp).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
@@ -39,7 +40,7 @@ const AnnotationItem = memo(function AnnotationItem({
         <NoteForm
           variant="edit"
           initialValue={annotation.note}
-          autoFocus
+          focusOnMount
           submitLabel="Salvar"
           onSubmit={(note) => {
             onUpdate(annotation.id, note);
