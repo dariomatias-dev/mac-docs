@@ -1,0 +1,21 @@
+name: Setup
+description: >
+  Installs pnpm, Node (pinned via .nvmrc) and project dependencies. Assumes
+  the caller job has already run actions/checkout — a local composite action
+  can only be resolved once the repository is on disk.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v6.1.0
+
+    - name: Setup Node
+      uses: actions/setup-node@v7.0.0
+      with:
+        node-version-file: .nvmrc
+        cache: pnpm
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

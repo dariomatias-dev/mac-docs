@@ -15,7 +15,14 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: `npm run build && npm run start -- --port ${PORT}`,
+    // In CI the "e2e" job downloads the "build" job's .next output instead
+    // of rebuilding, so it only needs to start the already-built app.
+    // Locally there's no separate build step, so build-then-start is the
+    // only option (reuseExistingServer skips this entirely if a dev/start
+    // server is already listening on the port).
+    command: process.env.CI
+      ? `npm run start -- --port ${PORT}`
+      : `npm run build && npm run start -- --port ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
