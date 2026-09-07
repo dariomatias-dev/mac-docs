@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="ci.pt-BR.md">Português</a> | <a href="ci.es.md">Español</a>
+<strong>Language:</strong> English | <a href="ci.es.md">Español</a> | <a href="ci.pt-BR.md">Português</a>
 
 # Continuous Integration
 

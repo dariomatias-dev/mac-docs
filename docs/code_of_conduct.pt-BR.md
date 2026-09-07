@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="code_of_conduct.md">English</a> | Português | <a href="code_of_conduct.es.md">Español</a>
+<strong>Idioma:</strong> <a href="code_of_conduct.md">English</a> | <a href="code_of_conduct.es.md">Español</a> | Português
 
 # Código de Conduta de Colaboração
 

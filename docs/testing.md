@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="testing.pt-BR.md">Português</a> | <a href="testing.es.md">Español</a>
+<strong>Language:</strong> English | <a href="testing.es.md">Español</a> | <a href="testing.pt-BR.md">Português</a>
 
 # Testing
 

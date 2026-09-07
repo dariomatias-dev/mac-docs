@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="contributing.md">English</a> | <a href="contributing.pt-BR.md">Português</a> | Español
+<strong>Idioma:</strong> <a href="contributing.md">English</a> | Español | <a href="contributing.pt-BR.md">Português</a>
 
 # Cómo contribuir
 

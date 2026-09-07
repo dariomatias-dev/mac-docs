@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="code_of_conduct.md">English</a> | <a href="code_of_conduct.pt-BR.md">Português</a> | Español
+<strong>Idioma:</strong> <a href="code_of_conduct.md">English</a> | Español | <a href="code_of_conduct.pt-BR.md">Português</a>
 
 # Código de Conducta convenido para Contribuyentes
 

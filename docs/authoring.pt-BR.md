@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="authoring.md">English</a> | Português | <a href="authoring.es.md">Español</a>
+<strong>Idioma:</strong> <a href="authoring.md">English</a> | <a href="authoring.es.md">Español</a> | Português
 
 # Autoria de conteúdo (MDX)
 

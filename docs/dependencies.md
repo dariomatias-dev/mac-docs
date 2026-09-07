@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="dependencies.pt-BR.md">Português</a> | <a href="dependencies.es.md">Español</a>
+<strong>Language:</strong> English | <a href="dependencies.es.md">Español</a> | <a href="dependencies.pt-BR.md">Português</a>
 
 # Dependencies
 

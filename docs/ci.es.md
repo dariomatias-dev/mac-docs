@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="ci.md">English</a> | <a href="ci.pt-BR.md">Português</a> | Español
+<strong>Idioma:</strong> <a href="ci.md">English</a> | Español | <a href="ci.pt-BR.md">Português</a>
 
 # Integración Continua
 

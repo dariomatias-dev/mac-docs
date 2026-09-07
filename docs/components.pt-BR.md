@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="components.md">English</a> | Português | <a href="components.es.md">Español</a>
+<strong>Idioma:</strong> <a href="components.md">English</a> | <a href="components.es.md">Español</a> | Português
 
 # Componentes de estudo
 
