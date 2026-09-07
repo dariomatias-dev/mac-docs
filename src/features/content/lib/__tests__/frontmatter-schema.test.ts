@@ -4,8 +4,50 @@ import { frontmatterSchema } from "../frontmatter-schema";
 
 describe("frontmatterSchema", () => {
   it("accepts a minimal valid frontmatter", () => {
-    const parsed = frontmatterSchema.parse({ title: "Limites" });
+    const parsed = frontmatterSchema.parse({ title: "Limites", description: "Uma descrição." });
     expect(parsed.title).toBe("Limites");
+  });
+
+  it("rejects a missing description", () => {
+    expect(frontmatterSchema.safeParse({ title: "Limites" }).success).toBe(false);
+  });
+
+  it("rejects an empty description", () => {
+    expect(frontmatterSchema.safeParse({ title: "Limites", description: "" }).success).toBe(
+      false,
+    );
+  });
+
+  it("rejects a title longer than 60 characters", () => {
+    const result = frontmatterSchema.safeParse({
+      title: "x".repeat(61),
+      description: "Uma descrição.",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts a title at exactly 60 characters", () => {
+    const result = frontmatterSchema.safeParse({
+      title: "x".repeat(60),
+      description: "Uma descrição.",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a description longer than 160 characters", () => {
+    const result = frontmatterSchema.safeParse({
+      title: "Limites",
+      description: "x".repeat(161),
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts a description at exactly 160 characters", () => {
+    const result = frontmatterSchema.safeParse({
+      title: "Limites",
+      description: "x".repeat(160),
+    });
+    expect(result.success).toBe(true);
   });
 
   it("accepts optional fields", () => {

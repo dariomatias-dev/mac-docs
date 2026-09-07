@@ -18,7 +18,7 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "check:links": "node scripts/check-links.mjs",
+    "content:check": "node scripts/check-content.mjs",
     "verify": "bash scripts/verify.sh",
     "prepare": "husky"
   },
