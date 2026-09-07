@@ -1,0 +1,50 @@
+name: Content error
+description: A math error, a wrong answer, a proof that doesn't hold, or a technique used before it's taught.
+labels: ["content"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://mac-docs.vercel.app/docs/matematica-discreta/avaliacoes/...
+    validations:
+      required: true
+
+  - type: input
+    id: question
+    attributes:
+      label: Question number (if applicable)
+      placeholder: "Questão 12"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of error is it?
+      options:
+        - Wrong final answer
+        - Invalid or incomplete proof
+        - Arithmetic or algebra mistake
+        - Uses a technique taught later in the course (out-of-order method)
+        - Inconsistent or contradictory statement
+        - Broken formula rendering (KaTeX)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's wrong, specifically?
+      description: Quote or describe the exact line, and what it should say instead if you know.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Optional — if you already worked out the right answer or proof.
+    validations:
+      required: false
