@@ -136,3 +136,21 @@ jobs:
       - name: Audit dependencies
         run: pnpm audit --audit-level=high
         continue-on-error: true
+
+      # Same report-only rationale as the audit step above, scanning the
+      # lockfile against the OSV database instead of the npm advisory feed
+      # (different sources, some overlap, neither is a superset of the other).
+      # Pinned by major version, like the CodeQL actions: Dependabot proposes
+      # the tightened exact pin as releases land.
+      - name: Scan the lockfile with osv-scanner
+        uses: google/osv-scanner-action/osv-scanner-action@v2
+        with:
+          scan-args: |-
+            --lockfile=pnpm-lock.yaml
+        continue-on-error: true
+
+      - name: Scan for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

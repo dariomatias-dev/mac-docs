@@ -96,6 +96,14 @@ repositório: `feat`, `fix`, `docs`, `test`, `ci`, `chore`, `refactor`, `perf`.
 fix(avaliacoes): corrige o sinal na demonstração da questão 12
 ```
 
+## Atualizações de dependências
+
+O Dependabot abre PRs semanais, agrupados por patch/minor em cada
+ecossistema, então há um só pra revisar em vez de uma dezena. Veja
+[dependencies.md](dependencies.md) pra saber quais pacotes ficam fixados
+numa versão exata (e excluídos do agrupamento automático) e como triar um
+PR do Dependabot.
+
 ## Branches
 
 Não há um esquema de nomenclatura forçado. Parta de `main`, abra um pull

@@ -93,6 +93,13 @@ characters (`commitlint.config.mjs`). Common types used in this repo:
 fix(avaliacoes): correct the sign in question 12's proof
 ```
 
+## Dependency updates
+
+Dependabot opens weekly PRs, grouped by patch/minor per ecosystem so there's
+one to review instead of a dozen. See [dependencies.md](dependencies.md) for
+which packages are pinned exactly (and excluded from the automatic group)
+and how to triage a Dependabot PR.
+
 ## Branches
 
 There's no enforced naming scheme. Branch off `main`, open a pull request
