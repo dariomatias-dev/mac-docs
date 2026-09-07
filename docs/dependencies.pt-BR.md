@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="dependencies.md">English</a> | Português | <a href="dependencies.es.md">Español</a>
+<strong>Idioma:</strong> <a href="dependencies.md">English</a> | <a href="dependencies.es.md">Español</a> | Português
 
 # Dependências
 

@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="authoring.pt-BR.md">Português</a> | <a href="authoring.es.md">Español</a>
+<strong>Language:</strong> English | <a href="authoring.es.md">Español</a> | <a href="authoring.pt-BR.md">Português</a>
 
 # Authoring content (MDX)
 

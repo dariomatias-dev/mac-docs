@@ -1,4 +1,4 @@
-<strong>Idioma:</strong> <a href="performance.md">English</a> | <a href="performance.pt-BR.md">Português</a> | Español
+<strong>Idioma:</strong> <a href="performance.md">English</a> | Español | <a href="performance.pt-BR.md">Português</a>
 
 # Performance
 

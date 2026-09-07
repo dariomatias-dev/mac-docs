@@ -1,4 +1,4 @@
-<strong>Language:</strong> English | <a href="architecture.pt-BR.md">Português</a> | <a href="architecture.es.md">Español</a>
+<strong>Language:</strong> English | <a href="architecture.es.md">Español</a> | <a href="architecture.pt-BR.md">Português</a>
 
 # Architecture
 

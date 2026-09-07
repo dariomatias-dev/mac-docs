@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-<strong>Idioma:</strong> <a href="README.md">English</a> | <a href="README.pt-BR.md">Português (Brasil)</a> | Español
+<strong>Idioma:</strong> <a href="README.md">English</a> | Español | <a href="README.pt-BR.md">Português (Brasil)</a>
 </p>
 
 <p align="center">
