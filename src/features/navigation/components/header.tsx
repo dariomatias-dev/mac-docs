@@ -11,7 +11,7 @@ import type { ReactNode } from "react";
 export function Header({ search, searchMobile }: { search?: ReactNode; searchMobile?: ReactNode }) {
   return (
     <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur">
-      <div className="relative flex h-16 w-full items-center gap-3 px-4 sm:gap-4 sm:px-6 md:px-44 lg:px-56 xl:px-64">
+      <div className="mx-auto flex h-16 w-full max-w-[1600px] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
         <MobileMenuButton />
 
         <Link href="/" aria-label="MACDocs — página inicial" className="text-foreground shrink-0">
@@ -56,22 +56,22 @@ export function Header({ search, searchMobile }: { search?: ReactNode; searchMob
         </Link>
 
         {search && (
-          <div className="absolute top-1/2 left-1/2 hidden w-full max-w-md -translate-x-1/2 -translate-y-1/2 px-4 md:block">
+          <div className="hidden min-w-0 flex-1 justify-center overflow-hidden px-4 md:flex">
             {search}
           </div>
         )}
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex shrink-0 items-center gap-3">
           <Link
             href="/anotacoes"
-            className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors sm:flex"
+            className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors lg:flex"
           >
             <NotebookPen className="h-4 w-4" />
             Anotações
           </Link>
           <Link
             href="/contribuidores"
-            className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors sm:flex"
+            className="text-muted-2 hover:text-accent hidden items-center gap-1.5 text-sm font-medium transition-colors lg:flex"
           >
             <Users className="h-4 w-4" />
             Contribuidores
