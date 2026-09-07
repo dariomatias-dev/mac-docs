@@ -25,6 +25,21 @@ describe("MatrixExercise", () => {
     expect(screen.getByText("Resposta")).toBeInTheDocument();
   });
 
+  it("shows a subtraction statement", () => {
+    render(<MatrixExercise operations={["sub"]} />);
+    expect(screen.getByText(/subtraia as matrizes a e b/i)).toBeInTheDocument();
+  });
+
+  it("shows a multiplication statement", () => {
+    render(<MatrixExercise operations={["multiply"]} />);
+    expect(screen.getByText(/multiplique as matrizes a e b/i)).toBeInTheDocument();
+  });
+
+  it("shows a scalar-multiplication statement naming the generated factor", () => {
+    render(<MatrixExercise operations={["scalar"]} />);
+    expect(screen.getByText(/calcule .* · a, sendo a a matriz a seguir/i)).toBeInTheDocument();
+  });
+
   it("shows only matrix A for a transpose question", () => {
     const { container } = render(<MatrixExercise operations={["transpose"]} />);
 

@@ -31,4 +31,15 @@ describe("Quiz", () => {
     await userEvent.click(screen.getByRole("button", { name: /Certa/ }));
     expect(screen.getByRole("button", { name: /Errada/ })).toBeDisabled();
   });
+
+  it('resets to an unanswered state on "Tentar novamente"', async () => {
+    renderQuiz();
+    await userEvent.click(screen.getByRole("button", { name: /Errada/ }));
+    expect(screen.getByText(/tente entender o porquê/i)).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Tentar novamente" }));
+
+    expect(screen.queryByText(/tente entender o porquê/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Certa/ })).toBeEnabled();
+  });
 });

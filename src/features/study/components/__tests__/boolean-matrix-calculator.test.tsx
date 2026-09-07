@@ -60,4 +60,30 @@ describe("BooleanMatrixCalculator", () => {
 
     expect(screen.getByText(/precisam ter a mesma ordem/i)).toBeInTheDocument();
   });
+
+  it("shows a column/row-mismatch error for the matrix product", async () => {
+    render(<BooleanMatrixCalculator />);
+    await userEvent.click(screen.getByRole("button", { name: /produto de matrizes/i }));
+
+    const colSelectors = screen.getAllByRole("button", { name: "colunas" });
+    await userEvent.click(colSelectors[0]); // Matrix A's column count
+    await userEvent.click(screen.getByRole("option", { name: "3" }));
+
+    expect(
+      screen.getByText(/nº de colunas de a \(3\) precisa ser igual ao nº de linhas de b \(2\)/i),
+    ).toBeInTheDocument();
+  });
+
+  it("resizing a matrix's columns preserves existing cell values and pads with zero", async () => {
+    render(<BooleanMatrixCalculator />);
+
+    const colSelectors = screen.getAllByRole("button", { name: "colunas" });
+    await userEvent.click(colSelectors[1]); // Matrix B's column count
+    await userEvent.click(screen.getByRole("option", { name: "3" }));
+
+    // B grew from [[1,1],[0,0]] to [[1,1,0],[0,0,0]]; the new column is 0.
+    expect(
+      screen.getByRole("button", { name: "Alternar elemento linha 1, coluna 3, valor atual 0" }),
+    ).toBeInTheDocument();
+  });
 });
