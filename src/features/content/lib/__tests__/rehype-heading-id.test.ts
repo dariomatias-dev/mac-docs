@@ -1,13 +1,14 @@
-import type { Element, Root } from "hast";
+import rehypeSlug from "rehype-slug";
 import remarkMdx from "remark-mdx";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeSlug from "rehype-slug";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
 import { describe, expect, it } from "vitest";
 
 import { rehypeHeadingId } from "../rehype-heading-id";
+
+import type { Element, Root } from "hast";
 
 // Mirrors mdx-renderer.tsx's real pipeline (remark-mdx parses `<Tag>` as
 // JSX, not raw HTML) so this exercises the exact node shapes rehypeHeadingId

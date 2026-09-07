@@ -1,13 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
-import { cache } from "react";
 
 import matter from "gray-matter";
+import { cache } from "react";
+
 
 import { CONTENT_DIR } from "@/shared/lib/content-config";
 
-import type { Doc } from "../content.types";
 import { frontmatterSchema } from "./frontmatter-schema";
+
+import type { Doc } from "../content.types";
 
 const MDX_EXTENSION = ".mdx";
 const SECTION_FILE = "index";

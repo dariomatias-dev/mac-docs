@@ -1,16 +1,16 @@
 "use client";
 
+import { FileX2, NotebookPen, Pencil, StickyNote, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { FileX2, NotebookPen, Pencil, StickyNote, Trash2 } from "lucide-react";
-
 import { fetchSearchIndex } from "@/features/search/lib/search-shared";
 
-import type { Annotation } from "../annotations.types";
-import { ANNOTATIONS_KEY_PREFIX, slugFromHref } from "../lib/slug-from-href";
 import { ConfirmButton } from "./confirm-button";
 import { NoteForm } from "./note-form";
+import { ANNOTATIONS_KEY_PREFIX, slugFromHref } from "../lib/slug-from-href";
+
+import type { Annotation } from "../annotations.types";
 
 type Group = {
   slug: string;
@@ -68,7 +68,7 @@ function NoteItem({
         <NoteForm
           variant="edit"
           initialValue={annotation.note}
-          autoFocus
+          focusOnMount
           submitLabel="Salvar"
           onSubmit={(note) => {
             onUpdate(note);

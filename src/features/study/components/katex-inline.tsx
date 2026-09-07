@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-
 import katex from "katex";
+import { useMemo } from "react";
 
 export function Katex({ expr }: { expr: string }) {
   const html = useMemo(

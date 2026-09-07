@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
   ArrowRight,
   BookOpen,
@@ -11,9 +9,10 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 import { getSidebarTree } from "@/features/navigation";
-import { NextClassCard } from "@/features/schedule/components/next-class-card";
+import { NextClassCard } from "@/features/schedule";
 import { Callout, Option, Quiz } from "@/features/study";
 import { CtaLink } from "@/shared/components/cta-link";
 

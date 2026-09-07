@@ -1,9 +1,9 @@
 "use client";
 
+import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { Check, Copy } from "lucide-react";
 
 import { useCopy } from "@/shared/hooks/use-copy";
 
@@ -23,7 +23,7 @@ function MathCopyButton({ latex }: { latex: string }) {
   return (
     <button
       type="button"
-      onClick={() => copy(latex)}
+      onClick={() => void copy(latex)}
       aria-label={copied ? "Copiado" : "Copiar LaTeX"}
       className="border-border bg-background text-muted hover:border-accent hover:text-accent absolute top-1.5 right-1.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
     >

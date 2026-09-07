@@ -1,9 +1,10 @@
-import type { ReactElement } from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import { getDocBySlug } from "@/features/content";
 
 import DocPage from "../page";
+
+import type { ReactElement } from "react";
 
 vi.mock("next/navigation", () => ({
   notFound: () => {

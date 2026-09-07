@@ -1,15 +1,15 @@
 "use client";
 
+import { BookOpen, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-import { BookOpen, PanelLeftClose, PanelLeftOpen } from "lucide-react";
-
-import type { SidebarCourse } from "../navigation.types";
+import { GroupNav } from "./group-nav";
 import { useSidebarCollapse } from "../providers/sidebar-collapse-provider";
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
-import { GroupNav } from "./group-nav";
+
+import type { SidebarCourse } from "../navigation.types";
 
 export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
   const { open, close } = useSidebarMobile();
@@ -31,22 +31,33 @@ export function Sidebar({ tree }: { tree: SidebarCourse[] }) {
 
   return (
     <>
-      <div
+      <button
+        type="button"
         onClick={close}
+        tabIndex={-1}
         aria-hidden="true"
-        className={`bg-background/60 fixed inset-0 top-16 z-50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`bg-background/60 fixed inset-0 top-16 z-50 block cursor-default appearance-none border-0 p-0 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
       <aside
-        onClick={collapsed ? toggle : undefined}
-        role={collapsed ? "button" : undefined}
-        aria-label={collapsed ? "Abrir barra lateral" : undefined}
         className={`group/side border-border bg-background fixed top-16 bottom-0 left-0 z-50 flex w-[86vw] max-w-85 flex-col overflow-hidden border-r shadow-2xl transition-transform duration-300 ease-in-out md:z-30 md:max-w-none md:shrink-0 md:translate-x-0 md:shadow-none md:transition-[width] ${
           open ? "translate-x-0" : "-translate-x-full"
         } ${collapsed ? "md:hover:bg-surface md:w-14 md:cursor-pointer" : "md:w-95 lg:w-105"}`}
       >
+        {collapsed && (
+          // A real <button> (not onClick+role="button" on the <aside> landmark
+          // itself) so expanding the collapsed rail is keyboard operable for
+          // free, instead of hand-rolling focus and Enter/Space handling on a
+          // non-interactive element.
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label="Abrir barra lateral"
+            className="absolute inset-0 z-10 hidden w-full cursor-pointer appearance-none border-0 bg-transparent p-0 md:block"
+          />
+        )}
         <div
           className={`text-muted group-hover/side:text-accent hidden flex-1 items-center justify-center transition-colors ${
             collapsed ? "md:flex" : ""

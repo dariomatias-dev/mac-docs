@@ -1,11 +1,10 @@
 "use client";
 
+import Fuse, { type FuseResultMatch } from "fuse.js";
+import { Clock, CornerDownLeft, FileText, Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
-import Fuse, { type FuseResultMatch } from "fuse.js";
-import { Clock, CornerDownLeft, FileText, Search, X } from "lucide-react";
 
 import {
   SEARCH_OPEN_EVENT,
@@ -245,13 +244,25 @@ export function SearchDialog() {
 
       {open &&
         createPortal(
-          <div
-            className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 px-4 pt-24 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          >
+          <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24">
+            {/* A real <button> under the dialog in stacking order, not a
+                click-and-stopPropagation pair of divs: Escape already closes
+                the dialog (see the keydown handler above), so this is purely
+                the mouse-only "click outside to dismiss" convenience, and a
+                button gets that without hand-rolling non-interactive-element
+                keyboard handling. */}
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-hidden="true"
+              onClick={() => setOpen(false)}
+              className="absolute inset-0 -z-10 cursor-default appearance-none border-0 bg-black/50 p-0 backdrop-blur-sm"
+            />
             <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Buscar"
               className="border-border bg-background flex max-h-[70vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border shadow-2xl ring-1 ring-black/5"
-              onClick={(e) => e.stopPropagation()}
             >
               <div className="border-border border-b p-3">
                 <div className="bg-surface-2 text-muted flex w-full items-center gap-2 rounded-full px-5 py-2.5">
