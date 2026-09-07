@@ -8,6 +8,13 @@
 <br>
 
 <p align="center">
+<a href="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml"><img src="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml/badge.svg" alt="Status do CI"></a>
+<a href="https://codecov.io/gh/dariomatias-dev/mac-docs"><img src="https://img.shields.io/codecov/c/github/dariomatias-dev/mac-docs" alt="Cobertura"></a>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/dariomatias-dev/mac-docs" alt="Licença"></a>
+<img src="https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white" alt="Versão do Node.js">
+</p>
+
+<p align="center">
 <strong>Idioma:</strong> <a href="README.md">English</a> | Português (Brasil) | <a href="README.es.md">Español</a>
 </p>
 
@@ -130,7 +137,12 @@ merge para `main`. A Vercel roda `next build`, enquanto o
 [CI do GitHub Actions](.github/workflows/ci.yml) roda os gates de qualidade
 (format, lint, tipos, links internos, testes e e2e) que barram o merge. A
 auditoria de dependências também roda, mas só como relatório não-bloqueante —
-veja [Como contribuir](#como-contribuir).
+veja [Como contribuir](#como-contribuir). Releases são versionados
+automaticamente: o
+[release-please](https://github.com/googleapis/release-please) mantém um PR
+permanente com o [`CHANGELOG.md`](CHANGELOG.md) e o bump de versão do
+`package.json`, cortando uma release taggeada no GitHub quando ele é
+mergeado.
 
 ## Como contribuir
 

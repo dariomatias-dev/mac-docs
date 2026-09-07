@@ -27,7 +27,7 @@ jobs:
       # vulnerability already on main doesn't retroactively block unrelated
       # PRs (that's what the "vulnerabilities" job in ci.yml reports on).
       - name: Dependency review
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5.0.0
         with:
           fail-on-severity: high
           allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD, CC0-1.0

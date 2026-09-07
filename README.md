@@ -8,6 +8,13 @@
 <br>
 
 <p align="center">
+<a href="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml"><img src="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+<a href="https://codecov.io/gh/dariomatias-dev/mac-docs"><img src="https://img.shields.io/codecov/c/github/dariomatias-dev/mac-docs" alt="Coverage"></a>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/dariomatias-dev/mac-docs" alt="License"></a>
+<img src="https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white" alt="Node.js version">
+</p>
+
+<p align="center">
 <strong>Language:</strong> English | <a href="README.pt-BR.md">Português (Brasil)</a> | <a href="README.es.md">Español</a>
 </p>
 
@@ -126,7 +133,11 @@ production on merge to `main`. Vercel runs `next build`, while the
 [GitHub Actions CI](.github/workflows/ci.yml) runs the quality gates (format,
 lint, types, internal links, tests, and e2e) that block the merge.
 Dependency auditing runs too, but only as a non-blocking report — see
-[Contributing](#contributing).
+[Contributing](#contributing). Releases are versioned automatically:
+[release-please](https://github.com/googleapis/release-please) keeps a
+standing pull request with [`CHANGELOG.md`](CHANGELOG.md) and the
+`package.json` version bump, cutting a tagged GitHub release when it's
+merged.
 
 ## Contributing
 
