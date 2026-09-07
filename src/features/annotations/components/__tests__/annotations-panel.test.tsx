@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
@@ -111,6 +111,61 @@ describe("AnnotationsPanel", () => {
     await userEvent.click(undoButtons[0]);
     expect(onRestore).toHaveBeenCalledTimes(1);
     expect(screen.getAllByRole("button", { name: "Desfazer" })).toHaveLength(1);
+  });
+
+  it("clears the pending undo once its timeout expires", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const annotation = { id: "1", note: "nota original", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[annotation]} />);
+
+    await userEvent
+      .setup({ advanceTimers: vi.advanceTimersByTime })
+      .click(screen.getByRole("button", { name: /remover anotação/i }));
+    expect(screen.getByText(/anotação removida/i)).toBeInTheDocument();
+
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(screen.queryByText(/anotação removida/i)).not.toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  it("clicking the clear-search button empties the query", async () => {
+    const a = { id: "1", note: "sobre gatos", createdAt: Date.now() };
+    const b = { id: "2", note: "sobre cachorros", createdAt: Date.now() };
+    render(<AnnotationsPanel {...baseProps} annotations={[a, b]} />);
+
+    await userEvent.type(screen.getByPlaceholderText(/buscar anotações/i), "gatos");
+    expect(screen.queryByText("sobre cachorros")).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Limpar busca" }));
+
+    expect(screen.getByPlaceholderText(/buscar anotações/i)).toHaveValue("");
+    expect(screen.getByText("sobre cachorros")).toBeInTheDocument();
+  });
+
+  it("clicking the import button opens the hidden file picker", async () => {
+    render(<AnnotationsPanel {...baseProps} annotations={[]} />);
+    const input = screen.getByLabelText(/selecionar arquivo de anotações/i) as HTMLInputElement;
+    const clickSpy = vi.spyOn(input, "click");
+
+    await userEvent.click(screen.getByRole("button", { name: /importar anotações/i }));
+
+    expect(clickSpy).toHaveBeenCalled();
+  });
+
+  it("logs and ignores a file that isn't a valid JSON array", async () => {
+    const onImport = vi.fn();
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    render(<AnnotationsPanel {...baseProps} annotations={[]} onImport={onImport} />);
+
+    const file = new File(["not json"], "notes.json", { type: "application/json" });
+    const input = screen.getByLabelText(/selecionar arquivo de anotações/i) as HTMLInputElement;
+    await userEvent.upload(input, file);
+
+    expect(onImport).not.toHaveBeenCalled();
+    expect(errorSpy).toHaveBeenCalledWith("Failed to import annotations", expect.any(Error));
+    errorSpy.mockRestore();
   });
 
   it("shows an 'editado' label with the update date once an annotation has been edited", () => {

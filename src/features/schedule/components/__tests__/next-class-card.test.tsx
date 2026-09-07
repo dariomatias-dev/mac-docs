@@ -27,4 +27,12 @@ describe("NextClassCard", () => {
 
     expect(screen.getByText(/semestre encerrado/i)).toBeInTheDocument();
   });
+
+  it("renders nothing before the client value is known", () => {
+    getNextClassMock.mockReturnValue(undefined);
+
+    const { container } = render(<NextClassCard />);
+
+    expect(container).toBeEmptyDOMElement();
+  });
 });

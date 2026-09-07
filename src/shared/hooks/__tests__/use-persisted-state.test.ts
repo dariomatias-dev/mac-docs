@@ -1,10 +1,11 @@
 import { act, renderHook } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { usePersistedState } from "../use-persisted-state";
 
 describe("usePersistedState", () => {
   beforeEach(() => localStorage.clear());
+  afterEach(() => vi.restoreAllMocks());
 
   it("returns the initial value when nothing is stored", () => {
     const { result } = renderHook(() => usePersistedState("k", 0));
@@ -42,6 +43,29 @@ describe("usePersistedState", () => {
     expect(result.current[0]).toEqual([]);
     expect(JSON.parse(localStorage.getItem("page-b")!)).toEqual([]);
     expect(JSON.parse(localStorage.getItem("page-a")!)).toEqual(["noteA"]);
+  });
+
+  it("falls back to the initial value and logs when the stored value is malformed JSON", () => {
+    localStorage.setItem("k", "{not json");
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { result } = renderHook(() => usePersistedState("k", 0));
+
+    expect(result.current[0]).toBe(0);
+    expect(errorSpy).toHaveBeenCalled();
+  });
+
+  it("logs but does not throw when localStorage.setItem fails", () => {
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new Error("QuotaExceededError");
+    });
+
+    const { result } = renderHook(() => usePersistedState("k", 0));
+    expect(() => act(() => result.current[1](7))).not.toThrow();
+
+    expect(result.current[0]).toBe(7);
+    expect(errorSpy).toHaveBeenCalled();
   });
 
   it("does not sync across tabs by default", () => {
@@ -86,5 +110,18 @@ describe("usePersistedState", () => {
     });
 
     expect(result.current[0]).toBe(0);
+  });
+
+  it("logs and ignores a storage event carrying malformed JSON", () => {
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const { result } = renderHook(() => usePersistedState("k", 0, { syncAcrossTabs: true }));
+    act(() => result.current[1](5));
+
+    act(() => {
+      window.dispatchEvent(new StorageEvent("storage", { key: "k", newValue: "{not json" }));
+    });
+
+    expect(result.current[0]).toBe(5);
+    expect(errorSpy).toHaveBeenCalled();
   });
 });
