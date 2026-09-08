@@ -4,7 +4,7 @@ import { CalendarClock } from "lucide-react";
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 
-import { getNextClass } from "@/features/schedule/lib/schedule";
+import { getNextClass, todayLocalDateString } from "@/features/schedule/lib/schedule";
 
 function formatDate(isoDate: string) {
   const [year, month, day] = isoDate.split("-").map(Number);
@@ -38,8 +38,14 @@ export function NextClassCard() {
       <CalendarClock className="text-accent h-4 w-4 shrink-0" />
       {nextClass ? (
         <span className="text-foreground">
-          Próxima aula: <strong>{formatDate(nextClass.date)}</strong>,{" "}
-          <span className="text-muted">{nextClass.topic}</span>
+          {nextClass.date === todayLocalDateString() ? (
+            <strong>Hoje</strong>
+          ) : (
+            <>
+              Próxima aula: <strong>{formatDate(nextClass.date)}</strong>
+            </>
+          )}
+          , <span className="text-muted">{nextClass.topic}</span>
         </span>
       ) : (
         <span className="text-muted">Semestre encerrado, sem próximas aulas.</span>
