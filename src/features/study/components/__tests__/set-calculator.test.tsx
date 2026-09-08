@@ -72,4 +72,16 @@ describe("SetCalculator", () => {
     render(<SetCalculator />);
     expect(screen.getByRole("img", { name: /diagrama de venn/i })).toBeInTheDocument();
   });
+
+  it("truncates a Venn diagram region's label past 6 elements", async () => {
+    render(<SetCalculator />);
+
+    const fieldA = screen.getByLabelText("Conjunto A");
+    await userEvent.clear(fieldA);
+    await userEvent.type(fieldA, "1, 2, 3, 4, 5, 6, 7");
+
+    await userEvent.clear(screen.getByLabelText("Conjunto B"));
+
+    expect(screen.getByText("1, 2, 3, 4, 5, 6…")).toBeInTheDocument();
+  });
 });

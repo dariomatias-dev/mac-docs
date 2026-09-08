@@ -116,7 +116,7 @@ describe("SearchDialog", () => {
     expect(input).toHaveFocus();
   });
 
-  it("navigates with ArrowDown/ArrowUp and selects with Enter", async () => {
+  it("navigates down with ArrowDown and selects with Enter", async () => {
     render(<SearchDialog />);
     await openDialog();
     await screen.findByRole("button", { name: /matrizes/i });
@@ -127,6 +127,31 @@ describe("SearchDialog", () => {
 
     expect(pushMock).toHaveBeenCalledWith("/docs/conjuntos");
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("navigates back up with ArrowUp", async () => {
+    render(<SearchDialog />);
+    await openDialog();
+    await screen.findByRole("button", { name: /matrizes/i });
+    const input = screen.getByPlaceholderText(/buscar na documentação/i);
+
+    await userEvent.type(input, "{ArrowDown}"); // Matrizes -> Conjuntos
+    await userEvent.type(input, "{ArrowUp}"); // Conjuntos -> back to Matrizes
+    await userEvent.type(input, "{Enter}");
+
+    expect(pushMock).toHaveBeenCalledWith("/docs/matrizes");
+  });
+
+  it("wraps ArrowUp from the first result to the last", async () => {
+    render(<SearchDialog />);
+    await openDialog();
+    await screen.findByRole("button", { name: /matrizes/i });
+    const input = screen.getByPlaceholderText(/buscar na documentação/i);
+
+    await userEvent.type(input, "{ArrowUp}"); // Matrizes (0) wraps to Conjuntos (last)
+    await userEvent.type(input, "{Enter}");
+
+    expect(pushMock).toHaveBeenCalledWith("/docs/conjuntos");
   });
 
   it("selecting a result records it as a recent search for next time", async () => {

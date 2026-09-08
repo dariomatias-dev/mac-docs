@@ -47,4 +47,24 @@ describe("getCodeContributors", () => {
       },
     ]);
   });
+
+  it("defaults contributions to 0 when GitHub omits the field", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => [
+          {
+            login: "octocat",
+            html_url: "https://github.com/octocat",
+            avatar_url: "https://github.com/octocat.png",
+            type: "User",
+          },
+        ],
+      }),
+    );
+
+    const [contributor] = await getCodeContributors();
+    expect(contributor.contributions).toBe(0);
+  });
 });

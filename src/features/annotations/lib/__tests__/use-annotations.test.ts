@@ -117,6 +117,23 @@ describe("useAnnotations", () => {
     expect(result.current.annotations[0]).toMatchObject({ createdAt: 1, updatedAt: 2 });
   });
 
+  it("falls back to a timestamp-based id when crypto.randomUUID throws", () => {
+    const originalRandomUUID = crypto.randomUUID;
+    crypto.randomUUID = () => {
+      throw new Error("unavailable");
+    };
+
+    try {
+      const { result } = renderHook(() => useAnnotations("foo"));
+      act(() => result.current.add("note"));
+
+      expect(result.current.annotations).toHaveLength(1);
+      expect(result.current.annotations[0].id).toMatch(/^\d+-[a-z0-9]+$/);
+    } finally {
+      crypto.randomUUID = originalRandomUUID;
+    }
+  });
+
   it("imports notes appended to existing ones", () => {
     const { result } = renderHook(() => useAnnotations("foo"));
     act(() => result.current.add("existing"));

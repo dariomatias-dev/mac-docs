@@ -131,6 +131,51 @@ describe("AnnotationsListPage", () => {
     expect(stored[0].updatedAt).toBeTypeOf("number");
   });
 
+  it("cancels editing a note without saving the change", async () => {
+    seed("a", [{ id: "1", note: "nota original", createdAt: Date.now() }]);
+    fetchSearchIndexMock.mockResolvedValue([
+      { title: "Página A", href: "/docs/a", section: "Curso" },
+    ]);
+
+    render(<AnnotationsListPage />);
+    await screen.findByText("nota original");
+
+    await userEvent.click(screen.getByRole("button", { name: "Editar anotação" }));
+    const textarea = screen.getByDisplayValue("nota original");
+    await userEvent.clear(textarea);
+    await userEvent.type(textarea, "rascunho descartado");
+    await userEvent.click(screen.getByRole("button", { name: "Cancelar" }));
+
+    expect(screen.getByText("nota original")).toBeInTheDocument();
+    expect(screen.queryByText("rascunho descartado")).not.toBeInTheDocument();
+    const stored = JSON.parse(localStorage.getItem(`${KEY_PREFIX}a`)!);
+    expect(stored[0].note).toBe("nota original");
+  });
+
+  it("leaves other pages' notes untouched when editing one page's note", async () => {
+    seed("a", [{ id: "1", note: "nota a", createdAt: Date.now() }]);
+    seed("b", [{ id: "2", note: "nota b", createdAt: Date.now() }]);
+    fetchSearchIndexMock.mockResolvedValue([
+      { title: "Página A", href: "/docs/a", section: "Curso" },
+      { title: "Página B", href: "/docs/b", section: "Curso" },
+    ]);
+
+    render(<AnnotationsListPage />);
+    await screen.findByText("nota a");
+
+    const groupA = screen.getByText("Página A").closest("div")!.parentElement!.parentElement!;
+    await userEvent.click(within(groupA).getByRole("button", { name: "Editar anotação" }));
+    const textarea = within(groupA).getByDisplayValue("nota a");
+    await userEvent.clear(textarea);
+    await userEvent.type(textarea, "nota a editada");
+    await userEvent.click(within(groupA).getByRole("button", { name: "Salvar" }));
+
+    expect(await screen.findByText("nota a editada")).toBeInTheDocument();
+    expect(screen.getByText("nota b")).toBeInTheDocument();
+    const storedB = JSON.parse(localStorage.getItem(`${KEY_PREFIX}b`)!);
+    expect(storedB).toEqual([{ id: "2", note: "nota b", createdAt: expect.any(Number) }]);
+  });
+
   it("removes a single note, deleting the localStorage entry once the group empties", async () => {
     seed("a", [{ id: "1", note: "única nota", createdAt: Date.now() }]);
     fetchSearchIndexMock.mockResolvedValue([

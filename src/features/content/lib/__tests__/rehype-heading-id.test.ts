@@ -72,6 +72,25 @@ describe("rehypeHeadingId", () => {
     expect(ids).toEqual([""]);
   });
 
+  it("initializes properties when a heading node has none", () => {
+    const tree: Root = {
+      type: "root",
+      children: [
+        {
+          type: "element",
+          tagName: "h2",
+          properties: undefined as unknown as Record<string, never>,
+          children: [{ type: "text", value: "Sem propriedades" }],
+        } as unknown as Element,
+      ],
+    };
+
+    rehypeHeadingId()(tree);
+
+    const heading = tree.children[0] as Element;
+    expect(heading.properties?.id).toBe("sem-propriedades");
+  });
+
   it("assigns unique ids to repeated headings, matching rehype-slug", async () => {
     const ids = await headingIds(
       "## Questão 1 <Badge>1,0 pt</Badge>\n\n## Questão 1 <Badge>2,0 pt</Badge>\n",

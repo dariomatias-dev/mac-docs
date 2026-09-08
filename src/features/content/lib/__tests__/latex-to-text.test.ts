@@ -29,6 +29,10 @@ describe("latexToPlainText", () => {
     );
   });
 
+  it("keeps the plain letter for a blackboard-bold set outside the curated map", () => {
+    expect(latexToPlainText("\\mathbb{H}")).toBe("H");
+  });
+
   it("falls back to the literal command name for unsupported commands", () => {
     expect(latexToPlainText("\\unknowncommandxyz{x}")).toBe("\\unknowncommandxyz x");
   });

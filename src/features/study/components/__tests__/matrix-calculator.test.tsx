@@ -136,4 +136,27 @@ describe("MatrixCalculator", () => {
     // C starts as the zero matrix, so A + C should equal A = [[1,2],[2,3]].
     expect(readMatrixCells(resultRegion(container))).toEqual(["1", "2", "2", "3"]);
   });
+
+  it("names a completed subtraction step in a later step's mismatch error", async () => {
+    render(<MatrixCalculator />);
+
+    // Step 0: A - B succeeds (both 2x2), building the expression "A − B".
+    await userEvent.click(screen.getByRole("button", { name: "Operador" }));
+    await userEvent.click(screen.getByRole("option", { name: "−" }));
+
+    // Add matrix C and a second step (defaults to "+ B"), then retarget it to C.
+    await userEvent.click(screen.getByRole("button", { name: "Adicionar matriz" }));
+    await userEvent.click(screen.getByRole("button", { name: "Passo" }));
+    const matrixSelectors = screen.getAllByRole("button", { name: "Matriz" });
+    await userEvent.click(matrixSelectors[1]);
+    await userEvent.click(screen.getByRole("option", { name: "C" }));
+
+    // Give C an extra column so step 1 ("+ C") mismatches against the 2x2
+    // result of step 0.
+    const colsSelectors = screen.getAllByRole("button", { name: "colunas" });
+    await userEvent.click(colsSelectors[2]);
+    await userEvent.click(screen.getByRole("option", { name: "3" }));
+
+    expect(screen.getByText(/A − B \(2×2\) e C \(2×3\)/)).toBeInTheDocument();
+  });
 });

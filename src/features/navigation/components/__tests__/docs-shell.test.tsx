@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ActiveMobileSheetProvider } from "@/shared/providers/active-mobile-sheet-provider";
 
@@ -24,8 +24,18 @@ function renderShell() {
 }
 
 describe("DocsShell", () => {
+  afterEach(() => {
+    localStorage.clear();
+  });
+
   it("renders its children alongside the sidebar", () => {
     renderShell();
     expect(screen.getByText("Conteúdo da página")).toBeInTheDocument();
+  });
+
+  it("uses the narrow margin once the sidebar is collapsed", () => {
+    localStorage.setItem("sidebar-collapsed", "true");
+    renderShell();
+    expect(screen.getByText("Conteúdo da página").parentElement).toHaveClass("md:ml-14");
   });
 });
