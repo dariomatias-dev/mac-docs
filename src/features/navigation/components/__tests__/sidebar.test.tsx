@@ -29,8 +29,24 @@ const tree: SidebarCourse[] = [
         href: "/docs/matematica-discreta/plano",
         order: 0,
       },
+      {
+        title: "Segunda página",
+        slug: ["matematica-discreta", "segunda"],
+        href: "/docs/matematica-discreta/segunda",
+        order: 1,
+      },
     ],
-    groups: [],
+    groups: [
+      {
+        title: "Matrizes",
+        description: undefined,
+        slug: ["matematica-discreta", "matrizes"],
+        href: "/docs/matematica-discreta/matrizes",
+        order: 1,
+        pages: [],
+        groups: [],
+      },
+    ],
   },
 ];
 
@@ -64,6 +80,14 @@ describe("Sidebar", () => {
     expect(page).toHaveAttribute("aria-current", "page");
   });
 
+  it("renders a course's groups alongside its top-level pages", () => {
+    renderSidebar();
+    expect(screen.getByRole("link", { name: "Matrizes" })).toHaveAttribute(
+      "href",
+      "/docs/matematica-discreta/matrizes",
+    );
+  });
+
   it("starts expanded, with a visible collapse button", () => {
     renderSidebar();
     expect(screen.getByRole("button", { name: "Recolher barra lateral" })).toBeInTheDocument();
@@ -85,6 +109,30 @@ describe("Sidebar", () => {
     await userEvent.click(screen.getByRole("button", { name: "Abrir barra lateral" }));
 
     expect(screen.getByRole("button", { name: "Recolher barra lateral" })).toBeInTheDocument();
+  });
+
+  it("scrolls the active link into view when it sits outside the visible scroll area", () => {
+    const { rerender } = renderSidebar();
+
+    const container = document.querySelector<HTMLElement>('[class*="overflow-y-auto"]')!;
+    const nextActiveLink = screen.getByRole("link", { name: "Segunda página" });
+
+    container.getBoundingClientRect = () => ({ top: 0, bottom: 300, height: 300 }) as DOMRect;
+    Object.defineProperty(container, "clientHeight", { value: 300, configurable: true });
+    nextActiveLink.getBoundingClientRect = () => ({ top: 400, bottom: 440, height: 40 }) as DOMRect;
+
+    usePathnameMock.mockReturnValue("/docs/matematica-discreta/segunda");
+    rerender(
+      <ActiveMobileSheetProvider>
+        <SidebarCollapseProvider>
+          <SidebarGroupsProvider>
+            <Sidebar tree={tree} />
+          </SidebarGroupsProvider>
+        </SidebarCollapseProvider>
+      </ActiveMobileSheetProvider>,
+    );
+
+    expect(container.scrollTop).not.toBe(0);
   });
 
   it("clicking the mobile backdrop closes the open mobile sidebar", async () => {

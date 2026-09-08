@@ -81,6 +81,18 @@ describe("TableOfContents", () => {
     expect(screen.getByText("Nesta página")).toBeInTheDocument();
   });
 
+  it("does nothing when none of the headings exist in the DOM yet", () => {
+    render(<TableOfContents items={items} />);
+
+    flushFrames();
+
+    for (const item of items) {
+      expect(screen.getByRole("link", { name: new RegExp(item.text) })).not.toHaveAttribute(
+        "aria-current",
+      );
+    }
+  });
+
   it("marks the last heading scrolled past (top <= 120) as active", () => {
     mountHeadingsAtTops({ primeira: -400, segunda: 50, terceira: 300 });
     render(<TableOfContents items={items} />);

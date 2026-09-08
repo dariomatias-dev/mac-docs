@@ -16,4 +16,8 @@ describe("getGithubAvatarUrl", () => {
       "https://github.com/octocat.png",
     );
   });
+
+  it("returns undefined when the URL has no username segment to extract", () => {
+    expect(getGithubAvatarUrl("///")).toBeUndefined();
+  });
 });

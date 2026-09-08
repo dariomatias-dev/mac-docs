@@ -36,4 +36,9 @@ describe("extractToc", () => {
     const toc = extractToc("## <Icon /> Questão 7\n");
     expect(toc).toEqual([{ id: "questão-7", text: "Questão 7", depth: 2 }]);
   });
+
+  it("skips a heading that has no text once its JSX tags are stripped", () => {
+    const toc = extractToc("## <Icon />\n");
+    expect(toc).toEqual([]);
+  });
 });

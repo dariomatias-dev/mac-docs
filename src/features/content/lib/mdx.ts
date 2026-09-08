@@ -14,7 +14,7 @@ import type { Doc } from "../content.types";
 const MDX_EXTENSION = ".mdx";
 const SECTION_FILE = "index";
 
-function walk(dir: string): string[] {
+export function walk(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
   return entries.flatMap((entry) => {
@@ -36,7 +36,7 @@ function slugToUrl(slug: string[]): string {
   return slug.length ? `/docs/${slug.join("/")}` : "/docs";
 }
 
-function fileToDoc(filePath: string): Doc {
+export function fileToDoc(filePath: string): Doc {
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(raw);
 

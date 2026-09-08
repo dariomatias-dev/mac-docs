@@ -45,4 +45,25 @@ describe("Dropdown", () => {
     expect(onChange).toHaveBeenCalledWith("b");
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
+
+  it("labels the trigger via a visible label instead of ariaLabel when given one", () => {
+    render(<Dropdown label="Tipo" options={options} value="a" onChange={vi.fn()} />);
+
+    expect(screen.getByText("Tipo")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Tipo" })).toHaveTextContent("Opção A");
+  });
+
+  it("shows the placeholder when the current value matches no option", () => {
+    render(
+      <Dropdown
+        ariaLabel="Escolha"
+        options={options}
+        value="c"
+        onChange={vi.fn()}
+        placeholder="Selecione uma opção"
+      />,
+    );
+
+    expect(screen.getByText("Selecione uma opção")).toBeInTheDocument();
+  });
 });

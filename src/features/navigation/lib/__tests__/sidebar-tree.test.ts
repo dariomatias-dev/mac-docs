@@ -1,6 +1,16 @@
 import { describe, expect, it } from "vitest";
 
-import { getBreadcrumb, getFlatPageList, getSidebarTree } from "../sidebar-tree";
+import { getBreadcrumb, getFlatPageList, getSidebarTree, titleCaseFallback } from "../sidebar-tree";
+
+describe("titleCaseFallback", () => {
+  it("capitalizes each hyphen-separated word", () => {
+    expect(titleCaseFallback("tecnicas-de-demonstracao")).toBe("Tecnicas De Demonstracao");
+  });
+
+  it("leaves a single word capitalized with no hyphens to split on", () => {
+    expect(titleCaseFallback("funcoes")).toBe("Funcoes");
+  });
+});
 
 describe("getSidebarTree", () => {
   it("groups content into courses with titled groups", () => {

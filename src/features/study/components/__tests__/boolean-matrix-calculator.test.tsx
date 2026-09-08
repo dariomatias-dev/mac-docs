@@ -51,6 +51,33 @@ describe("BooleanMatrixCalculator", () => {
     );
   });
 
+  it("toggling a cell in B updates that cell's own accessible label", async () => {
+    render(<BooleanMatrixCalculator />);
+    // B(1,2) is 1 while A(1,2) is 0, so the label is unambiguous between grids.
+    const cell = screen.getByRole("button", {
+      name: "Alternar elemento linha 1, coluna 2, valor atual 1",
+    });
+
+    await userEvent.click(cell);
+
+    expect(cell).toHaveAttribute(
+      "aria-label",
+      "Alternar elemento linha 1, coluna 2, valor atual 0",
+    );
+  });
+
+  it("resizing Matrix B's rows preserves existing cell values and pads with zero", async () => {
+    render(<BooleanMatrixCalculator />);
+
+    const rowSelectors = screen.getAllByRole("button", { name: "linhas" });
+    await userEvent.click(rowSelectors[1]); // opens Matrix B's row-count dropdown
+    await userEvent.click(screen.getByRole("option", { name: "3" }));
+
+    expect(
+      screen.getByRole("button", { name: "Alternar elemento linha 3, coluna 1, valor atual 0" }),
+    ).toBeInTheDocument();
+  });
+
   it("shows an error instead of a result when OR/AND get mismatched orders", async () => {
     render(<BooleanMatrixCalculator />);
 

@@ -4,7 +4,7 @@ import { getAllDocs, type Doc } from "@/features/content";
 
 import type { Crumb, SidebarCourse, SidebarGroup, SidebarPage } from "../navigation.types";
 
-function titleCaseFallback(name: string): string {
+export function titleCaseFallback(name: string): string {
   return name
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MathCopy } from "../math-copy";
 
@@ -12,6 +13,13 @@ function appendKatexDisplay(latex: string, parent: HTMLElement = document.body) 
 }
 
 describe("MathCopy", () => {
+  beforeEach(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      value: { writeText: vi.fn().mockResolvedValue(undefined) },
+      configurable: true,
+    });
+  });
+
   afterEach(() => {
     document.body.innerHTML = "";
   });
@@ -39,6 +47,17 @@ describe("MathCopy", () => {
     await waitFor(() =>
       expect(screen.getAllByRole("button", { name: /copiar latex/i })).toHaveLength(1),
     );
+  });
+
+  it("copies the raw LaTeX to the clipboard when the copy button is clicked", async () => {
+    appendKatexDisplay("A = 1");
+    render(<MathCopy />);
+
+    const button = await screen.findByRole("button", { name: /copiar latex/i });
+    await userEvent.click(button);
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith("A = 1");
+    expect(await screen.findByRole("button", { name: /copiado/i })).toBeInTheDocument();
   });
 
   it("skips a katex-display with no TeX annotation", async () => {
