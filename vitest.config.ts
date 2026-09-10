@@ -21,18 +21,19 @@ export default defineConfig({
       // Floor, not a target: measured against all of src, set to the actual
       // coverage this changeset leaves behind minus a small margin. Its job
       // is to catch a broad regression, not to reward already-good code.
-      // Remaining gaps (a few app/ routes, mdx-renderer.tsx's async Server
-      // Component that Testing Library can't mount, marker components that
-      // return null by design) are a known, separate backlog, not a reason
-      // to accept a *lower* floor. Raise this whenever a change measurably
-      // improves the aggregate (last raised at 95.14/91.81/92.58/96.39
-      // actual). Lowering it requires a reason in the commit message, not
-      // just a failing run.
+      // Remaining gaps (mdx-renderer.tsx's async Server Component that
+      // Testing Library can't mount, registry.ts's lazy next/dynamic
+      // callbacks that only run when actually rendered, marker components
+      // that return null by design) are a known, separate backlog, not a
+      // reason to accept a *lower* floor. Raise this whenever a change
+      // measurably improves the aggregate (last raised at
+      // 96.57/92.68/94.19/97.93 actual). Lowering it requires a reason in
+      // the commit message, not just a failing run.
       thresholds: {
-        statements: 94,
-        branches: 91,
-        functions: 91,
-        lines: 95,
+        statements: 96,
+        branches: 92,
+        functions: 93,
+        lines: 97,
       },
     },
   },
