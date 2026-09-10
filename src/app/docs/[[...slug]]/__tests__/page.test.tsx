@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getDocBySlug } from "@/features/content";
+import { getAllSlugs, getDocBySlug } from "@/features/content";
 
-import DocPage from "../page";
+import DocPage, { generateMetadata, generateStaticParams } from "../page";
 
 import type { ReactElement } from "react";
 
@@ -57,5 +57,34 @@ describe("DocPage", () => {
 
   it("calls notFound for an unknown slug", async () => {
     await expect(renderDocPage(["nao", "existe"])).rejects.toThrow("NEXT_NOT_FOUND");
+  });
+});
+
+describe("generateStaticParams", () => {
+  it("produces one param entry per known slug", () => {
+    const params = generateStaticParams();
+    expect(params).toEqual(getAllSlugs().map((slug) => ({ slug })));
+  });
+});
+
+describe("generateMetadata", () => {
+  it("builds title, description and OG/Twitter metadata for a known slug", async () => {
+    const slug = ["matematica-discreta", "matrizes", "operacoes"];
+    const doc = getDocBySlug(slug)!;
+
+    const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
+
+    expect(metadata.title).toBe(doc.frontmatter.title);
+    expect(metadata.description).toBe(doc.frontmatter.description);
+    expect(metadata.alternates).toEqual({ canonical: doc.url });
+    expect(metadata.openGraph?.title).toBe(doc.frontmatter.title);
+    expect(metadata.twitter).toMatchObject({ card: "summary_large_image" });
+  });
+
+  it("returns empty metadata for an unknown slug", async () => {
+    const metadata = await generateMetadata({
+      params: Promise.resolve({ slug: ["nao", "existe"] }),
+    });
+    expect(metadata).toEqual({});
   });
 });
