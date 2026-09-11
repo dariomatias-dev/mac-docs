@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { getDocBySlug } from "@/features/content";
+import { getFlatPageList } from "@/features/navigation";
 
 import { buildDocView } from "../build-doc-view";
 
@@ -26,11 +27,14 @@ describe("buildDocView", () => {
     }
   });
 
-  it("has no next page for the last page in the flat list", () => {
-    const doc = getDocBySlug(["matematica-discreta", "avaliacoes", "2023.1", "provas", "prova-1"])!;
-    // The last content page in the site; adjust if new content is added after it.
-    const view = buildDocView(doc);
-    expect(view.prev).not.toBeNull();
+  it("has no prev for the first page and no next for the last page in the flat list", () => {
+    const flat = getFlatPageList();
+
+    const first = getDocBySlug(flat[0].slug)!;
+    const last = getDocBySlug(flat[flat.length - 1].slug)!;
+
+    expect(buildDocView(first).prev).toBeNull();
+    expect(buildDocView(last).next).toBeNull();
   });
 
   it("only sets a custom toc label for avaliações pages", () => {
