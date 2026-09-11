@@ -51,6 +51,15 @@ describe("NoteForm", () => {
     expect(textarea).toHaveValue("");
   });
 
+  it("does not submit on Ctrl+Enter when the note is only whitespace", async () => {
+    const onSubmit = vi.fn();
+    render(<NoteForm variant="new" submitLabel="Adicionar" onSubmit={onSubmit} />);
+
+    await userEvent.type(screen.getByRole("textbox"), "   {Control>}{Enter}{/Control}");
+
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
+
   it("submits on Ctrl+Enter", async () => {
     const onSubmit = vi.fn();
     render(<NoteForm variant="new" submitLabel="Adicionar" onSubmit={onSubmit} />);
