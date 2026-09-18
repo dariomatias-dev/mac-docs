@@ -30,6 +30,212 @@ para ter inversa? Ao inverter os pares ordenados de $f$, o resultado só é uma
   para o mesmo $y$, a relação invertida associaria esse $y$ a dois valores
   distintos, violando unicidade.
 
+## Como verificar se uma função é injetora
+
+O procedimento é sempre:
+
+$$
+f(x) = f(y)
+$$
+
+Depois, substitua a fórmula da função e resolva.
+
+- Se obrigatoriamente chegar em:
+
+$$
+x = y
+$$
+
+a função é **injetora**.
+
+- Se for possível encontrar $x \ne y$ com:
+
+$$
+f(x) = f(y)
+$$
+
+a função **não é injetora**.
+
+### Exemplo 1
+
+Considere:
+
+$$
+f(x) = 5x - 2
+$$
+
+Começamos com:
+
+$$
+f(x) = f(y)
+$$
+
+Substituindo:
+
+$$
+5x - 2 = 5y - 2
+$$
+
+$$
+5x = 5y
+$$
+
+$$
+x = y
+$$
+
+Como necessariamente $x = y$, a função é **injetora**.
+
+### Exemplo 2
+
+Considere:
+
+$$
+f(x) = x^{2} + 1
+$$
+
+Começamos:
+
+$$
+f(x) = f(y)
+$$
+
+Substituindo:
+
+$$
+x^{2} + 1 = y^{2} + 1
+$$
+
+$$
+x^{2} = y^{2}
+$$
+
+Isso pode acontecer quando:
+
+$$
+x = y
+$$
+
+ou quando:
+
+$$
+x = -y
+$$
+
+Por exemplo:
+
+$$
+x = 3, \qquad y = -3
+$$
+
+Então:
+
+$$
+f(3) = 10 \qquad \text{e} \qquad f(-3) = 10
+$$
+
+Temos duas entradas diferentes produzindo a mesma saída. Portanto, a função
+**não é injetora**.
+
+### Resumo
+
+$$
+\boxed{f(x) = f(y) \Rightarrow x = y}
+$$
+
+Se essa igualdade valer sempre, ou seja, sem exceção, a função é injetora.
+
+$$
+\boxed{x \ne y \quad \text{e} \quad f(x) = f(y)}
+$$
+
+Se existir algum caso assim, a função não é injetora.
+
+## Como verificar se uma função é sobrejetora
+
+O procedimento é sempre:
+
+1. Escolha um elemento qualquer $y$ do contradomínio $B$.
+2. Resolva a equação $y = f(x)$, isolando $x$ em função de $y$.
+3. Verifique se o $x$ encontrado pertence ao domínio $A$.
+
+- Se isso ocorrer para **todo** $y \in B$, a função é **sobrejetora**.
+- Se existir **algum** $y \in B$ para o qual o $x$ encontrado não pertença a
+  $A$, a função **não é sobrejetora**.
+
+### Exemplo 1
+
+Considere:
+
+$$
+f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = 2x - 5
+$$
+
+Começamos com:
+
+$$
+y = f(x)
+$$
+
+Substituindo:
+
+$$
+y = 2x - 5
+$$
+
+$$
+y + 5 = 2x
+$$
+
+$$
+x = \dfrac{y + 5}{2}
+$$
+
+Como, para qualquer $y \in \mathbb{R}$, o $x$ encontrado também pertence a
+$\mathbb{R}$, a função é **sobrejetora**.
+
+### Exemplo 2
+
+Considere:
+
+$$
+f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = x^{2}
+$$
+
+Começamos com:
+
+$$
+y = f(x)
+$$
+
+Substituindo:
+
+$$
+y = x^{2}
+$$
+
+$$
+x = \pm\sqrt{y}
+$$
+
+Por exemplo, tome $y = -4 \in \mathbb{R}$ (o contradomínio). Não existe
+$x \in \mathbb{R}$ tal que $x^{2} = -4$. Portanto, a função **não é
+sobrejetora**.
+
+### Resumo
+
+$$
+\boxed{\forall y \in B,\ \exists x \in A / y = f(x)}
+$$
+
+Se isso valer para todo $y \in B$, a função é sobrejetora.
+
+$$
+\boxed{\exists y \in B \mid \nexists x \in A / y = f(x)}
+$$
+
+Se existir algum caso assim, a função não é sobrejetora.
+
 Uma consequência direta da definição é que aplicar $f$ e $f^{-1}$ em
 sequência (em qualquer ordem) devolve o valor original:
 
@@ -45,6 +251,34 @@ $$
 
   É exatamente o procedimento usado em cada exercício abaixo.
 </Callout>
+
+## Exemplo
+
+Seja $f : \mathbb{R} \to \mathbb{R}$ dada por $f(x) = 2x + 3$. Vamos calcular
+$f^{-1}(x)$.
+
+**1. Escreva $y = f(x)$:**
+
+$$
+y = 2x + 3
+$$
+
+**2. Isole $x$ em função de $y$:**
+
+$$
+y - 3 = 2x \qquad \Rightarrow \qquad x = \dfrac{y - 3}{2}
+$$
+
+**3. Troque os nomes das variáveis** (o $x$ isolado acima passa a ser escrito
+como função de $x$):
+
+$$
+f^{-1}(x) = \dfrac{x - 3}{2}
+$$
+
+Para conferir, basta aplicar a propriedade
+$f^{-1}(f(x)) = x$: $f(x) = 2x + 3$, logo
+$f^{-1}(f(x)) = \dfrac{(2x + 3) - 3}{2} = \dfrac{2x}{2} = x$. $\blacksquare$
 
 ## Exercícios
 
