@@ -118,7 +118,7 @@ export default async function DocPage({ params }: DocPageProps) {
           <Breadcrumbs items={breadcrumb} />
           <CopyButtons pageText={pageText} sectionText={sectionText} />
         </div>
-        <h1 className="text-foreground mb-2 text-4xl font-bold tracking-tight">
+        <h1 id="top" className="text-foreground mb-2 text-4xl font-bold tracking-tight">
           {doc.frontmatter.title}
         </h1>
         <PageMeta minutes={minutes} prerequisites={prerequisites} />
