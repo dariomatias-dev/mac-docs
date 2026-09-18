@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -66,7 +66,7 @@ describe("MathCopy", () => {
     document.body.appendChild(display);
     render(<MathCopy />);
 
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await act(() => new Promise((resolve) => setTimeout(resolve, 50)));
     expect(screen.queryByRole("button", { name: /copiar latex/i })).toBeNull();
   });
 });

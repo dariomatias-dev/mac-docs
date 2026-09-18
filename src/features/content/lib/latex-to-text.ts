@@ -19,7 +19,11 @@ const BLACKBOARD: Record<string, string> = {
 // Unsupported commands degrade to their literal name via throwOnError:false.
 export function latexToPlainText(latex: string, displayMode = false): string {
   const mathml = katex
-    .renderToString(latex, { output: "mathml", throwOnError: false, displayMode })
+    // Course content is in Portuguese and puts accented words inside \text{}
+    // (e.g. "\text{ e }"), which KaTeX's strict mode warns about by default
+    // since it's not valid LaTeX input encoding; it renders fine regardless,
+    // so silence the warning rather than the accents.
+    .renderToString(latex, { output: "mathml", throwOnError: false, strict: false, displayMode })
     .replace(/<annotation[^>]*>[\s\S]*?<\/annotation>/g, "")
     .replace(
       /<mi mathvariant="double-struck">([A-Z])<\/mi>/g,

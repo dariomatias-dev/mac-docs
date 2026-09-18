@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -60,7 +60,9 @@ describe("SearchDialog", () => {
 
   it("opens in response to the search-open event dispatched elsewhere", async () => {
     render(<SearchDialog />);
-    window.dispatchEvent(new Event(SEARCH_OPEN_EVENT));
+    act(() => {
+      window.dispatchEvent(new Event(SEARCH_OPEN_EVENT));
+    });
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
   });
 
