@@ -13,7 +13,14 @@ import { extractToc } from "@/features/toc";
 // the app layer.
 export function buildDocView(doc: Doc) {
   const breadcrumb = getBreadcrumb(doc.slug);
-  const toc = extractToc(doc.content);
+  const headings = extractToc(doc.content);
+  // The extracted headings start only at the first `##`, so the TOC has no
+  // entry (and highlights nothing) while reading the intro under the H1.
+  // Prepending the page title, pointed at the H1's id, covers that gap.
+  const toc =
+    headings.length > 0
+      ? [{ id: "top", text: "Visão geral", depth: 2 as const }, ...headings]
+      : headings;
 
   const flat = getFlatPageList();
   const currentIndex = flat.findIndex((page) => page.href === doc.url);
