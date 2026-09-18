@@ -22,7 +22,11 @@ describe("DocsError", () => {
   });
 
   it("omits the digest line when the error has none", () => {
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
     render(<DocsError error={new globalThis.Error("boom")} unstable_retry={vi.fn()} />);
     expect(screen.queryByText(/Código:/)).not.toBeInTheDocument();
+
+    consoleError.mockRestore();
   });
 });

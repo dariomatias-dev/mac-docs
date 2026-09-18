@@ -1,10 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/anotacoes" }));
 
 import { HeaderOverflowMenu } from "../header-overflow-menu";
+
+import type { NextRouter } from "next/router";
+
+// next/link only calls preventDefault when it finds a router in context;
+// with none, clicking it falls through to jsdom's real (unimplemented) page
+// navigation. This stub mirrors what Next provides at runtime, so the click
+// behaves like it does in the browser instead of leaking a
+// "Not implemented: navigation" notice into the test output.
+const mockRouter = {
+  push: vi.fn(),
+  replace: vi.fn(),
+  prefetch: vi.fn(() => Promise.resolve()),
+} as unknown as NextRouter;
 
 describe("HeaderOverflowMenu", () => {
   it("starts closed", () => {
@@ -56,7 +70,11 @@ describe("HeaderOverflowMenu", () => {
   });
 
   it("closes after choosing a link", async () => {
-    render(<HeaderOverflowMenu />);
+    render(
+      <RouterContext.Provider value={mockRouter}>
+        <HeaderOverflowMenu />
+      </RouterContext.Provider>,
+    );
     await userEvent.click(screen.getByRole("button", { name: "Mais opções" }));
 
     await userEvent.click(screen.getByRole("menuitem", { name: /contribuidores/i }));
