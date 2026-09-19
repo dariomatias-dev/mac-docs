@@ -19,6 +19,7 @@ describe("mdxComponents", () => {
       "Proof",
       "Question",
       "RegionDiagram",
+      "ScatterGraph",
       "Resolution",
       "StepByStep",
       "Step",

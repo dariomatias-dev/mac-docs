@@ -35,6 +35,9 @@ const Quiz = dynamic(() => import("./components/quiz").then((m) => m.Quiz));
 const RegionDiagram = dynamic(() =>
   import("./components/region-diagram").then((m) => m.RegionDiagram),
 );
+const ScatterGraph = dynamic(() =>
+  import("./components/scatter-graph").then((m) => m.ScatterGraph),
+);
 const SetCalculator = dynamic(() =>
   import("./components/set-calculator").then((m) => m.SetCalculator),
 );
@@ -55,6 +58,7 @@ export const mdxComponents = {
   Proof,
   Question,
   RegionDiagram,
+  ScatterGraph,
   Resolution,
   StepByStep,
   Step,

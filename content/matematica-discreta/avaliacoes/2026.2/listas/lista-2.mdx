@@ -1,0 +1,1165 @@
+---
+title: "Lista 2: Relações e funções"
+description: Lista de exercícios 2 de Matemática Aplicada à Computação (2026.2), com resolução comentada.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/relacoes
+  - /docs/matematica-discreta/funcoes
+---
+
+Lista de exercícios 2 de **Matemática Aplicada à Computação**, Instituto
+Federal da Paraíba, curso de Tecnologia em Análise e Desenvolvimento de
+Sistemas, 1º período, semestre **2026.2**, professor Suemilton Nunes
+Gervázio. Cobre relações binárias (propriedades, ordenação e equivalência) e
+funções (imagem, sobrejeção, injeção, bijeção, composição, paridade,
+monotonicidade, raízes de polinômios e função inversa). Tente cada questão
+sozinho antes de abrir a **resposta**.
+
+## Questão 1
+
+<Question>
+Sejam os conjuntos $A = \{1,2,3\}$ e $B = \{1,3,4,5\}$ de números reais e a
+relação definida por
+
+$$
+R = \{(x, y) \in A \times B\ /\ y = 2x-1\}
+$$
+
+Qual dos gráficos cartesianos seguintes representa a relação $R$?
+
+<div className="not-prose my-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+  <ScatterGraph label="(a)" xMax="3" yMax="5" points="1,1 2,3 3,5" />
+  <ScatterGraph label="(b)" xMax="3" yMax="5" points="1,1 2,2 3,3" />
+  <ScatterGraph label="(c)" xMax="4" yMax="5" points="0,0 2,2 4,4" />
+  <ScatterGraph label="(d)" xMax="4" yMax="5" points="1,1 1,3 3,4 4,2" />
+</div>
+
+<Resolution>
+
+Para cada $x \in A$, calculamos $y = 2x-1$ e conferimos se $y \in B$:
+
+$$
+x=1 \Rightarrow y=1\ (\in B) \qquad x=2 \Rightarrow y=3\ (\in B) \qquad x=3
+\Rightarrow y=5\ (\in B)
+$$
+
+Os três valores caem em $B$, logo
+
+$$
+R = \{(1,1),\ (2,3),\ (3,5)\}
+$$
+
+Esses são exatamente os pontos do gráfico **(a)**. O gráfico (b) traça
+$y=x$, o (c) traça $y=x$ com domínio errado (inclui $x=0 \notin A$), e o (d)
+não é sequer o gráfico de uma relação funcional consistente com $y=2x-1$.
+
+</Resolution>
+
+<Answer>
+a) $R = \{(1,1), (2,3), (3,5)\}$
+</Answer>
+</Question>
+
+## Questão 2
+
+<Question>
+Dado o conjunto $A = \{1,3,8\}$ e as relações sobre $A$ a seguir, indique
+qual alternativa mostra uma relação antissimétrica. Apresentar razões
+segundo as quais as outras relações não são antissimétricas.
+
+a) $R_1 = \{(1,3), (3,1), (8,1)\}$
+
+b) $R_2 = \{(1,8), (8,8), (1,3), (8,1)\}$
+
+c) $R_3 = \{(3,3), (1,8), (8,8), (8,1)\}$
+
+d) $R_4 = \{(8,8), (1,3), (8,1), (1,1)\}$
+
+<Resolution>
+
+Uma relação é antissimétrica quando, para todo par de elementos distintos
+$x \ne y$, não podem existir simultaneamente $(x,y)$ e $(y,x)$ na relação.
+
+$R_1$: contém $(1,3)$ **e** $(3,1)$, com $1 \ne 3$ → viola a antissimetria.
+
+$R_2$: contém $(1,8)$ **e** $(8,1)$, com $1 \ne 8$ → viola a antissimetria.
+
+$R_3$: contém $(1,8)$ **e** $(8,1)$, com $1 \ne 8$ → viola a antissimetria.
+
+$R_4$: os pares com elementos distintos são $(1,3)$ e $(8,1)$; nenhum dos
+pares invertidos, $(3,1)$ ou $(1,8)$, pertence a $R_4$. Os demais pares,
+$(8,8)$ e $(1,1)$, têm $x=y$ e não violam a definição. Logo $R_4$ é
+antissimétrica.
+
+</Resolution>
+
+<Answer>
+d) $R_4$ é antissimétrica. $R_1$, $R_2$ e $R_3$ falham porque cada uma
+contém um par $(x,y)$ e seu inverso $(y,x)$ com $x \ne y$.
+</Answer>
+</Question>
+
+## Questão 3
+
+<Question>
+Considere a relação $R = \{(1,1),(2,2),(3,3),(2,3),(3,2),(1,3),(1,2)\}$ no
+conjunto $A = \{1,2,3\}$. Assim, responda:
+
+a) $R$ é reflexiva?
+
+b) $R$ é transitiva?
+
+c) $R$ é simétrica?
+
+<Resolution>
+
+a) Reflexiva exige $(1,1),(2,2),(3,3) \in R$. Os três pares estão presentes,
+logo $R$ é reflexiva.
+
+b) Transitiva exige que, sempre que $(x,y) \in R$ e $(y,z) \in R$, também
+$(x,z) \in R$. Testando as combinações não triviais:
+
+$$
+(1,2) \text{ e } (2,3) \Rightarrow (1,3) \in R\ \checkmark
+$$
+
+$$
+(1,3) \text{ e } (3,2) \Rightarrow (1,2) \in R\ \checkmark
+$$
+
+$$
+(2,3) \text{ e } (3,2) \Rightarrow (2,2) \in R\ \checkmark
+$$
+
+$$
+(3,2) \text{ e } (2,3) \Rightarrow (3,3) \in R\ \checkmark
+$$
+
+Todas as combinações verificadas fecham dentro de $R$, logo $R$ é
+transitiva.
+
+c) Simétrica exigiria que, para $(1,2) \in R$, também $(2,1) \in R$. Mas
+$(2,1) \notin R$, logo $R$ **não** é simétrica.
+
+</Resolution>
+
+<Answer>
+a) Sim, é reflexiva. b) Sim, é transitiva. c) Não, não é simétrica (falta,
+por exemplo, o par $(2,1)$).
+</Answer>
+</Question>
+
+## Questão 4
+
+<Question>
+Considere $A = \{1, 2, 3\}$ e a relação $R = \{(1,1), (2,2), (3,3), (1,2),
+(2,1)\}$. $R$ é uma relação de equivalência?
+
+<Resolution>
+
+Uma relação de equivalência precisa ser reflexiva, simétrica e transitiva.
+
+**Reflexiva**: $(1,1), (2,2), (3,3) \in R$ ✓
+
+**Simétrica**: o único par não trivial é $(1,2)$, e seu inverso $(2,1)$
+também está em $R$ ✓
+
+**Transitiva**: $(1,2)$ e $(2,1) \Rightarrow (1,1) \in R$ ✓; $(2,1)$ e
+$(1,2) \Rightarrow (2,2) \in R$ ✓; os demais pares são triviais.
+
+As três propriedades se verificam.
+
+</Resolution>
+
+<Answer>
+Sim, $R$ é uma relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 5
+
+<Question>
+No conjunto $A = \{1,2,3\}$, a relação $S = \{(1,1),(2,2),(3,3),(1,2)\}$ é
+uma relação de equivalência?
+
+<Resolution>
+
+$S$ é reflexiva, pois $(1,1),(2,2),(3,3) \in S$.
+
+Porém $(1,2) \in S$ e $(2,1) \notin S$, logo $S$ **não** é simétrica.
+
+Como falha a simetria, $S$ não pode ser relação de equivalência.
+
+</Resolution>
+
+<Answer>
+Não. $S$ é reflexiva, mas não é simétrica (falta o par $(2,1)$), logo não é
+relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 6
+
+<Question>
+Mostre que no conjunto dos números inteiros a relação $R$ definida por $xRy
+\iff 2$ é divisor de $x-y$ é relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva**: $x - x = 0$ e $2 \mid 0$, logo $xRx$ para todo $x \in
+\mathbb{Z}$.
+
+**Simétrica**: se $xRy$, então $2 \mid (x-y)$, ou seja, $x-y = 2k$ para
+algum $k \in \mathbb{Z}$. Logo $y-x = 2(-k)$, com $-k \in \mathbb{Z}$,
+portanto $2 \mid (y-x)$ e $yRx$.
+
+**Transitiva**: se $xRy$ e $yRz$, então $x-y=2k$ e $y-z=2m$, com $k,m \in
+\mathbb{Z}$. Somando,
+
+$$
+x-z = (x-y)+(y-z) = 2k+2m = 2(k+m)
+$$
+
+com $k+m \in \mathbb{Z}$, logo $2 \mid (x-z)$ e $xRz$.
+
+Como $R$ é reflexiva, simétrica e transitiva, $R$ é relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 7
+
+<Question>
+Em $\mathbb{N}^{*}$ a relação definida por $xRy \iff \mathrm{mdc}(x,y) = x$
+é uma relação de ordenação parcial?
+
+<Resolution>
+
+Note que $\mathrm{mdc}(x,y) = x$ é equivalente a dizer que $x$ divide $y$
+($x \mid y$).
+
+**Reflexiva**: $\mathrm{mdc}(x,x) = x$ sempre, logo $xRx$.
+
+**Antissimétrica**: se $xRy$ e $yRx$, então $x \mid y$ e $y \mid x$. Como
+$x,y \in \mathbb{N}^{*}$, isso só é possível se $x=y$.
+
+**Transitiva**: se $xRy$ e $yRz$, então $x \mid y$ e $y \mid z$, logo $x
+\mid z$, ou seja, $\mathrm{mdc}(x,z)=x$ e $xRz$.
+
+</Resolution>
+
+<Answer>
+Sim. É a relação de divisibilidade em $\mathbb{N}^{*}$, que é reflexiva,
+antissimétrica e transitiva — logo é uma relação de ordenação parcial.
+</Answer>
+</Question>
+
+## Questão 8
+
+<Question>
+Em $\mathbb{N}^{*}$ a relação definida por $xRy \iff y = x+1$ é uma relação
+de ordenação parcial?
+
+<Resolution>
+
+Para ser ordenação parcial, $R$ precisa ser reflexiva. Mas $xRx$
+exigiria $x = x+1$, o que é falso para todo $x \in \mathbb{N}^{*}$.
+
+</Resolution>
+
+<Answer>
+Não. $R$ não é reflexiva ($x \ne x+1$), logo não é relação de ordenação
+parcial.
+</Answer>
+</Question>
+
+## Questão 9
+
+<Question>
+No conjunto $\mathbb{N}$ dos números naturais a relação $R$ definida por
+$xRy \iff x \cdot y$ é par é relação de equivalência?
+
+<Resolution>
+
+Para ser equivalência, $R$ precisa ser reflexiva: $xRx \iff x \cdot x =
+x^{2}$ é par. Isso é falso quando $x$ é ímpar, por exemplo $x=1$: $1 \cdot
+1 = 1$, que é ímpar.
+
+</Resolution>
+
+<Answer>
+Não. $R$ não é reflexiva (falha para todo $x$ ímpar, como $x=1$), logo não
+é relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 10
+
+<Question>
+No conjunto dos números inteiros a relação $R$ definida por $xRy \iff x-y$
+é múltiplo de $3$ é uma relação de ordenação parcial?
+
+<Resolution>
+
+$R$ é reflexiva ($x-x=0$, múltiplo de $3$) e transitiva, mas para ser
+ordenação parcial precisa também ser **antissimétrica**.
+
+Tome $x=1$ e $y=4$: $x-y = -3$, múltiplo de $3$, logo $xRy$. E $y-x = 3$,
+também múltiplo de $3$, logo $yRx$. Como $x \ne y$ mas $xRy$ e $yRx$
+simultaneamente, $R$ não é antissimétrica.
+
+</Resolution>
+
+<Answer>
+Não. $R$ é simétrica (é a relação de congruência módulo $3$, uma relação de
+equivalência), não antissimétrica — logo não é ordenação parcial.
+</Answer>
+</Question>
+
+## Questão 11
+
+<Question>
+No conjunto $\mathbb{N}$ dos números naturais a relação $R$ definida por
+$xRy \iff x$ é ímpar é uma relação de ordenação parcial?
+
+<Resolution>
+
+Para ser ordenação parcial, $R$ precisa ser reflexiva, isto é, $xRx$ para
+todo $x$. Mas $xRx \iff x$ é ímpar, o que é falso para todo $x$ par (por
+exemplo, $x=2$).
+
+</Resolution>
+
+<Answer>
+Não. $R$ não é reflexiva (falha para todo $x$ par), logo não é relação de
+ordenação parcial.
+</Answer>
+</Question>
+
+## Questão 12
+
+<Question>
+Em $\mathbb{R}$ a relação definida por $xRy \iff y = x - 1$ é uma relação de
+equivalência?
+
+<Resolution>
+
+$R$ precisa ser reflexiva, isto é, $xRx \iff x = x-1$, o que é falso para
+todo $x \in \mathbb{R}$.
+
+</Resolution>
+
+<Answer>
+Não. $R$ não é reflexiva, logo não é relação de equivalência.
+</Answer>
+</Question>
+
+## Questão 13
+
+<Question>
+Mostre que no conjunto $\mathbb{N}$ dos números naturais a relação $R$
+definida por $xRy \iff 2x + 6y$ é par é uma relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Para quaisquer $x,y \in \mathbb{N}$, $2x$ é sempre par e $6y$ é sempre par;
+a soma de dois números pares é sempre par. Logo $2x+6y$ é par
+**para todo** par $(x,y) \in \mathbb{N} \times \mathbb{N}$, ou seja,
+$R = \mathbb{N} \times \mathbb{N}$.
+
+**Reflexiva**: $xRx$ vale sempre, pois $2x+6x=8x$ é par.
+
+**Simétrica**: se $xRy$ vale sempre, $yRx$ também vale sempre.
+
+**Transitiva**: se $xRy$ e $yRz$ valem sempre, $xRz$ também vale sempre.
+
+Como as três propriedades se verificam trivialmente, $R$ é relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 14
+
+<Question>
+Mostre que no conjunto $\mathbb{N}$ dos números naturais a relação $R$
+definida por $xRy \iff 4x - 2y$ é par é uma relação de equivalência.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Para quaisquer $x,y \in \mathbb{N}$, $4x$ é sempre par e $2y$ é sempre par;
+a diferença de dois números pares é sempre par. Logo $4x-2y$ é par
+**para todo** par $(x,y) \in \mathbb{N} \times \mathbb{N}$, ou seja,
+$R = \mathbb{N} \times \mathbb{N}$.
+
+**Reflexiva**: $xRx$ vale sempre, pois $4x-2x=2x$ é par.
+
+**Simétrica**: se $xRy$ vale sempre, $yRx$ também vale sempre.
+
+**Transitiva**: se $xRy$ e $yRz$ valem sempre, $xRz$ também vale sempre.
+
+Como as três propriedades se verificam trivialmente, $R$ é relação de
+equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 15
+
+<Question>
+Para $f: \mathbb{R} \Rightarrow \mathbb{R}$ dada por $f(x) = 2x^{2} - 9x +
+7$, determine:
+
+a) Qual é a imagem de $-3$?
+
+b) Quais são as pré-imagens de $0$?
+
+<Resolution>
+
+a) Substituindo $x=-3$:
+
+$$
+f(-3) = 2(-3)^{2} - 9(-3) + 7 = 2(9) + 27 + 7 = 18+27+7 = 52
+$$
+
+b) As pré-imagens de $0$ são as raízes de $2x^{2}-9x+7=0$. Pela fórmula de
+Bhaskara:
+
+$$
+x = \frac{9 \pm \sqrt{(-9)^{2} - 4(2)(7)}}{2(2)} = \frac{9 \pm
+\sqrt{81-56}}{4} = \frac{9 \pm 5}{4}
+$$
+
+$$
+x_{1} = \frac{14}{4} = 3{,}5 \qquad x_{2} = \frac{4}{4} = 1
+$$
+
+</Resolution>
+
+<Answer>
+a) $f(-3) = 52$. b) As pré-imagens de $0$ são $x=1$ e $x=3{,}5$.
+</Answer>
+</Question>
+
+## Questão 16
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = 2x$ é sobrejetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Seja $y \in \mathbb{R}$ arbitrário. Tomando $x = \dfrac{y}{2} \in
+\mathbb{R}$, temos
+
+$$
+f(x) = 2 \cdot \frac{y}{2} = y
+$$
+
+Logo, para todo $y \in \mathbb{R}$ existe $x \in \mathbb{R}$ tal que
+$f(x)=y$. Assim, $f$ é sobrejetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 17
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = x - 1$ é sobrejetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Seja $y \in \mathbb{R}$ arbitrário. Tomando $x = y+1 \in \mathbb{R}$, temos
+
+$$
+f(x) = (y+1) - 1 = y
+$$
+
+Logo, para todo $y \in \mathbb{R}$ existe $x \in \mathbb{R}$ tal que
+$f(x)=y$. Assim, $f$ é sobrejetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 18
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = 3x$ é injetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ tais que $f(x_{1}) = f(x_{2})$. Então
+
+$$
+3x_{1} = 3x_{2} \;\Rightarrow\; x_{1} = x_{2}
+$$
+
+Logo, $f(x_{1}) = f(x_{2}) \Rightarrow x_{1} = x_{2}$, ou seja, $f$ é
+injetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 19
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = 5x + 4$ é injetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ tais que $f(x_{1}) = f(x_{2})$. Então
+
+$$
+5x_{1}+4 = 5x_{2}+4 \;\Rightarrow\; 5x_{1} = 5x_{2} \;\Rightarrow\; x_{1} =
+x_{2}
+$$
+
+Logo, $f$ é injetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 20
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = x^{3}$ é bijetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Injetora**: sejam $x_{1}, x_{2} \in \mathbb{R}$ com $f(x_{1}) =
+f(x_{2})$, isto é, $x_{1}^{3} = x_{2}^{3}$. Como a raiz cúbica real é
+única, $x_{1} = x_{2}$.
+
+**Sobrejetora**: seja $y \in \mathbb{R}$ arbitrário. Tomando $x =
+\sqrt[3]{y} \in \mathbb{R}$, temos $f(x) = (\sqrt[3]{y})^{3} = y$.
+
+Sendo injetora e sobrejetora, $f$ é bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 21
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$ definida por
+$f(x) = 3x$ é bijetora.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Injetora**: já demonstrado na Questão 18.
+
+**Sobrejetora**: seja $y \in \mathbb{R}$ arbitrário. Tomando $x =
+\dfrac{y}{3} \in \mathbb{R}$, temos $f(x) = 3 \cdot \dfrac{y}{3} = y$.
+
+Sendo injetora e sobrejetora, $f$ é bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 22 <Badge>Unicamp 2020</Badge>
+
+<Question>
+Sabendo que $x$ é um número real, considere a função $f(x) = ax + 2$
+definida para todo número real $x$. Se $f(f(1)) = 1$, então:
+
+<Alternatives>
+  <Alternative>$a = -1$</Alternative>
+  <Alternative>$a = -\dfrac{1}{2}$</Alternative>
+  <Alternative>$a = \dfrac{1}{2}$</Alternative>
+  <Alternative>$a = 1$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Primeiro calculamos $f(1)$:
+
+$$
+f(1) = a(1) + 2 = a+2
+$$
+
+Agora aplicamos $f$ novamente sobre esse resultado:
+
+$$
+f(f(1)) = f(a+2) = a(a+2) + 2 = a^{2}+2a+2
+$$
+
+Igualando a $1$:
+
+$$
+a^{2}+2a+2 = 1 \;\Rightarrow\; a^{2}+2a+1 = 0 \;\Rightarrow\; (a+1)^{2} = 0
+\;\Rightarrow\; a = -1
+$$
+
+</Resolution>
+
+<Answer>
+a) $a = -1$
+</Answer>
+</Question>
+
+## Questão 23 <Badge>Mackenzie, SP</Badge>
+
+<Question>
+As funções $f(x) = 3 - 4x$ e $g(x) = 3x + m$ são tais que $f(g(x)) =
+g(f(x))$, qualquer que seja $x$ real. O valor de $m$ é:
+
+<Alternatives>
+  <Alternative>$\dfrac{9}{4}$</Alternative>
+  <Alternative>$\dfrac{5}{4}$</Alternative>
+  <Alternative>$-\dfrac{6}{5}$</Alternative>
+  <Alternative>$\dfrac{9}{5}$</Alternative>
+  <Alternative>$-\dfrac{2}{3}$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Calculando as duas composições:
+
+$$
+f(g(x)) = 3 - 4(3x+m) = 3 - 12x - 4m
+$$
+
+$$
+g(f(x)) = 3(3-4x) + m = 9 - 12x + m
+$$
+
+Igualando, o termo $-12x$ cancela dos dois lados:
+
+$$
+3 - 4m = 9 + m \;\Rightarrow\; -5m = 6 \;\Rightarrow\; m = -\frac{6}{5}
+$$
+
+</Resolution>
+
+<Answer>
+c) $m = -\dfrac{6}{5}$
+</Answer>
+</Question>
+
+## Questão 24
+
+<Question>
+Seja $f: \mathbb{R} - \{-2\} \Rightarrow \mathbb{R}$ definida por $f(x) =
+\dfrac{2}{x+2}$, então determine (caso exista) $f^{-1}(x)$.
+
+<Resolution>
+
+Escrevendo $y = f(x)$ e isolando $x$:
+
+$$
+y = \frac{2}{x+2} \;\Rightarrow\; x+2 = \frac{2}{y} \;\Rightarrow\; x =
+\frac{2}{y} - 2 = \frac{2-2y}{y}
+$$
+
+Trocando $y$ por $x$ para escrever a função inversa:
+
+$$
+f^{-1}(x) = \frac{2-2x}{x}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{2-2x}{x},\quad x \ne 0
+$$
+</Answer>
+</Question>
+
+## Questão 25
+
+<Question>
+Seja $f: \mathbb{R} \Rightarrow \mathbb{R}$ uma função definida por $f(x) =
+2x + 1$, então determine (caso exista) $f^{-1}(x)$.
+
+<Resolution>
+
+Escrevendo $y = f(x)$ e isolando $x$:
+
+$$
+y = 2x+1 \;\Rightarrow\; x = \frac{y-1}{2}
+$$
+
+Trocando $y$ por $x$:
+
+$$
+f^{-1}(x) = \frac{x-1}{2}
+$$
+
+</Resolution>
+
+<Answer>
+$$
+f^{-1}(x) = \frac{x-1}{2}
+$$
+</Answer>
+</Question>
+
+## Questão 26
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = 2x^{4} + x^{2} - 1$ é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+f(-x) = 2(-x)^{4} + (-x)^{2} - 1 = 2x^{4} + x^{2} - 1 = f(x)
+$$
+
+Como $f(-x) = f(x)$ para todo $x \in \mathbb{R}$, $f$ é par. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 27
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = 2x + 6$ não é par.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+f(-x) = 2(-x) + 6 = -2x + 6
+$$
+
+Comparando com $f(x) = 2x+6$: para $f$ ser par seria necessário $f(-x) =
+f(x)$ para todo $x$, isto é, $-2x+6 = 2x+6$, o que só vale para $x=0$, não
+para todo $x \in \mathbb{R}$. Logo $f$ não é par. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 28
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = x + x^{3}$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+f(-x) = (-x) + (-x)^{3} = -x - x^{3} = -(x+x^{3}) = -f(x)
+$$
+
+Como $f(-x) = -f(x)$ para todo $x \in \mathbb{R}$, $f$ é ímpar.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 29
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = 1 + x^{3}$ não é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+f(-x) = 1 + (-x)^{3} = 1 - x^{3}
+$$
+
+$$
+-f(x) = -(1+x^{3}) = -1-x^{3}
+$$
+
+Para $f$ ser ímpar seria necessário $f(-x) = -f(x)$ para todo $x$, mas
+$1-x^{3} \ne -1-x^{3}$ (os termos constantes $1$ e $-1$ diferem). Logo $f$
+não é ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 30
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = \dfrac{x^{2}-3}{x^{3}}$ é ímpar.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+$$
+f(-x) = \frac{(-x)^{2}-3}{(-x)^{3}} = \frac{x^{2}-3}{-x^{3}} =
+-\frac{x^{2}-3}{x^{3}} = -f(x)
+$$
+
+Como $f(-x) = -f(x)$ para todo $x$ no domínio, $f$ é ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 31
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = 2x$ é crescente em $\mathbb{R}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ com $x_{1} < x_{2}$. Multiplicando por
+$2 > 0$, a desigualdade se preserva:
+
+$$
+2x_{1} < 2x_{2} \;\Rightarrow\; f(x_{1}) < f(x_{2})
+$$
+
+Assim, $x_{1} < x_{2} \Rightarrow f(x_{1}) < f(x_{2})$ para todo $x_{1},
+x_{2} \in \mathbb{R}$, ou seja, $f$ é crescente. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 32
+
+<Question>
+Mostre que a função $f: \mathbb{R}^{+} \Rightarrow \mathbb{R}^{+}$,
+definida por $f(x) = x^{2}$ é crescente.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}^{+}$ com $x_{1} < x_{2}$. Como ambos são
+não negativos, elevar ao quadrado preserva a desigualdade:
+
+$$
+x_{1}^{2} < x_{2}^{2} \;\Rightarrow\; f(x_{1}) < f(x_{2})
+$$
+
+Assim, $f$ é crescente em $\mathbb{R}^{+}$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 33
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = -x + 2$ é decrescente em $\mathbb{R}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ com $x_{1} < x_{2}$. Multiplicando por
+$-1$, a desigualdade se inverte:
+
+$$
+-x_{1} > -x_{2} \;\Rightarrow\; -x_{1}+2 > -x_{2}+2 \;\Rightarrow\;
+f(x_{1}) > f(x_{2})
+$$
+
+Assim, $x_{1} < x_{2} \Rightarrow f(x_{1}) > f(x_{2})$, ou seja, $f$ é
+decrescente. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 34
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = -3x + 1$ é decrescente em $\mathbb{R}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ com $x_{1} < x_{2}$. Multiplicando por
+$-3 < 0$, a desigualdade se inverte:
+
+$$
+-3x_{1} > -3x_{2} \;\Rightarrow\; -3x_{1}+1 > -3x_{2}+1 \;\Rightarrow\;
+f(x_{1}) > f(x_{2})
+$$
+
+Assim, $f$ é decrescente em $\mathbb{R}$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 35
+
+<Question>
+Sejam $f: \mathbb{R} \Rightarrow \mathbb{R}$ e $g: \mathbb{R} \Rightarrow
+\mathbb{R}$, com $f(x) = x^{2}-2$ e $g(x) = x-6$. Assim, determine
+$f(x)/g(x)$ e o seu domínio.
+
+<Resolution>
+
+$$
+\frac{f(x)}{g(x)} = \frac{x^{2}-2}{x-6}
+$$
+
+A divisão só está definida onde $g(x) \ne 0$, isto é, $x \ne 6$.
+
+</Resolution>
+
+<Answer>
+$$
+\frac{f(x)}{g(x)} = \frac{x^{2}-2}{x-6},\quad \text{domínio: } \mathbb{R} -
+\{6\}
+$$
+</Answer>
+</Question>
+
+## Questão 36
+
+<Question>
+Sejam $f: \mathbb{R} \Rightarrow \mathbb{R}$ e $g: \mathbb{R} \Rightarrow
+\mathbb{R}$, com $f(x) = x - 6$ e $g(x) = 1/x$. Assim, determine $f(x) +
+g(x)$ e o seu domínio.
+
+<Resolution>
+
+$$
+f(x) + g(x) = (x-6) + \frac{1}{x} = \frac{x(x-6)+1}{x} = \frac{x^{2}-6x+1}{x}
+$$
+
+$f$ está definida em todo $\mathbb{R}$, mas $g$ exige $x \ne 0$. Logo o
+domínio da soma é $\mathbb{R} - \{0\}$.
+
+</Resolution>
+
+<Answer>
+$$
+f(x)+g(x) = \frac{x^{2}-6x+1}{x},\quad \text{domínio: } \mathbb{R} - \{0\}
+$$
+</Answer>
+</Question>
+
+## Questão 37
+
+<Question>
+Sabendo que $-3$ é uma das raízes da função polinomial $p(x) = x^{4} + x^{3}
+- 5x^{2} + x - 6$. Assim, quais são as outras raízes?
+
+<Resolution>
+
+Dividindo $p(x)$ por $(x+3)$ (Briot-Ruffini com raiz $-3$):
+
+$$
+\begin{array}{c|ccccc}
+-3 & 1 & 1 & -5 & 1 & -6 \\
+\hline
+ & 1 & -2 & 1 & -2 & 0
+\end{array}
+$$
+
+O quociente é $x^{3} - 2x^{2} + x - 2$. Testando $x=2$:
+
+$$
+2^{3} - 2(2)^{2} + 2 - 2 = 8 - 8 + 2 - 2 = 0\ \checkmark
+$$
+
+Dividindo novamente por $(x-2)$:
+
+$$
+\begin{array}{c|cccc}
+2 & 1 & -2 & 1 & -2 \\
+\hline
+ & 1 & 0 & 1 & 0
+\end{array}
+$$
+
+O quociente final é $x^{2}+1$, cujas raízes são $x = \pm i$.
+
+</Resolution>
+
+<Answer>
+As outras raízes são $x = 2$, $x = i$ e $x = -i$.
+</Answer>
+</Question>
+
+## Questão 38
+
+<Question>
+Considere a função polinomial $p(x) = x^{4} - 3x^{3} + 3x^{2} - 3x + 2$.
+Sabendo que $1$ é raiz dessa função, então determine todas as suas raízes.
+
+<Resolution>
+
+Dividindo $p(x)$ por $(x-1)$ (Briot-Ruffini com raiz $1$):
+
+$$
+\begin{array}{c|ccccc}
+1 & 1 & -3 & 3 & -3 & 2 \\
+\hline
+ & 1 & -2 & 1 & -2 & 0
+\end{array}
+$$
+
+O quociente é $x^{3} - 2x^{2} + x - 2$, o mesmo polinômio da Questão 37.
+Testando $x=2$:
+
+$$
+2^{3} - 2(2)^{2} + 2 - 2 = 0\ \checkmark
+$$
+
+Dividindo por $(x-2)$, sobra $x^{2}+1$, com raízes $x = \pm i$.
+
+</Resolution>
+
+<Answer>
+As raízes de $p(x)$ são $x=1$, $x=2$, $x=i$ e $x=-i$.
+</Answer>
+</Question>
+
+## Questão 39
+
+<Question>
+A função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por $f(x) =
+\dfrac{x - 2x}{x^{3}}$ é ímpar, par ou apenas uma função? Justifique a sua
+resposta.
+
+<Resolution>
+
+Simplificando o numerador, $x - 2x = -x$, logo
+
+$$
+f(x) = \frac{-x}{x^{3}} = -\frac{1}{x^{2}}
+$$
+
+Calculando $f(-x)$:
+
+$$
+f(-x) = -\frac{1}{(-x)^{2}} = -\frac{1}{x^{2}} = f(x)
+$$
+
+</Resolution>
+
+<Answer>
+$f$ é **par**, pois $f(-x) = f(x)$ para todo $x \ne 0$.
+</Answer>
+</Question>
+
+## Questão 40
+
+<Question>
+Mostre que a função $f: \mathbb{R} \Rightarrow \mathbb{R}$, definida por
+$f(x) = -7x + 2$ é decrescente em $\mathbb{R}$.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+Sejam $x_{1}, x_{2} \in \mathbb{R}$ com $x_{1} < x_{2}$. Multiplicando por
+$-7 < 0$, a desigualdade se inverte:
+
+$$
+-7x_{1} > -7x_{2} \;\Rightarrow\; -7x_{1}+2 > -7x_{2}+2 \;\Rightarrow\;
+f(x_{1}) > f(x_{2})
+$$
+
+Assim, $f$ é decrescente em $\mathbb{R}$. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 41
+
+<Question>
+Dada a função $f(x) = 2x + 1$, a função inversa de $f(x)$ é:
+
+<Alternatives>
+  <Alternative>$f^{-1}(x) = \dfrac{x+1}{2}$</Alternative>
+  <Alternative>$f^{-1}(x) = \dfrac{x-1}{2}$</Alternative>
+  <Alternative>$f^{-1}(x) = 2x-1$</Alternative>
+  <Alternative>$f^{-1}(x) = \dfrac{2}{x+1}$</Alternative>
+</Alternatives>
+
+<Resolution>
+
+Escrevendo $y = 2x+1$ e isolando $x$:
+
+$$
+y = 2x+1 \;\Rightarrow\; x = \frac{y-1}{2}
+$$
+
+Trocando $y$ por $x$:
+
+$$
+f^{-1}(x) = \frac{x-1}{2}
+$$
+
+</Resolution>
+
+<Answer>
+b) $f^{-1}(x) = \dfrac{x-1}{2}$
+</Answer>
+</Question>
