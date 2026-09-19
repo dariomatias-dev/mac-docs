@@ -17,6 +17,40 @@ $x = 0$) nunca é [injetora](/docs/matematica-discreta/funcoes/injetora): por
 definição $f(-x) = f(x)$ para $x \ne -x$, ou seja, dois elementos distintos
 do domínio sempre compartilham a mesma imagem.
 
+$$
+\boxed{f(-x) = f(x)}
+$$
+
+Isso significa que, ao trocar $x$ por $-x$, o resultado permanece igual.
+
+### Como verificar
+
+1. Calcule $f(-x)$, substituindo $x$ por $-x$ na fórmula.
+2. Simplifique a expressão obtida.
+3. Compare com $f(x)$: se forem iguais, a função é par.
+
+### Exemplo
+
+Considere:
+
+$$
+f(x) = x^{2} + 4
+$$
+
+Calculando $f(-x)$:
+
+$$
+f(-x) = (-x)^{2} + 4
+$$
+
+Como $(-x)^{2} = x^{2}$:
+
+$$
+f(-x) = x^{2} + 4
+$$
+
+Logo $f(-x) = f(x)$. A função é **par**.
+
 <Exercise>
 Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{2} - 2$
 é par.
@@ -45,6 +79,40 @@ Uma função $f : A \to B$ é ímpar se, e somente se,
 $\forall x \in A,\ f(-x) = -f(x)$. Geometricamente, o gráfico de uma função
 ímpar é **simétrico em relação à origem**: girar o gráfico $180°$ em torno de
 $(0,0)$ devolve o mesmo gráfico.
+
+$$
+\boxed{f(-x) = -f(x)}
+$$
+
+Ao trocar $x$ por $-x$, o resultado deve ser o **oposto** de $f(x)$.
+
+### Como verificar
+
+1. Calcule $f(-x)$, substituindo $x$ por $-x$ na fórmula.
+2. Simplifique a expressão obtida.
+3. Compare com $-f(x)$: se forem iguais, a função é ímpar.
+
+### Exemplo
+
+Considere:
+
+$$
+f(x) = x^{3}
+$$
+
+Calculando $f(-x)$:
+
+$$
+f(-x) = (-x)^{3}
+$$
+
+Como $(-x)^{3} = -x^{3}$:
+
+$$
+f(-x) = -x^{3} = -f(x)
+$$
+
+Logo $f(-x) = -f(x)$. A função é **ímpar**.
 
 <Exercise>
 Mostre que a função $f : \mathbb{R} \to \mathbb{R}$ definida por
@@ -91,6 +159,147 @@ $-f(x) = -1 - x^{3}$, então $f(-x) \ne -f(x)$. Logo $f$ **não** é uma funçã
   logo é **par**, mesmo com uma fórmula que mistura sinais.
 </Callout>
 
+## Potências com −x
+
+Calcular $f(-x)$ sempre passa por elevar $-x$ a alguma potência. O sinal do
+resultado depende apenas da paridade do expoente:
+
+$$
+\boxed{(-x)^{\text{par}} = x^{\text{par}}} \qquad\qquad
+\boxed{(-x)^{\text{ímpar}} = -x^{\text{ímpar}}}
+$$
+
+### Expoente par
+
+O sinal negativo desaparece:
+
+$$
+(-x)^{2} = x^{2}
+$$
+
+$$
+(-x)^{4} = x^{4}
+$$
+
+### Expoente ímpar
+
+O sinal negativo permanece:
+
+$$
+(-x)^{3} = -x^{3}
+$$
+
+$$
+(-x)^{5} = -x^{5}
+$$
+
+### Exemplo
+
+Considere:
+
+$$
+f(x) = x^{4} - 3x^{2} + 5
+$$
+
+Substituindo $x$ por $-x$, cada termo tem expoente par, então nenhum sinal
+muda:
+
+$$
+f(-x) = (-x)^{4} - 3(-x)^{2} + 5 = x^{4} - 3x^{2} + 5
+$$
+
+Logo $f(-x) = f(x)$: a função é **par**.
+
+### Sinais em frações
+
+Quando $-x$ aparece elevado a um expoente ímpar no denominador, o sinal
+negativo pode ser movido para fora da fração. Considere:
+
+$$
+f(x) = \frac{x^{2} - 3}{x^{3}}
+$$
+
+Para calcular $f(-x)$, substituímos **todo** $x$ por $-x$:
+
+$$
+f(-x) = \frac{(-x)^{2} - 3}{(-x)^{3}}
+$$
+
+Aplicando as regras das potências:
+
+$$
+f(-x) = \frac{x^{2} - 3}{-x^{3}}
+$$
+
+O sinal negativo do denominador pode ser colocado na frente da fração:
+
+$$
+f(-x) = -\frac{x^{2} - 3}{x^{3}}
+$$
+
+Como:
+
+$$
+f(x) = \frac{x^{2} - 3}{x^{3}}
+$$
+
+então:
+
+$$
+f(-x) = -f(x)
+$$
+
+**Conclusão:** a função é **ímpar** (o mesmo exercício resolvido acima).
+
+**Regra importante:**
+
+$$
+\boxed{\frac{a}{-b} = -\frac{a}{b}}
+$$
+
+e também:
+
+$$
+\boxed{-\frac{a}{b} = \frac{-a}{b}}
+$$
+
+Por exemplo:
+
+$$
+\frac{x^{2} - 3}{-x^{3}} = -\frac{x^{2} - 3}{x^{3}} = \frac{-x^{2} + 3}{x^{3}}
+$$
+
+As três formas são equivalentes; a do meio é a mais direta para comparar com
+$-f(x)$.
+
+## Par, ímpar ou nenhuma das duas
+
+Depois de calcular e simplificar $f(-x)$, compare o resultado com $f(x)$ e
+com $-f(x)$:
+
+| Resultado         | Classificação          |
+| ----------------- | :---------------------: |
+| $f(-x) = f(x)$     | **Par**                 |
+| $f(-x) = -f(x)$    | **Ímpar**                |
+| Nenhum dos dois   | **Nem par nem ímpar**   |
+
+### Exemplo
+
+Considere:
+
+$$
+f(x) = x^{2} + x
+$$
+
+Calculando $f(-x)$:
+
+$$
+f(-x) = (-x)^{2} + (-x) = x^{2} - x
+$$
+
+Comparando com $f(x) = x^{2} + x$ e com $-f(x) = -x^{2} - x$: nenhum dos dois
+é igual a $f(-x) = x^{2} - x$. Logo $f$ **não é par nem ímpar**.
+
 ## Operações com funções
 
 Sejam $f : D_{f} \to \mathbb{R}$ e $g : D_{g} \to \mathbb{R}$ duas funções reais.
@@ -104,6 +313,134 @@ $$
 (f \cdot g)(x) &= f(x) \cdot g(x), & D_{f \cdot g} &= D_{f} \cap D_{g} \\
 (f / g)(x) &= f(x) / g(x), & D_{f/g} &= \{x \in D_{f} \cap D_{g} / g(x) \ne 0\}
 \end{aligned}
+$$
+
+Considere, nos quatro exemplos abaixo, $f(x) = x + 2$ e $g(x) = x^{2} - 1$,
+ambas com domínio $\mathbb{R}$.
+
+### Soma
+
+$$
+\boxed{(f + g)(x) = f(x) + g(x)}
+$$
+
+Substituindo:
+
+$$
+(f + g)(x) = (x + 2) + (x^{2} - 1)
+$$
+
+Organizando:
+
+$$
+\boxed{(f + g)(x) = x^{2} + x + 1}
+$$
+
+### Subtração
+
+$$
+\boxed{(f - g)(x) = f(x) - g(x)}
+$$
+
+Substituindo:
+
+$$
+(f - g)(x) = (x + 2) - (x^{2} - 1)
+$$
+
+O sinal de menos deve ser distribuído em todo $g(x)$:
+
+$$
+(f - g)(x) = x + 2 - x^{2} + 1
+$$
+
+$$
+\boxed{(f - g)(x) = -x^{2} + x + 3}
+$$
+
+### Multiplicação
+
+$$
+\boxed{(f \cdot g)(x) = f(x) \cdot g(x)}
+$$
+
+$$
+(f \cdot g)(x) = (x + 2)(x^{2} - 1)
+$$
+
+Distribuindo:
+
+$$
+(f \cdot g)(x) = x^{3} - x + 2x^{2} - 2
+$$
+
+Organizando:
+
+$$
+\boxed{(f \cdot g)(x) = x^{3} + 2x^{2} - x - 2}
+$$
+
+### Divisão
+
+$$
+\boxed{\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}}
+$$
+
+$$
+\boxed{\left(\frac{f}{g}\right)(x) = \frac{x + 2}{x^{2} - 1}}
+$$
+
+### Domínio nas operações
+
+Nas operações de **soma, subtração e multiplicação**, usamos os valores que
+pertencem aos dois domínios:
+
+$$
+\boxed{D = D_{f} \cap D_{g}}
+$$
+
+O símbolo $\cap$ significa **interseção**, ou seja, os valores que os dois
+domínios têm em comum. Por exemplo, se $D_{f} = \mathbb{R} - \{0\}$ e
+$D_{g} = \mathbb{R}$, então $D_{f} \cap D_{g} = \mathbb{R} - \{0\}$: o único
+valor excluído é o que já era excluído em $D_{f}$.
+
+### Domínio do quociente
+
+No quociente existe uma regra adicional:
+
+$$
+\boxed{g(x) \ne 0}
+$$
+
+Portanto:
+
+$$
+\boxed{D_{f/g} = \{x \in D_{f} \cap D_{g} \mid g(x) \ne 0\}}
+$$
+
+Considere $f(x) = \dfrac{1}{x}$ e $g(x) = x - 2$. Primeiro,
+$D_{f} = \mathbb{R} - \{0\}$ e $D_{g} = \mathbb{R}$. Para o quociente:
+
+$$
+\frac{f(x)}{g(x)} = \frac{1/x}{x - 2}
+$$
+
+Precisamos excluir:
+
+- $x = 0$, porque $f$ não existe;
+- $x = 2$, porque $g(2) = 0$.
+
+Assim:
+
+$$
+\boxed{D = \mathbb{R} - \{0, 2\}}
+$$
+
+Já no exemplo com $f(x) = x + 2$ e $g(x) = x^{2} - 1$ (acima): como
+$x^{2} - 1 = (x - 1)(x + 1)$, temos $g(x) = 0$ para $x = 1$ e $x = -1$, então:
+
+$$
+D_{f/g} = \mathbb{R} - \{-1, 1\}
 $$
 
 <Exercise>
