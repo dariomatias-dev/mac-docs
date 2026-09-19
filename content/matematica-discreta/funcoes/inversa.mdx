@@ -30,6 +30,91 @@ para ter inversa? Ao inverter os pares ordenados de $f$, o resultado só é uma
   para o mesmo $y$, a relação invertida associaria esse $y$ a dois valores
   distintos, violando unicidade.
 
+## Como verificar se uma função é sobrejetora
+
+O procedimento é sempre:
+
+1. Escolha um elemento qualquer $y$ do contradomínio $B$.
+2. Resolva a equação $y = f(x)$, isolando $x$ em função de $y$.
+3. Verifique se o $x$ encontrado pertence ao domínio $A$.
+
+- Se isso ocorrer para **todo** $y \in B$, a função é **sobrejetora**.
+- Se existir **algum** $y \in B$ para o qual o $x$ encontrado não pertença a
+  $A$, a função **não é sobrejetora**.
+
+### Exemplo 1
+
+Considere:
+
+$$
+f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = 2x - 5
+$$
+
+Começamos com:
+
+$$
+y = f(x)
+$$
+
+Substituindo:
+
+$$
+y = 2x - 5
+$$
+
+$$
+y + 5 = 2x
+$$
+
+$$
+x = \dfrac{y + 5}{2}
+$$
+
+Como, para qualquer $y \in \mathbb{R}$, o $x$ encontrado também pertence a
+$\mathbb{R}$, a função é **sobrejetora**.
+
+### Exemplo 2
+
+Considere:
+
+$$
+f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = x^{2}
+$$
+
+Começamos com:
+
+$$
+y = f(x)
+$$
+
+Substituindo:
+
+$$
+y = x^{2}
+$$
+
+$$
+x = \pm\sqrt{y}
+$$
+
+Por exemplo, tome $y = -4 \in \mathbb{R}$ (o contradomínio). Não existe
+$x \in \mathbb{R}$ tal que $x^{2} = -4$. Portanto, a função **não é
+sobrejetora**.
+
+### Resumo
+
+$$
+\boxed{\forall y \in B,\ \exists x \in A / y = f(x)}
+$$
+
+Se isso valer para todo $y \in B$, a função é sobrejetora.
+
+$$
+\boxed{\exists y \in B \mid \nexists x \in A / y = f(x)}
+$$
+
+Se existir algum caso assim, a função não é sobrejetora.
+
 ## Como verificar se uma função é injetora
 
 O procedimento é sempre:
@@ -150,91 +235,6 @@ $$
 $$
 
 Se existir algum caso assim, a função não é injetora.
-
-## Como verificar se uma função é sobrejetora
-
-O procedimento é sempre:
-
-1. Escolha um elemento qualquer $y$ do contradomínio $B$.
-2. Resolva a equação $y = f(x)$, isolando $x$ em função de $y$.
-3. Verifique se o $x$ encontrado pertence ao domínio $A$.
-
-- Se isso ocorrer para **todo** $y \in B$, a função é **sobrejetora**.
-- Se existir **algum** $y \in B$ para o qual o $x$ encontrado não pertença a
-  $A$, a função **não é sobrejetora**.
-
-### Exemplo 1
-
-Considere:
-
-$$
-f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = 2x - 5
-$$
-
-Começamos com:
-
-$$
-y = f(x)
-$$
-
-Substituindo:
-
-$$
-y = 2x - 5
-$$
-
-$$
-y + 5 = 2x
-$$
-
-$$
-x = \dfrac{y + 5}{2}
-$$
-
-Como, para qualquer $y \in \mathbb{R}$, o $x$ encontrado também pertence a
-$\mathbb{R}$, a função é **sobrejetora**.
-
-### Exemplo 2
-
-Considere:
-
-$$
-f : \mathbb{R} \to \mathbb{R}, \qquad f(x) = x^{2}
-$$
-
-Começamos com:
-
-$$
-y = f(x)
-$$
-
-Substituindo:
-
-$$
-y = x^{2}
-$$
-
-$$
-x = \pm\sqrt{y}
-$$
-
-Por exemplo, tome $y = -4 \in \mathbb{R}$ (o contradomínio). Não existe
-$x \in \mathbb{R}$ tal que $x^{2} = -4$. Portanto, a função **não é
-sobrejetora**.
-
-### Resumo
-
-$$
-\boxed{\forall y \in B,\ \exists x \in A / y = f(x)}
-$$
-
-Se isso valer para todo $y \in B$, a função é sobrejetora.
-
-$$
-\boxed{\exists y \in B \mid \nexists x \in A / y = f(x)}
-$$
-
-Se existir algum caso assim, a função não é sobrejetora.
 
 Uma consequência direta da definição é que aplicar $f$ e $f^{-1}$ em
 sequência (em qualquer ordem) devolve o valor original:
