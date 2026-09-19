@@ -9,6 +9,7 @@ export { Proof } from "./components/proof";
 export { Question } from "./components/question";
 export { Quiz, Option } from "./components/quiz";
 export { RegionDiagram } from "./components/region-diagram";
+export { ScatterGraph } from "./components/scatter-graph";
 export { Resolution } from "./components/resolution";
 export { StepByStep, Step } from "./components/step-by-step";
 export { YouTube } from "./components/youtube";
