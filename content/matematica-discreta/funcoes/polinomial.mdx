@@ -22,14 +22,45 @@ Dizemos que $p$ tem grau $n$. Se $p(\alpha) = 0$, então dizemos que $\alpha$ é
 1. $p(x) = x^{3} - 2x + 1$ &nbsp; (grau $3$)
 2. $p(x) = x^{7} - \sqrt{2x - 9}$ &nbsp; (grau $7$)
 
+## Raiz de um polinômio
+
+$$
+\boxed{p(\alpha) = 0 \iff \alpha \text{ é raiz de } p}
+$$
+
+Ou seja, para verificar se um número é raiz, basta calcular $p$ nesse número
+e conferir se o resultado é $0$.
+
+### Exemplo
+
+Considere:
+
+$$
+p(x) = x^{2} - 5x + 6
+$$
+
+Testando $x = 2$:
+
+$$
+p(2) = 2^{2} - 5(2) + 6 = 4 - 10 + 6 = 0
+$$
+
+Como $p(2) = 0$, $2$ é raiz de $p$.
+
+<Callout type="tip" title="O valor testado pode ser qualquer real">
+  Não há restrição de sinal: uma raiz pode ser positiva, negativa ou zero.
+</Callout>
+
 ## O algoritmo da divisão de Euclides
 
 Dadas duas funções polinomiais $p$ e $d$, com $d$ não nula, existem únicas
 funções polinomiais $q$ e $r$ tais que:
 
 $$
-p(x) = q(x) \cdot d(x) + r(x), \quad \forall x \in \mathbb{R}
+\boxed{p(x) = q(x) \cdot d(x) + r(x)}, \quad \forall x \in \mathbb{R}
 $$
+
+com $p$ o dividendo, $d$ o divisor, $q$ o quociente e $r$ o resto.
 
 Exemplos:
 
@@ -54,6 +85,23 @@ $r(x)$ tem grau $0$, ou seja, é uma constante $r$.
     $\blacksquare$
   </Step>
 </StepByStep>
+
+### Exemplo
+
+Considere:
+
+$$
+p(x) = x^{3} - 2x + 5
+$$
+
+Para encontrar o resto da divisão de $p(x)$ por $(x - 2)$, não é preciso
+fazer a divisão completa: basta calcular $p(2)$.
+
+$$
+p(2) = 2^{3} - 2(2) + 5 = 8 - 4 + 5 = 9
+$$
+
+Logo o resto é $9$.
 
 Uma consequência imediata: como $\alpha$ é raiz de $p$ quando $p(\alpha) = 0$,
 o **teorema do fator** diz que
@@ -101,6 +149,75 @@ coeficientes de $p$.
     Como $r = 0$, confirma-se que $3$ é raiz de $p$ (teorema do fator).
   </Step>
 </StepByStep>
+
+## Como encontrar as raízes de um polinômio
+
+Juntando o teorema do fator com o dispositivo de Briot-Ruffini, o processo
+geralmente segue estes passos:
+
+1. Escolha um valor $a$ para testar. Se procuramos raízes inteiras, uma boa
+   lista de candidatos são os divisores do termo independente $a_{0}$.
+2. Calcule $p(a)$. Se $p(a) = 0$, então $a$ é raiz (e $(x - a)$ é fator).
+3. Use Briot-Ruffini para dividir $p(x)$ por $(x - a)$ e obter um polinômio
+   de grau menor.
+4. Repita o processo no polinômio obtido, até restar um polinômio de grau
+   $2$ (que pode ser resolvido com a fórmula de Bhaskara) ou grau $1$.
+
+$$
+\boxed{\text{testar } a \;\rightarrow\; p(a) = 0 \;\rightarrow\; (x - a) \text{ é fator}}
+$$
+
+$$
+\boxed{\rightarrow\; \text{Briot-Ruffini} \;\rightarrow\; \text{novo polinômio}}
+$$
+
+### Exemplo
+
+Considere:
+
+$$
+p(x) = x^{3} - 6x^{2} + 11x - 6
+$$
+
+Os divisores do termo independente $-6$ são $\pm1, \pm2, \pm3, \pm6$: são os
+candidatos a raiz inteira. Testando $x = 1$:
+
+$$
+p(1) = 1 - 6 + 11 - 6 = 0
+$$
+
+Logo $1$ é raiz, e pelo teorema do fator, $(x - 1)$ é fator de $p(x)$. Usando
+Briot-Ruffini para dividir $p(x)$ por $(x - 1)$ (coeficientes
+$1, -6, 11, -6$):
+
+$$
+1 \times 1 = 1, \quad -6 + 1 = -5
+$$
+
+$$
+-5 \times 1 = -5, \quad 11 + (-5) = 6
+$$
+
+$$
+6 \times 1 = 6, \quad -6 + 6 = 0
+$$
+
+O quociente é $x^{2} - 5x + 6$ e o resto é $0$. Fatorando o quociente
+($\Delta = 25 - 24 = 1$, $x = \frac{5 \pm 1}{2}$):
+
+$$
+x^{2} - 5x + 6 = (x - 2)(x - 3)
+$$
+
+Logo:
+
+$$
+p(x) = (x - 1)(x - 2)(x - 3)
+$$
+
+$$
+\boxed{x = 1, \quad x = 2, \quad x = 3}
+$$
 
 ## Exercícios
 
