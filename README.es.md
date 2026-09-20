@@ -15,8 +15,10 @@
 </p>
 
 <p align="center">
-<strong>Idioma:</strong> <a href="README.md">English</a> | Español | <a href="README.pt-BR.md">Português (Brasil)</a>
+<a href="README.md">English</a> · <strong>Español</strong> · <a href="README.pt-BR.md">Português (Brasil)</a>
 </p>
+
+<h1 align="center">MacDocs</h1>
 
 <p align="center">
 <img src="public/svgs/logo.svg" alt="Logo de MAC Docs" width="700">
@@ -25,7 +27,9 @@
 <p align="center">
 Documentación interactiva de Matemática Aplicada a la Computación, generada a partir de MDX con fórmulas en LaTeX, búsqueda de texto completo y componentes de estudio interactivos.
 <br>
-<a href="#sobre-el-proyecto"><strong>Explora la documentación »</strong></a>
+<a href="#sobre-el-proyecto"><strong>Explora la documentación »</strong></a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Reportar Bug</a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Solicitar Funcionalidad</a>
 </p>
 
 ## Índice
@@ -33,13 +37,14 @@ Documentación interactiva de Matemática Aplicada a la Computación, generada a
 - [Sobre el Proyecto](#sobre-el-proyecto)
 - [Preview](#preview)
 - [Funcionalidades](#funcionalidades)
+- [Contenido](#contenido)
 - [Tecnologías](#tecnologías)
+- [Arquitectura](#arquitectura)
 - [Primeros Pasos](#primeros-pasos)
 - [Scripts](#scripts)
-- [Contenido](#contenido)
-- [Arquitectura](#arquitectura)
 - [Pruebas](#pruebas)
 - [Despliegue](#despliegue)
+- [Documentación](#documentación)
 - [Contribuir](#contribuir)
 - [Seguridad](#seguridad)
 - [Licencia](#licencia)
@@ -86,6 +91,18 @@ anterior/siguiente y una entrada en el buscador.
 - SEO: sitemap, robots, Open Graph, URLs canónicas y 404 personalizado.
 - Cabeceras de seguridad y Content Security Policy.
 
+## Contenido
+
+El contenido vive en [`content/`](content/), organizado en tres niveles:
+
+```
+content/<curso>/<grupo>/<página>.mdx
+```
+
+Crear un archivo `.mdx` genera automáticamente ruta, elemento en la barra
+lateral, breadcrumb, navegación anterior/siguiente y entrada en el buscador.
+Ver [docs/authoring.es.md](docs/authoring.es.md).
+
 ## Tecnologías
 
 - Next.js (App Router, Turbopack), React y TypeScript en modo strict.
@@ -95,6 +112,14 @@ anterior/siguiente y una entrada en el buscador.
 - `next-themes`, `lucide-react` y `zod`.
 - Vitest con Testing Library, y Playwright con axe.
 - ESLint, Prettier, Husky, commitlint y GitHub Actions.
+
+## Arquitectura
+
+El código está organizado feature first en `src/features/*`, con solo lo
+genuinamente compartido en `src/shared/*`. Los imports entre features solo se
+permiten a través del barril `index.ts` de cada feature, garantizado por
+`import/no-restricted-paths` de `eslint.config.mjs`. Ver
+[docs/architecture.es.md](docs/architecture.es.md).
 
 ## Primeros Pasos
 
@@ -118,29 +143,13 @@ pnpm run dev                  # http://localhost:3000
 | `pnpm run test:run`  | Vitest (una sola vez)        |
 | `pnpm run test:e2e`  | Playwright (smoke y axe)     |
 
-## Contenido
-
-El contenido vive en [`content/`](content/), organizado en tres niveles:
-
-```
-content/<curso>/<grupo>/<página>.mdx
-```
-
-Crear un archivo `.mdx` genera automáticamente ruta, elemento en la barra
-lateral, breadcrumb, navegación anterior/siguiente y entrada en el buscador.
-Ver [docs/authoring.es.md](docs/authoring.es.md).
-
-## Arquitectura
-
-El código está organizado feature first en `src/features/*`, con solo lo
-genuinamente compartido en `src/shared/*`. Ver
-[docs/architecture.es.md](docs/architecture.es.md).
-
 ## Pruebas
 
 - Pruebas unitarias y de componentes con Vitest y Testing Library
   (`pnpm run test:run`).
 - Pruebas de smoke y accesibilidad con Playwright y axe (`pnpm run test:e2e`).
+- El gate local es `pnpm run verify`, los mismos checks que ejecuta el CI de
+  GitHub Actions antes del merge.
 
 ## Despliegue
 
@@ -149,11 +158,26 @@ producción al hacer merge a `main`. Vercel ejecuta `next build`, mientras que
 el [CI de GitHub Actions](.github/workflows/ci.yml) ejecuta los gates de
 calidad (formato, lint, tipos, enlaces internos, tests y e2e) que bloquean el
 merge. La auditoría de dependencias también corre, pero solo como reporte no
-bloqueante. Ver [Contribuir](#contribuir). Los releases se versionan
+bloqueante. Los releases se versionan
 automáticamente: [release-please](https://github.com/googleapis/release-please)
 mantiene un PR permanente con el [`CHANGELOG.md`](CHANGELOG.md) y el bump de
 versión de `package.json`, cortando un release etiquetado en GitHub cuando
 se hace merge.
+
+## Documentación
+
+| Documento                                                | Cubre                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------- |
+| [docs/architecture.es.md](docs/architecture.es.md)       | Organización feature first y las reglas de import entre capas |
+| [docs/authoring.es.md](docs/authoring.es.md)             | Escritura y estructuración de contenido MDX                   |
+| [docs/components.es.md](docs/components.es.md)           | Los componentes de estudio interactivos y cómo usarlos        |
+| [docs/testing.es.md](docs/testing.es.md)                 | Tipos de prueba, herramientas y el gate local                 |
+| [docs/ci.es.md](docs/ci.es.md)                           | El pipeline de GitHub Actions y qué bloquea un merge          |
+| [docs/performance.es.md](docs/performance.es.md)         | Presupuestos de rendimiento y cómo se verifican               |
+| [docs/dependencies.es.md](docs/dependencies.es.md)       | Política de dependencias y proceso de actualización           |
+| [docs/contributing.es.md](docs/contributing.es.md)       | Setup, flujo de trabajo y convenciones de commit              |
+| [docs/security.es.md](docs/security.es.md)               | Cómo reportar una vulnerabilidad                              |
+| [docs/code_of_conduct.es.md](docs/code_of_conduct.es.md) | Comportamiento esperado en los espacios del proyecto          |
 
 ## Contribuir
 

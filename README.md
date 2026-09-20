@@ -15,8 +15,10 @@
 </p>
 
 <p align="center">
-<strong>Language:</strong> English | <a href="README.es.md">Español</a> | <a href="README.pt-BR.md">Português (Brasil)</a>
+<strong>English</strong> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a>
 </p>
+
+<h1 align="center">MacDocs</h1>
 
 <p align="center">
 <img src="public/svgs/logo.svg" alt="MAC Docs logo" width="700">
@@ -25,7 +27,9 @@
 <p align="center">
 Interactive documentation for Applied Mathematics for Computing, rendered from MDX with LaTeX formulas, full text search, and interactive study components.
 <br>
-<a href="#about-the-project"><strong>Explore the documentation »</strong></a>
+<a href="#about-the-project"><strong>Explore the docs »</strong></a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Report Bug</a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Request Feature</a>
 </p>
 
 ## Table of Contents
@@ -33,13 +37,14 @@ Interactive documentation for Applied Mathematics for Computing, rendered from M
 - [About the Project](#about-the-project)
 - [Preview](#preview)
 - [Features](#features)
+- [Content](#content)
 - [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
 - [Getting Started](#getting-started)
 - [Scripts](#scripts)
-- [Content](#content)
-- [Architecture](#architecture)
 - [Testing](#testing)
 - [Deployment](#deployment)
+- [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Security](#security)
 - [License](#license)
@@ -82,6 +87,18 @@ breadcrumb, previous/next navigation, and a search index entry.
 - SEO: sitemap, robots, Open Graph, canonical URLs, and a custom 404.
 - Security headers and a Content Security Policy.
 
+## Content
+
+Content lives in [`content/`](content/), organized in three levels:
+
+```
+content/<course>/<group>/<page>.mdx
+```
+
+Creating a `.mdx` file automatically generates its route, sidebar item,
+breadcrumb, previous/next navigation, and search entry. See
+[docs/authoring.md](docs/authoring.md).
+
 ## Tech Stack
 
 - Next.js (App Router, Turbopack), React, and TypeScript in strict mode.
@@ -91,6 +108,14 @@ breadcrumb, previous/next navigation, and a search index entry.
 - `next-themes`, `lucide-react`, and `zod`.
 - Vitest with Testing Library, and Playwright with axe.
 - ESLint, Prettier, Husky, commitlint, and GitHub Actions.
+
+## Architecture
+
+The codebase is organized feature first under `src/features/*`, with only the
+genuinely shared code in `src/shared/*`. Cross-feature imports are only
+allowed through a feature's `index.ts` barrel, enforced by
+`eslint.config.mjs`'s `import/no-restricted-paths`. See
+[docs/architecture.md](docs/architecture.md).
 
 ## Getting Started
 
@@ -114,28 +139,12 @@ pnpm run dev                  # http://localhost:3000
 | `pnpm run test:run`  | Vitest (single run)        |
 | `pnpm run test:e2e`  | Playwright (smoke and axe) |
 
-## Content
-
-Content lives in [`content/`](content/), organized in three levels:
-
-```
-content/<course>/<group>/<page>.mdx
-```
-
-Creating a `.mdx` file automatically generates its route, sidebar item,
-breadcrumb, previous/next navigation, and search entry. See
-[docs/authoring.md](docs/authoring.md).
-
-## Architecture
-
-The codebase is organized feature first under `src/features/*`, with only the
-genuinely shared code in `src/shared/*`. See
-[docs/architecture.md](docs/architecture.md).
-
 ## Testing
 
 - Unit and component tests with Vitest and Testing Library (`pnpm run test:run`).
 - Smoke and accessibility tests with Playwright and axe (`pnpm run test:e2e`).
+- The local gate is `pnpm run verify`, the same checks GitHub Actions CI runs
+  before a merge.
 
 ## Deployment
 
@@ -143,12 +152,26 @@ Deployment runs on Vercel, with an automatic preview per pull request and
 production on merge to `main`. Vercel runs `next build`, while the
 [GitHub Actions CI](.github/workflows/ci.yml) runs the quality gates (format,
 lint, types, internal links, tests, and e2e) that block the merge.
-Dependency auditing runs too, but only as a non-blocking report. See
-[Contributing](#contributing). Releases are versioned automatically:
-[release-please](https://github.com/googleapis/release-please) keeps a
-standing pull request with [`CHANGELOG.md`](CHANGELOG.md) and the
+Dependency auditing runs too, but only as a non-blocking report. Releases are
+versioned automatically: [release-please](https://github.com/googleapis/release-please)
+keeps a standing pull request with [`CHANGELOG.md`](CHANGELOG.md) and the
 `package.json` version bump, cutting a tagged GitHub release when it's
 merged.
+
+## Documentation
+
+| Document                                           | Covers                                                   |
+| -------------------------------------------------- | -------------------------------------------------------- |
+| [docs/architecture.md](docs/architecture.md)       | Feature-first layout and the import rules between layers |
+| [docs/authoring.md](docs/authoring.md)             | Writing and structuring MDX content                      |
+| [docs/components.md](docs/components.md)           | The interactive study components and how to use them     |
+| [docs/testing.md](docs/testing.md)                 | Test types, tools, and the local gate                    |
+| [docs/ci.md](docs/ci.md)                           | The GitHub Actions pipeline and what blocks a merge      |
+| [docs/performance.md](docs/performance.md)         | Performance budgets and how they're checked              |
+| [docs/dependencies.md](docs/dependencies.md)       | Dependency policy and update process                     |
+| [docs/contributing.md](docs/contributing.md)       | Setup, workflow, and commit conventions                  |
+| [docs/security.md](docs/security.md)               | How to report a vulnerability                            |
+| [docs/code_of_conduct.md](docs/code_of_conduct.md) | Expected behavior in project spaces                      |
 
 ## Contributing
 

@@ -15,8 +15,10 @@
 </p>
 
 <p align="center">
-<strong>Idioma:</strong> <a href="README.md">English</a> | <a href="README.es.md">Español</a> | Português (Brasil)
+<a href="README.md">English</a> · <a href="README.es.md">Español</a> · <strong>Português (Brasil)</strong>
 </p>
+
+<h1 align="center">MacDocs</h1>
 
 <p align="center">
 <img src="public/svgs/logo.svg" alt="Logo do MAC Docs" width="700">
@@ -25,7 +27,9 @@
 <p align="center">
 Documentação interativa de Matemática Aplicada à Computação, renderizada a partir de MDX com fórmulas em LaTeX, busca full text e componentes de estudo interativos.
 <br>
-<a href="#sobre-o-projeto"><strong>Explore a documentação »</strong></a>
+<a href="#sobre-o-projeto"><strong>Explore a documentação »</strong></a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Reportar Bug</a> ·
+<a href="https://github.com/dariomatias-dev/mac-docs/issues">Sugerir Funcionalidade</a>
 </p>
 
 ## Índice
@@ -33,13 +37,14 @@ Documentação interativa de Matemática Aplicada à Computação, renderizada a
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Preview](#preview)
 - [Funcionalidades](#funcionalidades)
+- [Conteúdo](#conteúdo)
 - [Tecnologias](#tecnologias)
+- [Arquitetura](#arquitetura)
 - [Começando](#começando)
 - [Scripts](#scripts)
-- [Conteúdo](#conteúdo)
-- [Arquitetura](#arquitetura)
 - [Testes](#testes)
 - [Deploy](#deploy)
+- [Documentação](#documentação)
 - [Como contribuir](#como-contribuir)
 - [Segurança](#segurança)
 - [Licença](#licença)
@@ -85,6 +90,18 @@ busca.
 - SEO: sitemap, robots, Open Graph, URLs canônicas e 404 personalizado.
 - Cabeçalhos de segurança e Content Security Policy.
 
+## Conteúdo
+
+O conteúdo vive em [`content/`](content/), organizado em três níveis:
+
+```
+content/<curso>/<grupo>/<página>.mdx
+```
+
+Criar um arquivo `.mdx` gera automaticamente rota, item na sidebar, breadcrumb,
+navegação anterior/próximo e entrada na busca. Veja
+[docs/authoring.pt-BR.md](docs/authoring.pt-BR.md).
+
 ## Tecnologias
 
 - Next.js (App Router, Turbopack), React e TypeScript em modo strict.
@@ -94,6 +111,14 @@ busca.
 - `next-themes`, `lucide-react` e `zod`.
 - Vitest com Testing Library, e Playwright com axe.
 - ESLint, Prettier, Husky, commitlint e GitHub Actions.
+
+## Arquitetura
+
+O código é organizado feature first em `src/features/*`, com apenas o
+genuinamente compartilhado em `src/shared/*`. Imports entre features só são
+permitidos pelo barril `index.ts` de cada feature, garantido pelo
+`import/no-restricted-paths` do `eslint.config.mjs`. Veja
+[docs/architecture.pt-BR.md](docs/architecture.pt-BR.md).
 
 ## Começando
 
@@ -117,29 +142,13 @@ pnpm run dev                  # http://localhost:3000
 | `pnpm run test:run`  | Vitest (uma vez)            |
 | `pnpm run test:e2e`  | Playwright (smoke e axe)    |
 
-## Conteúdo
-
-O conteúdo vive em [`content/`](content/), organizado em três níveis:
-
-```
-content/<curso>/<grupo>/<página>.mdx
-```
-
-Criar um arquivo `.mdx` gera automaticamente rota, item na sidebar, breadcrumb,
-navegação anterior/próximo e entrada na busca. Veja
-[docs/authoring.pt-BR.md](docs/authoring.pt-BR.md).
-
-## Arquitetura
-
-O código é organizado feature first em `src/features/*`, com apenas o
-genuinamente compartilhado em `src/shared/*`. Veja
-[docs/architecture.pt-BR.md](docs/architecture.pt-BR.md).
-
 ## Testes
 
 - Testes de unidade e componente com Vitest e Testing Library
   (`pnpm run test:run`).
 - Testes de smoke e acessibilidade com Playwright e axe (`pnpm run test:e2e`).
+- O gate local é `pnpm run verify`, os mesmos checks que o CI do GitHub
+  Actions roda antes do merge.
 
 ## Deploy
 
@@ -148,12 +157,26 @@ merge para `main`. A Vercel roda `next build`, enquanto o
 [CI do GitHub Actions](.github/workflows/ci.yml) roda os gates de qualidade
 (format, lint, tipos, links internos, testes e e2e) que barram o merge. A
 auditoria de dependências também roda, mas só como relatório não-bloqueante.
-Veja [Como contribuir](#como-contribuir). Releases são versionados
-automaticamente: o
+Releases são versionados automaticamente: o
 [release-please](https://github.com/googleapis/release-please) mantém um PR
 permanente com o [`CHANGELOG.md`](CHANGELOG.md) e o bump de versão do
 `package.json`, cortando uma release taggeada no GitHub quando ele é
 mergeado.
+
+## Documentação
+
+| Documento                                                      | Cobre                                                         |
+| -------------------------------------------------------------- | ------------------------------------------------------------- |
+| [docs/architecture.pt-BR.md](docs/architecture.pt-BR.md)       | Organização feature first e as regras de import entre camadas |
+| [docs/authoring.pt-BR.md](docs/authoring.pt-BR.md)             | Escrita e estruturação de conteúdo MDX                        |
+| [docs/components.pt-BR.md](docs/components.pt-BR.md)           | Os componentes de estudo interativos e como usá-los           |
+| [docs/testing.pt-BR.md](docs/testing.pt-BR.md)                 | Tipos de teste, ferramentas e o gate local                    |
+| [docs/ci.pt-BR.md](docs/ci.pt-BR.md)                           | O pipeline do GitHub Actions e o que barra um merge           |
+| [docs/performance.pt-BR.md](docs/performance.pt-BR.md)         | Orçamentos de performance e como são checados                 |
+| [docs/dependencies.pt-BR.md](docs/dependencies.pt-BR.md)       | Política de dependências e processo de atualização            |
+| [docs/contributing.pt-BR.md](docs/contributing.pt-BR.md)       | Setup, fluxo de trabalho e convenções de commit               |
+| [docs/security.pt-BR.md](docs/security.pt-BR.md)               | Como relatar uma vulnerabilidade                              |
+| [docs/code_of_conduct.pt-BR.md](docs/code_of_conduct.pt-BR.md) | Comportamento esperado nos espaços do projeto                 |
 
 ## Como contribuir
 
