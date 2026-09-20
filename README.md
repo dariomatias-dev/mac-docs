@@ -1,35 +1,43 @@
 <br>
 <div align="center">
-<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
-<img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
-<img src="https://img.shields.io/badge/MDX-1B1F24?style=for-the-badge&logo=mdx&logoColor=white" alt="MDX">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/MDX-1B1F24?style=for-the-badge&logo=mdx&logoColor=white" alt="MDX">
 </div>
 <br>
 
 <p align="center">
-<a href="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml"><img src="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
-<a href="https://codecov.io/gh/dariomatias-dev/mac-docs"><img src="https://img.shields.io/codecov/c/github/dariomatias-dev/mac-docs" alt="Coverage"></a>
-<a href="LICENSE"><img src="https://img.shields.io/github/license/dariomatias-dev/mac-docs" alt="License"></a>
-<img src="https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white" alt="Node.js version">
+  <a href="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml">
+    <img src="https://github.com/dariomatias-dev/mac-docs/actions/workflows/ci.yml/badge.svg" alt="CI status">
+  </a>
+  <a href="https://codecov.io/gh/dariomatias-dev/mac-docs">
+    <img src="https://img.shields.io/codecov/c/github/dariomatias-dev/mac-docs" alt="Coverage">
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white" alt="Node.js version">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/dariomatias-dev/mac-docs" alt="License">
+  </a>
 </p>
 
 <p align="center">
-<strong>English</strong> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a>
+  <strong>English</strong> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a>
 </p>
 
 <h1 align="center">MacDocs</h1>
 
 <p align="center">
-<img src="public/svgs/logo.svg" alt="MAC Docs logo" width="700">
+  <img src="public/svgs/logo.svg" alt="MAC Docs logo" width="700">
 </p>
 
 <p align="center">
-Interactive documentation for Applied Mathematics for Computing, rendered from MDX with LaTeX formulas, full text search, and interactive study components.
-<br>
-<a href="#about-the-project"><strong>Explore the docs »</strong></a> ·
-<a href="https://github.com/dariomatias-dev/mac-docs/issues">Report Bug</a> ·
-<a href="https://github.com/dariomatias-dev/mac-docs/issues">Request Feature</a>
+  Interactive documentation for Applied Mathematics for Computing, rendered from MDX with LaTeX formulas, full text search, and interactive study components.
+  <br>
+  <a href="#about-the-project"><strong>Explore the docs »</strong></a>
+  <br>
+  <br>
+  <a href="https://github.com/dariomatias-dev/mac-docs/issues">Report Bug</a> ·
+  <a href="https://github.com/dariomatias-dev/mac-docs/issues">Request Feature</a>
 </p>
 
 ## Table of Contents
@@ -62,11 +70,11 @@ breadcrumb, previous/next navigation, and a search index entry.
 ## Preview
 
 <p align="center">
-<img src="public/screenshots/home.png" alt="MacDocs home page" width="800">
-<br><em>Home page</em>
-<br><br>
-<img src="public/screenshots/docs-page.png" alt="A MacDocs documentation page, with the sidebar, table of contents, and a rendered KaTeX formula" width="800">
-<br><em>A documentation page, with the sidebar, table of contents, and a rendered formula</em>
+  <img src="public/screenshots/home.png" alt="MacDocs home page" width="800">
+  <br><em>Home page</em>
+  <br><br>
+  <img src="public/screenshots/docs-page.png" alt="A MacDocs documentation page, with the sidebar, table of contents, and a rendered KaTeX formula" width="800">
+  <br><em>A documentation page, with the sidebar, table of contents, and a rendered formula</em>
 </p>
 
 ## Features
