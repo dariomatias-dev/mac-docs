@@ -53,7 +53,7 @@ jobs:
       # access to CODECOV_TOKEN gets a skipped upload here, never a failed
       # check. That's what fail_ci_if_error: false is for.
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v7.0.0
+        uses: codecov/codecov-action@v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
@@ -158,7 +158,7 @@ jobs:
       # lockfile against the OSV database instead of the npm advisory feed
       # (different sources, some overlap, neither is a superset of the other).
       - name: Scan the lockfile with osv-scanner
-        uses: google/osv-scanner-action/osv-scanner-action@v2.5.1
+        uses: google/osv-scanner-action/osv-scanner-action@v2.6.0
         with:
           scan-args: |-
             --lockfile=pnpm-lock.yaml
