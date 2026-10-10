@@ -6,6 +6,8 @@ describe("mdxComponents", () => {
   it("maps every MDX tag used by content to a defined component", () => {
     const expectedTags = [
       "Callout",
+      "ClassSchedule",
+      "Facts",
       "Collapsible",
       "Exercise",
       "Answer",

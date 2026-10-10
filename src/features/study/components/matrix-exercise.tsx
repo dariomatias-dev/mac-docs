@@ -1,11 +1,13 @@
 "use client";
 
-import { Eye, EyeOff, RefreshCw } from "lucide-react";
+import { Dices, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { useDisclosure } from "@/shared/hooks/use-disclosure";
 
 import { Katex } from "./katex-inline";
+import { Panel } from "./panel";
+import { Reveal } from "./reveal";
 import { matrixToLatex } from "../lib/matrix-latex";
 import {
   addMatrices,
@@ -133,11 +135,10 @@ export function MatrixExercise({ operations = ALL_OPS }: { operations?: Op[] }) 
   }, []);
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface flex items-center justify-between border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">
-          Questão gerada: matrizes
-        </p>
+    <Panel
+      icon={Dices}
+      title="Questão gerada: matrizes"
+      action={
         <button
           type="button"
           onClick={regenerate}
@@ -146,36 +147,17 @@ export function MatrixExercise({ operations = ALL_OPS }: { operations?: Op[] }) 
           <RefreshCw className="h-3.5 w-3.5" />
           Gerar nova questão
         </button>
-      </div>
-
+      }
+    >
       <div className="px-5 py-4">
         <p className="text-foreground mb-3 text-sm">{statementFor(question)}</p>
 
         <Katex expr={statementLatex(question)} />
 
-        <div className="not-prose group mt-4" data-answer-open={open ? "" : undefined}>
-          <button
-            type="button"
-            onClick={toggle}
-            aria-expanded={open}
-            className="border-border hover:border-accent hover:bg-surface hover:text-accent flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-2 text-[0.8rem] font-medium transition-colors"
-          >
-            {open ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-            {open ? "Ocultar resposta" : "Ver resposta"}
-          </button>
-
-          <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-300 ease-in-out group-data-answer-open:grid-rows-[1fr] group-data-answer-open:opacity-100">
-            <div className="min-h-0 overflow-hidden">
-              <div className="border-accent bg-accent-soft mt-3 rounded-lg border-l-2 px-4 py-3">
-                <p className="text-accent mb-1.5 text-[0.7rem] font-bold tracking-[0.08em] uppercase">
-                  Resposta
-                </p>
-                <Katex expr={`${resultExprFor(question)} = ${matrixToLatex(question.result)}`} />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Reveal kind="answer" open={open} onToggle={toggle}>
+          <Katex expr={`${resultExprFor(question)} = ${matrixToLatex(question.result)}`} />
+        </Reveal>
       </div>
-    </div>
+    </Panel>
   );
 }

@@ -14,7 +14,7 @@ describe("Alternatives", () => {
     );
 
     const items = screen.getAllByRole("listitem");
-    expect(items.map((li) => li.textContent)).toEqual(["a)Primeira", "b)Segunda", "c)Terceira"]);
+    expect(items.map((li) => li.textContent)).toEqual(["aPrimeira", "bSegunda", "cTerceira"]);
   });
 
   it("renders no buttons: it's a static list, not an interactive quiz", () => {

@@ -18,15 +18,15 @@ export function Collapsible({
   const { open, toggle } = useDisclosure(defaultOpen);
 
   return (
-    <div className="not-prose border-border my-6 overflow-hidden rounded-xl border">
+    <div className="not-prose border-border bg-background shadow-soft rounded-card my-8 overflow-hidden border">
       <button
         type="button"
         onClick={toggle}
         aria-expanded={open}
-        className="bg-surface text-foreground hover:text-accent flex w-full cursor-pointer items-center gap-2 px-5 py-3 text-left text-sm font-semibold transition-colors"
+        className="text-foreground hover:bg-surface flex w-full cursor-pointer items-center gap-2.5 px-5 py-3 text-left text-sm font-semibold transition-colors"
       >
         <ChevronRight
-          className={`text-muted h-4 w-4 shrink-0 transition-transform duration-300 ${
+          className={`text-accent h-4 w-4 shrink-0 transition-transform duration-300 ${
             open ? "rotate-90" : ""
           }`}
         />
@@ -39,7 +39,7 @@ export function Collapsible({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="prose prose-sm dark:prose-invert text-foreground max-w-none px-5 py-4">
+          <div className="prose dark:prose-invert text-foreground max-w-none px-5 py-4 [&>:first-child]:mt-0 [&>:last-child]:mb-0">
             {children}
           </div>
         </div>

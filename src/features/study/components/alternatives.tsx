@@ -12,11 +12,13 @@ export function Alternatives({ children }: { children: ReactNode }) {
     .map((el) => el.props as { children: ReactNode });
 
   return (
-    <ol className="not-prose my-4 space-y-2">
+    <ol className="not-prose my-5 space-y-2.5">
       {options.map((opt, i) => (
-        <li key={i} className="flex items-baseline gap-2">
-          <span className="text-muted font-semibold">{LETTERS[i]})</span>
-          <span>{opt.children}</span>
+        <li key={i} className="flex items-baseline gap-3">
+          <span className="border-border text-muted-2 rounded-chip inline-flex h-6 min-w-6 shrink-0 translate-y-px items-center justify-center self-start border text-xs font-semibold">
+            {LETTERS[i]}
+          </span>
+          <span className="min-w-0">{opt.children}</span>
         </li>
       ))}
     </ol>

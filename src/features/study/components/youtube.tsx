@@ -17,7 +17,7 @@ export function YouTube({ id, title = "Vídeo do YouTube" }: { id: string; title
 
   return (
     <div className="not-prose my-7">
-      <div className="border-border bg-surface relative aspect-video overflow-hidden rounded-xl border">
+      <div className="border-border bg-surface rounded-card relative aspect-video overflow-hidden border">
         <iframe
           className="absolute inset-0 h-full w-full"
           src={`https://www.youtube-nocookie.com/embed/${videoId}`}

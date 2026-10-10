@@ -58,7 +58,7 @@ function stepMatrixId(step: ChainStep): string | null {
 }
 
 function SectionLabel({ children }: { children: ReactNode }) {
-  return <p className="text-muted text-xs font-medium tracking-wide uppercase">{children}</p>;
+  return <p className="text-muted text-xs font-semibold">{children}</p>;
 }
 
 function MatrixInput({
@@ -81,7 +81,7 @@ function MatrixInput({
               type="number"
               value={value}
               onChange={(e) => onCellChange(i, j, Number(e.target.value) || 0)}
-              className="bg-surface h-9 w-9 rounded text-center text-xs"
+              className="bg-surface rounded-control h-9 w-9 text-center text-xs"
               aria-label={`Elemento linha ${i + 1}, coluna ${j + 1}`}
             />
           )),
@@ -255,9 +255,9 @@ export function MatrixCalculator() {
   }, [result.final]);
 
   const iconButtonClass =
-    "text-muted hover:text-red-600 hover:bg-red-500/10 dark:hover:text-red-400 cursor-pointer shrink-0 rounded p-1.5 transition-colors";
+    "text-muted hover:text-red-600 hover:bg-red-500/10 dark:hover:text-red-400 cursor-pointer shrink-0 rounded-control p-1.5 transition-colors";
   const addButtonClass =
-    "border-border text-muted hover:border-accent hover:text-accent inline-flex cursor-pointer items-center gap-1 rounded-lg border border-dashed px-3 py-1.5 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40";
+    "border-border text-muted hover:border-accent hover:text-accent inline-flex cursor-pointer items-center gap-1 rounded-control border border-dashed px-3 py-1.5 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40";
 
   const matrixOptions = matrices.map((m) => ({ value: m.id, label: labelFor(m.id) }));
 
@@ -269,7 +269,7 @@ export function MatrixCalculator() {
 
           <div className="flex flex-wrap gap-4">
             {matrices.map((m) => (
-              <div key={m.id} className="border-border space-y-2 rounded-lg border p-3">
+              <div key={m.id} className="border-border rounded-control space-y-2 border p-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <span className="bg-accent-soft text-accent flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
@@ -363,7 +363,7 @@ export function MatrixCalculator() {
                         value: Number(e.target.value) || 0,
                       })
                     }
-                    className="w-16 rounded px-2 py-1 text-xs"
+                    className="rounded-control w-16 px-2 py-1 text-xs"
                   />
                 ) : (
                   <Dropdown
@@ -419,7 +419,7 @@ export function MatrixCalculator() {
                   {properties.map((p) => (
                     <span
                       key={p}
-                      className="bg-accent-soft text-accent rounded-full px-2.5 py-1 text-xs font-medium"
+                      className="bg-accent-soft text-accent rounded-chip px-2 py-0.5 text-xs font-medium"
                     >
                       {p}
                     </span>
@@ -429,8 +429,8 @@ export function MatrixCalculator() {
             )}
 
             {commutativityCheck && (
-              <div className="border-border bg-surface rounded-lg border px-4 py-3">
-                <p className="text-muted mb-2 text-xs font-medium tracking-wide uppercase">
+              <div className="border-border bg-surface rounded-control border px-4 py-3">
+                <p className="text-muted mb-2 text-xs font-semibold">
                   Comparando com a ordem trocada
                 </p>
                 <div className="flex flex-wrap items-center gap-3">

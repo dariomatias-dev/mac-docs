@@ -1,7 +1,9 @@
 "use client";
 
-import { ArrowRight, Check, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, ListOrdered, RotateCcw } from "lucide-react";
 import { Children, isValidElement, useState, type ReactNode } from "react";
+
+import { Panel } from "./panel";
 
 export function Step(_props: { title?: string; children: ReactNode }): null {
   return null;
@@ -24,34 +26,59 @@ export function StepByStep({
   const done = shown >= total;
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface flex items-center justify-between gap-3 border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">{title}</p>
-        <span className="text-muted text-xs font-medium">
+    <Panel
+      icon={ListOrdered}
+      title={title}
+      action={
+        <span className="text-muted text-xs font-medium tabular-nums">
           {shown} / {total}
         </span>
-      </div>
-
-      <div className="px-5 py-4">
-        <ol className="space-y-4">
-          {steps.slice(0, shown).map((step, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="bg-accent-soft text-accent mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
-                {i + 1}
-              </span>
-              <div className="min-w-0 flex-1">
-                {step.title && <p className="text-foreground mb-1 font-semibold">{step.title}</p>}
-                <div className="katex-left prose prose-sm dark:prose-invert text-foreground max-w-none">
-                  {step.children}
+      }
+    >
+      <div className="p-5 sm:p-6">
+        <ol>
+          {steps.slice(0, shown).map((step, i) => {
+            const current = i === shown - 1;
+            const isLast = i === total - 1;
+            return (
+              <li
+                key={i}
+                className={`relative flex gap-4 pb-6 last:pb-0 ${i > 0 && current ? "animate-rise" : ""}`}
+              >
+                {/* Rail to the next step; dashed while more steps are still hidden. */}
+                {!isLast && (
+                  <span
+                    aria-hidden="true"
+                    className={`absolute top-8 bottom-1 left-3 w-0 border-l-2 ${
+                      current ? "border-border border-dashed" : "border-accent/30"
+                    }`}
+                  />
+                )}
+                <span
+                  className={`relative mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                    current ? "bg-accent text-accent-foreground" : "bg-accent-soft text-accent"
+                  }`}
+                >
+                  {i + 1}
+                </span>
+                <div className="min-w-0 flex-1">
+                  {step.title && (
+                    <p className="text-foreground mb-1.5 font-semibold tracking-[-0.01em]">
+                      {step.title}
+                    </p>
+                  )}
+                  <div className="katex-left prose dark:prose-invert text-foreground max-w-none [&>:first-child]:mt-0 [&>:last-child]:mb-0">
+                    {step.children}
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ol>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="border-border mt-6 flex flex-wrap items-center gap-2 border-t pt-4 print:hidden">
           {done ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1.5 text-[0.8rem] font-medium text-green-700 dark:bg-green-500/10 dark:text-green-400">
+            <span className="rounded-control inline-flex items-center gap-1.5 bg-green-50 px-3 py-1.5 text-[0.8125rem] font-medium text-green-700 dark:bg-green-500/10 dark:text-green-400">
               <Check className="h-3.5 w-3.5" />
               Concluído
             </span>
@@ -59,7 +86,7 @@ export function StepByStep({
             <button
               type="button"
               onClick={() => setVisible((v) => Math.min(v + 1, total))}
-              className="bg-accent text-accent-foreground inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-1.5 text-[0.8rem] font-semibold transition-opacity hover:opacity-90"
+              className="bg-accent text-accent-foreground rounded-control inline-flex cursor-pointer items-center gap-1.5 px-3.5 py-1.5 text-[0.8125rem] font-semibold transition-[opacity,transform] hover:opacity-90 active:scale-[0.98]"
             >
               Próximo passo
               <ArrowRight className="h-3.5 w-3.5" />
@@ -70,7 +97,7 @@ export function StepByStep({
             <button
               type="button"
               onClick={() => setVisible(1)}
-              className="border-border hover:border-accent hover:bg-surface hover:text-accent inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-2 text-[0.8rem] font-medium transition-colors"
+              className="border-border text-muted-2 hover:border-border-strong hover:bg-surface hover:text-foreground rounded-control inline-flex cursor-pointer items-center gap-1.5 border px-3 py-1.5 text-[0.8125rem] font-medium transition-colors"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               Recomeçar
@@ -78,6 +105,6 @@ export function StepByStep({
           )}
         </div>
       </div>
-    </div>
+    </Panel>
   );
 }

@@ -5,9 +5,9 @@ import type { ReactNode } from "react";
 // so nothing gets said twice.
 export function Question({ children }: { children: ReactNode }) {
   return (
-    <div className="not-prose border-border my-7 rounded-lg border">
-      <div className="px-6 py-5">
-        <div className="prose prose-sm dark:prose-invert text-foreground max-w-none">
+    <div className="not-prose border-border bg-background shadow-soft rounded-card my-8 border">
+      <div className="p-5 sm:p-6">
+        <div className="prose dark:prose-invert text-foreground max-w-none [&>:first-child]:mt-0 [&>:last-child]:mb-0">
           {children}
         </div>
       </div>

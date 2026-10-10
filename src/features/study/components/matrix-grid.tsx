@@ -40,7 +40,7 @@ export function DimensionSelect({
 
 export function MatrixBox({ children }: { children: ReactNode }) {
   return (
-    <div className="border-foreground/40 bg-background inline-block rounded-md border-2 p-2">
+    <div className="border-foreground/40 bg-background rounded-control inline-block border-2 p-2">
       {children}
     </div>
   );
@@ -101,7 +101,7 @@ export function BitMatrixGrid({
                 type="button"
                 onClick={() => onToggle?.(i, j)}
                 aria-label={`Alternar elemento linha ${i + 1}, coluna ${j + 1}, valor atual ${value}`}
-                className="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex h-8 w-8 cursor-pointer items-center justify-center rounded border text-sm font-semibold transition-colors"
+                className="border-border bg-surface text-foreground hover:border-accent hover:text-accent rounded-control flex h-8 w-8 cursor-pointer items-center justify-center border text-sm font-semibold transition-colors"
               >
                 {value}
               </button>

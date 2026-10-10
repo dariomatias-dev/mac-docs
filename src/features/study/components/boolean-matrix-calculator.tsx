@@ -119,8 +119,11 @@ export function BooleanMatrixCalculator() {
           <OperatorPicker options={OPERATIONS} value={op} onChange={setOp} />
         </div>
 
-        <div aria-live="polite" className="border-border bg-surface rounded-lg border px-4 py-3">
-          <p className="text-muted mb-2 text-xs font-medium tracking-wide uppercase">
+        <div
+          aria-live="polite"
+          className="border-border bg-surface rounded-control border px-4 py-3"
+        >
+          <p className="text-muted mb-2 text-xs font-semibold">
             Resultado: {OPERATIONS.find((o) => o.id === op)?.label}
           </p>
           {"error" in result ? (

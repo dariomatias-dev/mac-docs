@@ -1,7 +1,9 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, ListChecks, RotateCcw, X } from "lucide-react";
 import { Children, isValidElement, useEffect, useState, type ReactNode } from "react";
+
+import { Panel } from "./panel";
 
 export function Option(_props: { correct?: boolean; children: ReactNode }): null {
   return null;
@@ -43,22 +45,17 @@ export function Quiz({
   const isRight = answered && options[picked]?.correct;
 
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">Quiz</p>
-      </div>
-
+    <Panel icon={ListChecks} title="Quiz">
       <div className="px-5 py-4">
-        <div className="prose prose-sm dark:prose-invert text-foreground mb-3 max-w-none">
-          {question}
-        </div>
+        <div className="prose dark:prose-invert text-foreground mb-3 max-w-none">{question}</div>
 
         <ul className="space-y-2">
           {order.map((oi, position) => {
             const opt = options[oi];
             const correct = opt.correct;
             const chosen = picked === oi;
-            let state = "border-border text-foreground hover:border-accent hover:bg-surface";
+            let state =
+              "border-border text-foreground hover:border-accent/60 hover:bg-surface active:scale-[0.995]";
             if (answered && correct)
               state =
                 "border-green-500 bg-green-50 text-green-800 dark:bg-green-500/10 dark:text-green-300";
@@ -72,12 +69,14 @@ export function Quiz({
                   type="button"
                   disabled={answered}
                   onClick={() => setPicked(oi)}
-                  className={`flex w-full items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-left text-sm transition-colors ${state} ${
+                  className={`rounded-control flex w-full items-center justify-between gap-3 border px-4 py-3 text-left text-sm transition-[color,background-color,border-color,transform] ${state} ${
                     answered ? "cursor-default" : "cursor-pointer"
                   }`}
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="font-semibold">{LETTERS[position]})</span>
+                  <span className="flex items-center gap-3">
+                    <span className="rounded-chip flex h-6 w-6 shrink-0 items-center justify-center border border-current/25 text-xs font-semibold">
+                      {LETTERS[position]}
+                    </span>
                     <span>{opt.children}</span>
                   </span>
                   {answered && correct && <Check className="h-4 w-4 shrink-0" />}
@@ -89,7 +88,7 @@ export function Quiz({
         </ul>
 
         {answered && (
-          <div className="mt-3 text-sm">
+          <div className="bg-surface rounded-control mt-4 px-4 py-3 text-sm">
             <p
               className={`font-semibold ${
                 isRight ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
@@ -98,7 +97,7 @@ export function Quiz({
               {isRight ? "Correto!" : "Não é essa. Tente entender o porquê."}
             </p>
             {explanation && (
-              <div className="prose prose-sm dark:prose-invert text-muted mt-1.5 max-w-none">
+              <div className="prose dark:prose-invert text-muted mt-1.5 max-w-none">
                 {explanation}
               </div>
             )}
@@ -108,13 +107,14 @@ export function Quiz({
                 setPicked(null);
                 setOrder((o) => shuffle(o));
               }}
-              className="text-accent mt-2 cursor-pointer text-xs font-medium hover:underline"
+              className="text-accent mt-2.5 inline-flex cursor-pointer items-center gap-1.5 text-xs font-medium hover:underline"
             >
+              <RotateCcw className="h-3 w-3" aria-hidden="true" />
               Tentar novamente
             </button>
           </div>
         )}
       </div>
-    </div>
+    </Panel>
   );
 }

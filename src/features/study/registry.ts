@@ -1,10 +1,13 @@
 import dynamic from "next/dynamic";
 
+import { ClassSchedule } from "@/features/schedule";
+
 import { Alternative, Alternatives } from "./components/alternatives";
 import { Badge } from "./components/badge";
 import { Callout } from "./components/callout";
 import { Collapsible } from "./components/collapsible";
 import { Answer, Exercise } from "./components/exercise";
+import { Facts } from "./components/facts";
 import { Marker } from "./components/marker";
 import { Proof } from "./components/proof";
 import { Question } from "./components/question";
@@ -45,6 +48,8 @@ const StepByStep = dynamic(() => import("./components/step-by-step").then((m) =>
 
 export const mdxComponents = {
   Callout,
+  ClassSchedule,
+  Facts,
   Collapsible,
   Exercise,
   Answer,

@@ -27,15 +27,15 @@ export type DropdownOption = { value: string; label: ReactNode };
 
 const DROPDOWN_SIZES = {
   sm: {
-    button: "rounded px-2 py-1 text-xs gap-1",
-    panel: "rounded-lg p-1",
-    item: "rounded px-2.5 py-1.5 text-xs",
+    button: "rounded-control px-2 py-1 text-xs gap-1",
+    panel: "rounded-card p-1",
+    item: "rounded-control px-2.5 py-1.5 text-xs",
     chevron: 13,
   },
   md: {
-    button: "rounded-lg px-3.5 py-2 text-sm gap-2",
-    panel: "rounded-xl p-1.5",
-    item: "rounded-lg px-3 py-2 text-sm",
+    button: "rounded-control px-3.5 py-2 text-sm gap-2",
+    panel: "rounded-card p-1.5",
+    item: "rounded-control px-3 py-2 text-sm",
     chevron: 16,
   },
 } as const;
@@ -96,7 +96,7 @@ export function Dropdown({
   return (
     <div className={cn("space-y-1", className)} ref={containerRef}>
       {label && (
-        <p id={labelId} className="text-muted text-xs font-medium tracking-wide uppercase">
+        <p id={labelId} className="text-muted text-xs font-semibold">
           {label}
         </p>
       )}

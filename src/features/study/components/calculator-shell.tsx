@@ -1,13 +1,14 @@
+import { Calculator } from "lucide-react";
+
+import { Panel } from "./panel";
+
 import type { ReactNode } from "react";
 
 export function CalculatorCard({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="not-prose border-border my-7 overflow-hidden rounded-xl border">
-      <div className="border-border bg-surface border-b px-5 py-3">
-        <p className="text-accent text-[0.8rem] font-bold tracking-[0.08em] uppercase">{title}</p>
-      </div>
+    <Panel icon={Calculator} title={title}>
       {children}
-    </div>
+    </Panel>
   );
 }
 
@@ -28,7 +29,7 @@ export function OperatorPicker<T extends string>({
           type="button"
           onClick={() => onChange(o.id)}
           aria-pressed={value === o.id}
-          className={`cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+          className={`rounded-control cursor-pointer border px-3 py-1.5 text-xs font-medium transition-colors ${
             value === o.id
               ? "border-accent bg-accent/15 text-accent"
               : "border-border text-muted hover:border-accent hover:text-foreground"
