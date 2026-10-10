@@ -4,9 +4,9 @@
 
 ## Qué realmente merece un test aquí
 
-La cobertura es un piso, no una meta. Ver los umbrales y su
-justificación en `vitest.config.ts`. La decisión de criterio que importa
-más que el número es _qué_ probar:
+La cobertura es un piso, no una meta. El proyecto aplica un piso de
+cobertura del 80% en `vitest.config.ts`. La decisión de criterio que
+importa más que el número es _qué_ probar:
 
 - **Lógica real**: un cálculo, una rama, un fragmento de estado que
   puede estar mal. Operaciones de matrices, la lógica de ordenar/filtrar

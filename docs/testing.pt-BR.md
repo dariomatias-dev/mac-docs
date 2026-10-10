@@ -4,9 +4,9 @@
 
 ## O que de fato merece um teste aqui
 
-Cobertura é um piso, não uma meta. Veja os thresholds e a razão deles em
-`vitest.config.ts`. A decisão de julgamento que importa mais que o número
-é _o quê_ testar:
+Cobertura é um piso, não uma meta. O projeto aplica um piso de
+cobertura de 80% em `vitest.config.ts`. A decisão de julgamento que
+importa mais que o número é _o quê_ testar:
 
 - **Lógica real**: um cálculo, um branch, um pedaço de estado que pode
   estar errado. Operações de matriz, a lógica de ordenar/filtrar no

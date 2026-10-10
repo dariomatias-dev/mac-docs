@@ -4,8 +4,8 @@
 
 ## What actually merits a test here
 
-Coverage is a floor, not a goal. See the thresholds and their rationale
-in `vitest.config.ts`. The judgment call that matters more than the
+Coverage is a floor, not a goal. The project enforces an 80% coverage
+floor in `vitest.config.ts`. The judgment call that matters more than the
 number is _what_ to test:
 
 - **Real logic**: a computation, a branch, a piece of state that can be
