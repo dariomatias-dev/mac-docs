@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { getSidebarTree } from "@/features/navigation";
@@ -12,7 +12,7 @@ describe("Home", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Documentação interativa de Matemática Aplicada à Computação",
+        name: "Matemática discreta, do conceito à prova.",
       }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Começar agora/ })).toHaveAttribute(
@@ -21,13 +21,22 @@ describe("Home", () => {
     );
   });
 
-  it("lists every module from the sidebar tree with a link to its href", () => {
+  it("links every module from the sidebar tree", () => {
     render(<Home />);
 
-    const table = within(screen.getByRole("table"));
-    const modules = getSidebarTree().flatMap((course) => course.groups);
-    for (const mod of modules) {
-      expect(table.getByRole("link", { name: mod.title })).toHaveAttribute("href", mod.href);
+    const hrefs = screen.getAllByRole("link").map((link) => link.getAttribute("href"));
+    const groups = getSidebarTree().flatMap((course) => course.groups);
+    for (const group of groups) {
+      expect(hrefs).toContain(group.href);
+    }
+  });
+
+  it("shows a formula tile per study module", () => {
+    render(<Home />);
+
+    const tiles = screen.getByRole("list", { name: "Módulos" });
+    for (const title of ["Matrizes", "Conjuntos", "Relações", "Funções"]) {
+      expect(tiles).toHaveTextContent(title);
     }
   });
 });
