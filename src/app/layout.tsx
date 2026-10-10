@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
-import { Footer, Header } from "@/features/navigation";
+import { Footer, Header, SiteChrome } from "@/features/navigation";
 import { SidebarCollapseProvider, SidebarGroupsProvider } from "@/features/navigation";
 import { SearchButton, SearchDialog } from "@/features/search";
 import { ThemeProvider } from "@/features/theme";
@@ -14,16 +14,14 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -59,7 +57,10 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      // Smooth scrolling is for in-page anchors (TOC, "voltar ao topo"); this
+      // attribute makes Next.js jump instantly on route changes instead.
+      data-scroll-behavior="smooth"
+      className={`${geist.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
         <script
@@ -78,18 +79,22 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <a
             href="#main-content"
-            className="focus:bg-accent focus:text-accent-foreground sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
+            className="focus:bg-accent focus:text-accent-foreground focus:rounded-control sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
           >
             Pular para o conteúdo
           </a>
           <SidebarGroupsProvider>
             <SidebarCollapseProvider>
               <ActiveMobileSheetProvider>
-                <Header search={<SearchDialog />} searchMobile={<SearchButton />} />
+                <SiteChrome>
+                  <Header search={<SearchDialog />} searchMobile={<SearchButton />} />
+                </SiteChrome>
                 <div id="main-content" className="flex flex-1 flex-col">
                   {children}
                 </div>
-                <Footer />
+                <SiteChrome>
+                  <Footer />
+                </SiteChrome>
               </ActiveMobileSheetProvider>
             </SidebarCollapseProvider>
           </SidebarGroupsProvider>

@@ -4,59 +4,137 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Brand blue (the petrol-to-cyan of the MACDocs logo) over cool neutrals,
+   in both themes. */
 :root {
   --background: #ffffff;
-  --foreground: #23272f;
-  --border: #dce0e8;
-  --muted: #565c66;
-  --muted-2: #404756;
-  --surface: #f6f7f9;
-  --surface-2: #eef0f4;
+  --foreground: #101828;
+  --border: #e2e7ed;
+  --border-strong: #cbd3dc;
+  --muted: #5b6475;
+  --muted-2: #3c4556;
+  --surface: #f6f8fa;
+  --surface-2: #eef2f5;
   --accent: #0a7194;
-  --accent-dark: #087ea4;
-  --accent-soft: rgba(10, 113, 148, 0.12);
+  --accent-dark: #075d7a;
+  --accent-bright: #5ccce4;
+  --accent-soft: rgba(10, 113, 148, 0.09);
   --accent-foreground: #ffffff;
+  --highlight: rgba(10, 113, 148, 0.16);
+  --shadow-color: 200 50% 22%;
 }
 
 .dark {
-  --background: #0c0e12;
-  --foreground: #e8eaed;
-  --border: #24272e;
-  --muted: #8b929c;
-  --muted-2: #b8bfca;
-  --surface: #131519;
-  --surface-2: #1b1e24;
+  --background: #0b0e13;
+  --foreground: #e8ebf0;
+  --border: #222833;
+  --border-strong: #303846;
+  --muted: #8c95a3;
+  --muted-2: #b8c0cc;
+  --surface: #11151c;
+  --surface-2: #181d26;
   --accent: #5ccce4;
   --accent-dark: #38b6d4;
-  --accent-soft: rgba(92, 204, 228, 0.14);
-  --accent-foreground: #0a0a0a;
+  --accent-bright: #8fe0f0;
+  --accent-soft: rgba(92, 204, 228, 0.12);
+  --accent-foreground: #04161c;
+  --highlight: rgba(92, 204, 228, 0.25);
+  --shadow-color: 210 40% 2%;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
+  --color-accent-bright: var(--accent-bright);
   --color-accent-soft: var(--accent-soft);
   --color-accent-foreground: var(--accent-foreground);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --color-highlight: var(--highlight);
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+  --shadow-soft:
+    0 1px 2px hsl(var(--shadow-color) / 0.06), 0 2px 8px hsl(var(--shadow-color) / 0.04);
+  /* Corner radius scale. card: cards, panels, callouts, dialogs, menus,
+     code blocks. control: buttons, inputs, nav items, options, and boxes
+     nested inside a card. chip: inline code, keys, tags, small tiles and
+     skeleton bars. rounded-full is only for true circles. */
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+  --radius-chip: 0.375rem;
+  --animate-rise: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --shadow-lift:
+    0 2px 4px hsl(var(--shadow-color) / 0.06), 0 20px 48px -8px hsl(var(--shadow-color) / 0.18);
 }
 
 @layer base {
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 4px;
   }
 
   :focus:not(:focus-visible) {
     outline: none;
+  }
+
+  ::selection {
+    background-color: var(--highlight);
+    color: var(--foreground);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+/* Entrance for hero elements. Transform only: text never passes through a
+   low-opacity, low-contrast state. Collapses to the end state under reduced
+   motion through the rule below. */
+@keyframes rise {
+  from {
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Printing (study handouts): always on light paper, whatever the theme, and
+   never split a formula, table or study block across pages. Interface
+   chrome hides itself through `print:hidden` in the components. */
+@media print {
+  .dark {
+    color-scheme: light;
+    --background: #ffffff;
+    --foreground: #101828;
+    --border: #e2e7ed;
+    --border-strong: #cbd3dc;
+    --muted: #5b6475;
+    --muted-2: #3c4556;
+    --surface: #f6f8fa;
+    --surface-2: #eef2f5;
+    --accent: #0a7194;
+    --accent-soft: rgba(10, 113, 148, 0.09);
+  }
+
+  .katex-display,
+  pre,
+  table,
+  .not-prose {
+    break-inside: avoid;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
   }
 }
 
@@ -72,7 +150,7 @@
 }
 
 html {
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--border-strong) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -85,7 +163,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--border);
+  background-color: var(--border-strong);
   border-radius: 10px;
   border: 3px solid var(--background);
   background-clip: padding-box;
@@ -110,8 +188,89 @@ html {
   display: block;
 }
 
+/* The typography plugin hard-codes its own palette per `prose-*` color
+   variant (and swaps it again under prose-invert). Remapping the variables
+   onto the site tokens here, unlayered so it wins over the plugin, gives
+   every prose block (page body, callouts, panels) one palette that already
+   follows the theme. */
+.prose {
+  --tw-prose-body: var(--muted-2);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--border-strong);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--muted-2);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--accent);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--surface);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *))::before,
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: none;
+}
+
+/* A page's MDX body: a comfortable measure and generous leading for
+   formula-heavy paragraphs. */
+.doc-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.doc-prose :where(p, li) {
+  text-wrap: pretty;
+}
+
+.doc-prose :where(h2):not(:where([class~="not-prose"] *)) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.doc-prose :where(h3):not(:where([class~="not-prose"] *)) {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2.25rem;
+}
+
+/* Untitled <Exercise> blocks number themselves across the page. */
+.doc-prose {
+  counter-reset: exercise;
+}
+
+.exercise-block {
+  counter-increment: exercise;
+}
+
+.exercise-number::after {
+  content: " " counter(exercise);
+}
+
+.doc-prose > :first-child {
+  margin-top: 0;
+}
+
 /* KaTeX renders its own markup outside React's control, so these can
-   only be targeted with plain CSS, not component classNames. */
+   only be targeted with plain CSS, not component classNames. KaTeX's own
+   CSS is unlayered too, so these rules need to be unlayered to win. */
+
+/* KaTeX defaults to 1.21em, which makes inline formulas loom over the
+   surrounding text; 1.1em keeps them legible but on the same line rhythm. */
+.katex {
+  font-size: 1.1em;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
@@ -128,9 +287,6 @@ html {
   border-bottom: none;
 }
 
-/* KaTeX's own CSS is unlayered, so it always wins over Tailwind's
-   @layer utilities regardless of selector specificity; these need
-   to be plain (unlayered) CSS to take effect. */
 .katex-left .katex-display,
 .katex-left .katex-display > .katex {
   text-align: left;

@@ -18,10 +18,12 @@ export default function Error({
 
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center">
-      <p className="from-accent-dark via-accent bg-linear-to-br to-[#58c4dc] bg-clip-text text-7xl font-bold tracking-tight text-transparent">
+      <p className="from-accent to-accent-bright bg-linear-to-br bg-clip-text text-7xl font-semibold tracking-tighter text-transparent">
         Ops
       </p>
-      <h1 className="text-foreground mt-4 text-2xl font-bold tracking-tight">Algo deu errado</h1>
+      <h1 className="text-foreground mt-4 text-3xl font-semibold tracking-tight">
+        Algo deu errado
+      </h1>
       <p className="text-muted mt-2 max-w-md">
         Ocorreu um erro inesperado ao carregar este conteúdo. Tente novamente ou volte mais tarde.
       </p>
