@@ -22,7 +22,9 @@ content/
 
 Criar um arquivo `.mdx` gera automaticamente a rota (`/docs/...`), o item na
 sidebar, o breadcrumb, a navegação anterior/próximo e a entrada no índice de
-busca.
+busca. O `index.mdx` de um módulo (um grupo logo abaixo do curso) também
+ganha, depois do conteúdo, a lista "Tópicos deste módulo" com as páginas e
+suas descrições, então não é preciso escrevê-la à mão.
 
 ## Frontmatter
 
@@ -36,8 +38,15 @@ description: Adição, subtração e multiplicação. # opcional
 order: 1 # opcional (ordena as páginas do grupo)
 prerequisites: # opcional, cada item deve começar com /docs/
   - /docs/matematica-discreta/matrizes
+kind: resource # opcional, só no index.mdx de um grupo (padrão: module)
 ---
 ```
+
+`kind: resource` marca um grupo que é material da disciplina, não um assunto
+(o plano de disciplina, as avaliações). A sidebar o mantém fora de "Conteúdo": no
+topo se vier antes do primeiro assunto (o plano de disciplina), em
+"Recursos" caso contrário, e ele não entra na numeração de módulos mostrada no
+cabeçalho da página ("Módulo 1" é o primeiro assunto).
 
 ## Markdown e matemática
 

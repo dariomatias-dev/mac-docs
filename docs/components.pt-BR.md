@@ -28,7 +28,8 @@ Bloco recolhível.
 
 ## Exercise / Answer
 
-Exercício com resposta revelável.
+Exercício com resposta revelável. Sem `title`, os exercícios se numeram na
+ordem da página ("Exercício 1", "Exercício 2"...).
 
 ```mdx
 <Exercise>
@@ -144,3 +145,37 @@ client-side autocontida para explorar um tópico do curso.
   sobre matrizes numéricas definidas pelo usuário.
 - `BooleanMatrixCalculator`: soma booleana, produto booleano e produto de
   matrizes sobre matrizes de bits.
+
+## Facts
+
+Envolve uma lista `- **Rótulo:** valor` e a exibe como uma grade de cartões
+rotulados. A lista continua no MDX, então a busca e o "copiar conteúdo"
+mantêm o texto; uma lista em outro formato aparece sem mudanças.
+
+```mdx
+<Facts>
+
+- **Pré-requisito:** Nenhum
+- **Carga horária:** 67 horas
+
+</Facts>
+```
+
+## ClassSchedule
+
+Envolve a tabela `Data | Assunto` da disciplina (datas em `dd/mm/aaaa`) e a
+exibe como uma linha do tempo agrupada por mês: aulas passadas ficam
+esmaecidas, a próxima aula fica em destaque e linhas em negrito são marcadas
+como avaliação. A tabela continua no MDX; se nenhuma linha tiver data, ela
+aparece como tabela comum. Fica na feature `schedule` e é registrado aqui.
+
+```mdx
+<ClassSchedule>
+
+| Data           | Assunto              |
+| -------------- | -------------------- |
+| 04/08/2026     | Conceito de conjunto |
+| **08/09/2026** | **Avaliação 1**      |
+
+</ClassSchedule>
+```

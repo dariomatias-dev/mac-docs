@@ -22,7 +22,10 @@ content/
 - **Page**: any other `.mdx`. The `order` field defines the sequence.
 
 Creating a `.mdx` file automatically generates its route (`/docs/...`), sidebar
-item, breadcrumb, previous/next navigation, and search index entry.
+item, breadcrumb, previous/next navigation, and search index entry. A module's
+`index.mdx` (a group directly under the course) also gets a "Tópicos deste
+módulo" list of its pages, with their descriptions, after its content, so
+don't add one by hand.
 
 ## Frontmatter
 
@@ -36,8 +39,15 @@ description: Addition, subtraction and multiplication. # optional
 order: 1 # optional (orders the pages in a group)
 prerequisites: # optional, each item must start with /docs/
   - /docs/matematica-discreta/matrizes
+kind: resource # optional, only on a group's index.mdx (default: module)
 ---
 ```
+
+`kind: resource` marks a group that is course material rather than a subject
+(the course plan, the assessments). The sidebar keeps it out of "Conteúdo": on top
+if it comes before the first subject (the course plan), under "Recursos"
+otherwise, and it doesn't count in the module numbering shown in
+the page header ("Módulo 1" is the first subject).
 
 ## Markdown and math
 

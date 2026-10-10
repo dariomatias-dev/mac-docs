@@ -22,7 +22,7 @@ src/
 │   ├── content/          # read, parse and render MDX, reading time, copy
 │   ├── contributors/     # /contribuidores page: monitoring, material and code (GitHub API)
 │   ├── navigation/       # sidebar, breadcrumb, prev/next, header, providers
-│   ├── schedule/         # class schedule, "next class" card on the home page
+│   ├── schedule/         # class schedule, next class on the home page, course plan timeline
 │   ├── search/           # index and command menu dialog
 │   ├── study/            # interactive MDX components and registry
 │   ├── toc/              # table of contents and scroll spy
@@ -60,7 +60,10 @@ just a note here.
 
 - `search` aggregates `navigation` (the tree) and `content` (the text); it is a
   top level feature whose job is precisely to combine the two.
-- The `Header` (in `navigation`) uses the `ThemeToggle` from `theme`.
+- The `Header`, the docs sidebar and the docs mobile bar (in `navigation`) use
+  the `ThemeToggle` from `theme`.
+- The MDX registry in `study` registers `ClassSchedule` from `schedule`, so the
+  course plan's table can render as the class timeline.
 - `navigation` (mobile sidebar) and `annotations` (annotations panel) coordinate
   which mobile sheet is open through `ActiveMobileSheetProvider`, in `shared/`,
   so at most one stays open at a time.

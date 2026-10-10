@@ -28,7 +28,8 @@ Collapsible block.
 
 ## Exercise / Answer
 
-Exercise with a revealable answer.
+Exercise with a revealable answer. Without a `title`, exercises number
+themselves in page order ("Exercício 1", "Exercício 2"...).
 
 ```mdx
 <Exercise>
@@ -144,3 +145,37 @@ self-contained client-side island for exploring a course topic.
   scalar multiplication over user-defined numeric matrices.
 - `BooleanMatrixCalculator`: boolean sum, boolean product and matrix product
   over bit matrices.
+
+## Facts
+
+Wraps a `- **Label:** value` list and renders it as a grid of labelled cards.
+The list stays in the MDX, so search and "copy page" keep its text; a list in
+any other shape renders unchanged.
+
+```mdx
+<Facts>
+
+- **Prerequisite:** None
+- **Workload:** 67 hours
+
+</Facts>
+```
+
+## ClassSchedule
+
+Wraps the course's `Data | Assunto` table (dates as `dd/mm/yyyy`) and renders
+it as a timeline grouped by month: past classes are muted, the next class is
+highlighted and rows written in bold are tagged as assessments. The table
+stays in the MDX; if no row has a date, it renders as a plain table. It lives
+in the `schedule` feature and is registered here.
+
+```mdx
+<ClassSchedule>
+
+| Data           | Assunto              |
+| -------------- | -------------------- |
+| 04/08/2026     | Conceito de conjunto |
+| **08/09/2026** | **Avaliação 1**      |
+
+</ClassSchedule>
+```

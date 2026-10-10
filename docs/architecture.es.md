@@ -23,7 +23,7 @@ src/
 │   ├── content/          # leer, parsear y renderizar MDX, tiempo de lectura, copiar
 │   ├── contributors/     # página /contribuidores: monitoría, material y código (API de GitHub)
 │   ├── navigation/       # sidebar, breadcrumb, prev/next, header, providers
-│   ├── schedule/         # horario de clases, tarjeta "próxima clase" en el inicio
+│   ├── schedule/         # horario de clases, próxima clase en el inicio, línea de tiempo del plan
 │   ├── search/           # índice y diálogo de búsqueda
 │   ├── study/            # componentes interactivos del MDX y registry
 │   ├── toc/              # índice del artículo y scroll spy
@@ -62,7 +62,10 @@ Cada una de estas es también una entrada `except` explícita en
 
 - `search` agrega `navigation` (el árbol) y `content` (el texto); es una
   feature de nivel superior cuya función es justamente combinar las dos.
-- El `Header` (en `navigation`) usa el `ThemeToggle` de `theme`.
+- El `Header`, la barra lateral de las docs y la barra móvil de las docs (en
+  `navigation`) usan el `ThemeToggle` de `theme`.
+- El registro MDX de `study` registra el `ClassSchedule` de `schedule`, para que
+  la tabla del plan de la asignatura se muestre como la línea de tiempo.
 - `navigation` (sidebar móvil) y `annotations` (panel de anotaciones)
   coordinan qué sheet móvil está abierto vía `ActiveMobileSheetProvider`, en
   `shared/`, para que como máximo uno quede abierto a la vez.
