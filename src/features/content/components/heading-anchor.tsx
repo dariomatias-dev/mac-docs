@@ -24,15 +24,11 @@ export function HeadingAnchor({ level, id, children, className, ...props }: Head
     window.setTimeout(() => setCopied(false), 1500);
   };
 
-  const levelClass = level === 2 ? "border-border mt-12 border-t pt-6" : "";
-
   return createElement(
     `h${level}`,
     {
       id,
-      className: ["group scroll-mt-24 font-bold tracking-[-0.02em]", levelClass, className]
-        .filter(Boolean)
-        .join(" "),
+      className: ["group scroll-mt-20 md:scroll-mt-8", className].filter(Boolean).join(" "),
       ...props,
     },
     children,
@@ -42,7 +38,7 @@ export function HeadingAnchor({ level, id, children, className, ...props }: Head
         type="button"
         onClick={copy}
         aria-label={copied ? "Link copiado" : "Copiar link da seção"}
-        className="text-muted hover:text-accent ml-2 inline-flex translate-y-[0.05em] cursor-pointer align-middle opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+        className="text-border-strong hover:text-accent ml-2 inline-flex translate-y-[0.05em] cursor-pointer align-middle opacity-0 transition-[opacity,color] group-hover:opacity-100 focus-visible:opacity-100"
       >
         {copied ? (
           <Check className="h-[0.8em] w-[0.8em]" />

@@ -72,6 +72,7 @@ function buildGroup(docs: Doc[], slug: string[]): SidebarGroup {
   return {
     title: section?.frontmatter.title ?? titleCaseFallback(slug[depth - 1]),
     description: section?.frontmatter.description,
+    kind: section?.frontmatter.kind ?? "module",
     slug,
     href: "/docs/" + key,
     order: section?.frontmatter.order ?? 0,
@@ -142,4 +143,64 @@ export function getFlatPageList(): SidebarPage[] {
     flat.push(...course.pages);
   }
   return flat;
+}
+
+export type LessonContext = {
+  /**
+   * Top-level group the page belongs to. `number` is its 1-based position
+   * among the course's subject modules, null for a resource group.
+   */
+  module: { title: string; href: string; number: number | null };
+  /**
+   * Where the page sits among its siblings: the group that lists it, and
+   * whether that group is the module itself or a subgroup inside it. Null
+   * for a group's own index page.
+   */
+  position: { index: number; total: number; groupTitle: string; nested: boolean } | null;
+};
+
+function findListingGroup(
+  group: SidebarGroup,
+  href: string,
+): { group: SidebarGroup; index: number } | null {
+  const index = group.pages.findIndex((page) => page.href === href);
+  if (index >= 0) return { group, index };
+  for (const sub of group.groups) {
+    const found = findListingGroup(sub, href);
+    if (found) return found;
+  }
+  return null;
+}
+
+/** Module and position of a docs page, for the lesson header and prev/next. */
+export function getLessonContext(href: string): LessonContext | null {
+  for (const course of getSidebarTree()) {
+    const modules = course.groups.filter((group) => group.kind === "module");
+    for (const group of course.groups) {
+      if (href !== group.href && !href.startsWith(`${group.href}/`)) continue;
+      const listing = findListingGroup(group, href);
+      const number = group.kind === "module" ? modules.indexOf(group) + 1 : null;
+      return {
+        module: { title: group.title, href: group.href, number },
+        position: listing
+          ? {
+              index: listing.index + 1,
+              total: listing.group.pages.length,
+              groupTitle: listing.group.title,
+              nested: listing.group !== group,
+            }
+          : null,
+      };
+    }
+  }
+  return null;
+}
+
+/** Top-level group (module) whose index page is `href`, if any. */
+export function getModuleByHref(href: string): SidebarGroup | null {
+  for (const course of getSidebarTree()) {
+    const match = course.groups.find((group) => group.href === href);
+    if (match) return match;
+  }
+  return null;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUp, TextAlignStart } from "lucide-react";
 import { useState } from "react";
 
 import { useRafScroll } from "@/shared/hooks/use-raf-scroll";
@@ -42,41 +43,42 @@ export function TableOfContents({
   if (items.length === 0) return null;
 
   return (
-    <nav aria-label="Índice do artigo" className="text-sm">
-      <div className="border-border border-l pl-6">
-        <p className="text-foreground mb-3 font-semibold">{label}</p>
+    <nav aria-label="Índice do artigo" className="text-[0.8125rem]">
+      <p className="text-foreground mb-3 flex items-center gap-2 text-xs font-semibold">
+        <TextAlignStart className="text-muted h-3.5 w-3.5" aria-hidden="true" />
+        {label}
+      </p>
 
-        <ul className="space-y-0.5">
-          {items.map((item) => {
-            const active = activeId === item.id;
-            return (
-              <li
-                key={item.id}
-                className="relative"
-                style={{ paddingLeft: item.depth === 3 ? "0.75rem" : "0" }}
+      <ul className="border-border border-l">
+        {items.map((item) => {
+          const active = activeId === item.id;
+          return (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                aria-current={active ? "location" : undefined}
+                className={`-ml-px block border-l-2 py-1.5 pr-2 leading-snug transition-colors ${
+                  item.depth === 3 ? "pl-7" : "pl-4"
+                } ${
+                  active
+                    ? "border-accent text-accent font-medium"
+                    : "text-muted hover:border-border-strong hover:text-foreground border-transparent"
+                }`}
               >
-                {active && (
-                  <span
-                    className="bg-accent absolute top-1 bottom-1 -left-6.5 w-0.5 rounded-full"
-                    aria-hidden="true"
-                  />
-                )}
-                <a
-                  href={`#${item.id}`}
-                  aria-current={active ? "location" : undefined}
-                  className={`block rounded-[14px] px-4 py-2.5 text-[0.8rem] leading-snug transition-colors ${
-                    active
-                      ? "bg-accent-soft text-accent font-semibold"
-                      : "text-muted-2 hover:bg-surface hover:text-accent"
-                  }`}
-                >
-                  {item.text}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                {item.text}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <a
+        href="#top"
+        className="text-muted hover:text-foreground mt-5 inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
+      >
+        <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+        Voltar ao topo
+      </a>
     </nav>
   );
 }

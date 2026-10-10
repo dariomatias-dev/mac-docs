@@ -25,7 +25,7 @@ function MathCopyButton({ latex }: { latex: string }) {
       type="button"
       onClick={() => void copy(latex)}
       aria-label={copied ? "Copiado" : "Copiar LaTeX"}
-      className="border-border bg-background text-muted hover:border-accent hover:text-accent absolute top-1.5 right-1.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+      className="border-border bg-background text-muted hover:border-accent hover:text-accent absolute top-1.5 right-1.5 flex h-7 w-7 cursor-pointer items-center justify-center rounded-control border opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
     >
       {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
     </button>

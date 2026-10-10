@@ -1,24 +1,21 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
 
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
 
 export function MobileMenuButton() {
   const { open, toggle } = useSidebarMobile();
-  const pathname = usePathname();
-
-  if (!pathname.startsWith("/docs")) return null;
 
   return (
     <button
       type="button"
-      aria-label={open ? "Fechar menu" : "Abrir menu"}
+      aria-label="Abrir menu"
+      aria-expanded={open}
       onClick={toggle}
-      className="border-border text-muted hover:bg-surface hover:text-foreground flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border transition-colors md:hidden"
+      className="text-muted-2 hover:bg-surface-2 hover:text-foreground rounded-control flex h-9 w-9 cursor-pointer items-center justify-center transition-colors md:hidden"
     >
-      {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+      <Menu className="h-5 w-5" />
     </button>
   );
 }

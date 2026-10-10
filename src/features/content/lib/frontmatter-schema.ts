@@ -7,6 +7,10 @@ export const frontmatterSchema = z.object({
   description: z.string().min(1).max(160),
   order: z.number().int().optional(),
   prerequisites: z.array(z.string().startsWith("/docs/")).optional(),
+  // On a group's index.mdx: "resource" marks course material that isn't a
+  // subject (course plan, assessments). It's listed apart in the sidebar
+  // and doesn't count in the module numbering. Defaults to "module".
+  kind: z.enum(["module", "resource"]).optional(),
 });
 
 export type Frontmatter = z.infer<typeof frontmatterSchema>;

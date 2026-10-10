@@ -18,7 +18,7 @@ export default function DocsError({ error, unstable_retry }: DocsErrorProps) {
   return (
     <div className="mx-auto max-w-[1600px] px-12 pt-24 pb-28">
       <div className="max-w-xl">
-        <h1 className="text-foreground text-4xl font-bold tracking-tight">
+        <h1 className="text-foreground text-4xl font-semibold tracking-[-0.035em]">
           Não foi possível carregar esta página
         </h1>
         <p className="text-muted mt-2">

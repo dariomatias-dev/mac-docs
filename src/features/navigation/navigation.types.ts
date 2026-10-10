@@ -8,6 +8,8 @@ export type SidebarPage = {
 export type SidebarGroup = {
   title: string;
   description?: string;
+  /** "module" for a subject of the course, "resource" for course material (plan, assessments). */
+  kind: "module" | "resource";
   slug: string[];
   href: string;
   order: number;

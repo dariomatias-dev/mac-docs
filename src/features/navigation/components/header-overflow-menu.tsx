@@ -1,14 +1,11 @@
 "use client";
 
-import { MoreVertical, NotebookPen, Users } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const links = [
-  { href: "/anotacoes", label: "Anotações", Icon: NotebookPen },
-  { href: "/contribuidores", label: "Contribuidores", Icon: Users },
-];
+import { HEADER_LINKS } from "../lib/header-links";
 
 /**
  * Header dropdown rendered only below the `lg` breakpoint, where there is no
@@ -46,7 +43,7 @@ export function HeaderOverflowMenu() {
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((current) => !current)}
-        className="text-muted-2 hover:text-accent flex h-6 w-6 cursor-pointer items-center justify-center transition-colors"
+        className="text-muted-2 hover:bg-surface-2 hover:text-foreground rounded-control flex h-9 w-9 cursor-pointer items-center justify-center transition-colors"
       >
         <MoreVertical className="h-4.5 w-4.5" />
       </button>
@@ -54,19 +51,19 @@ export function HeaderOverflowMenu() {
       {open && (
         <div
           role="menu"
-          className="border-border bg-background absolute top-full right-0 mt-3 w-48 overflow-hidden rounded-xl border shadow-lg"
+          className="border-border bg-background shadow-lift rounded-card absolute top-full right-0 mt-2 w-52 overflow-hidden border p-1.5"
         >
-          {links.map(({ href, label, Icon }) => (
+          {HEADER_LINKS.map(({ href, label, Icon }) => (
             <Link
               key={href}
               href={href}
               role="menuitem"
               aria-current={pathname === href ? "page" : undefined}
               onClick={() => setOpen(false)}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`rounded-control flex items-center gap-2.5 px-3 py-2.5 text-sm font-medium transition-colors ${
                 pathname === href
                   ? "bg-accent-soft text-accent"
-                  : "text-foreground hover:bg-surface hover:text-accent"
+                  : "text-foreground hover:bg-surface"
               }`}
             >
               <Icon className="h-4 w-4 shrink-0" />

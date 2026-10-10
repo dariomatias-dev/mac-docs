@@ -43,6 +43,7 @@ const tree: SidebarCourse[] = [
         slug: ["matematica-discreta", "matrizes"],
         href: "/docs/matematica-discreta/matrizes",
         order: 1,
+        kind: "module",
         pages: [],
         groups: [],
       },

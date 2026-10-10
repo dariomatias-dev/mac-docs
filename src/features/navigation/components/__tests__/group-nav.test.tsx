@@ -27,6 +27,7 @@ const leafGroup: SidebarGroup = {
   slug: ["matrizes"],
   href: "/docs/matrizes",
   order: 0,
+  kind: "module",
   pages: [
     {
       title: "Operações",
@@ -105,6 +106,7 @@ describe("GroupNav", () => {
       slug: ["parent"],
       href: "/docs/parent",
       order: 0,
+      kind: "module",
       pages: [],
       groups: [
         {
@@ -112,6 +114,7 @@ describe("GroupNav", () => {
           slug: ["parent", "child"],
           href: "/docs/parent/child",
           order: 0,
+          kind: "module",
           pages: [
             {
               title: "Folha",

@@ -2,11 +2,19 @@ export { Sidebar } from "./components/sidebar";
 export { DocsShell } from "./components/docs-shell";
 export { Header } from "./components/header";
 export { Footer } from "./components/footer";
+export { SiteChrome } from "./components/site-chrome";
 export { MobileMenuButton } from "./components/mobile-menu-button";
 export { Breadcrumbs } from "./components/breadcrumbs";
 export { PrevNextNav } from "./components/prev-next-nav";
 export { EditPageLink } from "./components/edit-page-link";
 export { SidebarGroupsProvider } from "./providers/sidebar-groups-provider";
 export { SidebarCollapseProvider } from "./providers/sidebar-collapse-provider";
-export { getSidebarTree, getBreadcrumb, getFlatPageList } from "./lib/sidebar-tree";
+export {
+  getSidebarTree,
+  getBreadcrumb,
+  getFlatPageList,
+  getLessonContext,
+  getModuleByHref,
+  type LessonContext,
+} from "./lib/sidebar-tree";
 export type { SidebarCourse, SidebarGroup, SidebarPage, Crumb } from "./navigation.types";

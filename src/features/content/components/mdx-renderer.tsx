@@ -39,13 +39,18 @@ const baseComponents: MDXRemoteProps["components"] = {
   h4: (props) => <HeadingAnchor level={4} {...props} />,
   a: ({ children, ...props }) => (
     <a
-      className="text-accent decoration-transparent underline-offset-2 transition-colors hover:decoration-current"
+      className="text-accent decoration-accent/35 underline-offset-[3px] transition-colors hover:decoration-current"
       {...props}
     >
       {children}
     </a>
   ),
-  code: (props) => <code className="text-accent-dark dark:text-accent font-medium" {...props} />,
+  code: (props) => (
+    <code
+      className="bg-surface-2 text-accent rounded-chip px-1.5 py-0.5 text-[0.875em] font-medium"
+      {...props}
+    />
+  ),
   pre: (props) => (
     // tabIndex is required here: axe's scrollable-region-focusable check
     // demands it so keyboard users can scroll a code block that overflows.
@@ -55,30 +60,30 @@ const baseComponents: MDXRemoteProps["components"] = {
       tabIndex={0}
       role="region"
       aria-label="Bloco de código"
-      className="bg-surface text-foreground border-border rounded-xl border [&>code]:bg-transparent [&>code]:font-normal [&>code]:text-inherit"
+      className="bg-surface text-foreground border-border rounded-card border [&>code]:bg-transparent [&>code]:p-0 [&>code]:font-normal [&>code]:text-inherit"
       {...props}
     />
   ),
   blockquote: (props) => (
     <blockquote
-      className="border-accent bg-surface text-muted-2 rounded-r-lg border-l-[3px] px-5 py-3.5 not-italic [quotes:none] [&>p]:m-0 [&>p]:before:content-none [&>p]:after:content-none"
+      className="border-accent bg-surface text-muted-2 rounded-r-card border-l-[3px] px-5 py-3.5 font-normal not-italic [quotes:none] [&>p]:m-0 [&>p]:before:content-none [&>p]:after:content-none"
       {...props}
     />
   ),
   table: (props) => (
     <table
-      className="border-border overflow-hidden rounded-xl border border-separate border-spacing-0"
+      className="border-border overflow-hidden rounded-card border border-separate border-spacing-0"
       {...props}
     />
   ),
   thead: (props) => <thead className="bg-surface" {...props} />,
   th: (props) => (
     <th
-      className="text-muted px-4 py-2.5 text-xs tracking-[0.03em] uppercase"
+      className="text-foreground px-4 py-2.5 text-[0.8125rem] font-semibold"
       {...props}
     />
   ),
-  td: (props) => <td className="px-4 py-2.5" {...props} />,
+  td: (props) => <td className="px-4 py-2.5 align-top" {...props} />,
   input: (props) =>
     props.type === "checkbox" ? (
       <input {...props} aria-label={props.checked ? "Concluído" : "A fazer"} />

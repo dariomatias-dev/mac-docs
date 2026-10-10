@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+import { REPO_URL } from "@/shared/lib/repo";
 import { ActiveMobileSheetProvider } from "@/shared/providers/active-mobile-sheet-provider";
 
 import { Header } from "../header";
@@ -33,10 +34,7 @@ describe("Header", () => {
       "href",
       "/contribuidores",
     );
-    expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute(
-      "href",
-      "https://github.com",
-    );
+    expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute("href", REPO_URL);
   });
 
   it("does not render a desktop search slot or mobile search bar by default", () => {

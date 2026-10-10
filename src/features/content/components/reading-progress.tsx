@@ -4,7 +4,8 @@ import { useState } from "react";
 
 import { useRafScroll } from "@/shared/hooks/use-raf-scroll";
 
-// Thin scroll-progress bar pinned to the header's bottom edge. Tracks how far
+// Thin scroll-progress bar pinned under the mobile docs bar, or to the top of
+// the window on desktop, where the docs have no header. Tracks how far
 // the reader has scrolled through the document (0..1) and drives a scaleX fill.
 export function ReadingProgress() {
   const [progress, setProgress] = useState(0);
@@ -16,9 +17,9 @@ export function ReadingProgress() {
   }, []);
 
   return (
-    <div className="fixed top-16 right-0 left-0 z-50 h-0.5" aria-hidden="true">
+    <div className="fixed inset-x-0 top-14 z-40 h-0.5 md:top-0 print:hidden" aria-hidden="true">
       <div
-        className="bg-accent/25 h-full origin-left transition-transform duration-75"
+        className="from-accent to-accent-bright h-full origin-left bg-linear-to-r transition-transform duration-75"
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>

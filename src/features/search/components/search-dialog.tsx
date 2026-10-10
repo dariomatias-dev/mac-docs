@@ -66,17 +66,9 @@ function Snippet({
     .filter(([s]) => s >= from && s <= to)
     .map(([s, e]) => [s - from, e - from] as Range);
   return (
-    <span
-      className={`mt-0.5 line-clamp-1 text-xs ${active ? "text-accent-foreground/80" : "text-muted"}`}
-    >
+    <span className={`mt-0.5 line-clamp-1 text-xs ${active ? "text-muted-2" : "text-muted"}`}>
       {from > 0 && "…"}
-      {highlight(
-        text.slice(from, to),
-        windowRanges,
-        active
-          ? "bg-transparent text-inherit underline decoration-2 underline-offset-2"
-          : "bg-accent-soft text-accent rounded px-0.5 font-medium",
-      )}
+      {highlight(text.slice(from, to), windowRanges, "text-accent bg-transparent font-semibold")}
       {to < text.length && "…"}
     </span>
   );
@@ -233,18 +225,18 @@ export function SearchDialog() {
       <button
         type="button"
         onClick={openDialog}
-        className="bg-surface-2 text-muted hover:bg-surface-2/70 flex w-full max-w-md cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 transition-colors"
+        className="border-border bg-surface text-muted hover:border-border-strong hover:text-muted-2 rounded-control flex h-9 w-full max-w-md cursor-pointer items-center gap-2.5 border px-3 transition-colors"
       >
         <Search className="h-4 w-4 shrink-0" />
-        <span className="flex-1 text-left text-[0.8125rem] font-semibold">Buscar</span>
-        <kbd className="border-border bg-background text-muted hidden shrink-0 rounded-md border px-1.5 py-0.5 text-[10px] font-medium sm:inline">
+        <span className="flex-1 text-left text-sm">Buscar no material…</span>
+        <kbd className="border-border bg-background text-muted rounded-chip hidden shrink-0 border px-1.5 py-0.5 font-sans text-[11px] font-medium sm:inline">
           Ctrl K
         </kbd>
       </button>
 
       {open &&
         createPortal(
-          <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24">
+          <div className="fixed inset-0 z-50 flex items-start justify-center px-3 pt-[12vh] sm:px-4">
             {/* A real <button> under the dialog in stacking order, not a
                 click-and-stopPropagation pair of divs: Escape already closes
                 the dialog (see the keydown handler above), so this is purely
@@ -256,24 +248,24 @@ export function SearchDialog() {
               tabIndex={-1}
               aria-hidden="true"
               onClick={() => setOpen(false)}
-              className="absolute inset-0 -z-10 cursor-default appearance-none border-0 bg-black/50 p-0 backdrop-blur-sm"
+              className="absolute inset-0 -z-10 cursor-default appearance-none border-0 bg-black/40 p-0 backdrop-blur-[2px]"
             />
             <div
               role="dialog"
               aria-modal="true"
               aria-label="Buscar"
-              className="border-border bg-background flex max-h-[70vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border shadow-2xl ring-1 ring-black/5"
+              className="border-border bg-background shadow-lift rounded-card flex max-h-[min(36rem,76vh)] w-full max-w-xl flex-col overflow-hidden border"
             >
-              <div className="border-border border-b p-3">
-                <div className="bg-surface-2 text-muted flex w-full items-center gap-2 rounded-full px-5 py-2.5">
-                  <Search className="h-4 w-4 shrink-0" />
+              <div className="border-border border-b px-4">
+                <div className="text-muted flex h-14 w-full items-center gap-3">
+                  <Search className="text-accent h-5 w-5 shrink-0" />
                   <input
                     ref={inputRef}
                     value={query}
                     onChange={(e) => onQueryChange(e.target.value)}
                     onKeyDown={onInputKeyDown}
                     placeholder="Buscar na documentação…"
-                    className="text-foreground placeholder:text-muted w-full bg-transparent text-[0.8125rem] font-semibold outline-none placeholder:font-semibold focus-visible:outline-none"
+                    className="text-foreground placeholder:text-muted w-full bg-transparent text-base outline-none focus-visible:outline-none"
                   />
                   {query ? (
                     <button
@@ -283,12 +275,12 @@ export function SearchDialog() {
                         inputRef.current?.focus();
                       }}
                       aria-label="Limpar busca"
-                      className="hover:bg-background hover:text-foreground flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors"
+                      className="hover:bg-surface-2 hover:text-foreground rounded-control flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center transition-colors"
                     >
-                      <X className="h-3.5 w-3.5" />
+                      <X className="h-4 w-4" />
                     </button>
                   ) : (
-                    <kbd className="border-border bg-background text-muted hidden shrink-0 rounded-md border px-1.5 py-0.5 text-[10px] font-medium sm:inline">
+                    <kbd className="border-border bg-surface text-muted rounded-chip hidden shrink-0 border px-1.5 py-0.5 font-sans text-[11px] font-medium sm:inline">
                       Esc
                     </kbd>
                   )}
@@ -304,15 +296,13 @@ export function SearchDialog() {
                   ))}
                 {groups.map(([section, sectionItems]) => (
                   <div key={section} className="mb-2 last:mb-0">
-                    <div className="flex items-center justify-between px-2.5 py-1.5">
-                      <p className="text-muted text-[11px] font-semibold tracking-wide uppercase">
-                        {section}
-                      </p>
+                    <div className="flex items-center justify-between px-2.5 pt-2 pb-1">
+                      <p className="text-muted text-xs font-semibold">{section}</p>
                       {showingRecents && section === RECENTS_SECTION && (
                         <button
                           type="button"
                           onClick={() => setRecents(clearRecents())}
-                          className="text-muted hover:text-foreground cursor-pointer text-[11px] font-medium transition-colors"
+                          className="text-muted hover:text-foreground cursor-pointer text-xs font-medium transition-colors"
                         >
                           Limpar
                         </button>
@@ -330,19 +320,19 @@ export function SearchDialog() {
                               type="button"
                               onClick={() => go(item)}
                               onMouseEnter={() => setActiveIndex(i)}
-                              className={`flex w-full cursor-pointer items-start gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition-colors ${
-                                active ? "bg-accent text-accent-foreground" : "text-foreground"
+                              className={`rounded-control flex w-full cursor-pointer items-start gap-3 px-2.5 py-2.5 text-left text-sm transition-colors ${
+                                active ? "bg-accent-soft text-foreground" : "text-foreground"
                               }`}
                             >
                               <RowIcon
-                                className={`mt-0.5 h-4 w-4 shrink-0 ${active ? "" : "text-muted"}`}
+                                className={`mt-0.5 h-4 w-4 shrink-0 ${active ? "text-accent" : "text-muted"}`}
                               />
                               <span className="flex min-w-0 flex-1 flex-col">
                                 <span className="truncate font-medium">
                                   {highlight(
                                     item.title,
                                     item.titleRanges,
-                                    "bg-transparent text-inherit font-semibold underline decoration-2 underline-offset-2",
+                                    "text-accent bg-transparent font-semibold",
                                   )}
                                 </span>
                                 <Snippet
@@ -351,7 +341,9 @@ export function SearchDialog() {
                                   active={active}
                                 />
                               </span>
-                              {active && <CornerDownLeft className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
+                              {active && (
+                                <CornerDownLeft className="text-accent mt-0.5 h-3.5 w-3.5 shrink-0" />
+                              )}
                             </button>
                           </li>
                         );
@@ -361,21 +353,21 @@ export function SearchDialog() {
                 ))}
               </div>
 
-              <div className="border-border bg-surface text-muted flex items-center gap-4 border-t px-4 py-2.5 text-xs">
+              <div className="border-border bg-surface text-muted hidden items-center gap-4 border-t px-4 py-2.5 text-xs sm:flex">
                 <span className="flex items-center gap-1.5">
-                  <kbd className="border-border bg-background rounded-md border px-1.5 py-0.5">
+                  <kbd className="border-border bg-background rounded-chip border px-1.5 py-0.5 font-sans">
                     ↵
                   </kbd>
                   Selecionar
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <kbd className="border-border bg-background rounded-md border px-1.5 py-0.5">
+                  <kbd className="border-border bg-background rounded-chip border px-1.5 py-0.5 font-sans">
                     ↑↓
                   </kbd>
                   Navegar
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <kbd className="border-border bg-background rounded-md border px-1.5 py-0.5">
+                  <kbd className="border-border bg-background rounded-chip border px-1.5 py-0.5 font-sans">
                     Esc
                   </kbd>
                   Fechar
