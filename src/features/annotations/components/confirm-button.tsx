@@ -52,7 +52,7 @@ export function ConfirmButton({
       title={label}
       className={
         className ??
-        "text-muted-2 hover:bg-surface cursor-pointer rounded-md p-1.5 transition-colors hover:text-red-500"
+        "text-muted-2 hover:bg-surface rounded-control cursor-pointer p-1.5 transition-colors hover:text-red-500"
       }
     >
       <Icon className="h-3.5 w-3.5" />

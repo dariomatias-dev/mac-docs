@@ -64,7 +64,7 @@ function NoteItem({
 
   if (editing) {
     return (
-      <li className="border-accent/50 bg-accent-soft rounded-[10px] border p-3">
+      <li className="border-accent/50 bg-accent-soft rounded-card border p-3">
         <NoteForm
           variant="edit"
           initialValue={annotation.note}
@@ -81,7 +81,7 @@ function NoteItem({
   }
 
   return (
-    <li className="border-border bg-background group rounded-[10px] border p-3">
+    <li className="border-border bg-background group rounded-card border p-3">
       <p className="text-foreground text-sm wrap-break-word whitespace-pre-wrap">
         {annotation.note}
       </p>
@@ -96,7 +96,7 @@ function NoteItem({
             type="button"
             onClick={() => setEditing(true)}
             aria-label="Editar anotação"
-            className="text-muted-2 hover:bg-surface hover:text-accent cursor-pointer rounded-md p-1.5 transition-colors"
+            className="text-muted-2 hover:bg-surface hover:text-accent rounded-control cursor-pointer p-1.5 transition-colors"
           >
             <Pencil className="h-3.5 w-3.5" />
           </button>
@@ -119,7 +119,7 @@ function GroupCard({
   onRemoveGroup: () => void;
 }) {
   return (
-    <div className="border-border bg-surface/50 rounded-[10px] border p-4">
+    <div className="border-border bg-surface/50 rounded-card border p-4">
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="min-w-0">
           {group.page ? (
@@ -233,7 +233,7 @@ export function AnnotationsListPage() {
   return (
     <main className="flex-1">
       <section className="mx-auto max-w-4xl px-6 pt-16 pb-4">
-        <h1 className="from-accent-dark via-accent mb-1 bg-linear-to-br to-[#58c4dc] bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
+        <h1 className="text-foreground mb-1 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
           Anotações
         </h1>
         <p className="text-muted mt-3 max-w-2xl text-base leading-relaxed sm:text-lg">

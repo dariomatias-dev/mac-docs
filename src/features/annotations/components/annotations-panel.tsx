@@ -36,7 +36,7 @@ const AnnotationItem = memo(function AnnotationItem({
 
   if (editing) {
     return (
-      <li className="border-accent/50 bg-accent-soft rounded-[10px] border p-3">
+      <li className="border-accent/50 bg-accent-soft rounded-card border p-3">
         <NoteForm
           variant="edit"
           initialValue={annotation.note}
@@ -53,7 +53,7 @@ const AnnotationItem = memo(function AnnotationItem({
   }
 
   return (
-    <li className="border-border bg-surface/50 hover:border-accent/40 group rounded-[10px] border p-3 transition-[border-color,box-shadow] hover:shadow-[0_2px_12px_rgba(10,113,148,0.08)]">
+    <li className="border-border bg-surface/50 hover:border-accent/40 group rounded-card border p-3 transition-[border-color,box-shadow] hover:shadow-[0_2px_12px_rgba(10,113,148,0.08)]">
       <p className="text-foreground text-sm wrap-break-word whitespace-pre-wrap">
         {annotation.note}
       </p>
@@ -68,7 +68,7 @@ const AnnotationItem = memo(function AnnotationItem({
             type="button"
             onClick={() => setEditing(true)}
             aria-label="Editar anotação"
-            className="text-muted-2 hover:bg-surface hover:text-accent cursor-pointer rounded-md p-1.5 transition-colors"
+            className="text-muted-2 hover:bg-surface hover:text-accent rounded-control cursor-pointer p-1.5 transition-colors"
           >
             <Pencil className="h-3.5 w-3.5" />
           </button>
@@ -76,7 +76,7 @@ const AnnotationItem = memo(function AnnotationItem({
             type="button"
             onClick={() => onRemove(annotation)}
             aria-label="Remover anotação"
-            className="text-muted-2 hover:bg-surface cursor-pointer rounded-md p-1.5 transition-colors hover:text-red-500"
+            className="text-muted-2 hover:bg-surface rounded-control cursor-pointer p-1.5 transition-colors hover:text-red-500"
           >
             <Trash2 className="h-3.5 w-3.5" />
           </button>
@@ -167,180 +167,166 @@ export function AnnotationsPanel({
   }
 
   return (
-    <>
-      <aside
-        aria-hidden={!open}
-        inert={!open}
-        className={`border-border bg-background fixed top-16 right-0 bottom-0 z-70 flex w-full max-w-md flex-col border-l shadow-2xl transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="border-border flex shrink-0 items-center justify-between gap-3 border-b px-5 py-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <span className="bg-accent-soft text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-lg">
-              <NotebookPen className="h-4.5 w-4.5" />
-            </span>
-            <div className="min-w-0">
-              <p className="text-foreground truncate text-sm font-bold tracking-tight">Anotações</p>
-              <p className="text-muted-2 truncate text-xs">
-                {annotations.length === 0
-                  ? "Nenhuma anotação nesta página"
-                  : `${annotations.length} ${annotations.length === 1 ? "anotação" : "anotações"} nesta página`}
-              </p>
-            </div>
-          </div>
-          <div className="flex shrink-0 items-center gap-1">
-            <button
-              type="button"
-              onClick={handleExport}
-              disabled={annotations.length === 0}
-              aria-label="Exportar anotações"
-              title="Exportar anotações"
-              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              aria-label="Importar anotações"
-              title="Importar anotações"
-              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
-            >
-              <Upload className="h-4 w-4" />
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json"
-              aria-label="Selecionar arquivo de anotações"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) void handleImportFile(file);
-                e.target.value = "";
-              }}
-            />
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Fechar anotações"
-              className="text-muted-2 hover:bg-surface hover:text-foreground cursor-pointer rounded-md p-1 transition-colors"
-            >
-              <X className="h-4 w-4" />
-            </button>
+    <aside
+      aria-hidden={!open}
+      inert={!open}
+      className={`border-border bg-background fixed inset-y-0 right-0 z-70 flex w-full max-w-md flex-col border-l transition-[translate,box-shadow] duration-300 ease-in-out print:hidden ${
+        open ? "shadow-lift translate-x-0" : "translate-x-full shadow-none"
+      }`}
+    >
+      <div className="border-border flex shrink-0 items-center justify-between gap-3 border-b px-5 py-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="bg-accent-soft text-accent rounded-control flex h-9 w-9 shrink-0 items-center justify-center">
+            <NotebookPen className="h-4.5 w-4.5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-foreground truncate text-sm font-bold tracking-tight">Anotações</p>
+            <p className="text-muted-2 truncate text-xs">
+              {annotations.length === 0
+                ? "Nenhuma anotação nesta página"
+                : `${annotations.length} ${annotations.length === 1 ? "anotação" : "anotações"} nesta página`}
+            </p>
           </div>
         </div>
-
-        <div className="flex-1 overflow-y-auto px-5 py-4">
-          <NoteForm
-            variant="new"
-            placeholder="Escreva uma anotação sobre esta página..."
-            submitLabel="Adicionar"
-            onSubmit={onAdd}
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            type="button"
+            onClick={handleExport}
+            disabled={annotations.length === 0}
+            aria-label="Exportar anotações"
+            title="Exportar anotações"
+            className="text-muted-2 hover:bg-surface hover:text-foreground rounded-control cursor-pointer p-1 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <Download className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            aria-label="Importar anotações"
+            title="Importar anotações"
+            className="text-muted-2 hover:bg-surface hover:text-foreground rounded-control cursor-pointer p-1 transition-colors"
+          >
+            <Upload className="h-4 w-4" />
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json"
+            aria-label="Selecionar arquivo de anotações"
+            className="hidden"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) void handleImportFile(file);
+              e.target.value = "";
+            }}
           />
-
-          {annotations.length === 0 ? (
-            <div className="text-muted-2 mt-10 flex flex-col items-center gap-3 text-center text-sm">
-              <span className="bg-accent-soft flex h-14 w-14 items-center justify-center rounded-full">
-                <StickyNote className="text-accent h-6 w-6" />
-              </span>
-              <p className="max-w-[22ch] leading-relaxed">
-                Nenhuma anotação ainda. Escreva a primeira acima.
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="mt-4 flex items-center gap-2">
-                <div className="bg-surface-2 text-muted-2 flex flex-1 items-center gap-2 rounded-full px-3.5 py-2">
-                  <Search className="h-3.5 w-3.5 shrink-0" />
-                  <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Buscar anotações..."
-                    className="text-foreground placeholder:text-muted-2 w-full bg-transparent text-sm font-medium outline-none"
-                  />
-                  {query && (
-                    <button
-                      type="button"
-                      onClick={() => setQuery("")}
-                      aria-label="Limpar busca"
-                      className="hover:bg-background hover:text-foreground flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                    </button>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setSortOrder((o) => (o === "newest" ? "oldest" : "newest"))}
-                  aria-label={
-                    sortOrder === "newest"
-                      ? "Ordenar por mais antigas primeiro"
-                      : "Ordenar por mais recentes primeiro"
-                  }
-                  title={
-                    sortOrder === "newest" ? "Mais recentes primeiro" : "Mais antigas primeiro"
-                  }
-                  className="bg-surface-2 text-muted-2 hover:bg-surface-2/70 hover:text-foreground shrink-0 cursor-pointer rounded-full p-2.5 transition-colors"
-                >
-                  {sortOrder === "newest" ? (
-                    <ArrowDownWideNarrow className="h-3.5 w-3.5" />
-                  ) : (
-                    <ArrowUpWideNarrow className="h-3.5 w-3.5" />
-                  )}
-                </button>
-              </div>
-
-              {visibleAnnotations.length === 0 ? (
-                <div className="text-muted-2 mt-6 text-center text-sm">
-                  Nenhuma anotação corresponde à busca.
-                </div>
-              ) : (
-                <ul className="mt-4 space-y-2.5">
-                  {visibleAnnotations.map((a) => (
-                    <AnnotationItem
-                      key={a.id}
-                      annotation={a}
-                      onUpdate={onUpdate}
-                      onRemove={handleRemove}
-                    />
-                  ))}
-                </ul>
-              )}
-            </>
-          )}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar anotações"
+            className="text-muted-2 hover:bg-surface hover:text-foreground rounded-control cursor-pointer p-1 transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
+      </div>
 
-        {pendingUndos.length > 0 && (
-          <div className="border-border bg-surface divide-border flex shrink-0 flex-col divide-y border-t text-sm">
-            {pendingUndos.map((annotation) => (
-              <div
-                key={annotation.id}
-                className="flex items-center justify-between gap-3 px-5 py-3"
-              >
-                <span className="text-muted-2">Anotação removida.</span>
-                <button
-                  type="button"
-                  onClick={() => handleUndo(annotation)}
-                  className="text-accent flex cursor-pointer items-center gap-1.5 font-medium hover:underline"
-                >
-                  <Undo2 className="h-3.5 w-3.5" />
-                  Desfazer
-                </button>
-              </div>
-            ))}
+      <div className="flex-1 overflow-y-auto px-5 py-4">
+        <NoteForm
+          variant="new"
+          placeholder="Escreva uma anotação sobre esta página..."
+          submitLabel="Adicionar"
+          onSubmit={onAdd}
+        />
+
+        {annotations.length === 0 ? (
+          <div className="text-muted-2 mt-10 flex flex-col items-center gap-3 text-center text-sm">
+            <span className="bg-accent-soft flex h-14 w-14 items-center justify-center rounded-full">
+              <StickyNote className="text-accent h-6 w-6" />
+            </span>
+            <p className="max-w-[22ch] leading-relaxed">
+              Nenhuma anotação ainda. Escreva a primeira acima.
+            </p>
           </div>
-        )}
-      </aside>
+        ) : (
+          <>
+            <div className="mt-4 flex items-center gap-2">
+              <div className="bg-surface-2 text-muted-2 rounded-control flex flex-1 items-center gap-2 px-3.5 py-2">
+                <Search className="h-3.5 w-3.5 shrink-0" />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Buscar anotações..."
+                  className="text-foreground placeholder:text-muted-2 w-full bg-transparent text-sm font-medium outline-none"
+                />
+                {query && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery("")}
+                    aria-label="Limpar busca"
+                    className="hover:bg-background hover:text-foreground rounded-chip flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center transition-colors"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setSortOrder((o) => (o === "newest" ? "oldest" : "newest"))}
+                aria-label={
+                  sortOrder === "newest"
+                    ? "Ordenar por mais antigas primeiro"
+                    : "Ordenar por mais recentes primeiro"
+                }
+                title={sortOrder === "newest" ? "Mais recentes primeiro" : "Mais antigas primeiro"}
+                className="bg-surface-2 text-muted-2 hover:bg-surface-2/70 hover:text-foreground rounded-control shrink-0 cursor-pointer p-2.5 transition-colors"
+              >
+                {sortOrder === "newest" ? (
+                  <ArrowDownWideNarrow className="h-3.5 w-3.5" />
+                ) : (
+                  <ArrowUpWideNarrow className="h-3.5 w-3.5" />
+                )}
+              </button>
+            </div>
 
-      <div
-        aria-hidden="true"
-        className={`bg-border fixed inset-x-0 top-16 z-80 h-px transition-opacity duration-300 md:hidden ${
-          open ? "opacity-100" : "opacity-0"
-        }`}
-      />
-    </>
+            {visibleAnnotations.length === 0 ? (
+              <div className="text-muted-2 mt-6 text-center text-sm">
+                Nenhuma anotação corresponde à busca.
+              </div>
+            ) : (
+              <ul className="mt-4 space-y-2.5">
+                {visibleAnnotations.map((a) => (
+                  <AnnotationItem
+                    key={a.id}
+                    annotation={a}
+                    onUpdate={onUpdate}
+                    onRemove={handleRemove}
+                  />
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </div>
+
+      {pendingUndos.length > 0 && (
+        <div className="border-border bg-surface divide-border flex shrink-0 flex-col divide-y border-t text-sm">
+          {pendingUndos.map((annotation) => (
+            <div key={annotation.id} className="flex items-center justify-between gap-3 px-5 py-3">
+              <span className="text-muted-2">Anotação removida.</span>
+              <button
+                type="button"
+                onClick={() => handleUndo(annotation)}
+                className="text-accent flex cursor-pointer items-center gap-1.5 font-medium hover:underline"
+              >
+                <Undo2 className="h-3.5 w-3.5" />
+                Desfazer
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </aside>
   );
 }

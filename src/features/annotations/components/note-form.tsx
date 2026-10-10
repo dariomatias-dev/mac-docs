@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { MAX_NOTE_LENGTH } from "../lib/use-annotations";
 
 const NOTE_TEXTAREA_STYLES = {
-  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none overflow-y-auto rounded-[10px] border p-3 text-sm leading-relaxed transition-colors outline-none focus:ring-2",
+  new: "border-border bg-background text-foreground focus:border-accent focus:ring-accent/20 w-full resize-none overflow-y-auto rounded-control border p-3 text-sm leading-relaxed transition-colors outline-none focus:ring-2",
   edit: "text-foreground placeholder:text-muted-2 w-full resize-none overflow-y-auto bg-transparent text-sm leading-relaxed outline-none",
 };
 

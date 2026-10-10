@@ -32,7 +32,7 @@ export function Annotations({ slug }: { slug: string }) {
           aria-label="Abrir anotações"
           aria-expanded={open}
           title="Abrir anotações (Ctrl/Cmd+Shift+A)"
-          className="bg-accent text-accent-foreground hover:bg-accent-dark fixed right-6 bottom-6 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95"
+          className="bg-accent text-accent-foreground hover:bg-accent-dark fixed right-6 bottom-6 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95 print:hidden"
         >
           <StickyNote className="h-5 w-5" />
           {annotations.length > 0 && (
