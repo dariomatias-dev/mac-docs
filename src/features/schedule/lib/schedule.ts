@@ -34,8 +34,17 @@ export function todayLocalDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
+/**
+ * Position of the next class in the schedule (today's, if it hasn't passed
+ * yet; otherwise the first upcoming one), or -1 once every class has passed.
+ * A number, so it is a stable `useSyncExternalStore` snapshot.
+ */
+export function getNextClassIndex(schedule: ClassSession[] = CLASS_SCHEDULE): number {
+  const today = todayLocalDateString();
+  return schedule.findIndex((session) => session.date >= today);
+}
+
 /** Next class: today's, if it hasn't passed yet; otherwise the first upcoming one. */
 export function getNextClass(schedule: ClassSession[] = CLASS_SCHEDULE): ClassSession | null {
-  const today = todayLocalDateString();
-  return schedule.find((session) => session.date >= today) ?? null;
+  return schedule[getNextClassIndex(schedule)] ?? null;
 }
