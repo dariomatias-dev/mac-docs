@@ -5,4 +5,5 @@ export { ContributorSection } from "./components/contributor-section";
 export { MONITORS } from "./data/monitors";
 export { MATERIAL_CONTRIBUTORS } from "./data/material-contributors";
 export { getGithubAvatarUrl } from "./lib/get-github-avatar-url";
+export { getTeam, githubHandle, type TeamMember, type TeamRole } from "./lib/get-team";
 export type { MaterialContributor } from "./contributors.types";

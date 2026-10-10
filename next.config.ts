@@ -47,6 +47,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Contributor avatars come from GitHub (github.com/<user>.png redirects to
+  // avatars.githubusercontent.com).
+  images: {
+    remotePatterns: [
+      new URL("https://github.com/**"),
+      new URL("https://avatars.githubusercontent.com/**"),
+    ],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

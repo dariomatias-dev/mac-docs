@@ -19,21 +19,23 @@ export function ContributorSection({
   className?: string;
 }) {
   return (
-    <section className={`mx-auto max-w-6xl px-6 py-10 ${className}`}>
-      <div className="mb-6 flex items-center gap-3">
-        <span className="bg-accent-soft text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-lg">
-          <Icon className="h-5 w-5" />
+    <section className={`mx-auto max-w-7xl px-6 py-14 sm:py-16 ${className}`}>
+      <div className="flex items-start gap-4">
+        <span className="bg-accent-soft text-accent rounded-control flex h-10 w-10 shrink-0 items-center justify-center">
+          <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
         <div>
-          <h2 className="text-foreground text-xl font-bold tracking-tight">{title}</h2>
-          <p className="text-muted text-sm leading-relaxed">{description}</p>
+          <h2 className="text-foreground text-2xl font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            {title}
+          </h2>
+          <p className="text-muted mt-1 max-w-[60ch] leading-relaxed">{description}</p>
         </div>
       </div>
 
       {hasItems ? (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
       ) : (
-        <p className="border-border bg-surface text-muted rounded-[10px] border border-dashed p-6 text-center text-sm">
+        <p className="border-border bg-surface text-muted rounded-card mt-8 border border-dashed p-6 text-center text-sm">
           {emptyMessage}
         </p>
       )}
