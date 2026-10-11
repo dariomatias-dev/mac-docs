@@ -7,7 +7,6 @@ import { usePersistedState } from "@/shared/hooks/use-persisted-state";
 type SidebarGroupsContextValue = {
   isOpen: (href: string, defaultOpen: boolean) => boolean;
   setGroupOpen: (href: string, value: boolean) => void;
-  seedGroupOpen: (href: string, defaultOpen: boolean) => void;
 };
 
 const SidebarGroupsContext = createContext<SidebarGroupsContextValue | null>(null);
@@ -22,22 +21,12 @@ export function SidebarGroupsProvider({ children }: { children: ReactNode }) {
 
   const setGroupOpen = useCallback(
     (href: string, value: boolean) => {
-      setOpenMap((prev) => ({ ...prev, [href]: value }));
+      setOpenMap((prev) => (prev[href] === value ? prev : { ...prev, [href]: value }));
     },
     [setOpenMap],
   );
 
-  const seedGroupOpen = useCallback(
-    (href: string, defaultOpen: boolean) => {
-      setOpenMap((prev) => (href in prev ? prev : { ...prev, [href]: defaultOpen }));
-    },
-    [setOpenMap],
-  );
-
-  const value = useMemo(
-    () => ({ isOpen, setGroupOpen, seedGroupOpen }),
-    [isOpen, setGroupOpen, seedGroupOpen],
-  );
+  const value = useMemo(() => ({ isOpen, setGroupOpen }), [isOpen, setGroupOpen]);
 
   return <SidebarGroupsContext.Provider value={value}>{children}</SidebarGroupsContext.Provider>;
 }

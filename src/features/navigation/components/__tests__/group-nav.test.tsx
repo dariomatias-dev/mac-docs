@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ActiveMobileSheetProvider } from "@/shared/providers/active-mobile-sheet-provider";
 
 import { SidebarGroupsProvider } from "../../providers/sidebar-groups-provider";
-import { GroupNav } from "../group-nav";
+import { GroupNav, isPathInGroup } from "../group-nav";
 
 import type { SidebarGroup } from "../../navigation.types";
 
@@ -45,6 +45,14 @@ const leafGroup: SidebarGroup = {
   groups: [],
 };
 
+describe("isPathInGroup", () => {
+  it("matches the group itself and nested paths, not a sibling prefix", () => {
+    expect(isPathInGroup("/docs/matrizes", "/docs/matrizes")).toBe(true);
+    expect(isPathInGroup("/docs/matrizes/operacoes", "/docs/matrizes")).toBe(true);
+    expect(isPathInGroup("/docs/matrizes-booleanas", "/docs/matrizes")).toBe(false);
+  });
+});
+
 describe("GroupNav", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -73,6 +81,13 @@ describe("GroupNav", () => {
     expect(screen.getByRole("link", { name: "Determinantes" })).not.toHaveAttribute("aria-current");
   });
 
+  it("lets the user collapse the active branch until the pathname changes", async () => {
+    usePathnameMock.mockReturnValue("/docs/matrizes/operacoes");
+    renderGroup(leafGroup);
+    await userEvent.click(screen.getByRole("button", { name: "Recolher seção" }));
+    expect(screen.getByRole("button", { name: "Expandir seção" })).toBeInTheDocument();
+  });
+
   it("toggles open and closed on click", async () => {
     renderGroup(leafGroup);
     const toggleButton = screen.getByRole("button", { name: "Expandir seção" });
@@ -84,9 +99,93 @@ describe("GroupNav", () => {
     expect(screen.getByRole("button", { name: "Expandir seção" })).toBeInTheDocument();
   });
 
-  it("remembers a manually collapsed state across remounts, even for the active branch", async () => {
+  it("re-expands a collapsed group when the current page is inside it", async () => {
     usePathnameMock.mockReturnValue("/docs/matrizes/operacoes");
     const { unmount } = renderGroup(leafGroup);
+    await userEvent.click(screen.getByRole("button", { name: "Recolher seção" }));
+    unmount();
+
+    renderGroup(leafGroup);
+    expect(screen.getByRole("button", { name: "Recolher seção" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Operações" })).toHaveAttribute("aria-current", "page");
+  });
+
+  it("re-expands when navigating to another page inside a collapsed group", async () => {
+    usePathnameMock.mockReturnValue("/docs/matrizes/operacoes");
+    const { rerender } = renderGroup(leafGroup);
+    await userEvent.click(screen.getByRole("button", { name: "Recolher seção" }));
+
+    usePathnameMock.mockReturnValue("/docs/matrizes/determinantes");
+    rerender(
+      <ActiveMobileSheetProvider>
+        <SidebarGroupsProvider>
+          <GroupNav group={leafGroup} />
+        </SidebarGroupsProvider>
+      </ActiveMobileSheetProvider>,
+    );
+
+    expect(screen.getByRole("button", { name: "Recolher seção" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Determinantes" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
+  it("does not treat a sibling path with a shared prefix as this branch", () => {
+    usePathnameMock.mockReturnValue("/docs/matrizes-booleanas");
+    renderGroup(leafGroup);
+    expect(screen.getByRole("button", { name: "Expandir seção" })).toBeInTheDocument();
+  });
+
+  it("does not reopen inactive groups stored as open in localStorage", () => {
+    localStorage.setItem("sidebar-groups", JSON.stringify({ "/docs/matrizes": true }));
+    renderGroup(leafGroup);
+    expect(screen.getByRole("button", { name: "Expandir seção" })).toBeInTheDocument();
+  });
+
+  it("does not persist sibling groups as closed just because they were inactive", () => {
+    const sibling: SidebarGroup = {
+      ...leafGroup,
+      title: "Funções",
+      slug: ["funcoes"],
+      href: "/docs/funcoes",
+      pages: [
+        {
+          title: "Injetora",
+          slug: ["funcoes", "injetora"],
+          href: "/docs/funcoes/injetora",
+          order: 0,
+        },
+      ],
+    };
+
+    usePathnameMock.mockReturnValue("/docs/matrizes/operacoes");
+    const { unmount } = render(
+      <ActiveMobileSheetProvider>
+        <SidebarGroupsProvider>
+          <GroupNav group={leafGroup} />
+          <GroupNav group={sibling} />
+        </SidebarGroupsProvider>
+      </ActiveMobileSheetProvider>,
+    );
+    unmount();
+
+    usePathnameMock.mockReturnValue("/docs/funcoes/injetora");
+    render(
+      <ActiveMobileSheetProvider>
+        <SidebarGroupsProvider>
+          <GroupNav group={sibling} />
+        </SidebarGroupsProvider>
+      </ActiveMobileSheetProvider>,
+    );
+
+    expect(screen.getByRole("button", { name: "Recolher seção" })).toBeInTheDocument();
+  });
+
+  it("remembers a manually collapsed state across remounts when the branch is inactive", async () => {
+    usePathnameMock.mockReturnValue("/docs/other");
+    const { unmount } = renderGroup(leafGroup);
+    await userEvent.click(screen.getByRole("button", { name: "Expandir seção" }));
     await userEvent.click(screen.getByRole("button", { name: "Recolher seção" }));
     unmount();
 

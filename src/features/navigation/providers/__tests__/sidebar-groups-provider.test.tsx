@@ -30,16 +30,15 @@ describe("useSidebarGroups", () => {
     expect(result.current.isOpen("/docs/a", false)).toBe(true);
   });
 
-  it("seedGroupOpen only sets the value the first time, never overwriting it later", () => {
+  it("does not update when setGroupOpen writes the same value", () => {
     const { result } = renderHook(() => useSidebarGroups(), {
       wrapper: SidebarGroupsProvider,
     });
 
-    act(() => result.current.seedGroupOpen("/docs/a", true));
-    expect(result.current.isOpen("/docs/a", false)).toBe(true);
-
-    act(() => result.current.seedGroupOpen("/docs/a", false));
-    expect(result.current.isOpen("/docs/a", false)).toBe(true);
+    act(() => result.current.setGroupOpen("/docs/a", true));
+    const isOpen = result.current.isOpen;
+    act(() => result.current.setGroupOpen("/docs/a", true));
+    expect(result.current.isOpen).toBe(isOpen);
   });
 
   it("persists across a fresh mount", () => {

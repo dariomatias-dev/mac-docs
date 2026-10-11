@@ -136,6 +136,30 @@ describe("Sidebar", () => {
     expect(container.scrollTop).not.toBe(0);
   });
 
+  it("does not move the scrollbar while the active link is still collapsed", () => {
+    const { rerender } = renderSidebar();
+
+    const container = document.querySelector<HTMLElement>('[class*="overflow-y-auto"]')!;
+    const nextActiveLink = screen.getByRole("link", { name: "Segunda página" });
+
+    container.getBoundingClientRect = () => ({ top: 0, bottom: 300, height: 300 }) as DOMRect;
+    Object.defineProperty(container, "clientHeight", { value: 300, configurable: true });
+    nextActiveLink.getBoundingClientRect = () => ({ top: 400, bottom: 400, height: 0 }) as DOMRect;
+
+    usePathnameMock.mockReturnValue("/docs/matematica-discreta/segunda");
+    rerender(
+      <ActiveMobileSheetProvider>
+        <SidebarCollapseProvider>
+          <SidebarGroupsProvider>
+            <Sidebar tree={tree} />
+          </SidebarGroupsProvider>
+        </SidebarCollapseProvider>
+      </ActiveMobileSheetProvider>,
+    );
+
+    expect(container.scrollTop).toBe(0);
+  });
+
   it("clicking the mobile backdrop closes the open mobile sidebar", async () => {
     function OpenNavProbe() {
       const { isOpen, openSheet } = useMobileSheet("nav");

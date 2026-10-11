@@ -64,17 +64,53 @@ export function Sidebar({ tree, search }: { tree: SidebarCourse[]; search?: Reac
   const { collapsed, toggle } = useSidebarCollapse();
   const pathname = usePathname();
   const scrollRef = useRef<HTMLElement>(null);
+  const navInnerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = scrollRef.current;
-    const active = container?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (!container || !active) return;
+    const inner = navInnerRef.current;
 
-    const c = container.getBoundingClientRect();
-    const a = active.getBoundingClientRect();
-    if (a.top < c.top || a.bottom > c.bottom) {
-      container.scrollTop += a.top - c.top - (container.clientHeight - a.height) / 2;
+    function scrollActiveIntoView() {
+      const scroller = scrollRef.current;
+      if (!scroller) return true;
+
+      const active = scroller.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!active) return true;
+
+      const c = scroller.getBoundingClientRect();
+      const a = active.getBoundingClientRect();
+      // Collapsed groups keep the link in the DOM at height 0; wait until
+      // the branch has expanded before moving the scrollbar.
+      if (a.height === 0) return false;
+      if (a.top < c.top || a.bottom > c.bottom) {
+        scroller.scrollTop += a.top - c.top - (scroller.clientHeight - a.height) / 2;
+        return false;
+      }
+      return true;
     }
+
+    let frame = 0;
+    function tick() {
+      if (scrollActiveIntoView()) return;
+      frame = requestAnimationFrame(tick);
+    }
+
+    tick();
+
+    // Nav height can still change after the first paint (fonts, late layout).
+    if (!inner || typeof ResizeObserver === "undefined") {
+      return () => cancelAnimationFrame(frame);
+    }
+
+    const observer = new ResizeObserver(() => {
+      if (scrollActiveIntoView()) observer.disconnect();
+    });
+    observer.observe(inner);
+    const settle = window.setTimeout(() => observer.disconnect(), 1000);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(settle);
+      cancelAnimationFrame(frame);
+    };
   }, [pathname]);
 
   const pageLink = (href: string, title: string) => {
@@ -158,39 +194,41 @@ export function Sidebar({ tree, search }: { tree: SidebarCourse[]; search?: Reac
             aria-label="Material"
             className="flex-1 overflow-y-auto overscroll-contain mask-[linear-gradient(to_bottom,black_calc(100%-2rem),transparent)] px-3 pt-1 pb-10"
           >
-            {tree.map((course) => {
-              const { leading, modules, trailing } = splitCourse(course);
-              return (
-                <div
-                  key={course.slug.join("/")}
-                  className="border-border mt-6 border-t pt-4 first:mt-0 first:border-t-0 first:pt-0"
-                >
-                  <div className="space-y-0.5">
-                    {pageLink(course.href, course.title)}
-                    {leading.map((group) => (
-                      <GroupNav key={group.href} group={group} />
-                    ))}
+            <div ref={navInnerRef}>
+              {tree.map((course) => {
+                const { leading, modules, trailing } = splitCourse(course);
+                return (
+                  <div
+                    key={course.slug.join("/")}
+                    className="border-border mt-6 border-t pt-4 first:mt-0 first:border-t-0 first:pt-0"
+                  >
+                    <div className="space-y-0.5">
+                      {pageLink(course.href, course.title)}
+                      {leading.map((group) => (
+                        <GroupNav key={group.href} group={group} />
+                      ))}
+                    </div>
+
+                    {modules.length > 0 && (
+                      <NavSection label="Conteúdo">
+                        {modules.map((group) => (
+                          <GroupNav key={group.href} group={group} />
+                        ))}
+                      </NavSection>
+                    )}
+
+                    {(trailing.length > 0 || course.pages.length > 0) && (
+                      <NavSection label="Recursos">
+                        {trailing.map((group) => (
+                          <GroupNav key={group.href} group={group} />
+                        ))}
+                        {course.pages.map((page) => pageLink(page.href, page.title))}
+                      </NavSection>
+                    )}
                   </div>
-
-                  {modules.length > 0 && (
-                    <NavSection label="Conteúdo">
-                      {modules.map((group) => (
-                        <GroupNav key={group.href} group={group} />
-                      ))}
-                    </NavSection>
-                  )}
-
-                  {(trailing.length > 0 || course.pages.length > 0) && (
-                    <NavSection label="Recursos">
-                      {trailing.map((group) => (
-                        <GroupNav key={group.href} group={group} />
-                      ))}
-                      {course.pages.map((page) => pageLink(page.href, page.title))}
-                    </NavSection>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </nav>
 
           <div className="border-border flex shrink-0 items-center gap-1 border-t px-2 py-2">

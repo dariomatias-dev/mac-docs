@@ -3,9 +3,8 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useState } from "react";
 
-import { useSidebarGroups } from "../providers/sidebar-groups-provider";
 import { useSidebarMobile } from "../providers/sidebar-mobile-provider";
 
 import type { SidebarGroup } from "../navigation.types";
@@ -13,22 +12,22 @@ import type { SidebarGroup } from "../navigation.types";
 /** Shared look of the current page/group in the sidebar. */
 export const ACTIVE_ITEM = "bg-accent/12 text-accent-dark dark:text-accent font-semibold";
 
+export function isPathInGroup(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: number }) {
   const pathname = usePathname();
   const { close } = useSidebarMobile();
-  const { isOpen, setGroupOpen, seedGroupOpen } = useSidebarGroups();
-  const isActiveBranch = pathname.startsWith(group.href);
-  const open = isOpen(group.href, isActiveBranch);
-
-  useEffect(() => {
-    seedGroupOpen(group.href, isActiveBranch);
-  }, [seedGroupOpen, group.href, isActiveBranch]);
-
-  // Navigating into this branch (e.g. via prev/next) forces it open so the
-  // active page is visible, even if the group was previously collapsed.
-  useEffect(() => {
-    if (isActiveBranch) setGroupOpen(group.href, true);
-  }, [setGroupOpen, group.href, isActiveBranch]);
+  const isActiveBranch = isPathInGroup(pathname, group.href);
+  // Ignore persisted `sidebar-groups`: hydrating stored `true` reopens
+  // modules above the current page after the first paint and pushes the
+  // active link out of the nav. Session pin + pathname-keyed collapse only.
+  const [pinnedOpen, setPinnedOpen] = useState(false);
+  const [collapsedPath, setCollapsedPath] = useState<string | null>(null);
+  const [animatedPath, setAnimatedPath] = useState<string | null>(null);
+  const open = collapsedPath === pathname ? false : isActiveBranch || pinnedOpen;
+  const animate = animatedPath === pathname;
 
   const groupActive = pathname === group.href;
   const hasChildren = group.pages.length > 0 || group.groups.length > 0;
@@ -63,7 +62,12 @@ export function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: nu
             type="button"
             aria-label={open ? "Recolher seção" : "Expandir seção"}
             aria-expanded={open}
-            onClick={() => setGroupOpen(group.href, !open)}
+            onClick={() => {
+              const next = !open;
+              setAnimatedPath(pathname);
+              setCollapsedPath(next ? null : pathname);
+              setPinnedOpen(next);
+            }}
             className="text-muted-2 hover:bg-border hover:text-foreground rounded-control mr-1 flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center transition-colors"
           >
             <ChevronRight
@@ -78,9 +82,9 @@ export function GroupNav({ group, depth = 0 }: { group: SidebarGroup; depth?: nu
         // the accessibility tree while the height transition still runs.
         <div
           inert={!open}
-          className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${
-            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-          }`}
+          className={`grid ${
+            animate ? "transition-[grid-template-rows,opacity] duration-200 ease-out" : ""
+          } ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
         >
           <div className="min-h-0 overflow-hidden">
             <div className="border-border-strong my-1 ml-3.5 border-l pl-2">
