@@ -33,8 +33,39 @@ polinômio $p(x)$?
 
 <Resolution>
 
-Como $-2$ é raiz de $p(x)$, dividimos por $(x+2)$ usando divisão sintética
-(Briot-Ruffini) com os coeficientes $1, -2, -45, -34, 80$:
+**Passo 1. Separar os coeficientes.**
+
+Escreva os coeficientes em ordem decrescente de grau, sem pular nenhum.
+
+Se algum termo estiver ausente, ele entra com coeficiente $0$.
+
+$$
+p(x) = 1x^{4} - 2x^{3} - 45x^{2} - 34x + 80 \;\Rightarrow\; 1,\ -2,\ -45,\ -34,\ 80
+$$
+
+**Passo 2. Montar o dispositivo de Briot-Ruffini.**
+
+O divisor é $x + 2 = x - (-2)$, então a raiz usada no dispositivo é $-2$.
+
+Regras do dispositivo:
+
+1. A raiz $-2$ fica à esquerda.
+2. Os coeficientes ficam na linha de cima.
+3. O primeiro coeficiente desce sem alteração.
+4. Cada número de baixo é multiplicado pela raiz e somado ao próximo
+   coeficiente de cima.
+
+**Passo 3. Fazer as contas.**
+
+$$
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot (-2) + (-2) = -4 \\
+&(-4) \cdot (-2) + (-45) = 8 - 45 = -37 \\
+&(-37) \cdot (-2) + (-34) = 74 - 34 = 40 \\
+&40 \cdot (-2) + 80 = 0 \quad \text{(resto)}
+\end{aligned}
+$$
 
 $$
 \begin{array}{c|ccccc}
@@ -44,8 +75,35 @@ $$
 \end{array}
 $$
 
-O quociente é exatamente $q(x) = x^{3} - 4x^{2} - 37x + 40$. Como $1$ é raiz
-de $q(x)$, repetimos o processo com os coeficientes $1, -4, -37, 40$:
+**Passo 4. Ler o resultado.**
+
+O último número da linha de baixo é o resto.
+
+O resto vale $0$, então $-2$ é raiz de $p(x)$ e a divisão é exata.
+
+Os outros números são os coeficientes do quociente, que tem grau uma unidade
+menor que $p(x)$:
+
+$$
+p(x) = (x+2)(x^{3} - 4x^{2} - 37x + 40)
+$$
+
+O quociente é exatamente o $q(x) = x^{3} - 4x^{2} - 37x + 40$ do enunciado.
+
+**Passo 5. Dividir $q(x)$ por $(x-1)$.**
+
+O enunciado diz que $1$ é raiz de $q(x)$.
+
+Mesmo processo, agora com os coeficientes $1, -4, -37, 40$ e a raiz $1$:
+
+$$
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot 1 + (-4) = -3 \\
+&(-3) \cdot 1 + (-37) = -40 \\
+&(-40) \cdot 1 + 40 = 0 \quad \text{(resto)}
+\end{aligned}
+$$
 
 $$
 \begin{array}{c|cccc}
@@ -55,16 +113,56 @@ $$
 \end{array}
 $$
 
-Sobra $x^{2} - 3x - 40 = 0$. Por Bhaskara:
+O quociente é $x^{2} - 3x - 40$.
+
+Assim, $p(x)$ fica fatorado:
 
 $$
-\Delta = (-3)^{2} - 4(1)(-40) = 9 + 160 = 169 \qquad x = \frac{3 \pm 13}{2}
+p(x) = (x+2)(x-1)(x^{2} - 3x - 40)
 $$
 
-Logo $x = 8$ ou $x = -5$. Assim
+**Passo 6. Resolver o fator de grau 2 por Bhaskara.**
+
+Em $x^{2} - 3x - 40 = 0$, temos $a = 1$, $b = -3$ e $c = -40$.
+
+Calculando o discriminante:
 
 $$
-p(x) = (x+2)(x-1)(x-8)(x+5)
+\Delta = b^{2} - 4ac = (-3)^{2} - 4 \cdot 1 \cdot (-40) = 9 + 160 = 169
+$$
+
+$$
+\sqrt{\Delta} = 13
+$$
+
+Aplicando a fórmula:
+
+$$
+x = \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{3 \pm 13}{2}
+$$
+
+$$
+x' = \frac{3 + 13}{2} = \frac{16}{2} = 8
+\qquad
+x'' = \frac{3 - 13}{2} = \frac{-10}{2} = -5
+$$
+
+Com isso, $p(x) = (x+2)(x-1)(x-8)(x+5)$.
+
+**Passo 7. Conferir pelas relações de Girard.**
+
+Para um polinômio $ax^{4} + bx^{3} + cx^{2} + dx + e$:
+
+1. A soma das raízes é $-b/a$.
+2. O produto das raízes é $e/a$.
+
+Aqui $a = 1$, $b = -2$ e $e = 80$:
+
+$$
+\begin{aligned}
+(-5) + (-2) + 1 + 8 &= 2 = -\tfrac{-2}{1}\ \checkmark \\
+(-5) \cdot (-2) \cdot 1 \cdot 8 &= 80 = \tfrac{80}{1}\ \checkmark
+\end{aligned}
 $$
 
 </Resolution>
@@ -95,16 +193,131 @@ $f(x)/g(x)$ e o seu domínio, teremos que:
 
 <Resolution>
 
-Dividindo $f(x)$ por $g(x)$:
+**Passo 1. Encontrar o domínio.**
+
+O quociente $f(x)/g(x)$ só existe onde $g(x) \ne 0$.
+
+Resolvendo $g(x) = 2x^{2} - 4x + 5 = 0$, com $a = 2$, $b = -4$ e $c = 5$:
 
 $$
-6x^{4}-10x^{3}+9x^{2}+9x-5 = (2x^{2}-4x+5)(3x^{2}+x-1) + 0
+\Delta = (-4)^{2} - 4 \cdot 2 \cdot 5 = 16 - 40 = -24
 $$
 
-O resto é $0$, então $f(x)/g(x) = 3x^{2}+x-1$ para todo $x$ em que
-$g(x) \ne 0$. Verificando as raízes de $g$: $\Delta = (-4)^{2}-4(2)(5) =
-16-40=-24 < 0$, ou seja, $g(x)$ nunca se anula para $x$ real. Logo não há
-restrição alguma no domínio: $D = \mathbb{R}$.
+Como $\Delta < 0$, $g(x)$ não tem raiz real e nunca se anula.
+
+Logo não há valor a excluir, e o domínio é $D = \mathbb{R}$.
+
+Isso já descarta as alternativas que retiram pontos do domínio.
+
+**Passo 2. Entender o método da chave.**
+
+Cada rodada da divisão tem três etapas:
+
+1. Dividir o termo de maior grau do dividendo atual pelo termo de maior grau de
+   $g(x)$.
+2. Multiplicar o resultado por $g(x)$.
+3. Subtrair esse produto do dividendo atual.
+
+O processo termina quando o que sobra tem grau menor que o de $g(x)$, ou seja,
+menor que $2$.
+
+**Passo 3. Primeira rodada.**
+
+Dividindo os termos de maior grau:
+
+$$
+6x^{4} \div 2x^{2} = 3x^{2}
+$$
+
+Multiplicando por $g(x)$:
+
+$$
+3x^{2} \cdot (2x^{2} - 4x + 5) = 6x^{4} - 12x^{3} + 15x^{2}
+$$
+
+Subtraindo do dividendo:
+
+$$
+\begin{aligned}
+&(6x^{4} - 10x^{3} + 9x^{2} + 9x - 5) - (6x^{4} - 12x^{3} + 15x^{2}) \\
+&= 2x^{3} - 6x^{2} + 9x - 5
+\end{aligned}
+$$
+
+**Passo 4. Segunda rodada.**
+
+O novo dividendo é $2x^{3} - 6x^{2} + 9x - 5$.
+
+Dividindo os termos de maior grau:
+
+$$
+2x^{3} \div 2x^{2} = x
+$$
+
+Multiplicando por $g(x)$:
+
+$$
+x \cdot (2x^{2} - 4x + 5) = 2x^{3} - 4x^{2} + 5x
+$$
+
+Subtraindo:
+
+$$
+\begin{aligned}
+&(2x^{3} - 6x^{2} + 9x - 5) - (2x^{3} - 4x^{2} + 5x) \\
+&= -2x^{2} + 4x - 5
+\end{aligned}
+$$
+
+**Passo 5. Terceira rodada.**
+
+O novo dividendo é $-2x^{2} + 4x - 5$.
+
+Dividindo os termos de maior grau:
+
+$$
+-2x^{2} \div 2x^{2} = -1
+$$
+
+Multiplicando por $g(x)$:
+
+$$
+(-1) \cdot (2x^{2} - 4x + 5) = -2x^{2} + 4x - 5
+$$
+
+Subtraindo:
+
+$$
+(-2x^{2} + 4x - 5) - (-2x^{2} + 4x - 5) = 0
+$$
+
+Sobrou $0$, que tem grau menor que $2$. A divisão terminou.
+
+**Passo 6. Ler o resultado.**
+
+O quociente é a soma dos termos obtidos em cada rodada: $3x^{2}$, $x$ e $-1$.
+
+O resto é $0$, então a divisão é exata:
+
+$$
+\frac{f(x)}{g(x)} = 3x^{2} + x - 1
+$$
+
+**Passo 7. Conferir pela multiplicação.**
+
+Divisor vezes quociente deve devolver o dividendo:
+
+$$
+\begin{aligned}
+(2x^{2} - 4x + 5)(3x^{2} + x - 1)
+&= 6x^{4} + 2x^{3} - 2x^{2} - 12x^{3} - 4x^{2} + 4x + 15x^{2} + 5x - 5 \\
+&= 6x^{4} - 10x^{3} + 9x^{2} + 9x - 5\ \checkmark
+\end{aligned}
+$$
+
+**Passo 8. Concluir.**
+
+Quociente $3x^{2} + x - 1$ e domínio $D = \mathbb{R}$: alternativa b).
 
 </Resolution>
 

@@ -1415,23 +1415,136 @@ as raízes de $p(x)$.
 
 <Resolution>
 
-Dividindo $p(x)$ por $(x+3)$:
+**Passo 1. Separar os coeficientes.**
+
+Escreva os coeficientes em ordem decrescente de grau, sem pular nenhum.
+
+Se algum termo estiver ausente, ele entra com coeficiente $0$.
 
 $$
-x^{4}+x^{3}-5x^{2}+x-6 = (x+3)(x^{3}-2x^{2}+x-2)
+p(x) = 1x^{4} + 1x^{3} - 5x^{2} + 1x - 6 \;\Rightarrow\; 1,\ 1,\ -5,\ 1,\ -6
 $$
 
-Fatorando o quociente por agrupamento:
+**Passo 2. Montar o dispositivo de Briot-Ruffini.**
+
+Como $-3$ é raiz, $p(x)$ é divisível por $x - (-3) = x + 3$.
+
+Regras do dispositivo:
+
+1. A raiz $-3$ fica à esquerda.
+2. Os coeficientes ficam na linha de cima.
+3. O primeiro coeficiente desce sem alteração.
+4. Cada número de baixo é multiplicado pela raiz e somado ao próximo
+   coeficiente de cima.
+
+**Passo 3. Fazer as contas.**
 
 $$
-x^{3}-2x^{2}+x-2 = x^{2}(x-2)+1(x-2) = (x-2)(x^{2}+1)
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot (-3) + 1 = -2 \\
+&(-2) \cdot (-3) + (-5) = 1 \\
+&1 \cdot (-3) + 1 = -2 \\
+&(-2) \cdot (-3) + (-6) = 0 \quad \text{(resto)}
+\end{aligned}
 $$
 
-Assim, $p(x) = (x+3)(x-2)(x^{2}+1)$. As raízes vêm de $x+3=0$, $x-2=0$ e
-$x^{2}+1=0$:
+$$
+\begin{array}{c|ccccc}
+-3 & 1 & 1 & -5 & 1 & -6 \\
+\hline
+ & 1 & -2 & 1 & -2 & 0
+\end{array}
+$$
+
+**Passo 4. Ler o resultado.**
+
+O último número da linha de baixo é o resto.
+
+O resto vale $0$, o que confirma que $-3$ é raiz.
+
+Os outros números são os coeficientes do quociente, que tem grau uma unidade
+menor que $p(x)$:
 
 $$
-x = -3 \qquad x = 2 \qquad x^{2} = -1 \Rightarrow x = \pm i
+p(x) = (x+3)(x^{3} - 2x^{2} + x - 2)
+$$
+
+**Passo 5. Procurar uma raiz do quociente.**
+
+Chame o quociente de $q(x) = x^{3} - 2x^{2} + x - 2$.
+
+Se $q(x)$ tiver raiz inteira, ela é divisor do termo independente $-2$.
+
+Os candidatos são $\pm 1$ e $\pm 2$. Testando cada um:
+
+$$
+\begin{aligned}
+q(1) &= 1 - 2 + 1 - 2 = -2 \\
+q(-1) &= -1 - 2 - 1 - 2 = -6 \\
+q(2) &= 8 - 8 + 2 - 2 = 0\ \checkmark
+\end{aligned}
+$$
+
+Logo $2$ é raiz de $q(x)$.
+
+**Passo 6. Dividir $q(x)$ por $(x-2)$.**
+
+Mesmo processo, agora com os coeficientes $1, -2, 1, -2$ e a raiz $2$:
+
+$$
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot 2 + (-2) = 0 \\
+&0 \cdot 2 + 1 = 1 \\
+&1 \cdot 2 + (-2) = 0 \quad \text{(resto)}
+\end{aligned}
+$$
+
+$$
+\begin{array}{c|cccc}
+2 & 1 & -2 & 1 & -2 \\
+\hline
+ & 1 & 0 & 1 & 0
+\end{array}
+$$
+
+O quociente é $1x^{2} + 0x + 1 = x^{2} + 1$.
+
+Assim, $p(x)$ fica fatorado:
+
+$$
+p(x) = (x+3)(x-2)(x^{2}+1)
+$$
+
+**Passo 7. Resolver o fator de grau 2.**
+
+Calculando o discriminante de $x^{2} + 1$:
+
+$$
+\Delta = 0^{2} - 4 \cdot 1 \cdot 1 = -4
+$$
+
+Como $\Delta < 0$, não há raízes reais. As duas raízes são complexas:
+
+$$
+x^{2} + 1 = 0 \;\Rightarrow\; x^{2} = -1 \;\Rightarrow\; x = \pm\sqrt{-1} = \pm i
+$$
+
+**Passo 8. Conferir pelas relações de Girard.**
+
+Para um polinômio $ax^{4} + bx^{3} + cx^{2} + dx + e$:
+
+1. A soma das raízes é $-b/a$.
+2. O produto das raízes é $e/a$.
+
+Aqui $a = 1$, $b = 1$ e $e = -6$:
+
+$$
+\begin{aligned}
+(-3) + 2 + i + (-i) &= -1 = -\tfrac{1}{1}\ \checkmark \\
+(-3) \cdot 2 \cdot i \cdot (-i) &= -6 \cdot (-i^{2}) = -6 = \tfrac{-6}{1}\ \checkmark
+\end{aligned}
 $$
 
 </Resolution>
@@ -1451,23 +1564,136 @@ as raízes de $p(x)$.
 
 <Resolution>
 
-Dividindo $p(x)$ por $(x-1)$:
+**Passo 1. Separar os coeficientes.**
+
+Escreva os coeficientes em ordem decrescente de grau, sem pular nenhum.
+
+Se algum termo estiver ausente, ele entra com coeficiente $0$.
 
 $$
-x^{4}-3x^{3}+3x^{2}-3x+2 = (x-1)(x^{3}-2x^{2}+x-2)
+p(x) = 1x^{4} - 3x^{3} + 3x^{2} - 3x + 2 \;\Rightarrow\; 1,\ -3,\ 3,\ -3,\ 2
 $$
 
-Fatorando o quociente por agrupamento (mesmo quociente da Questão 43):
+**Passo 2. Montar o dispositivo de Briot-Ruffini.**
+
+Como $1$ é raiz, $p(x)$ é divisível por $x - 1$.
+
+Regras do dispositivo:
+
+1. A raiz $1$ fica à esquerda.
+2. Os coeficientes ficam na linha de cima.
+3. O primeiro coeficiente desce sem alteração.
+4. Cada número de baixo é multiplicado pela raiz e somado ao próximo
+   coeficiente de cima.
+
+**Passo 3. Fazer as contas.**
 
 $$
-x^{3}-2x^{2}+x-2 = x^{2}(x-2)+1(x-2) = (x-2)(x^{2}+1)
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot 1 + (-3) = -2 \\
+&(-2) \cdot 1 + 3 = 1 \\
+&1 \cdot 1 + (-3) = -2 \\
+&(-2) \cdot 1 + 2 = 0 \quad \text{(resto)}
+\end{aligned}
 $$
 
-Assim, $p(x) = (x-1)(x-2)(x^{2}+1)$. As raízes vêm de $x-1=0$, $x-2=0$ e
-$x^{2}+1=0$:
+$$
+\begin{array}{c|ccccc}
+1 & 1 & -3 & 3 & -3 & 2 \\
+\hline
+ & 1 & -2 & 1 & -2 & 0
+\end{array}
+$$
+
+**Passo 4. Ler o resultado.**
+
+O último número da linha de baixo é o resto.
+
+O resto vale $0$, o que confirma que $1$ é raiz.
+
+Os outros números são os coeficientes do quociente, que tem grau uma unidade
+menor que $p(x)$:
 
 $$
-x = 1 \qquad x = 2 \qquad x^{2} = -1 \Rightarrow x = \pm i
+p(x) = (x-1)(x^{3} - 2x^{2} + x - 2)
+$$
+
+**Passo 5. Procurar uma raiz do quociente.**
+
+Chame o quociente de $q(x) = x^{3} - 2x^{2} + x - 2$.
+
+Se $q(x)$ tiver raiz inteira, ela é divisor do termo independente $-2$.
+
+Os candidatos são $\pm 1$ e $\pm 2$. Testando cada um:
+
+$$
+\begin{aligned}
+q(1) &= 1 - 2 + 1 - 2 = -2 \\
+q(-1) &= -1 - 2 - 1 - 2 = -6 \\
+q(2) &= 8 - 8 + 2 - 2 = 0\ \checkmark
+\end{aligned}
+$$
+
+Logo $2$ é raiz de $q(x)$.
+
+**Passo 6. Dividir $q(x)$ por $(x-2)$.**
+
+Mesmo processo, agora com os coeficientes $1, -2, 1, -2$ e a raiz $2$:
+
+$$
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot 2 + (-2) = 0 \\
+&0 \cdot 2 + 1 = 1 \\
+&1 \cdot 2 + (-2) = 0 \quad \text{(resto)}
+\end{aligned}
+$$
+
+$$
+\begin{array}{c|cccc}
+2 & 1 & -2 & 1 & -2 \\
+\hline
+ & 1 & 0 & 1 & 0
+\end{array}
+$$
+
+O quociente é $1x^{2} + 0x + 1 = x^{2} + 1$.
+
+Assim, $p(x)$ fica fatorado:
+
+$$
+p(x) = (x-1)(x-2)(x^{2}+1)
+$$
+
+**Passo 7. Resolver o fator de grau 2.**
+
+Calculando o discriminante de $x^{2} + 1$:
+
+$$
+\Delta = 0^{2} - 4 \cdot 1 \cdot 1 = -4
+$$
+
+Como $\Delta < 0$, não há raízes reais. As duas raízes são complexas:
+
+$$
+x^{2} + 1 = 0 \;\Rightarrow\; x^{2} = -1 \;\Rightarrow\; x = \pm\sqrt{-1} = \pm i
+$$
+
+**Passo 8. Conferir pelas relações de Girard.**
+
+Para um polinômio $ax^{4} + bx^{3} + cx^{2} + dx + e$:
+
+1. A soma das raízes é $-b/a$.
+2. O produto das raízes é $e/a$.
+
+Aqui $a = 1$, $b = -3$ e $e = 2$:
+
+$$
+\begin{aligned}
+1 + 2 + i + (-i) &= 3 = -\tfrac{-3}{1}\ \checkmark \\
+1 \cdot 2 \cdot i \cdot (-i) &= 2 \cdot (-i^{2}) = 2 = \tfrac{2}{1}\ \checkmark
+\end{aligned}
 $$
 
 </Resolution>
