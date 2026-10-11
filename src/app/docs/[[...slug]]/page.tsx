@@ -104,7 +104,10 @@ export default async function DocPage({ params }: DocPageProps) {
   ];
 
   return (
-    <div className="mx-auto flex w-full max-w-[1600px] gap-8 px-5 pt-10 pb-28 sm:px-8 md:pt-12 lg:px-10">
+    // From xl the article sits in the middle track, centered in whatever
+    // space the sidebar leaves; the left track gives way first so the
+    // table of contents keeps its width when room runs short.
+    <div className="mx-auto w-full max-w-480 px-5 pt-10 pb-28 sm:px-8 md:pt-12 lg:px-10 xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,75rem)_minmax(20rem,1fr)]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -133,7 +136,7 @@ export default async function DocPage({ params }: DocPageProps) {
         }}
       />
       <ReadingProgress />
-      <article className="max-w-300 min-w-0 flex-1">
+      <article className="mx-auto max-w-300 min-w-0 xl:col-start-2 xl:mx-0 xl:max-w-none">
         <header className="border-border mb-10 border-b pb-6">
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
             <Breadcrumbs items={breadcrumb} />
@@ -175,7 +178,7 @@ export default async function DocPage({ params }: DocPageProps) {
           <section aria-labelledby={MODULE_TOPICS_ID} className="mt-16">
             <h2
               id={MODULE_TOPICS_ID}
-              className="text-foreground scroll-mt-20 text-2xl font-semibold tracking-[-0.025em] md:scroll-mt-8"
+              className="text-foreground scroll-mt-20 text-2xl font-semibold tracking-tight md:scroll-mt-8"
             >
               Tópicos deste módulo
             </h2>
@@ -231,7 +234,7 @@ export default async function DocPage({ params }: DocPageProps) {
         </footer>
       </article>
 
-      <aside className="hidden w-72 shrink-0 xl:block print:hidden">
+      <aside className="hidden xl:col-start-3 xl:block xl:w-80 xl:pl-8 print:hidden">
         <div className="sticky top-12 max-h-[calc(100vh-4rem)] overflow-y-auto pb-6">
           <TableOfContents items={toc} label={tocLabel} />
         </div>
