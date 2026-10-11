@@ -8,3 +8,6 @@ next-env.d.ts
 *.tsbuildinfo
 
 content/
+
+# Local state written by the headroom Claude Code wrapper.
+.claude/.headroom_wrap_*
