@@ -7,8 +7,8 @@ import { useDisclosure } from "@/shared/hooks/use-disclosure";
 import type { ReactNode } from "react";
 
 const KINDS = {
-  answer: { noun: "resposta", label: "Resposta", Icon: CircleCheck, panel: "bg-accent-soft" },
-  resolution: { noun: "resolução", label: "Resolução", Icon: ListOrdered, panel: "bg-surface" },
+  answer: { noun: "resposta", Icon: CircleCheck, panel: "bg-accent-soft" },
+  resolution: { noun: "resolução", Icon: ListOrdered, panel: "bg-surface" },
 } as const;
 
 /**
@@ -31,7 +31,7 @@ export function Reveal({
   const disclosure = useDisclosure();
   const open = controlledOpen ?? disclosure.open;
   const toggle = onToggle ?? disclosure.toggle;
-  const { noun, label, Icon, panel } = KINDS[kind];
+  const { noun, Icon, panel } = KINDS[kind];
 
   return (
     <div
@@ -57,10 +57,7 @@ export function Reveal({
         className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-data-open/reveal:grid-rows-[1fr]"
       >
         <div className="min-h-0 overflow-hidden">
-          <div className={`border-border border-t px-4 py-4 ${panel}`}>
-            <p className="text-accent mb-2 text-xs font-semibold">{label}</p>
-            {children}
-          </div>
+          <div className={`border-border border-t px-4 py-4 ${panel}`}>{children}</div>
         </div>
       </div>
     </div>

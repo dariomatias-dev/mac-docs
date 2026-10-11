@@ -22,7 +22,7 @@ describe("MatrixExercise", () => {
       "aria-expanded",
       "true",
     );
-    expect(screen.getByText("Resposta")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ocultar resposta/i })).toBeInTheDocument();
   });
 
   it("shows a subtraction statement", () => {
@@ -53,7 +53,7 @@ describe("MatrixExercise", () => {
     render(<MatrixExercise operations={["add"]} />);
 
     await userEvent.click(screen.getByRole("button", { name: /ver resposta/i }));
-    expect(screen.getByText("Resposta")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ocultar resposta/i })).toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /gerar nova questão/i }));
 

@@ -22,7 +22,7 @@ describe("BooleanMatrixExercise", () => {
       "aria-expanded",
       "true",
     );
-    expect(screen.getByText("Resposta")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ocultar resposta/i })).toBeInTheDocument();
   });
 
   it("shows a boolean-product statement", () => {
@@ -35,7 +35,7 @@ describe("BooleanMatrixExercise", () => {
     render(<BooleanMatrixExercise operations={["and"]} />);
 
     await userEvent.click(screen.getByRole("button", { name: /ver resposta/i }));
-    expect(screen.getByText("Resposta")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ocultar resposta/i })).toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /gerar nova questão/i }));
 
