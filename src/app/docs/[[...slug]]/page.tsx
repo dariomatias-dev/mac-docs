@@ -235,7 +235,7 @@ export default async function DocPage({ params }: DocPageProps) {
       </article>
 
       <aside className="hidden xl:col-start-3 xl:block xl:w-80 xl:pl-8 print:hidden">
-        <div className="sticky top-12 max-h-[calc(100vh-4rem)] overflow-y-auto pb-6">
+        <div className="sticky top-12">
           <TableOfContents items={toc} label={tocLabel} />
         </div>
       </aside>
