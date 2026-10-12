@@ -80,7 +80,11 @@ Embed via `youtube-nocookie`. Accepts an id or a URL.
 Used on exam pages (`content/.../avaliacoes/`). `Badge` is an inline tag for
 the question heading (points, source); `Question` is the question container;
 `Resolution` hides the resolution behind a "Ver resolução" button; `Proof` is
-an always visible proof block with a side border.
+an always visible proof block with a side border. A question with several
+resolutions tags each with `method` (`direta`, `contraposicao`, `absurdo`,
+`inducao`, `recursao`, `contraexemplo`), which shows in the button label. A question with several
+resolutions tags each with `method` (`direta`, `contraposicao`, `contradicao`,
+`inducao`, `recursao`, `contraexemplo`), which shows in the button label.
 
 ```mdx
 ## Questão 1 <Badge>1,0 pt</Badge>

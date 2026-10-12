@@ -18,11 +18,14 @@ const KINDS = {
  */
 export function Reveal({
   kind,
+  qualifier,
   open: controlledOpen,
   onToggle,
   children,
 }: {
   kind: keyof typeof KINDS;
+  /** Extra words appended to the button label, e.g. "por contradição". */
+  qualifier?: string;
   /** Controlled mode, for parents that need to close it (e.g. on a new question). */
   open?: boolean;
   onToggle?: () => void;
@@ -32,6 +35,7 @@ export function Reveal({
   const open = controlledOpen ?? disclosure.open;
   const toggle = onToggle ?? disclosure.toggle;
   const { noun, Icon, panel } = KINDS[kind];
+  const label = qualifier ? `${noun} ${qualifier}` : noun;
 
   return (
     <div
@@ -45,7 +49,7 @@ export function Reveal({
         className="text-muted-2 hover:bg-surface hover:text-foreground flex w-full cursor-pointer items-center gap-2.5 px-4 py-2.5 text-left text-sm font-medium transition-colors"
       >
         <Icon className="text-accent h-4 w-4 shrink-0" aria-hidden="true" />
-        <span className="flex-1">{open ? `Ocultar ${noun}` : `Ver ${noun}`}</span>
+        <span className="flex-1">{open ? `Ocultar ${label}` : `Ver ${label}`}</span>
         <ChevronDown
           className="text-muted h-4 w-4 shrink-0 transition-transform duration-200 group-data-open/reveal:rotate-180"
           aria-hidden="true"

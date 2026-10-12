@@ -81,7 +81,11 @@ Usados nas páginas de avaliações (`content/.../avaliacoes/`). `Badge` é um
 selo inline para o cabeçalho da questão (pontuação, fonte); `Question` é o
 container da questão; `Resolution` esconde a resolução atrás de um botão
 "Ver resolução"; `Proof` é um bloco de demonstração com borda lateral,
-sempre visível.
+sempre visível. Uma questão com várias resoluções marca cada uma com
+`method` (`direta`, `contraposicao`, `absurdo`, `inducao`, `recursao`,
+`contraexemplo`), que aparece no rótulo do botão. Uma questão com várias resoluções marca cada uma com
+`method` (`direta`, `contraposicao`, `contradicao`, `inducao`, `recursao`,
+`contraexemplo`), que aparece no rótulo do botão.
 
 ```mdx
 ## Questão 1 <Badge>1,0 pt</Badge>
