@@ -53,7 +53,7 @@ jobs:
       # access to CODECOV_TOKEN gets a skipped upload here, never a failed
       # check. That's what fail_ci_if_error: false is for.
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v7.0.0
+        uses: codecov/codecov-action@v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
@@ -88,7 +88,7 @@ jobs:
       # under a dot-prefixed directory by default, and .next qualifies.
       # Without it this step silently uploads an empty artifact.
       - name: Upload build output
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: next-build
           path: .next
@@ -106,7 +106,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Download build output
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           name: next-build
           path: .next
@@ -130,7 +130,7 @@ jobs:
 
       - name: Upload Playwright report
         if: failure()
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: playwright-report
           path: |
@@ -158,7 +158,7 @@ jobs:
       # lockfile against the OSV database instead of the npm advisory feed
       # (different sources, some overlap, neither is a superset of the other).
       - name: Scan the lockfile with osv-scanner
-        uses: google/osv-scanner-action/osv-scanner-action@v2.5.1
+        uses: google/osv-scanner-action/osv-scanner-action@v2.6.0
         with:
           scan-args: |-
             --lockfile=pnpm-lock.yaml
@@ -180,7 +180,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Download build output
-        uses: actions/download-artifact@v8.0.1
+        uses: actions/download-artifact@v8.0.2
         with:
           name: next-build
           path: .next
