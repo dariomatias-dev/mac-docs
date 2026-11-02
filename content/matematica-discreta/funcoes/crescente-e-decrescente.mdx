@@ -88,6 +88,30 @@ Logo $f$ é uma função decrescente. $\blacksquare$
 </Answer>
 </Exercise>
 
+<Exercise>
+Mostre que a função $f : \mathbb{R}_{-} \to \mathbb{R}$ definida por
+$f(x) = 2x^{2} - 1$ é decrescente em $\mathbb{R}_{-}$.
+
+<Answer>
+$(\forall x, y) \in \mathbb{R}_{-}$, se $x < y$, então $x - y < 0$ e
+$x + y < 0$. Assim,
+
+$$
+\begin{aligned}
+(x-y)(x+y) &> 0 \\
+x^{2} + xy - xy - y^{2} &> 0 \\
+x^{2} - y^{2} &> 0 \\
+x^{2} &> y^{2} \\
+2x^{2} &> 2y^{2} \\
+2x^{2} - 1 &> 2y^{2} - 1
+\end{aligned}
+$$
+
+Ou seja, $f(x) > f(y)$. Logo $f$ é decrescente em $\mathbb{R}_{-}$.
+$\blacksquare$
+</Answer>
+</Exercise>
+
 <Callout type="tip" title="Sinal do coeficiente">
   Para uma função afim $f(x) = ax + b$, o sinal de $a$ decide o comportamento:
   $a > 0$ torna $f$ crescente, e $a < 0$ torna $f$ decrescente.
