@@ -1,0 +1,762 @@
+---
+title: "Prova 2: Relações e funções"
+description: Avaliação 2 de Matemática Aplicada à Computação (2026.2), com resolução comentada.
+order: 2
+prerequisites:
+  - /docs/matematica-discreta/relacoes
+  - /docs/matematica-discreta/funcoes
+---
+
+Avaliação 2 (AV2) de **Matemática Aplicada à Computação**: Instituto Federal
+da Paraíba, curso de Tecnologia em Análise e Desenvolvimento de Sistemas, 1º
+período, semestre **2026.2**, professor Suemilton Nunes Gervázio, aplicada em
+20/10/2026 e valendo 100 pontos. Cobre propriedades de relações, relações de
+equivalência e de ordenação parcial, funções pares e ímpares, crescentes e
+decrescentes, função inversa, função composta, funções injetoras,
+sobrejetoras e bijetoras, imagem e pré-imagem, e divisão e raízes de
+polinômios. Tente cada questão sozinho antes de abrir a **resposta**.
+
+## Questão 1 <Badge>CESPE/Cebraspe, adaptada</Badge>
+
+<Question>
+Com o crescimento das plataformas digitais e dos sistemas de inteligência
+artificial utilizados nas redes sociais, algoritmos computacionais passaram a
+analisar padrões de interação entre usuários para recomendar conteúdos,
+identificar tendências e monitorar compartilhamentos de informações. Em
+determinado sistema de recomendação, os elementos do conjunto representam
+perfis digitais monitorados por uma plataforma online. Considere o conjunto
+$A = \{2, 3, 5, 7\}$ e a relação
+
+$$
+R = \{(2,2), (3,3), (5,5), (7,7), (2,3), (3,5), (2,5), (5,7), (2,7), (3,7)\}
+$$
+
+em que cada par ordenado representa uma conexão registrada pelo algoritmo
+entre dois perfis da plataforma. Com base nessa situação, responda aos itens
+a seguir:
+
+a) Verifique se todos os perfis possuem conexão consigo mesmos no sistema e
+mostre que a relação $R$ é reflexiva.
+
+b) Analise as conexões registradas pelo algoritmo e mostre que a relação $R$
+é transitiva.
+
+c) Verifique se as conexões entre os perfis são recíprocas e determine se a
+relação $R$ é simétrica.
+
+d) Determine se a relação $R$ é antissimétrica e interprete o resultado no
+contexto do sistema de interações digitais.
+
+e) Com base nas propriedades analisadas nos itens anteriores, determine se a
+relação $R$ pode ser classificada como: relação de equivalência; relação de
+ordenação parcial; ambas ou nenhuma delas. Justifique sua resposta utilizando
+as propriedades da relação verificadas anteriormente.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+$\forall x \in A$, temos que
+
+$$
+(2,2) \in R,\quad (3,3) \in R,\quad (5,5) \in R \quad\text{e}\quad (7,7) \in R
+$$
+
+Todo perfil está conectado consigo mesmo. Assim, $R$ é reflexiva.
+$\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+$\forall x, y, z \in A$, sempre que $(x,y) \in R$ e $(y,z) \in R$ com
+$x \ne y$ e $y \ne z$, temos que
+
+$$
+\begin{aligned}
+(2,3) \in R \text{ e } (3,5) \in R &\;\Rightarrow\; (2,5) \in R \\
+(2,3) \in R \text{ e } (3,7) \in R &\;\Rightarrow\; (2,7) \in R \\
+(3,5) \in R \text{ e } (5,7) \in R &\;\Rightarrow\; (3,7) \in R \\
+(2,5) \in R \text{ e } (5,7) \in R &\;\Rightarrow\; (2,7) \in R
+\end{aligned}
+$$
+
+Os encadeamentos que passam por um par $(x,x)$ devolvem o próprio par de
+partida, que já está em $R$. Assim, $R$ é transitiva. $\blacksquare$
+
+</Proof>
+
+Dem. c):
+
+<Proof>
+
+Temos que $(2,3) \in R$, no entanto $(3,2) \notin R$. A conexão de $2$ para
+$3$ não é recíproca. Assim, $R$ **não** é simétrica. $\blacksquare$
+
+</Proof>
+
+Dem. d):
+
+<Proof>
+
+$\forall x, y \in A$, temos que
+
+$$
+(x,y) \in R \text{ e } (y,x) \in R \;\Rightarrow\; x = y
+$$
+
+Isso só ocorre com os pares $(2,2)$, $(3,3)$, $(5,5)$ e $(7,7)$, que
+pertencem a $R$. Assim, $R$ é antissimétrica. $\blacksquare$
+
+</Proof>
+
+No contexto da plataforma: dois perfis **distintos** nunca têm conexões
+registradas nos dois sentidos. Toda conexão entre perfis diferentes tem uma
+única direção.
+
+e) Como $R$ é reflexiva, antissimétrica e transitiva, então, por definição,
+$R$ é uma **relação de ordenação parcial**. Ela não é de equivalência,
+porque não é simétrica (item c).
+</Answer>
+</Question>
+
+## Questão 2 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Em sistemas computacionais utilizados em redes inteligentes de energia
+renovável, algoritmos frequentemente agrupam dados de sensores em classes
+equivalentes para otimizar o armazenamento e o processamento das
+informações. Em determinado sistema de monitoramento energético, dois
+registros são considerados equivalentes quando a diferença de seus
+identificadores é múltipla de 6. Considere, no conjunto dos números inteiros
+$\mathbb{Z}$, a relação $R$ definida por:
+$x \mathrel{R} y \iff x - y$ é múltiplo de 5. Assim, mostre que $R$ é uma
+relação de equivalência.
+
+<Answer>
+O texto de contexto fala em múltiplos de 6, mas a relação definida usa
+múltiplos de 5. A demonstração segue a definição de $R$.
+
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $\forall x \in \mathbb{Z}$, temos que $x - x = 0$, que é
+múltiplo de $5$, pois $5 \cdot 0 = 0$. Assim, $R$ é reflexiva.
+
+**Simétrica:** $\forall x, y \in \mathbb{Z}$, se $x \mathrel{R} y$, então
+$x - y = 5k$, com $k \in \mathbb{Z}$. Multiplicando toda a equação por $-1$:
+
+$$
+-x + y = -5k \;\Rightarrow\; y - x = 5 \cdot (-k)
+$$
+
+Como $-k \in \mathbb{Z}$, $y - x$ também é múltiplo de $5$, ou seja,
+$y \mathrel{R} x$. Assim, $R$ é simétrica.
+
+**Transitiva:** $\forall x, y, z \in \mathbb{Z}$, se $x \mathrel{R} y$ e
+$y \mathrel{R} z$, então $x - y = 5k$ e $y - z = 5q$, com
+$k, q \in \mathbb{Z}$. Somando:
+
+$$
+x - y + y - z = 5k + 5q \;\Rightarrow\; x - z = 5 \cdot (k + q)
+$$
+
+Como $k + q \in \mathbb{Z}$, $x - z$ é múltiplo de $5$, ou seja,
+$x \mathrel{R} z$. Assim, $R$ é transitiva.
+
+Consequentemente, $R$ é uma relação de equivalência. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 3 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Em sistemas computacionais utilizados para monitoramento ambiental, funções
+matemáticas são frequentemente aplicadas para modelar fenômenos naturais,
+como o comportamento das ondas do mar, a propagação de tsunamis e o aumento
+do nível da água em enchentes urbanas. Em muitos softwares de previsão
+climática e análise de riscos, é fundamental identificar características das
+funções, como simetria e comportamento gráfico, pois essas propriedades
+auxiliam na otimização de algoritmos e no processamento eficiente dos dados
+coletados por sensores distribuídos em tempo real. Com base nesse contexto,
+responda aos questionamentos a seguir, realizando sempre a demonstração
+matemática que justifique sua resposta.
+
+a) Em um sistema de monitoramento oceânico, a intensidade de propagação de
+determinadas ondas é representada pela função
+$f(x) = \dfrac{x^{8} - 4x^{2}}{x^{4}}$. Analise se a função é par, ímpar ou
+apenas uma função qualquer. Justifique sua resposta utilizando a definição de
+função par e função ímpar.
+
+b) Em um software de monitoramento de enchentes urbanas, a velocidade de
+elevação do nível da água em determinada região é modelada pela função
+$f(x) = 7x^{5} - 2x$. Determine se a função é par, ímpar ou apenas uma função
+qualquer. Justifique sua resposta.
+
+<Answer>
+a) $f$ é par.
+
+<Proof>
+
+$\forall x \in \mathbb{R}^{*}$, temos que
+
+$$
+f(-x) = \frac{(-x)^{8} - 4(-x)^{2}}{(-x)^{4}} = \frac{x^{8} - 4x^{2}}{x^{4}}
+$$
+
+Assim, $f(-x) = f(x)$. Com isso, $f$ é uma função par. $\blacksquare$
+
+</Proof>
+
+b) $f$ é ímpar.
+
+<Proof>
+
+$\forall x \in \mathbb{R}$, temos que
+
+$$
+\begin{aligned}
+f(-x) &= 7(-x)^{5} - 2(-x) \\
+&= -7x^{5} + 2x \\
+&= -1 \cdot (7x^{5} - 2x) \\
+&= -f(x)
+\end{aligned}
+$$
+
+Assim, $f(-x) = -f(x)$. Com isso, $f$ é uma função ímpar. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 4 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Em sistemas computacionais voltados ao monitoramento ambiental e à prevenção
+de desastres naturais, funções matemáticas são amplamente utilizadas para
+representar comportamentos de crescimento e redução de variáveis, como
+intensidade de ondas marítimas, nível de rios durante enchentes e propagação
+de alertas em redes de sensores inteligentes. Em aplicações de Análise e
+Desenvolvimento de Sistemas, compreender o comportamento crescente e
+decrescente das funções é essencial para a interpretação correta dos dados e
+para o desenvolvimento de algoritmos de previsão e tomada de decisão. Com
+base nesse contexto, responda aos itens a seguir, realizando sempre a
+demonstração matemática adequada.
+
+a) Em um sistema automatizado de monitoramento de tsunamis, a velocidade de
+dissipação da energia das ondas ao longo do tempo é modelada pela função
+$f: \mathbb{R} \to \mathbb{R}$, definida por $f(x) = \dfrac{6x - 10}{4}$.
+Mostre que a função é crescente em $\mathbb{R}$.
+
+b) Em um software de monitoramento de enchentes urbanas, o comportamento da
+redução do nível da água em determinadas regiões é representado pela função
+$g: \mathbb{R}^{-} \to \mathbb{R}$, definida por $g(x) = 3x^{2} - 2$. Mostre
+que a função é decrescente em $\mathbb{R}^{-}$.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+$\forall x, y \in \mathbb{R}$, temos que
+
+$$
+x < y \;\Rightarrow\; 6x < 6y \;\Rightarrow\; 6x - 10 < 6y - 10
+\;\Rightarrow\; \frac{6x - 10}{4} < \frac{6y - 10}{4}
+$$
+
+Sendo assim, $f(x) < f(y)$, ou seja, $f$ é crescente em $\mathbb{R}$.
+$\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+$\forall x, y \in \mathbb{R}^{-}$, se $x < y$, então $x - y < 0$ e
+$x + y < 0$. Com isso,
+
+$$
+(x - y)(x + y) > 0 \;\Rightarrow\; x^{2} - y^{2} > 0 \;\Rightarrow\; x^{2} > y^{2}
+$$
+
+Então
+
+$$
+3x^{2} > 3y^{2} \;\Rightarrow\; 3x^{2} - 2 > 3y^{2} - 2
+$$
+
+Com isso, $g(x) > g(y)$. Assim, $g$ é decrescente em $\mathbb{R}^{-}$.
+$\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 5 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Durante o período eleitoral, sistemas computacionais são utilizados para
+analisar dados de pesquisas e o alcance das campanhas digitais dos
+candidatos. Em uma plataforma de monitoramento eleitoral, a função
+$f(x) = \dfrac{4x + 1}{3x - 6}$, com
+$f: \mathbb{R} - \{2\} \to \mathbb{R} - \left\{\tfrac{4}{3}\right\}$,
+relaciona o número de interações nas redes sociais com o índice de
+popularidade de um candidato. Nesse contexto, a função inversa representa a
+possibilidade de determinar a quantidade de interações necessárias para
+atingir um determinado índice de popularidade. Com base nessas informações,
+responda aos itens a seguir:
+
+a) Determine, caso exista, a função inversa $f^{-1}(x)$.
+
+b) Utilizando a função inversa encontrada, determine quantas interações nas
+redes sociais são necessárias para que o candidato atinja um índice de
+popularidade igual a $1{,}5$. Interprete o resultado no contexto do problema.
+
+<Resolution>
+
+a) Fazendo $y = f(x)$ e trocando $x$ por $y$:
+
+$$
+y = \frac{4x + 1}{3x - 6} \;\Rightarrow\; x = \frac{4y + 1}{3y - 6}
+$$
+
+Isolando $y$:
+
+$$
+\begin{aligned}
+x(3y - 6) &= 4y + 1 \\
+3xy - 6x &= 4y + 1 \\
+3xy - 4y &= 6x + 1 \\
+y(3x - 4) &= 6x + 1 \\
+y &= \frac{6x + 1}{3x - 4}
+\end{aligned}
+$$
+
+b) Substituindo $x = 1{,}5$ na inversa:
+
+$$
+f^{-1}(1{,}5) = \frac{6 \cdot 1{,}5 + 1}{3 \cdot 1{,}5 - 4} = \frac{9 + 1}{4{,}5 - 4}
+= \frac{10}{0{,}5} = 20
+$$
+
+Conferindo na função original:
+$f(20) = \dfrac{4 \cdot 20 + 1}{3 \cdot 20 - 6} = \dfrac{81}{54} = 1{,}5$.
+
+</Resolution>
+
+<Answer>
+a)
+
+$$
+f^{-1}(x) = \frac{6x + 1}{3x - 4}
+$$
+
+b) $f^{-1}(1{,}5) = 20$, ou seja, $f(20) = 1{,}5$. Isso significa que são
+necessárias $20$ interações nas redes sociais para que o candidato atinja um
+índice de popularidade igual a $1{,}5$.
+</Answer>
+</Question>
+
+## Questão 6 <Badge>Mackenzie-SP, adaptada</Badge>
+
+<Question>
+Durante o período eleitoral, sistemas computacionais e algoritmos de
+inteligência artificial são utilizados para monitorar o alcance de
+publicações e identificar possíveis fake news disseminadas nas redes sociais.
+Em uma plataforma digital de monitoramento eleitoral, duas funções
+matemáticas representam, respectivamente, o nível de propagação de conteúdos
+publicados e o índice de compartilhamento dessas informações entre os
+usuários. As funções são dadas por:
+
+$$
+f(x) = ax^{2} - 2x + 12 \quad\text{e}\quad g(x) = 2x + b
+$$
+
+em que $a$ e $b$ são números reais desconhecidos. Sabe-se que os algoritmos
+da plataforma produzem exatamente o mesmo resultado independentemente da
+ordem em que as funções são aplicadas, ou seja:
+$f(g(x)) = g(f(x))$ para todo $x \in \mathbb{R}$. Com base nessas
+informações, responda aos itens a seguir.
+
+a) Determine os valores de $a$ e $b$.
+
+b) Após encontrar os valores das constantes, determine a expressão final da
+função composta $f(g(x))$.
+
+<Resolution>
+
+**Passo 1. Calcular $f(g(x))$.**
+
+$$
+\begin{aligned}
+f(g(x)) &= a\,(g(x))^{2} - 2\,g(x) + 12 \\
+&= a(2x + b)^{2} - 2(2x + b) + 12 \\
+&= a(4x^{2} + 4bx + b^{2}) - 4x - 2b + 12 \\
+&= 4ax^{2} + 4abx + ab^{2} - 4x - 2b + 12 \\
+&= 4ax^{2} + (4ab - 4)x + ab^{2} - 2b + 12
+\end{aligned}
+$$
+
+**Passo 2. Calcular $g(f(x))$.**
+
+$$
+\begin{aligned}
+g(f(x)) &= 2f(x) + b \\
+&= 2(ax^{2} - 2x + 12) + b \\
+&= 2ax^{2} - 4x + 24 + b
+\end{aligned}
+$$
+
+**Passo 3. Igualar os coeficientes.**
+
+Os dois polinômios são iguais para todo $x$, então os coeficientes de mesmo
+grau coincidem:
+
+$$
+\begin{aligned}
+x^{2}:&\quad 4a = 2a \;\Rightarrow\; a = 0 \\
+x:&\quad 4ab - 4 = -4 \;\Rightarrow\; -4 = -4 \ \checkmark \\
+\text{termo independente}:&\quad ab^{2} - 2b + 12 = b + 24
+\end{aligned}
+$$
+
+Com $a = 0$, a última equação fica:
+
+$$
+-2b + 12 = b + 24 \;\Rightarrow\; 12 - 24 = b + 2b \;\Rightarrow\; -12 = 3b
+\;\Rightarrow\; b = -4
+$$
+
+**Passo 4. Montar $f(g(x))$.**
+
+Com $a = 0$ e $b = -4$: $f(x) = -2x + 12$ e $g(x) = 2x - 4$.
+
+$$
+f(g(x)) = -2(2x - 4) + 12 = -4x + 8 + 12 = -4x + 20
+$$
+
+Conferindo: $g(f(x)) = 2(-2x + 12) - 4 = -4x + 20$ ✓
+
+</Resolution>
+
+<Answer>
+a) $a = 0$ e $b = -4$
+
+b) $f(g(x)) = -4x + 20$
+</Answer>
+</Question>
+
+## Questão 7 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Sistemas computacionais utilizados em usinas solares e eólicas empregam
+funções matemáticas para monitorar a geração e a distribuição de energia
+renovável. Nesse contexto, propriedades como sobrejetividade, injetividade e
+bijetividade ajudam a garantir que os algoritmos interpretem corretamente os
+dados coletados pelos sensores da rede elétrica inteligente. Com base nesse
+contexto, responda aos itens a seguir, realizando sempre a demonstração
+matemática adequada.
+
+a) Em um sistema de monitoramento de energia solar, a função abaixo
+representa a relação entre a quantidade de painéis ativos e a energia
+produzida: $f: \mathbb{R} \to \mathbb{R}$ definida por $f(x) = 2x + 3$.
+Mostre que a função é sobrejetora.
+
+b) Em um sistema de controle de turbinas eólicas, a função abaixo relaciona
+a velocidade do vento com a potência gerada: $f: \mathbb{R} \to \mathbb{R}$,
+definida por $f(x) = 3x + 1$. Mostre que a função é injetora.
+
+c) Em uma rede inteligente de distribuição de energia renovável, a função
+abaixo representa o comportamento do armazenamento energético:
+$f: \mathbb{R} \to \mathbb{R}$ definida por $f(x) = x^{3} - 9$. Mostre que a
+função é bijetora.
+
+<Answer>
+Dem. a):
+
+<Proof>
+
+$\forall y \in \mathbb{R}$, procuramos $x$ com $f(x) = y$:
+
+$$
+y = 2x + 3 \;\Rightarrow\; y - 3 = 2x \;\Rightarrow\; x = \frac{y - 3}{2}
+$$
+
+que é válido $\forall y \in \mathbb{R}$. Agora,
+
+$$
+f\left(\frac{y - 3}{2}\right) = 2 \cdot \frac{y - 3}{2} + 3 = y - 3 + 3 = y
+$$
+
+Logo, para todo $y$ do contradomínio existe $x$ no domínio com $f(x) = y$.
+Assim, $f$ é sobrejetora. $\blacksquare$
+
+</Proof>
+
+Dem. b):
+
+<Proof>
+
+$\forall x, y \in \mathbb{R}$, se $f(x) = f(y)$, então
+
+$$
+3x + 1 = 3y + 1 \;\Rightarrow\; 3x = 3y \;\Rightarrow\; x = y
+$$
+
+Portanto, $f(x) = f(y) \Rightarrow x = y$. Assim, $f$ é injetora.
+$\blacksquare$
+
+</Proof>
+
+Dem. c):
+
+<Proof>
+
+**Sobrejetora:** $\forall y \in \mathbb{R}$, temos que
+
+$$
+y = x^{3} - 9 \;\Rightarrow\; x^{3} = y + 9 \;\Rightarrow\; x = \sqrt[3]{y + 9}
+$$
+
+que é sempre possível $\forall y \in \mathbb{R}$. Agora,
+
+$$
+f\left(\sqrt[3]{y + 9}\right) = \left(\sqrt[3]{y + 9}\right)^{3} - 9 = y + 9 - 9 = y
+$$
+
+Assim, $f$ é sobrejetora.
+
+**Injetora:** $\forall x, y \in \mathbb{R}$, se $f(x) = f(y)$, então
+
+$$
+x^{3} - 9 = y^{3} - 9 \;\Rightarrow\; x^{3} = y^{3} \;\Rightarrow\; x = y
+$$
+
+pois a raiz cúbica real é única. Assim, $f$ é injetora.
+
+Sendo assim, como $f$ é injetora e sobrejetora, então, por definição, $f$ é
+bijetora. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 8 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Com o crescimento das redes sociais e das plataformas de streaming, sistemas
+computacionais passaram a utilizar algoritmos para organizar conteúdos
+digitais conforme seus níveis de alcance e compartilhamento. Em determinado
+sistema de recomendação, dois conteúdos são relacionados quando o número de
+visualizações de um pode ser obtido multiplicando o número de visualizações
+do outro por um número natural, permitindo criar uma hierarquia de
+popularidade entre as publicações. Considere, no conjunto dos números
+inteiros positivos $\mathbb{Z}^{+}$, a relação $R$ definida por:
+
+$$
+x \mathrel{R} y \iff \frac{y}{x} = k, \quad \text{com } k \in \mathbb{N}
+$$
+
+Assim, mostre que $R$ é uma relação de ordenação parcial.
+
+<Answer>
+Dem.:
+
+<Proof>
+
+**Reflexiva:** $\forall x \in \mathbb{Z}^{+}$, temos que $\dfrac{x}{x} = 1$,
+que é um número natural. Portanto, $R$ é reflexiva.
+
+**Antissimétrica:** $\forall x, y \in \mathbb{Z}^{+}$, se $x \mathrel{R} y$ e
+$y \mathrel{R} x$, então $\dfrac{y}{x} = k$ e $\dfrac{x}{y} = m$, com
+$k, m \in \mathbb{N}$, ou seja, $y = kx$ e $x = my$. Substituindo:
+
+$$
+x = m(kx) \;\Rightarrow\; mk = 1
+$$
+
+Como $k$ e $m$ são naturais, obrigatoriamente $k = m = 1$, e então $x = y$.
+Assim, $R$ é antissimétrica.
+
+**Transitiva:** $\forall x, y, z \in \mathbb{Z}^{+}$, se $x \mathrel{R} y$ e
+$y \mathrel{R} z$, então $\dfrac{y}{x} = k$ e $\dfrac{z}{y} = n$, com
+$k, n \in \mathbb{N}$, ou seja, $y = kx$ e $z = ny$. Assim,
+
+$$
+z = n(kx) \;\Rightarrow\; \frac{z}{x} = k \cdot n
+$$
+
+Como $k \cdot n \in \mathbb{N}$, temos $x \mathrel{R} z$. Com isso, $R$ é
+transitiva.
+
+Consequentemente, $R$ é uma relação de ordenação parcial. $\blacksquare$
+
+</Proof>
+</Answer>
+</Question>
+
+## Questão 9 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Com os avanços da corrida espacial e o desenvolvimento de sistemas
+computacionais aplicados à exploração do espaço, funções matemáticas passaram
+a ser utilizadas para modelar trajetórias, oscilações de altitude e
+transmissão de sinais de satélites e foguetes. Em determinado centro de
+monitoramento aeroespacial, a função abaixo representa a variação da
+intensidade do sinal enviada por uma sonda espacial durante uma missão
+orbital. Considere a função $f: \mathbb{R} \to \mathbb{R}$ definida por
+$f(x) = x^{3} + x^{2} - 4x - 4$, em que $x$ representa o tempo de operação da
+sonda e $f(x)$ representa a intensidade do sinal transmitido ao centro de
+controle. Com base nessa situação, responda aos itens a seguir.
+
+a) Determine qual era a intensidade do sinal transmitido pela sonda espacial
+no instante $x = 3$, isto é, determine a imagem de $3$.
+
+b) Determine os instantes em que a intensidade do sinal transmitido pela
+sonda espacial foi nula, ou seja, determine as pré-imagens de $0$.
+
+c) Determine a intensidade do sinal transmitido pela sonda no instante
+$x = 4$ e interprete o resultado no contexto do problema.
+
+d) Analise o comportamento da função e explique o significado, no contexto
+da corrida espacial, dos valores encontrados no item (b).
+
+<Resolution>
+
+a) Substituindo $x = 3$:
+
+$$
+f(3) = 3^{3} + 3^{2} - 4 \cdot 3 - 4 = 27 + 9 - 12 - 4 = 36 - 16 = 20
+$$
+
+b) Igualando a $0$ e fatorando por agrupamento:
+
+$$
+\begin{aligned}
+x^{3} + x^{2} - 4x - 4 &= 0 \\
+x^{2}(x + 1) - 4(x + 1) &= 0 \\
+(x + 1)(x^{2} - 4) &= 0
+\end{aligned}
+$$
+
+Logo $x + 1 = 0$ ou $x^{2} - 4 = 0$:
+
+$$
+x = -1 \qquad\text{ou}\qquad x = \pm\sqrt{4} = \pm 2
+$$
+
+c) Substituindo $x = 4$:
+
+$$
+f(4) = 4^{3} + 4^{2} - 4 \cdot 4 - 4 = 64 + 16 - 16 - 4 = 60
+$$
+
+</Resolution>
+
+<Answer>
+a) $f(3) = 20$
+
+b) Pré-imagens de $0$: $-2$, $-1$ e $2$.
+
+c) $f(4) = 60$. Isso significa que, no instante $x = 4$, a intensidade do
+sinal transmitido pela sonda era $60$.
+
+d) Nos instantes $x = -2$, $x = -1$ e $x = 2$, a intensidade do sinal
+transmitido pela sonda era nula. Como $x$ é um tempo de operação, apenas
+$x = 2$ corresponde a um instante da missão ($x \ge 0$): nele o sinal
+recebido pelo centro de controle se anula.
+</Answer>
+</Question>
+
+## Questão 10 <Badge>Judith L. Gersting, adaptada</Badge>
+
+<Question>
+Nos últimos anos, aplicações ligadas à Inteligência Artificial, segurança
+digital e análise de grandes volumes de dados têm utilizado modelos
+matemáticos cada vez mais sofisticados. Em sistemas computacionais modernos,
+funções polinomiais podem representar padrões de desempenho de algoritmos,
+estimativas de processamento e até modelos de otimização empregados em
+plataformas digitais, redes neurais e serviços de computação em nuvem.
+Imagine que uma empresa de tecnologia esteja analisando o desempenho de um
+algoritmo responsável pelo balanceamento de carga de servidores em um grande
+sistema de streaming. O comportamento computacional desse algoritmo pode ser
+modelado pela função polinomial
+$p(x) = x^{4} + 2x^{3} - 9x^{2} - 2x + 8$, enquanto um parâmetro associado ao
+processamento do sistema é representado pelo polinômio $q(x) = x - 2$. Nesse
+modelo computacional, as raízes do polinômio $p(x)$ representam pontos
+críticos de funcionamento do sistema, indicando situações em que o algoritmo
+altera significativamente seu comportamento operacional. Além disso,
+considere que a maior raiz corresponde ao maior ponto crítico do sistema e
+que a menor raiz corresponde ao menor ponto crítico do sistema. Com base
+nessas informações, determine:
+
+a) O polinômio quociente resultante da divisão de $p(x)$ por $q(x)$.
+
+b) O resto da divisão de $p(x)$ por $q(x)$.
+
+c) Com base nos itens a e b, determine todas as raízes do polinômio $p(x)$.
+
+<Resolution>
+
+**Passo 1. Dispositivo de Briot-Ruffini.**
+
+O divisor é $x - 2$, então a raiz usada no dispositivo é $2$. Os
+coeficientes de $p(x)$ são $1, 2, -9, -2, 8$:
+
+$$
+\begin{aligned}
+&\text{baixa o } 1 \\
+&1 \cdot 2 + 2 = 4 \\
+&4 \cdot 2 + (-9) = -1 \\
+&(-1) \cdot 2 + (-2) = -4 \\
+&(-4) \cdot 2 + 8 = 0 \quad \text{(resto)}
+\end{aligned}
+$$
+
+$$
+\begin{array}{c|ccccc}
+2 & 1 & 2 & -9 & -2 & 8 \\
+\hline
+ & 1 & 4 & -1 & -4 & 0
+\end{array}
+$$
+
+O quociente é $x^{3} + 4x^{2} - x - 4$ e o resto é $0$, então $2$ é raiz de
+$p(x)$:
+
+$$
+p(x) = (x - 2)(x^{3} + 4x^{2} - x - 4)
+$$
+
+**Passo 2. Fatorar o quociente por agrupamento.**
+
+$$
+\begin{aligned}
+x^{3} + 4x^{2} - x - 4 &= 0 \\
+x^{2}(x + 4) - 1(x + 4) &= 0 \\
+(x^{2} - 1)(x + 4) &= 0
+\end{aligned}
+$$
+
+Logo $x^{2} - 1 = 0$, que dá $x = \pm\sqrt{1} = \pm 1$, ou $x + 4 = 0$, que
+dá $x = -4$.
+
+</Resolution>
+
+<Answer>
+a) Quociente: $x^{3} + 4x^{2} - x - 4$
+
+b) Resto: $r(x) = 0$
+
+c) Raízes: $2$, $1$, $-1$ e $-4$. A maior raiz (maior ponto crítico) é $2$ e
+a menor (menor ponto crítico) é $-4$.
+</Answer>
+</Question>
