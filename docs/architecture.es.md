@@ -109,8 +109,11 @@ comunicarse nunca directamente:
    mismo árbol de documentos (`getSidebarTree`, a su vez construido a
    partir de `getAllDocs()`) de forma completamente separada, y para cada
    página llama a `getPagePlainText`, que reduce el MDX a texto plano
-   (quitando la sintaxis Markdown y las tags JSX, aplanando LaTeX a texto
-   legible vía `latex-to-text.ts`) y lo limita a 2000 caracteres. Eso
+   (reescribiendo los componentes del curso como Markdown común vía
+   `remark-flatten-mdx.ts`, luego quitando la sintaxis y aplanando LaTeX a texto
+   legible vía `latex-to-text.ts`) y lo limita a 2000 caracteres. Los botones de copiar de la página
+   reutilizan ese mismo aplanado de componentes, pero mantienen la salida
+   en Markdown con el LaTeX intacto (`page-markdown.ts`). Eso
    produce el `SearchItem[]` plano servido estáticamente en
    `/search-index.json`, buscado bajo demanda por `SearchDialog` y
    comparado en el cliente con Fuse.js. La página renderizada y el índice

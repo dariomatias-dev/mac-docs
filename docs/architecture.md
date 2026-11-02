@@ -103,9 +103,11 @@ same file system at build time and never talking to each other directly:
 2. **The search entry.** `search/lib/search-index.ts` walks the same doc
    tree (`getSidebarTree`, itself built from `getAllDocs()`) completely
    separately, and for each page calls `getPagePlainText`, which strips the
-   MDX down to plain text (stripping Markdown syntax and JSX tags,
-   flattening LaTeX to readable text via `latex-to-text.ts`) and caps it at
-   2000 characters. That produces the flat `SearchItem[]` served statically
+   MDX down to plain text (rewriting course components into plain Markdown via
+   `remark-flatten-mdx.ts`, then dropping the syntax and flattening LaTeX to readable text via `latex-to-text.ts`) and caps it at
+   2000 characters. The page's copy buttons reuse that same component
+   flattening but keep the output as Markdown with the LaTeX intact
+   (`page-markdown.ts`). That produces the flat `SearchItem[]` served statically
    at `/search-index.json`, fetched lazily by `SearchDialog` and matched
    client side with Fuse.js. The rendered page and the search index can
    disagree in principle (e.g. a rendering bug in one pipeline but not the

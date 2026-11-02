@@ -1,8 +1,8 @@
 import {
   getDocBySlug,
-  getPagePlainText,
+  getPageMarkdown,
   getReadingMinutes,
-  getSectionPlainText,
+  getSectionMarkdown,
   type Doc,
 } from "@/features/content";
 import {
@@ -63,8 +63,8 @@ export function buildDocView(doc: Doc) {
     lesson: getLessonContext(doc.url),
     moduleTopics,
     minutes: getReadingMinutes(doc.content),
-    pageText: getPagePlainText(doc),
-    sectionText: doc.isSection ? getSectionPlainText(doc.slug) : undefined,
+    pageText: getPageMarkdown(doc),
+    sectionText: doc.isSection ? getSectionMarkdown(doc.slug) : undefined,
     prerequisites,
     tocLabel: doc.slug.includes("avaliacoes") ? "Nesta prova" : undefined,
   };

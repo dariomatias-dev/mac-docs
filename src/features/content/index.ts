@@ -6,4 +6,5 @@ export { ReadingProgress } from "./components/reading-progress";
 export type { Doc } from "./content.types";
 export { frontmatterSchema, type Frontmatter } from "./lib/frontmatter-schema";
 export { getAllDocs, getAllSlugs, getDocBySlug } from "./lib/mdx";
-export { getPagePlainText, getSectionPlainText, getReadingMinutes } from "./lib/plain-text";
+export { getPagePlainText, getReadingMinutes } from "./lib/plain-text";
+export { getPageMarkdown, getSectionMarkdown } from "./lib/page-markdown";

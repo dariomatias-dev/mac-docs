@@ -4,7 +4,6 @@ import { getDocBySlug } from "../mdx";
 import {
   getPagePlainText,
   getReadingMinutes,
-  getSectionPlainText,
   toPlainText,
 } from "../plain-text";
 
@@ -15,6 +14,11 @@ describe("toPlainText", () => {
     expect(text).not.toContain("**");
     expect(text).toContain("negrito");
     expect(text).toContain("link");
+  });
+
+  it("keeps blocks apart and keeps text right after a component tag", () => {
+    const text = toPlainText("Intro.\n\n## Questão 1\n\n<Question>\nSabendo que $x \\in A$\n</Question>");
+    expect(text).toBe("Intro.\n\nQuestão 1\n\nSabendo que x ∈ A");
   });
 });
 
@@ -35,13 +39,5 @@ describe("getPagePlainText", () => {
     const text = getPagePlainText(doc);
     expect(text).toContain(doc.frontmatter.title);
     expect(text).toContain("cardinalidade");
-  });
-});
-
-describe("getSectionPlainText", () => {
-  it("concatenates every page in a group", () => {
-    const text = getSectionPlainText(["matematica-discreta", "matrizes"]);
-    expect(text).toContain("Operações com matrizes");
-    expect(text).toContain("Matrizes booleanas");
   });
 });

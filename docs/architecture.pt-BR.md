@@ -104,9 +104,12 @@ diretamente:
 2. **A entrada de busca.** `search/lib/search-index.ts` percorre a mesma
    árvore de documentos (`getSidebarTree`, ela mesma construída a partir de
    `getAllDocs()`) de forma completamente separada, e para cada página
-   chama `getPagePlainText`, que reduz o MDX a texto puro (removendo
-   sintaxe Markdown e tags JSX, achatando LaTeX pra texto legível via
-   `latex-to-text.ts`) e limita a 2000 caracteres. Isso produz o
+   chama `getPagePlainText`, que reduz o MDX a texto puro (reescrevendo
+   os componentes do curso como Markdown comum via `remark-flatten-mdx.ts`,
+   depois removendo a sintaxe e achatando LaTeX pra texto legível via
+   `latex-to-text.ts`) e limita a 2000 caracteres. Os botões de copiar da página reusam esse
+   mesmo achatamento de componentes, mas mantêm a saída em Markdown com o
+   LaTeX intacto (`page-markdown.ts`). Isso produz o
    `SearchItem[]` plano servido estaticamente em `/search-index.json`,
    buscado sob demanda pelo `SearchDialog` e casado no cliente com o
    Fuse.js. A página renderizada e o índice de busca podem, em princípio,
