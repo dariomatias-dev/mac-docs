@@ -31,6 +31,12 @@ Bloco recolhível.
 Exercício com resposta revelável. Sem `title`, os exercícios se numeram na
 ordem da página ("Exercício 1", "Exercício 2"...).
 
+Cada card de `Exercise` e `Question` tem um botão "Copiar" que copia só
+aquele item em Markdown (título, enunciado, respostas, matemática em LaTeX e o
+título da página), para colar num chat de IA. O texto é montado em tempo de
+compilação por `content/lib/remark-exercise-markdown.ts` e chega pela prop
+`copyMarkdown`; o autor nunca a escreve.
+
 ```mdx
 <Exercise>
 Calcule $\lim_{x \to 3}(2x + 1)$.

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 
 import { Question } from "../question";
 
@@ -15,5 +16,23 @@ describe("Question", () => {
     // not render its own "Questão N" label.
     expect(screen.queryByText(/questão/i)).toBeNull();
     expect(screen.queryByRole("heading")).toBeNull();
+  });
+});
+
+describe("Question copy button", () => {
+  it("copies the injected Markdown", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", { value: { writeText }, configurable: true });
+    render(<Question copyMarkdown="# Questão 1">conteúdo</Question>);
+
+    await userEvent.click(screen.getByRole("button", { name: "Copiar questão em Markdown" }));
+
+    expect(writeText).toHaveBeenCalledWith("# Questão 1");
+    expect(screen.getByRole("button", { name: "Copiado" })).toBeInTheDocument();
+  });
+
+  it("shows no copy button without Markdown", () => {
+    render(<Question>conteúdo</Question>);
+    expect(screen.queryByRole("button")).toBeNull();
   });
 });

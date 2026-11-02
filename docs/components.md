@@ -31,6 +31,12 @@ Collapsible block.
 Exercise with a revealable answer. Without a `title`, exercises number
 themselves in page order ("Exercício 1", "Exercício 2"...).
 
+Each `Exercise` and `Question` card has a "Copiar" button that copies that
+item alone as Markdown (title, statement, answers, math as LaTeX, and the
+page title), for pasting into an AI chat. The text is built at compile time by
+`content/lib/remark-exercise-markdown.ts` and arrives as the `copyMarkdown`
+prop; authors never write it.
+
 ```mdx
 <Exercise>
 Compute $\lim_{x \to 3}(2x + 1)$.

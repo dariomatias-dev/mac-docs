@@ -8,6 +8,10 @@ import remarkMath from "remark-math";
 import { HeadingAnchor } from "./heading-anchor";
 import { rehypeHeadingId } from "../lib/rehype-heading-id";
 import { rehypeKatexA11y } from "../lib/rehype-katex-a11y";
+import {
+  remarkExerciseMarkdown,
+  type ExerciseMarkdownOptions,
+} from "../lib/remark-exercise-markdown";
 
 // Dual-theme Shiki output: each token carries both a --shiki-light and
 // --shiki-dark CSS variable; globals.css swaps between them on `.dark`.
@@ -17,18 +21,13 @@ const prettyCodeOptions: PrettyCodeOptions = {
   keepBackground: false,
 };
 
-const options: MDXRemoteProps["options"] = {
-  mdxOptions: {
-    remarkPlugins: [remarkGfm, remarkMath],
-    rehypePlugins: [
-      rehypeHeadingId,
-      rehypeSlug,
-      rehypeKatex,
-      rehypeKatexA11y,
-      [rehypePrettyCode, prettyCodeOptions],
-    ],
-  },
-};
+const rehypePlugins = [
+  rehypeHeadingId,
+  rehypeSlug,
+  rehypeKatex,
+  rehypeKatexA11y,
+  [rehypePrettyCode, prettyCodeOptions],
+] satisfies NonNullable<NonNullable<MDXRemoteProps["options"]>["mdxOptions"]>["rehypePlugins"];
 
 // Scrollable code blocks must be keyboard-focusable to satisfy WCAG (axe
 // scrollable-region-focusable). tabIndex 0 lets keyboard users scroll them.
@@ -95,10 +94,20 @@ const baseComponents: MDXRemoteProps["components"] = {
 export function MdxRenderer({
   source,
   components,
+  page,
 }: {
   source: string;
   components?: MDXRemoteProps["components"];
+  /** Page context written into each exercise's "copy as Markdown" text. */
+  page?: ExerciseMarkdownOptions;
 }) {
+  const options: MDXRemoteProps["options"] = {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm, remarkMath, [remarkExerciseMarkdown, page]],
+      rehypePlugins,
+    },
+  };
+
   return (
     <MDXRemote
       source={source}

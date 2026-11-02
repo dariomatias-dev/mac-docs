@@ -31,6 +31,12 @@ Bloque colapsable.
 Ejercicio con respuesta revelable. Sin `title`, los ejercicios se numeran en
 el orden de la página ("Exercício 1", "Exercício 2"...).
 
+Cada tarjeta de `Exercise` y `Question` tiene un botón "Copiar" que copia
+solo ese ítem en Markdown (título, enunciado, respuestas, matemática en LaTeX
+y el título de la página), para pegarlo en un chat de IA. El texto se arma en
+tiempo de compilación en `content/lib/remark-exercise-markdown.ts` y llega por
+la prop `copyMarkdown`; el autor nunca la escribe.
+
 ```mdx
 <Exercise>
 Calcula $\lim_{x \to 3}(2x + 1)$.

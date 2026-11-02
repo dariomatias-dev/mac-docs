@@ -171,7 +171,11 @@ export default async function DocPage({ params }: DocPageProps) {
           <MobileToc items={toc} label={tocLabel} />
         </div>
         <div className="prose doc-prose max-w-none">
-          <MdxRenderer source={doc.content} components={mdxComponents} />
+          <MdxRenderer
+            source={doc.content}
+            components={mdxComponents}
+            page={{ title: doc.frontmatter.title }}
+          />
           <MathCopy />
         </div>
         {moduleTopics.length > 0 && (

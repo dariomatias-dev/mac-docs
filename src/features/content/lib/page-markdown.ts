@@ -3,15 +3,16 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import remarkParse from "remark-parse";
-import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 
 import { SITE_URL } from "@/shared/lib/site";
 
+import { mdastToMarkdown } from "./mdast-to-markdown";
 import { getAllDocs } from "./mdx";
-import { remarkFlattenMdx } from "./remark-flatten-mdx";
 
 import type { Doc } from "../content.types";
+
+const parser = unified().use(remarkParse).use(remarkMdx).use(remarkGfm).use(remarkMath);
 
 /**
  * Converts a page's MDX source to clean Markdown for the "copy" buttons:
@@ -19,17 +20,9 @@ import type { Doc } from "../content.types";
  * `$...$`/`$$...$$` LaTeX, so pasting into an AI chat, Obsidian or Notion
  * keeps every formula intact instead of a lossy Unicode approximation.
  */
-export const toMarkdown = cache((source: string): string => {
-  const file = unified()
-    .use(remarkParse)
-    .use(remarkMdx)
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkFlattenMdx)
-    .use(remarkStringify, { bullet: "-", emphasis: "_", rule: "-", fences: true })
-    .processSync(source);
-  return String(file).trim();
-});
+export const toMarkdown = cache((source: string): string =>
+  mdastToMarkdown(parser.parse(source)),
+);
 
 export function getPageMarkdown(doc: Doc): string {
   const header = [`# ${doc.frontmatter.title}`];
