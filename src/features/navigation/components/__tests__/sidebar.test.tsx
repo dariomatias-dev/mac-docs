@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -51,12 +51,12 @@ const tree: SidebarCourse[] = [
   },
 ];
 
-function renderSidebar() {
+function renderSidebar(sidebarTree = tree) {
   return render(
     <ActiveMobileSheetProvider>
       <SidebarCollapseProvider>
         <SidebarGroupsProvider>
-          <Sidebar tree={tree} />
+          <Sidebar tree={sidebarTree} />
         </SidebarGroupsProvider>
       </SidebarCollapseProvider>
     </ActiveMobileSheetProvider>,
@@ -191,5 +191,39 @@ describe("Sidebar", () => {
     await userEvent.click(backdrop!);
 
     expect(screen.getByTestId("nav-state")).toHaveTextContent("closed");
+  });
+
+  it("separates leading material, modules, and trailing resources", () => {
+    const subjectGroup = tree[0].groups[0];
+    const leading = {
+      ...subjectGroup,
+      title: "Plano",
+      href: "/docs/plano",
+      kind: "resource" as const,
+    };
+    const trailing = {
+      ...subjectGroup,
+      title: "Avaliações",
+      href: "/docs/avaliacoes",
+      kind: "resource" as const,
+    };
+    renderSidebar([{ ...tree[0], groups: [leading, subjectGroup, trailing] }]);
+    const content = screen.getByRole("group", { name: "Conteúdo" });
+    const resources = screen.getByRole("group", { name: "Recursos" });
+    expect(within(content).getByRole("link", { name: "Matrizes" })).toBeInTheDocument();
+    expect(within(resources).getByRole("link", { name: "Avaliações" })).toBeInTheDocument();
+    expect(
+      within(resources).getByRole("link", { name: "Plano de disciplina" }),
+    ).toBeInTheDocument();
+    expect(content).not.toContainElement(screen.getByRole("link", { name: "Plano" }));
+    expect(resources).not.toContainElement(screen.getByRole("link", { name: "Plano" }));
+  });
+
+  it("shows a resource-only course without empty section headings", () => {
+    const resource = { ...tree[0].groups[0], kind: "resource" as const };
+    renderSidebar([{ ...tree[0], groups: [resource], pages: [] }]);
+    expect(screen.getByRole("link", { name: "Matrizes" })).toBeInTheDocument();
+    expect(screen.queryByRole("group", { name: "Conteúdo" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("group", { name: "Recursos" })).not.toBeInTheDocument();
   });
 });

@@ -41,3 +41,26 @@ describe("getPagePlainText", () => {
     expect(text).toContain("cardinalidade");
   });
 });
+
+
+describe("plain-text search representations", () => {
+  it("preserves image descriptions, inline code, and hard line breaks", () => {
+    expect(toPlainText("Use `A` e ![diagrama](./imagem.png)  \nna próxima linha.")).toBe(
+      "Use A e diagrama\nna próxima linha.",
+    );
+  });
+
+  it("keeps table cells separated and code blocks searchable", () => {
+    const text = toPlainText("| Nome | Valor |\n| --- | --- |\n| A | 2 |\n\n```js\nconst x = 2;\n```");
+    expect(text).toBe("Nome | Valor\n\nA | 2\n\nconst x = 2;");
+  });
+
+  it("keeps display math readable without exposing link definitions", () => {
+    const text = toPlainText("$$\nx \\in A\n$$\n\n[Referência][ref]\n\n[ref]: https://example.com");
+    expect(text).toBe("x ∈ A\n\nReferência");
+  });
+
+  it("omits images without descriptions and non-reading MDX expressions", () => {
+    expect(toPlainText("![](./imagem.png)\n\n{1 + 2}\n\nTexto útil.")).toBe("Texto útil.");
+  });
+});

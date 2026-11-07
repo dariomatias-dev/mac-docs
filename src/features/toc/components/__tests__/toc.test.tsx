@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -205,5 +205,52 @@ describe("TableOfContents", () => {
       "aria-current",
       "location",
     );
+  });
+
+  it("scrolls upward to reveal an active entry above the nav viewport", () => {
+    mountHeadingsAtTops({ primeira: -400, segunda: 50, terceira: 300 });
+    render(<TableOfContents items={items} />);
+    const nav = screen.getByRole("navigation", { name: "Índice do artigo" });
+    nav.scrollTop = 100;
+    nav.getBoundingClientRect = () => ({ top: 50, bottom: 250 }) as DOMRect;
+    screen.getByRole("link", { name: "Segunda seção" }).getBoundingClientRect = () =>
+      ({ top: 20, bottom: 40, height: 20 }) as DOMRect;
+
+    flushFrames();
+
+    expect(nav.scrollTop).toBe(70);
+  });
+
+  it("resumes the scroll spy after a clicked heading settles", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    mountHeadingsAtTops({ primeira: 50, segunda: 400, terceira: 900 });
+    render(<TableOfContents items={items} />);
+    flushFrames();
+    const target = screen.getByRole("link", { name: "Terceira seção" });
+    fireEvent.click(target);
+    fireEvent.scroll(window);
+    flushFrames();
+    await act(() => vi.advanceTimersByTimeAsync(150));
+    expect(target).toHaveAttribute("aria-current", "location");
+
+    fireEvent.scroll(window);
+    flushFrames();
+    expect(screen.getByRole("link", { name: "Primeira seção" })).toHaveAttribute(
+      "aria-current",
+      "location",
+    );
+    expect(target).not.toHaveAttribute("aria-current");
+  });
+
+  it("marks the first entry immediately when returning to the top", () => {
+    mountHeadingsAtTops({ primeira: -400, segunda: 50, terceira: 300 });
+    render(<TableOfContents items={items} />);
+    flushFrames();
+    fireEvent.click(screen.getByRole("link", { name: "Voltar ao topo" }));
+    expect(screen.getByRole("link", { name: "Primeira seção" })).toHaveAttribute(
+      "aria-current",
+      "location",
+    );
+    expect(screen.getByRole("link", { name: "Segunda seção" })).not.toHaveAttribute("aria-current");
   });
 });

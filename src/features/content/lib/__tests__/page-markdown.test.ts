@@ -74,3 +74,33 @@ describe("getSectionMarkdown", () => {
     expect(md).toContain("\n\n---\n\n");
   });
 });
+
+
+describe("component Markdown edge cases", () => {
+  it("keeps steps and collapsible content with their optional titles", () => {
+    const md = toMarkdown('<StepByStep>\n<Step title="Fatorar">\nPrimeiro passo.\n</Step>\n<Step>\nSegundo passo.\n</Step>\n</StepByStep>\n\n<Collapsible title="Detalhes">\nExplicação.\n</Collapsible>');
+    expect(md).toBe("**Resolução passo a passo**\n\n**Fatorar**\n\nPrimeiro passo.\n\nSegundo passo.\n\n**Detalhes**\n\nExplicação.");
+  });
+
+  it("omits executable MDX while preserving surrounding prose", () => {
+    const md = toMarkdown('export const secret = "interno";\n\nAntes {secret} depois.\n\n{secret}');
+    expect(md).toBe("Antes  depois.");
+  });
+
+  it("supports video URLs and a default title, omitting empty video IDs", () => {
+    const md = toMarkdown('<YouTube id="https://youtu.be/abcdefghijk" />\n\n<YouTube id="  " />');
+    expect(md).toBe("[Vídeo do YouTube](https://youtu.be/abcdefghijk)");
+  });
+
+  it("preserves inline pixel grids and defaults missing columns to a single row", () => {
+    expect(toMarkdown('Grade: <PixelGrid pattern="10 01" />.')).toBe("Grade: `1001`.");
+  });
+
+  it("keeps untitled callout and collapsible content", () => {
+    expect(toMarkdown('<Callout>\nUma dica.\n</Callout>\n\n<Collapsible>\nDetalhes.\n</Collapsible>')).toBe("> Uma dica.\n\nDetalhes.");
+  });
+
+  it("returns no section text for a nonexistent group", () => {
+    expect(getSectionMarkdown(["nonexistent-course", "nonexistent-group"])).toBe("");
+  });
+});
