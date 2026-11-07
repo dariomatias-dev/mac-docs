@@ -2,8 +2,7 @@
 
 # Study components
 
-Registered in `src/features/study/registry.ts` and injected into the MDX. All of
-them receive content through children (full markdown and KaTeX).
+Registered in `src/features/study/registry.ts` and injected into the MDX. Content blocks receive Markdown and KaTeX through children; calculators, generated exercises, and diagrams use the props shown below.
 
 ## Callout
 
@@ -86,11 +85,9 @@ Embed via `youtube-nocookie`. Accepts an id or a URL.
 Used on exam pages (`content/.../avaliacoes/`). `Badge` is an inline tag for
 the question heading (points, source); `Question` is the question container;
 `Resolution` hides the resolution behind a "Ver resolução" button; `Proof` is
-an always visible proof block with a side border. A question with several
-resolutions tags each with `method` (`direta`, `contraposicao`, `absurdo`,
-`inducao`, `recursao`, `contraexemplo`), which shows in the button label. A question with several
-resolutions tags each with `method` (`direta`, `contraposicao`, `contradicao`,
-`inducao`, `recursao`, `contraexemplo`), which shows in the button label.
+an always visible proof block with a side border. A question with several resolutions can tag each with
+`method`: `direta`, `contraposicao`, `contradicao`, `inducao`, `recursao`,
+or `contraexemplo`. The method appears in the button label.
 
 ```mdx
 ## Questão 1 <Badge>1,0 pt</Badge>
@@ -188,4 +185,32 @@ in the `schedule` feature and is registered here.
 | **08/09/2026** | **Avaliação 1**      |
 
 </ClassSchedule>
+```
+
+## Marker
+
+Inline badge for numbering or labelling an exercise item. Accepts text through children, including letters and Roman numerals.
+
+```mdx
+<Marker>a)</Marker> Calcule o resultado.
+```
+
+## ScatterGraph
+
+SVG scatter plot. `label` names the graph; `xMax` and `yMax` set axis limits. `points` contains whitespace-separated `x,y` pairs.
+
+```mdx
+<ScatterGraph label="Relação R" xMax="5" yMax="5" points="1,2 2,4 4,3" />
+```
+
+## MatrixExercise / BooleanMatrixExercise
+
+Generate random questions with a revealable answer and a button to generate another question. The optional `operations` prop restricts the selection; omit it to allow all operations. When supplied, use a non-empty array.
+
+- `MatrixExercise`: `add`, `sub`, `multiply`, `scalar`, `transpose`.
+- `BooleanMatrixExercise`: `or`, `and`, `multiply`.
+
+```mdx
+<MatrixExercise operations={["multiply", "transpose"]} />
+<BooleanMatrixExercise operations={["or", "and"]} />
 ```

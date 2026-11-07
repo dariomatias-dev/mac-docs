@@ -4,7 +4,7 @@
 
 ## Estrutura de pastas
 
-O conteúdo fica em `content/`, em três níveis:
+O conteúdo fica em `content/`, com cursos, grupos e subgrupos aninhados:
 
 ```
 content/
@@ -28,13 +28,15 @@ suas descrições, então não é preciso escrevê-la à mão.
 
 ## Frontmatter
 
+`title` é obrigatório (1–60 caracteres), assim como `description` (1–160 caracteres). Escreva o conteúdo e os textos exibidos em português. Execute `pnpm run content:check` para validar frontmatter e links internos antes do build.
+
 Validado por `zod` em build. Um frontmatter inválido quebra o build com um erro
 claro.
 
 ```yaml
 ---
 title: Operações com matrizes # obrigatório
-description: Adição, subtração e multiplicação. # opcional
+description: Adição, subtração e multiplicação. # obrigatório, 1–160 caracteres
 order: 1 # opcional (ordena as páginas do grupo)
 prerequisites: # opcional, cada item deve começar com /docs/
   - /docs/matematica-discreta/matrizes

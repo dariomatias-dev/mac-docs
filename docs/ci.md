@@ -10,7 +10,7 @@ Two principles run through every workflow here:
    never gets blocked over a missing token.
 2. **The local gate mirrors CI.** `pnpm run verify` (see
    [contributing.md](contributing.md#the-local-gate)) runs the same checks
-   `ci.yml` runs, in the same order. A green local run should mean a green
+   `ci.yml` runs. A green local run should mean a green
    CI run.
 
 ## `.github/workflows/ci.yml`

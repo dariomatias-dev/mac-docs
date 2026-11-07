@@ -2,8 +2,7 @@
 
 # Componentes de estudo
 
-Registrados em `src/features/study/registry.ts` e injetados no MDX. Todos recebem
-conteúdo via children (markdown e KaTeX completos).
+Registrados em `src/features/study/registry.ts` e injetados no MDX. Blocos de conteúdo recebem Markdown e KaTeX via children; calculadoras, exercícios gerados e diagramas usam as props descritas abaixo.
 
 ## Callout
 
@@ -87,11 +86,9 @@ Usados nas páginas de avaliações (`content/.../avaliacoes/`). `Badge` é um
 selo inline para o cabeçalho da questão (pontuação, fonte); `Question` é o
 container da questão; `Resolution` esconde a resolução atrás de um botão
 "Ver resolução"; `Proof` é um bloco de demonstração com borda lateral,
-sempre visível. Uma questão com várias resoluções marca cada uma com
-`method` (`direta`, `contraposicao`, `absurdo`, `inducao`, `recursao`,
-`contraexemplo`), que aparece no rótulo do botão. Uma questão com várias resoluções marca cada uma com
-`method` (`direta`, `contraposicao`, `contradicao`, `inducao`, `recursao`,
-`contraexemplo`), que aparece no rótulo do botão.
+sempre visível. Uma questão com várias resoluções pode marcar cada uma com
+`method`: `direta`, `contraposicao`, `contradicao`, `inducao`, `recursao`
+ou `contraexemplo`. O método aparece no rótulo do botão.
 
 ```mdx
 ## Questão 1 <Badge>1,0 pt</Badge>
@@ -188,4 +185,32 @@ aparece como tabela comum. Fica na feature `schedule` e é registrado aqui.
 | **08/09/2026** | **Avaliação 1**      |
 
 </ClassSchedule>
+```
+
+## Marker
+
+Selo inline para numerar ou identificar um item de exercício. Aceita texto via children, incluindo letras e algarismos romanos.
+
+```mdx
+<Marker>a)</Marker> Calcule o resultado.
+```
+
+## ScatterGraph
+
+Gráfico de dispersão em SVG. `label` identifica o gráfico; `xMax` e `yMax` definem os limites dos eixos. `points` contém pares `x,y` separados por espaços.
+
+```mdx
+<ScatterGraph label="Relação R" xMax="5" yMax="5" points="1,2 2,4 4,3" />
+```
+
+## MatrixExercise / BooleanMatrixExercise
+
+Geram questões aleatórias com resposta revelável e botão para gerar outra questão. A prop opcional `operations` restringe a seleção; omita-a para permitir todas as operações. Quando fornecida, use um array não vazio.
+
+- `MatrixExercise`: `add`, `sub`, `multiply`, `scalar`, `transpose`.
+- `BooleanMatrixExercise`: `or`, `and`, `multiply`.
+
+```mdx
+<MatrixExercise operations={["multiply", "transpose"]} />
+<BooleanMatrixExercise operations={["or", "and"]} />
 ```

@@ -97,7 +97,7 @@ breadcrumb, previous/next navigation, and a search index entry.
 
 ## Content
 
-Content lives in [`content/`](content/), organized in three levels:
+Content lives in [`content/`](content/), organized by course and group, with nested subgroups supported:
 
 ```
 content/<course>/<group>/<page>.mdx
@@ -127,6 +127,8 @@ allowed through a feature's `index.ts` barrel, enforced by
 
 ## Getting Started
 
+Requires Node.js 24 or later (see `.nvmrc`) and pnpm 11.20.0, as declared in `package.json`.
+
 ```bash
 pnpm install
 cp .env.example .env.local   # set NEXT_PUBLIC_SITE_URL
@@ -135,17 +137,24 @@ pnpm run dev                  # http://localhost:3000
 
 ## Scripts
 
-| Command              | Description                |
-| -------------------- | -------------------------- |
-| `pnpm run dev`       | Development server         |
-| `pnpm run build`     | Production build (SSG)     |
-| `pnpm run start`     | Serve the production build |
-| `pnpm run lint`      | ESLint                     |
-| `pnpm run typecheck` | `tsc --noEmit`             |
-| `pnpm run format`    | Prettier (write)           |
-| `pnpm run test`      | Vitest (watch)             |
-| `pnpm run test:run`  | Vitest (single run)        |
-| `pnpm run test:e2e`  | Playwright (smoke and axe) |
+| Command                       | Description                        |
+| ----------------------------- | ---------------------------------- |
+| `pnpm run dev`                | Development server                 |
+| `pnpm run build`              | Production build (SSG)             |
+| `pnpm run start`              | Serve the production build         |
+| `pnpm run lint`               | ESLint                             |
+| `pnpm run typecheck`          | `tsc --noEmit`                     |
+| `pnpm run format`             | Prettier (write)                   |
+| `pnpm run test`               | Vitest (watch)                     |
+| `pnpm run test:run`           | Vitest (single run)                |
+| `pnpm run test:e2e`           | Playwright (smoke and axe)         |
+| `pnpm run format:check`       | Check formatting                   |
+| `pnpm run test:coverage`      | Tests with coverage thresholds     |
+| `pnpm run content:check`      | Validate MDX and internal links    |
+| `pnpm run check:docs-locales` | Check documentation locale parity  |
+| `pnpm run check:bundle-size`  | Check bundle budget after building |
+| `pnpm run lighthouse`         | Run Lighthouse reports             |
+| `pnpm run verify`             | Run the full local quality gate    |
 
 ## Testing
 

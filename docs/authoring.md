@@ -4,7 +4,7 @@
 
 ## Folder structure
 
-Content lives in `content/`, in three levels:
+Content lives in `content/`, with courses, groups, and nested subgroups:
 
 ```
 content/
@@ -29,13 +29,15 @@ don't add one by hand.
 
 ## Frontmatter
 
+`title` is required (1–60 characters), and `description` is required (1–160 characters). Write course content and display text in Portuguese. Run `pnpm run content:check` to validate frontmatter and internal links before building.
+
 Validated by `zod` at build time. Invalid frontmatter fails the build with a
 clear error.
 
 ```yaml
 ---
 title: Operações com matrizes # required
-description: Addition, subtraction and multiplication. # optional
+description: Adição, subtração e multiplicação. # required, 1–160 characters
 order: 1 # optional (orders the pages in a group)
 prerequisites: # optional, each item must start with /docs/
   - /docs/matematica-discreta/matrizes

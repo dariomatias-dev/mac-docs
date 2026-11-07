@@ -100,7 +100,7 @@ busca.
 
 ## Conteúdo
 
-O conteúdo vive em [`content/`](content/), organizado em três níveis:
+O conteúdo vive em [`content/`](content/), organizado por curso e grupo, com suporte a subgrupos aninhados:
 
 ```
 content/<curso>/<grupo>/<página>.mdx
@@ -130,6 +130,8 @@ permitidos pelo barril `index.ts` de cada feature, garantido pelo
 
 ## Começando
 
+Requer Node.js 24 ou superior (veja `.nvmrc`) e pnpm 11.20.0, conforme `package.json`.
+
 ```bash
 pnpm install
 cp .env.example .env.local   # defina NEXT_PUBLIC_SITE_URL
@@ -138,17 +140,24 @@ pnpm run dev                  # http://localhost:3000
 
 ## Scripts
 
-| Comando              | Descrição                   |
-| -------------------- | --------------------------- |
-| `pnpm run dev`       | Servidor de desenvolvimento |
-| `pnpm run build`     | Build de produção (SSG)     |
-| `pnpm run start`     | Serve o build de produção   |
-| `pnpm run lint`      | ESLint                      |
-| `pnpm run typecheck` | `tsc --noEmit`              |
-| `pnpm run format`    | Prettier (escrita)          |
-| `pnpm run test`      | Vitest (watch)              |
-| `pnpm run test:run`  | Vitest (uma vez)            |
-| `pnpm run test:e2e`  | Playwright (smoke e axe)    |
+| Comando                       | Descrição                                       |
+| ----------------------------- | ----------------------------------------------- |
+| `pnpm run dev`                | Servidor de desenvolvimento                     |
+| `pnpm run build`              | Build de produção (SSG)                         |
+| `pnpm run start`              | Serve o build de produção                       |
+| `pnpm run lint`               | ESLint                                          |
+| `pnpm run typecheck`          | `tsc --noEmit`                                  |
+| `pnpm run format`             | Prettier (escrita)                              |
+| `pnpm run test`               | Vitest (watch)                                  |
+| `pnpm run test:run`           | Vitest (uma vez)                                |
+| `pnpm run test:e2e`           | Playwright (smoke e axe)                        |
+| `pnpm run format:check`       | Verifica a formatação                           |
+| `pnpm run test:coverage`      | Testes com limites de cobertura                 |
+| `pnpm run content:check`      | Valida MDX e links internos                     |
+| `pnpm run check:docs-locales` | Verifica a paridade dos idiomas da documentação |
+| `pnpm run check:bundle-size`  | Verifica o orçamento do bundle após o build     |
+| `pnpm run lighthouse`         | Executa relatórios Lighthouse                   |
+| `pnpm run verify`             | Executa o gate local completo                   |
 
 ## Testes
 

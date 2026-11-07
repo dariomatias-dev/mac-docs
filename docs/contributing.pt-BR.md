@@ -44,7 +44,7 @@ pnpm run verify --fast  # pula build e e2e: o que o pre-push roda
 ```
 
 [`scripts/verify.sh`](../scripts/verify.sh) roda exatamente os mesmos
-checks do [CI](../.github/workflows/ci.yml), na mesma ordem. Um
+checks do [CI](../.github/workflows/ci.yml). Um
 `pnpm run verify` verde localmente significa que o CI também deveria ficar
 verde. Se não ficar, é bug no gate, não coincidência para ignorar.
 

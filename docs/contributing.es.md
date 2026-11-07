@@ -45,8 +45,7 @@ pnpm run verify --fast  # salta build y e2e: lo que corre el pre-push
 ```
 
 [`scripts/verify.sh`](../scripts/verify.sh) corre exactamente las
-mismas verificaciones que el [CI](../.github/workflows/ci.yml), en el
-mismo orden. Un `pnpm run verify` verde localmente significa que el CI
+mismas verificaciones que el [CI](../.github/workflows/ci.yml). Un `pnpm run verify` verde localmente significa que el CI
 también debería quedar verde. Si no es así, es un bug en el gate, no una
 coincidencia para ignorar.
 

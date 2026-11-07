@@ -42,7 +42,7 @@ pnpm run verify --fast  # skips build and e2e: what pre-push runs
 ```
 
 [`scripts/verify.sh`](../scripts/verify.sh) runs the same checks as
-[CI](../.github/workflows/ci.yml), in the same order. A green
+[CI](../.github/workflows/ci.yml). A green
 `pnpm run verify` locally means CI should also be green. If it isn't, that's
 a bug in the gate, not a coincidence to shrug off.
 
