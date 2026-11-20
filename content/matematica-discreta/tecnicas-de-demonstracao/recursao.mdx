@@ -105,6 +105,33 @@ $$
 </Answer>
 </Exercise>
 
+<Exercise>
+Escreva recursivamente a sequência das potências de $3$, cujos elementos
+são $1, 3, 9, 27, 81, \ldots$
+
+<Answer>
+Cada termo é o triplo do anterior:
+
+$$
+f(0) = 1, \qquad f(n) = 3 \cdot f(n-1),\; n \ge 1
+$$
+</Answer>
+</Exercise>
+
+<Exercise>
+Escreva recursivamente a sequência que representa o fatorial, cujos
+elementos são $0!, 1!, 2!, 3!, 4!, \ldots = 1, 1, 2, 6, 24, \ldots$
+
+<Answer>
+Cada termo é o anterior multiplicado pela posição $n$, pois
+$n! = n \cdot (n-1)!$:
+
+$$
+f(0) = 1, \qquad f(n) = n \cdot f(n-1),\; n \ge 1
+$$
+</Answer>
+</Exercise>
+
 ## Algoritmos recursivos
 
 Um algoritmo é um conjunto finito de instruções precisas para realizar uma
